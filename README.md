@@ -29,3 +29,10 @@
    `npm install`
 6. Ejecutar el siguiente comando para iniciar el servidor de desarrollo:
    `npm run dev`
+
+### Team:
+
+- Aron Diaz
+- Diego Jesús Hamui
+- Hernán Gobulin
+- Nicolás Loreto
