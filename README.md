@@ -29,3 +29,13 @@
    `npm install`
 6. Ejecutar el siguiente comando para iniciar el servidor de desarrollo:
    `npm run dev`
+
+### Team:
+
+- Aron Diaz
+- Diego Jesús Hamui
+- Hernán Gobulin
+- Nicolás Loreto
+
+#### Link a Trello [![Trello](https://img.shields.io/badge/Trello-%231E88E5.svg?&style=flat-square&logo=trello&logoColor=white)](https://trello.com/b/wlIF4QIH/fastwork)
+
