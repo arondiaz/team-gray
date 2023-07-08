@@ -1,9 +1,9 @@
-import { Home } from './pages/Home/Home';
+import { RouteSwitch } from './routes/RouteSwitch/RouteSwitch';
 
 function App() {
   return (
     <>
-      <Home />
+      <RouteSwitch />
     </>
   );
 }
