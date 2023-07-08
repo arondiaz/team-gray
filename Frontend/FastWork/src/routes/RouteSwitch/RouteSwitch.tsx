@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { About, Trades, Home, PrivacyPolicy, ErrorPage } from '../../pages';
+import { Footer } from '../../components/Footer/Footer';
 
 export const RouteSwitch = () => {
   return (
@@ -14,6 +15,8 @@ export const RouteSwitch = () => {
 
         <Route path='*' element={<Navigate to='/404' />}></Route>
       </Routes>
+
+      <Footer />
     </>
   );
 };
