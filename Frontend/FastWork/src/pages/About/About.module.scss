@@ -1,0 +1,44 @@
+.aboutcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rem;
+  height: 30rem;
+  border-radius: 1rem;
+  background-color: #ffff;
+  border: 3px solid #4c3e7f;
+}
+
+section div {
+  padding: 2rem;
+}
+
+.imageprofile {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+h2 {
+  font-family: "Lexend", sans-serif;
+  color: #626262;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.icon {
+  margin: 0.4rem;
+  width: 1.6875rem;
+  height: 1.6875rem;
+}
