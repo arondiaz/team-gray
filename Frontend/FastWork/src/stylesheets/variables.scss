@@ -18,11 +18,16 @@ $spacing-md: 16px;
 $spacing-lg: 32px;
 
 // Border radius
-$border-sm: 7px;
-$border-md: 10px;
+$border-sm: 0.2rem;
+$border-md: 0.5rem;
 
 // Header height
 $headerHeight: 80px;
+
+// fonts
+$bold-sm: 500;
+$bold-md: 700;
+$bold-lg: 800;
 
 // This mixin defines specific styles for a given breakpoint.
 // @param $point: The breakpoint to use (e.g., "md").
