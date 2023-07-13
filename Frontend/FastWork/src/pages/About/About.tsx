@@ -53,7 +53,7 @@ export const About = () => {
 
           <ul>
             <li>
-              <a href="https://github.com/aron0ne" className="github-icon" target='_blank'>
+              <a href="https://github.com/arondiaz" className="github-icon" target='_blank'>
                 <img src="src\assets\icons\icon-github.svg" className={styles.icon} alt="icon-git" />
               </a>
             </li>
