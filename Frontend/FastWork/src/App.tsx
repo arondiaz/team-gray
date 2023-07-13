@@ -1,13 +1,11 @@
-import Header from './components/NavigationMenu/Header';
 import { RouteSwitch } from './routes/RouteSwitch/RouteSwitch';
 
 function App() {
-	return (
-		<>
-			<Header />
-			<RouteSwitch />
-		</>
-	);
+  return (
+    <>
+      <RouteSwitch />
+    </>
+  );
 }
 
 export default App;

@@ -1,10 +1,10 @@
 import { Footer } from './Footer/Footer';
-import { NavigationMenu } from './NavigationMenu/NavigationMenu';
+import  Header  from './HeaderMenu/Header';
 
 export const Layout = () => {
   return (
     <>
-      <NavigationMenu />
+      <Header />
       <Footer />
     </>
   );
