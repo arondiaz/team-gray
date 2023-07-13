@@ -56,10 +56,10 @@ export const Login = () => {
         <h2>Inicia sesión</h2>
         <form action="" onSubmit={handleSubmit}>
           <div className={styles.inputbox}>
-            <label htmlFor="mail">Mail</label>
+            <label htmlFor="email">Mail</label>
             <input
-              type="mail"
-              id="mail"
+              type="email"
+              id="email"
               value={mail}
               onChange={(e) => setMail(e.target.value)}
               onBlur={validateMail}
@@ -108,7 +108,6 @@ export const Login = () => {
 
           <div className={styles.backbtn}>
             <a href="#">
-              {" "}
               <FaArrowAltCircleLeft />
             </a>
           </div>
