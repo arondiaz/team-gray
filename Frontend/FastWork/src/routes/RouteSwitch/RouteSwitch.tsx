@@ -1,9 +1,12 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { About, Trades, Home, PrivacyPolicy, ErrorPage } from '../../pages';
+import { Footer } from '../../components/Footer/Footer';
+import Header from '../../components/HeaderMenu/Header';
 
 export const RouteSwitch = () => {
   return (
     <>
+      <Header />
       <Routes>
         <Route path='/' element={<Navigate to={'home'} />}></Route>
         <Route path='home' element={<Home />}></Route>
@@ -14,6 +17,8 @@ export const RouteSwitch = () => {
 
         <Route path='*' element={<Navigate to='/404' />}></Route>
       </Routes>
+
+      <Footer />
     </>
   );
 };
