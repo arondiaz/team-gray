@@ -3,7 +3,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 import styles from "./Login.module.scss";
 
-
 export const Login = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,13 +10,10 @@ export const Login = () => {
   const [errorMail, setErrorMail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
 
-
   const [isValid, setIsValid] = useState(true);
- 
 
- 
-  const handleSubmit = (e:any) => {
-    e.preventDefault()
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     if ([mail].includes("")) {
       setErrorMail(true);
 
@@ -35,7 +31,6 @@ export const Login = () => {
     setErrorPassword(false);
   };
 
-
   //Validate Mail
   const validateMail = () => {
     const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -48,15 +43,15 @@ export const Login = () => {
     }
   };
 
-  
-
   return (
     <div className={styles.container}>
       <div className={styles.formcontainer}>
-        <h2>Inicia sesión</h2>
+        <h2 className={styles.logintext}>Inicia sesión</h2>
         <form action="" onSubmit={handleSubmit}>
           <div className={styles.inputbox}>
-            <label htmlFor="email">Mail</label>
+            <label htmlFor="email" className={styles.label}>
+              Mail
+            </label>
             <input
               type="email"
               id="email"
@@ -76,13 +71,14 @@ export const Login = () => {
             )}
           </div>
           <div className={styles.inputbox}>
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password" className={styles.label}>
+              Contraseña
+            </label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              
             />
             {errorPassword && (
               <div className={styles.errorpass}>
@@ -115,4 +111,4 @@ export const Login = () => {
       </div>
     </div>
   );
- };
+};
