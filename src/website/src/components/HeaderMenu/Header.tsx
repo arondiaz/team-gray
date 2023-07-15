@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { routes } from '../../routes/routes';
 import classes from './Header.module.scss';
 
 {
@@ -61,37 +62,15 @@ const Header = () => {
         </div>
         <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
           <ul>
-            {/* Home link */}
-
-            <li>
-              <NavLink to='home' className={({ isActive }) => `${isActive ? classes.active : ''}`}>
-                Home
-              </NavLink>
-            </li>
-
-            {/* Trades link */}
-
-            <li>
-              <NavLink to='trades' className={({ isActive }) => `${isActive ? classes.active : ''}`}>
-                Oficios
-              </NavLink>
-            </li>
-
-            {/* About link */}
-
-            <li>
-              <NavLink to='about' className={({ isActive }) => `${isActive ? classes.active : ''}`}>
-                Sobre nosotros
-              </NavLink>
-            </li>
-
-            {/* Privacy Policy link */}
-
-            <li>
-              <NavLink to='privacy-policy' className={({ isActive }) => `${isActive ? classes.active : ''}`}>
-                Política
-              </NavLink>
-            </li>
+            {routes.map((route) => (
+              <li>
+                {route.showNavigation && (
+                  <NavLink to={route.url} className={({ isActive }) => `${isActive ? classes.active : ''}`}>
+                    {route.label}
+                  </NavLink>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
         <div className={classes.header__content__toggle}>
