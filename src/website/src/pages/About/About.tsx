@@ -1,5 +1,6 @@
 import styles from './About.module.scss';
 import MemberCard from './MemberCards';
+import BgLayout from '../../shared/BgLayout';
 
 export const About = () => {
 	return (
@@ -37,6 +38,7 @@ export const About = () => {
 						linkedinUrl='https://www.linkedin.com/in/diegojesushamui/'
 					/>
 				</div>
+				<BgLayout />
 			</section>
 		</div>
 	);

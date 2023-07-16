@@ -2,11 +2,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.pageTitle {
+	font-size: 36px;
+	margin-top: 17rem;
 
-	.pageTitle {
-		font-size: 36px;
-		margin: 0;
-		line-height: 800px;
-		flex: 0 0 auto;
-	}
+	flex: 0 0 auto;
 }
