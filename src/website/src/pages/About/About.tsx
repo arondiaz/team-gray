@@ -1,94 +1,43 @@
-
 import styles from './About.module.scss';
-
-
+import MemberCard from './MemberCards';
 
 export const About = () => {
-  return (
-    <>
-    <div className= {styles.aboutcontainer}>
-      <section>
-        <div>
-          <img src="src\assets\images\ProfilePhotos\nicoo.webp"  className={styles.imageprofile} alt="member" />
-
-          <h2>Nicolas Loreto</h2>
-
-          <ul>
-            <li>
-              <a href="https://github.com/NicoLoreto" target='_blank'>
-              <img src="src\assets\icons\icon-github.svg" className={styles.icon} alt="icon-git" />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/nico-loreto/" target='_blank'>
-                <img src="src\assets\icons\icon-linkedin.svg" className={styles.icon} alt="icon-linkedin" />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <img src="src\assets\images\ProfilePhotos\hernan.webp" className={styles.imageprofile} alt="member" />
-
-          <h2>Hernán Gobulin</h2>
-
-          <ul>
-            <li>
-              <a href="https://github.com/hernan-go" className="github-icon" target='_blank'>
-              <img src="src\assets\icons\icon-github.svg" className={styles.icon} alt="icon-git" />
-              
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/h-l-g/" target='_blank'>
-              <img src="src\assets\icons\icon-linkedin.svg" className={styles.icon} alt="icon-linkedin" />
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <img src="src\assets\images\ProfilePhotos\aronn.webp" className={styles.imageprofile} alt="member" />
-
-          <h2>Arón Díaz</h2>
-
-          <ul>
-            <li>
-              <a href="https://github.com/arondiaz" className="github-icon" target='_blank'>
-                <img src="src\assets\icons\icon-github.svg" className={styles.icon} alt="icon-git" />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/arondiaz/" target='_blank'>
-              <img src="src\assets\icons\icon-linkedin.svg" className={styles.icon} alt="icon-linkedin" />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <img src="src\assets\images\ProfilePhotos\diego.webp" className={styles.imageprofile} alt="member" />
-
-          <h2>Diego Hamui</h2>
-
-          <ul>
-            <li>
-              <a href="https://github.com/DIEGOHAMUI" className="github-icon" target='_blank'>
-             
-                <img src="src\assets\icons\icon-github.svg" className={styles.icon} alt="icon-git" />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/diegojesushamui/" target='_blank'>
-              <img src="src\assets\icons\icon-linkedin.svg" className={styles.icon} alt="icon-linkedin" />
-              </a>
-            </li>
-          </ul>
-          
-        </div>
-      
-      </section>
-     
-    </div>
-    
-    </>
-  )
+	return (
+		<div className={styles.aboutContainer}>
+			<section>
+				<div>
+					<MemberCard
+						name='Nicolás Loreto'
+						imageUrl='src\assets\images\ProfilePhotos\nicolas.webp'
+						githubUrl='https://github.com/NicoLoreto'
+						linkedinUrl='https://www.linkedin.com/in/nico-loreto/'
+					/>
+				</div>
+				<div>
+					<MemberCard
+						name='Hernán Gobulin'
+						imageUrl='src\assets\images\ProfilePhotos\hernan.webp'
+						githubUrl='https://github.com/hernan-go'
+						linkedinUrl='https://www.linkedin.com/in/h-l-g/'
+					/>
+				</div>
+				<div>
+					<MemberCard
+						name='Arón Díaz'
+						imageUrl='src\assets\images\ProfilePhotos\aron.webp'
+						githubUrl='https://github.com/arondiaz'
+						linkedinUrl='https://www.linkedin.com/in/arondiaz/'
+					/>
+				</div>
+				<div>
+					<MemberCard
+						name='Diego Hamui'
+						imageUrl='src\assets\images\ProfilePhotos\diego.webp'
+						githubUrl='https://github.com/DIEGOHAMUI'
+						linkedinUrl='https://www.linkedin.com/in/diegojesushamui/'
+					/>
+				</div>
+			</section>
+		</div>
+	);
 };
