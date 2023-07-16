@@ -2,10 +2,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	text-align: center;
-}
 
-.pageTitle {
-	font-size: 36px;
+	.pageTitle {
+		font-size: 36px;
+		margin: 0;
+		line-height: 800px;
+		flex: 0 0 auto;
+	}
 }

@@ -1,5 +1,4 @@
 import styles from './Trades.module.scss';
-
 export const Trades = () => {
 	return (
 		<div className={styles.pageContainer}>
