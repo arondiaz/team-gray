@@ -4,7 +4,7 @@
 $Montserrat: 'Montserrat', sans-serif;
 $Lexend: 'Lexend', sans-serif;
 
-// Colors
+// Color palette
 $white: #ffffff;
 $purple-strong: #4c3e7f;
 $purple-soft: #6e629b;
@@ -21,10 +21,14 @@ $spacing-lg: 32px;
 $border-sm: 0.2rem;
 $border-md: 0.5rem;
 
+// Line size: 0.2rem;
+$line-size-sm: 0.2rem;
+
 // Header height
 $headerHeight: 80px;
 
-// fonts
+// Font-weight
+$bold-xs: 400;
 $bold-sm: 500;
 $bold-md: 700;
 $bold-lg: 800;
