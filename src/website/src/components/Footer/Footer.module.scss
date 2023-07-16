@@ -1,34 +1,39 @@
+@import '../../stylesheets/variables.scss';
 .footer {
-  display: flex;
-  width: 100%;
-  padding: 0rem 0;
-  margin-top: auto;
-  min-height: 5.688rem;
-  background-color: #ffffff;
-  align-items: center;
-  justify-content: center;
-}
+	display: flex;
+	width: 100%;
+	padding: 0;
+	position: absolute;
+	bottom: 0;
+	height: 3rem;
+	background-color: $white;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	z-index: 2;
 
-.text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 13.0625rem;
-  color: #1e1e1e;
-  font-family: 'Lexend', sans-serif;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
+	.text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: $grey-strong;
+		font-family: $Lexend;
+		font-size: 0.9rem;
+		font-style: normal;
+		font-weight: $bold-xs;
+		line-height: normal;
+		margin-top: 0.3rem;
+	}
 
-.icons {
-  position: absolute;
-  right: 1rem;
-}
+	.icons {
+		position: absolute;
+		right: 1rem;
+	}
 
-.icon {
-  margin: 0.4rem;
-  width: 1.6875rem;
-  height: 1.6875rem;
+	.icon {
+		margin: 0.4rem;
+		width: 1.7rem;
+		height: auto;
+	}
 }
