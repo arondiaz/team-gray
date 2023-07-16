@@ -1,21 +1,21 @@
 import styles from './Home.module.scss';
 import personImage from '../../shared/person_image.png';
-import ProfessionalUserButton from './Users-Buttons/ProfessionalUserButton';
-import ClientUserButton from './Users-Buttons/ClientUserButton';
+import UserButton from './Users-Buttons/CommonAccessButton';
 
 export const Home: React.FC = () => {
 	return (
-		<div className={styles.homeContainer}>
+		<div>
 			{/* Person image / logo container */}
-			<div className={styles.isotipoLogoContainer}>
+			<div>
 				<img
 					src={personImage}
 					alt='Person using a smartphone'
 					className={styles.personImage}
 				/>
-
+			</div>
+			<div className={styles.isotipoLogoContainer}>
 				<img
-					src='/isotype_logo.svg'
+					src='/isotype_home.svg'
 					alt='Logo'
 					className={styles.isotipoLogo}
 				/>
@@ -27,8 +27,8 @@ export const Home: React.FC = () => {
 				<p className={styles.slogan}>Construyendo oportunidades.</p>
 
 				{/* Access buttons */}
-				<ProfessionalUserButton />
-				<ClientUserButton />
+				<UserButton buttonText='contratar' buttonSubText='un servicio' />
+				<UserButton buttonText='ofrecer' buttonSubText='mis servicios' />
 			</div>
 		</div>
 	);
