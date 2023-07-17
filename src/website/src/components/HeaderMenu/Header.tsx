@@ -58,11 +58,11 @@ const Header = () => {
 		<header className={classes.header}>
 			<div className={classes['header__content']}>
 				<div className={classes['header__content__logo']}>
-					<NavLink to='/home' className={classes.logoLink}>
+					<NavLink to='/' className={classes.logoLink}>
 						<img src='../isotype_header.svg' alt='Logo-FastWork' />
 					</NavLink>
 
-					<NavLink to='/home' className={classes.logoLink}>
+					<NavLink to='/' className={classes.logoLink}>
 						<span className={classes.logoTextFast}>Fast</span>
 						<span className={classes.logoTextWork}>Work</span>
 					</NavLink>
