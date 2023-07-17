@@ -1,6 +1,6 @@
 import styles from './Home.module.scss';
 import personImage from '../../shared/person_image.png';
-import UserButton from './Users-Buttons/CommonAccessButton';
+import CommonAccessButton from './Users-Buttons/CommonAccessButton';
 
 export const Home: React.FC = () => {
 	return (
@@ -27,8 +27,16 @@ export const Home: React.FC = () => {
 				<p className={styles.slogan}>Construyendo oportunidades.</p>
 
 				{/* Access buttons */}
-				<UserButton buttonText='contratar' buttonSubText='un servicio' />
-				<UserButton buttonText='ofrecer' buttonSubText='mis servicios' />
+				<CommonAccessButton
+					buttonText='contratar'
+					buttonSubText='un servicios'
+					userType='usuarios'
+				/>
+				<CommonAccessButton
+					buttonText='ofrecer'
+					buttonSubText='mis servicios'
+					userType='profesionales'
+				/>
 			</div>
 		</div>
 	);

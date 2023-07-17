@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from '../Home.module.scss';
 
-interface UserButtonProps {
+interface CommonAccessButtonProps {
 	buttonText: string;
 	buttonSubText: string;
+	userType: string;
 }
 
-const UserButton: React.FC<UserButtonProps> = ({
+const CommonAccessButton: React.FC<CommonAccessButtonProps> = ({
 	buttonText,
 	buttonSubText,
+	userType,
 }) => {
 	return (
 		<button className={styles.button}>
@@ -20,10 +22,10 @@ const UserButton: React.FC<UserButtonProps> = ({
 			Acceso
 			<span className={`${styles.buttonTextBold} ${styles.buttonTextOcean}`}>
 				{' '}
-				usuarios
+				{userType}
 			</span>
 		</button>
 	);
 };
 
-export default UserButton;
+export default CommonAccessButton;
