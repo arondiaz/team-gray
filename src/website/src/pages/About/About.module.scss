@@ -3,46 +3,61 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 8rem;
 }
 
 section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 65rem;
-	height: 25rem;
+	width: 64rem;
+	height: 22rem;
 	border-radius: $border-md;
 	background-color: $white;
-	border: 3px solid $purple-soft;
-
+	border: $border-sm solid $purple-strong;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 2rem;
 }
 
-section div {
-	padding: 1rem;
-}
-
-.imageProfile {
-	width: 8rem;
-	height: auto;
-	border-radius: 50%;
-}
-
-h2 {
-	font-family: 'Lexend', sans-serif;
-	color: $grey-strong;
-	text-align: center;
-}
-
-ul {
-	list-style-type: none;
+.memberCard {
 	display: flex;
-}
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
 
-.icon {
-	margin: 0.4rem;
-	width: 1.6875rem;
-	height: 1.6875rem;
+	.imageProfile {
+		width: 10rem;
+		height: auto;
+		border-radius: 50%;
+	}
+	.name {
+		text-align: center;
+		font-family: $Lexend;
+		color: $grey-strong;
+		text-align: center;
+		font-weight: $bold-sm;
+	}
+
+	.icon {
+		margin: 0.4rem;
+
+		width: 1.7rem;
+		height: auto;
+	}
+	ul {
+		list-style-type: none;
+		display: flex;
+	}
+}
+.text {
+	margin-top: $spacing-md;
+	font-family: $Lexend;
+	text-align: justify;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 64rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5rem;
 }
