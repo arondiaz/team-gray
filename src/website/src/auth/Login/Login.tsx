@@ -1,47 +1,66 @@
-import { useState } from "react";
+import { useState} from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 import styles from "./Login.module.scss";
 
 export const Login = () => {
-  const [mail, setMail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
 
   const [errorMail, setErrorMail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+  // const [isValid, setIsValid] = useState(true);
 
-  const [isValid, setIsValid] = useState(true);
+ 
+  const handleSubmit = (event:any) => {
+    event.preventDefault();
+   
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if ([mail].includes("")) {
-      setErrorMail(true);
+    setForm({
+      email: '',
+      password: ''
+    });
 
-      return;
-    }
-
-    setErrorMail(false);
-
-    if ([password].includes("")) {
-      setErrorPassword(true);
-
-      return;
-    }
-
-    setErrorPassword(false);
+   
   };
 
-  //Validate Mail
-  const validateMail = () => {
-    const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-    if (regex.test(mail)) {
-      setIsValid(true);
-      return;
-    } else {
-      setIsValid(false);
+  
+
+
+
+   // Validate Mail
+  //  const validateMail = () => {
+  //   const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+  //   return regex.test(form.mail)
+  // };
+
+
+  const handleSetForm = (event:any) => {
+    const { name, value } = event.target;
+    setForm({
+      ...form,
+      [name]: value
+    });
+    console.log(form.email);
+
+    if(form.email.length  !=0){
+      setErrorMail(true)
+      
+    } 
+    if(form.password.includes("")){
+      setErrorPassword(true)
+    
     }
+  
+
   };
+
+
 
   return (
     <div className={styles.container}>
@@ -53,22 +72,23 @@ export const Login = () => {
               Mail
             </label>
             <input
-              type="email"
+              type="text"
               id="email"
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}
-              onBlur={validateMail}
+              name="email"
+              value={form.email}
+              onChange={handleSetForm}
+              // onBlur={validateMail}
             />
             {errorMail && (
               <div className={styles.errormail}>
                 <p>El campo mail es obligatorio</p>
               </div>
             )}
-            {!errorMail && !isValid && (
+            {/* {!errorMail && !isValid && (
               <div className={styles.errormail}>
                 <p>El mail no es válido</p>
-              </div>
-            )}
+              </div> */}
+            {/* )} */}
           </div>
           <div className={styles.inputbox}>
             <label htmlFor="password" className={styles.label}>
@@ -77,14 +97,16 @@ export const Login = () => {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={form.password}
+              onChange={handleSetForm}
             />
             {errorPassword && (
               <div className={styles.errorpass}>
                 <p>El campo Contraseña es obligatorio</p>
               </div>
             )}
+           
           </div>
 
           <div className={styles.forgotcontainer}>
