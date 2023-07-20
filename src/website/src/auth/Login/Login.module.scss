@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .formcontainer {
+  margin: 2rem 0 2rem 0;
   width: 35rem;
   height: 35rem;
   color: #626262;
@@ -46,8 +46,8 @@
   color: #616161;
 }
 
-.inputbox input[type="text"],
-.inputbox input[type="password"] {
+.inputbox input[type='text'],
+.inputbox input[type='password'] {
   border: 0.15rem solid #4c3e7f;
   border-radius: 0.4rem;
   color: #616161;

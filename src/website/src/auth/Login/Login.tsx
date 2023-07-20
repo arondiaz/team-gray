@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 import styles from './Login.module.scss';
+import BgLayout from '../../shared/BgLayout';
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -103,75 +104,85 @@ export const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formcontainer}>
-        <h2 className={styles.logintext}>Inicia sesión</h2>
+    <>
+      {' '}
+      <div className={styles.container}>
+        <div className={styles.formcontainer}>
+          <h2 className={styles.logintext}>Inicia sesión</h2>
 
-        <form action='' onSubmit={handleSubmit}>
-          <div className={styles.inputbox}>
-            <label htmlFor='email' className={styles.label}>
-              Mail
-            </label>
-            <input
-              autoComplete='off'
-              type='text'
-              id='email'
-              name='email'
-              value={form.email}
-              onChange={handleInputEmail}
-            />
-            {errorMail && (
-              <div className={styles.errormail}>
-                <p>El campo mail es obligatorio</p>
-              </div>
-            )}
+          <form action='' onSubmit={handleSubmit}>
+            <div className={styles.inputbox}>
+              <label htmlFor='email' className={styles.label}>
+                Mail
+              </label>
+              <input
+                autoComplete='off'
+                type='text'
+                id='email'
+                name='email'
+                value={form.email}
+                onChange={handleInputEmail}
+              />
+              {errorMail && (
+                <div className={styles.errormail}>
+                  <p>El campo mail es obligatorio</p>
+                </div>
+              )}
 
-            {!errorMail && !isValid && (
-              <div className={styles.errormail}>
-                <p>El mail no es válido</p>
-              </div>
-            )}
-          </div>
-          <div className={styles.inputbox}>
-            <label htmlFor='password' className={styles.label}>
-              Contraseña
-            </label>
-            <input type='password' id='password' name='password' value={form.password} onChange={handleInputPassword} />
-            {errorPassword && (
-              <div className={styles.errorpass}>
-                <p>El campo Contraseña es obligatorio</p>
-              </div>
-            )}
+              {!errorMail && !isValid && (
+                <div className={styles.errormail}>
+                  <p>El mail no es válido</p>
+                </div>
+              )}
+            </div>
+            <div className={styles.inputbox}>
+              <label htmlFor='password' className={styles.label}>
+                Contraseña
+              </label>
+              <input
+                type='password'
+                id='password'
+                name='password'
+                value={form.password}
+                onChange={handleInputPassword}
+              />
+              {errorPassword && (
+                <div className={styles.errorpass}>
+                  <p>El campo Contraseña es obligatorio</p>
+                </div>
+              )}
 
-            {!errorPassword && !validPass && (
-              <div className={styles.errormsg}>
-                <p>Contraseña incorrecta</p>
-              </div>
-            )}
-          </div>
+              {!errorPassword && !validPass && (
+                <div className={styles.errormsg}>
+                  <p>Contraseña incorrecta</p>
+                </div>
+              )}
+            </div>
 
-          <div className={styles.forgotcontainer}>
-            <a href='#'>olvidé mi contraseña </a>
-          </div>
+            <div className={styles.forgotcontainer}>
+              <a href='#'>olvidé mi contraseña </a>
+            </div>
 
-          <div className={styles.btncontainer}>
-            <input type='submit' className={styles.btn} value='Login' />
-          </div>
+            <div className={styles.btncontainer}>
+              <input type='submit' className={styles.btn} value='Login' />
+            </div>
 
-          <div className={styles.registerlink}>
-            No tienes cuenta?
-            <a href='#'>
-              <span> Regístrate! </span>
-            </a>
-          </div>
+            <div className={styles.registerlink}>
+              No tienes cuenta?
+              <a href='#'>
+                <span> Regístrate! </span>
+              </a>
+            </div>
 
-          <div className={styles.backbtn}>
-            <a href='#'>
-              <FaArrowAltCircleLeft />
-            </a>
-          </div>
-        </form>
+            <div className={styles.backbtn}>
+              <a href='#'>
+                <FaArrowAltCircleLeft />
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+      <BgLayout />
+    </>
   );
 };
