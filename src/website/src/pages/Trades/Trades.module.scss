@@ -1,0 +1,22 @@
+@import '../../stylesheets/variables.scss';
+.homepage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 8rem);
+	margin-top: -1rem;
+}
+
+.left-column,
+.middle-column,
+.right-column {
+	flex-basis: 30%;
+	background-color: $purple-soft;
+	padding: 1rem;
+	padding: 1rem;
+	height: 80vh; /* Ajusta el valor de acuerdo a la altura deseada */
+	margin: 1rem;
+	border-radius: $border-md;
+	color: $white;
+	text-align: center;
+}

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;400;500;600;700;800&display=swap');
+
+$Montserrat: 'Montserrat', sans-serif;
+$Lexend: 'Lexend', sans-serif;
+
+// Color palette
+$white: #ffffff;
+$purple-strong: #4c3e7f;
+$purple-soft: #6e629b;
+$ocean: #14a9b3;
+$ocean-light: #28dfeb;
+$grey-strong: #626262;
+$grey-soft: #a6a5a5;
+
+// Spacing
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+// Border radius
+$border-sm: 0.2rem;
+$border-md: 0.5rem;
+
+// Line size: 0.2rem;
+$line-size-sm: 0.2rem;
+
+// Header height
+$headerHeight: 80px;
+
+// Font-weight
+$bold-xs: 400;
+$bold-sm: 500;
+$bold-md: 700;
+$bold-lg: 800;
+
+// This mixin defines specific styles for a given breakpoint.
+// @param $point: The breakpoint to use (e.g., "md").
+// Uses the @content mixin to insert the styles to apply at the breakpoint.
+@mixin breakpoint($point) {
+	@if $point == md {
+		// 768px
+		@media (min-width: 48em) {
+			@content;
+		}
+	}
+}
