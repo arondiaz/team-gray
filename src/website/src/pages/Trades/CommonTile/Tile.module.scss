@@ -1,0 +1,66 @@
+@import '../../../stylesheets/variables.scss';
+
+.backgroundContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 100vh;
+}
+
+.styleImageProfile {
+	height: 5rem;
+	margin: 1rem;
+}
+.cardContainer {
+	overflow-y: auto;
+}
+
+p {
+	font-size: 0.9rem;
+	margin-bottom: 0.5rem;
+	font-family: $Lexend;
+	font-weight: $bold-md;
+	color: $grey-medium;
+}
+
+.box {
+	display: flex;
+	margin-top: 1rem;
+	overflow-y: auto;
+	width: 28rem;
+	height: 35rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: $border-md;
+	border: 1px solid $grey-soft;
+	background: $white;
+}
+
+.styleCard {
+	display: flex;
+	align-items: center;
+	width: 25rem;
+	height: 8rem;
+	background: $white;
+	border-radius: 6px;
+	color: $purple-strong;
+	border: 1px solid $grey-soft;
+	margin-top: 1rem;
+	z-index: 4;
+}
+
+.styleCard:not(:last-child) {
+	margin-bottom: 20px;
+}
+
+.styleCard:hover {
+	background: #ece8f9;
+}
+
+@media (min-width: 768px) {
+	.App {
+		flex-direction: column;
+		align-items: center;
+	}
+}
