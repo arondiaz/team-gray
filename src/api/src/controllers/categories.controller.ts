@@ -1,19 +1,20 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
+import { CategoryRepository } from "../repositories/categories.repository";
+import { ICategory } from "../models/categories/category.interface";
 
 @Controller({ route: "/api/categories" })
 export class CategoriesController extends ApiController {
-    constructor() {
+    constructor(private repo: CategoryRepository) {
         super();
     }
 
     @Action({ route: "/" })
-    async get(): Promise<void> {
+    async get(): Promise<ICategory[]> {
         try {
-            this.httpContext.response.sendStatus(200);
-            return;
-        } catch {
+            return await this.repo.getAll();
+        } catch (error) {
             this.httpContext.response.sendStatus(500);
-            return;
+            throw Error(error);
         }
     }
 }
