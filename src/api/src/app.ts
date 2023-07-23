@@ -3,7 +3,7 @@ import { Server } from "./server";
 
 new HostBuilder()
     .useConfiguration((config: ConfigurationBuilder) => {
-        config.addJsonFile("./configuration.json").addEnvironmentFile("./.env", "fast_work__").addEnvironmentVariables("fast_work__");
+        config.addJsonFile("./configuration.json").addEnvironmentFile("./.env", "fastwork_api__").addEnvironmentVariables("fastwork_api__");
     })
     .useLogging((logger: Logger) => logger.setMinimumLevel(LogType.Trace))
     .build(Server)
