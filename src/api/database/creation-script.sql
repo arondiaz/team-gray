@@ -18,15 +18,12 @@ CREATE TABLE IF NOT EXISTS `up` (
   `auth_number` VARCHAR(50),
   `img` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `category` INT NOT NULL
+  `category_id` INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(100) NOT NULL
+  `name` ENUM ('Electricista', 'Plomero', 'Carpintero', 'Pintor', 'Albañil', 'Gasista', 'Jardinero', 'Técnico en aire acondicionado', 'Cerrajero', 'Techador', 'Instalador de sistema de seguridad', 'Vidriero', 'Instalador de pisos', 'Fontanero', 'Remodelador de interiores', 'Soporte técnico en informática') NOT NULL
 );
 
-
-
-
-ALTER TABLE `up` ADD FOREIGN KEY (`category`) REFERENCES `categories` (`id`);
+ALTER TABLE `up` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);

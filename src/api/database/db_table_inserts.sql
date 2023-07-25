@@ -1,23 +1,23 @@
 use db_fastwork;
 
-INSERT INTO CATEGORIES( name ) 
+INSERT IGNORE INTO categories (name)
 VALUES
-	('Electricista'),
-	('Plomero'),
-	('Carpintero'),
-	('Pintor'),
-	('Albañil'),
-	('Gasista'),
-	('Jardinero'),
-	('Técnico en aire acondicionado'),
-	('Cerrajero'),
-	('Techador'),
-	('Instalador de sistema de seguridad'),
-	('Vidriero'),
-	('Instalador de pisos'),
-	('Fontanero'),
-	('Remodelador de interiores'),
-	('Soporte técnico en informática');
+  ('Electricista'),
+  ('Plomero'),
+  ('Carpintero'),
+  ('Pintor'),
+  ('Albañil'),
+  ('Gasista'),
+  ('Jardinero'),
+  ('Técnico en aire acondicionado'),
+  ('Cerrajero'),
+  ('Techador'),
+  ('Instalador de sistema de seguridad'),
+  ('Vidriero'),
+  ('Instalador de pisos'),
+  ('Fontanero'),
+  ('Remodelador de interiores'),
+  ('Soporte técnico en informática');
 
 INSERT INTO `up` (`email`, `password`, `name`, `lastname`, `dni`, `province`, `city`, `tel`, `link`, `about_me`, `gender`, `birthdate`, `auth_number`, `img`, `category`)
 VALUES
