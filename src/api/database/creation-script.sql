@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `up` (
   `password` VARCHAR(20) UNIQUE NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `lastname` VARCHAR(50) NOT NULL,
-  `dni` INT NOT NULL,
+  `dni` VARCHAR(20) NOT NULL,
   `province` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50) NOT NULL,
   `tel` VARCHAR(50) NOT NULL,
