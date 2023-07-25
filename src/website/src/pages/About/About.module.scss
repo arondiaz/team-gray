@@ -13,7 +13,7 @@ section {
 	height: 22rem;
 	border-radius: $border-md;
 	background-color: $white;
-	border: $border-sm solid $purple-strong;
+	border: 1px solid $grey-strong;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2rem;
@@ -31,6 +31,7 @@ section {
 		border-radius: 50%;
 	}
 	.name {
+		margin-top: 2rem;
 		text-align: center;
 		font-family: $Lexend;
 		color: $grey-strong;
@@ -40,7 +41,6 @@ section {
 
 	.icon {
 		margin: 0.4rem;
-
 		width: 1.7rem;
 		height: auto;
 	}
