@@ -1,0 +1,117 @@
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .formcontainer1 {
+    width: 35rem;
+    height: 35rem;
+    color: #626262;
+    padding: 2rem 4rem;
+    border: 0.2rem solid #4c3e7f;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .formcontainer1 .inputbox1 {
+    width: 100%;
+    height: 2.8rem;
+    margin: 5rem 0;
+    color: #626262;
+  }
+  
+  .inputbox1:first-child,
+  .inputbox1:nth-child(2) {
+    margin-top: 2rem;
+  }
+  
+  .inputbox1 input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #616161;
+  }
+  
+  .label1{
+    font-weight: bold;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .inputbox1 input[type="text"],
+  .inputbox1 input[type="password"] {
+    border: 0.15rem solid #4c3e7f;
+    border-radius: 0.4rem;
+    color: #616161;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .btncontainer1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn1 {
+    border: none;
+    outline: none;
+    background-color: #4c3e7f;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 4rem;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-out;
+    cursor: pointer;
+  }
+  
+  .btn1:hover {
+    background: #2a1280;
+  }
+  
+  .registerlink1 a:hover {
+    text-decoration: underline;
+  }
+  
+  .registerlink1 span:hover {
+    color: #4c3e7f;
+  }
+  
+  .backbtn1 {
+    position: relative;
+  }
+  
+  .backbtn1 svg {
+    position: absolute;
+    color: #4c3e7f;
+    top: -2.4rem;
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.2s ease-out;
+  }
+  
+  .backbtn1 svg:hover {
+    color: #2a1280;
+  }
+  
+  .err1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.6rem;
+  }
+  
+  .err1 span {
+    background-color: rgb(143, 1, 1);
+    color: #ffff;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: 400;
+    border-radius: 0.4rem;
+  }
+  
+  ///
