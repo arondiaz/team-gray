@@ -108,9 +108,9 @@ paths:
                         type: string
             description: ""
             parameters: []
-    '/api/up/{id}':
+    /api/up:
         get:
-            operationId: UsersGetById
+            operationId: UsersGet
             produces:
                 - application/json
                 - text/html
@@ -118,9 +118,30 @@ paths:
                 '200':
                     description: Succes
                     schema:
-                        $ref: '#/definitions/IUp'
+                        type: array
+                        items:
+                            $ref: '#/definitions/IUp'
+                '500':
+                    description: 'No connection to database'
+                    schema:
+                        type: string
+            description: ""
+            parameters: []
+    '/api/up/category/{category_id}':
+        get:
+            operationId: UsersGetByCategory
+            produces:
+                - application/json
+                - text/html
+            responses:
+                '200':
+                    description: Succes
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#/definitions/IUp'
                 '404':
-                    description: 'user not find'
+                    description: 'There are no users with those trades'
                     schema:
                         type: string
                 '500':
@@ -132,7 +153,7 @@ paths:
                 -
                     description: ""
                     in: path
-                    name: id
+                    name: category_id
                     required: true
                     type: number
                     format: double
