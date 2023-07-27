@@ -153,7 +153,7 @@ export const Login = () => {
               )}
 
               {!errorPassword && !validPass && (
-                <div className={styles.errormsg}>
+                <div className={styles.errorpass}>
                   <p>Contraseña incorrecta</p>
                 </div>
               )}
