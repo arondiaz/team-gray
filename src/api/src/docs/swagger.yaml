@@ -14,6 +14,74 @@ definitions:
         required:
             - id
             - name
+    IUp:
+        description: ""
+        properties:
+            id:
+                type: number
+                format: double
+                description: ""
+            email:
+                type: string
+                description: ""
+            name:
+                type: string
+                description: ""
+            lastname:
+                type: string
+                description: ""
+            dni:
+                type: string
+                description: ""
+            province:
+                type: string
+                description: ""
+            city:
+                type: string
+                description: ""
+            tel:
+                type: string
+                description: ""
+            link:
+                type: string
+                description: ""
+            about_me:
+                type: string
+                description: ""
+            gender:
+                enum:
+                    - Masculino
+                    - Femenino
+                    - Otro
+                type: string
+                description: ""
+            birthdate:
+                type: string
+                description: ""
+            auth_number:
+                type: string
+                description: ""
+            img:
+                type: string
+                description: ""
+            created_at:
+                type: string
+                description: ""
+            category_id:
+                type: string
+                description: ""
+        type: object
+        required:
+            - email
+            - name
+            - lastname
+            - dni
+            - province
+            - city
+            - tel
+            - gender
+            - birthdate
+            - category_id
 info:
     description: 'FastWork API.'
     license:
@@ -40,6 +108,34 @@ paths:
                         type: string
             description: ""
             parameters: []
+    '/api/up/{id}':
+        get:
+            operationId: UsersGetById
+            produces:
+                - application/json
+                - text/html
+            responses:
+                '200':
+                    description: Succes
+                    schema:
+                        $ref: '#/definitions/IUp'
+                '404':
+                    description: 'user not find'
+                    schema:
+                        type: string
+                '500':
+                    description: 'No connection to database'
+                    schema:
+                        type: string
+            description: ""
+            parameters:
+                -
+                    description: ""
+                    in: path
+                    name: id
+                    required: true
+                    type: number
+                    format: double
 swagger: '2.0'
 securityDefinitions:
     'client secret':

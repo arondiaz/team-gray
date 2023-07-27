@@ -1,5 +1,7 @@
+import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { Gender, IUp } from "./up.interface";
 
+@Injectable({ lifeTime: DependencyLifeTime.Transient })
 export class UP implements IUp {
     id?: number = 0;
     email: string = "";

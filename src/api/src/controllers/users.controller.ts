@@ -1,15 +1,25 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
+import { UpRepository } from "../repositories/up.repository";
+import { GET, Path, PathParam } from "typescript-rest";
+import { IUp } from "../models/users/up.interface";
+import { Response } from "typescript-rest-swagger";
 
-@Controller({ route: "/api/users" })
+@Path("/api/up")
+@Controller({ route: "/api/up" })
 export class UsersController extends ApiController {
-    constructor() {
+    constructor(private repo: UpRepository) {
         super();
     }
 
-    @Action({ route: "/up" })
-    async get(): Promise<any> {
+    // get all UPs
+
+    @GET
+    @Response<IUp[]>(200, "Succes")
+    @Response<string>(500, "No connection to database")
+    @Action({ route: "/" })
+    async get(): Promise<IUp[]> {
         try {
-            return;
+            return await this.repo.getAll();
         } catch (error) {
             this.httpContext.response.sendStatus(500);
             throw Error(error);
