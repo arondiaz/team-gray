@@ -1,14 +1,63 @@
 {
-	"definitions": {},
+	"definitions": {
+		"ICategory": {
+			"description": "",
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double",
+					"description": ""
+				},
+				"name": {
+					"type": "string",
+					"description": ""
+				}
+			},
+			"type": "object",
+			"required": [
+				"id",
+				"name"
+			]
+		}
+	},
 	"info": {
-		"description": "Paradigm API.",
+		"description": "FastWork API.",
 		"license": {
 			"name": "ISC"
 		},
-		"title": "paradigm-api",
+		"title": "fastwork-api",
 		"version": "1.0.0"
 	},
-	"paths": {},
+	"paths": {
+		"/api/categories": {
+			"get": {
+				"operationId": "CategoriesGet",
+				"produces": [
+					"application/json",
+					"text/html"
+				],
+				"responses": {
+					"200": {
+						"description": "Succes",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ICategory"
+							}
+						}
+					},
+					"500": {
+						"description": "No connection to database",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"description": "",
+				"parameters": []
+			}
+		}
+	},
 	"swagger": "2.0",
 	"securityDefinitions": {
 		"client secret": {
