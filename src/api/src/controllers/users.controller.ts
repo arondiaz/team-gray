@@ -31,13 +31,30 @@ export class UsersController extends ApiController {
     @GET
     @Path("/category/:category_id")
     @Response<IUp[]>(200, "Succes")
-    @Response<string>(404, "There are no users with those trades")
+    @Response<string>(400, "Bad request")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/category/:category_id" })
     async getByCategory(@PathParam("category_id") category: number): Promise<IUp[]> {
         try {
             if (category <= 16) return await this.repo.find("category_id = ?", [category]);
             this.httpContext.response.sendStatus(400).send("Bad request");
+        } catch (error) {
+            this.httpContext.response.sendStatus(500);
+            throw Error(error);
+        }
+    }
+
+    // get by id
+
+    @GET
+    @Path(":id")
+    @Response<IUp>(200, "Succes")
+    @Response<string>(404, "User not found")
+    @Response<string>(500, "No connection to database")
+    @Action({ route: "/:id" })
+    async getById(@PathParam("id") id: number): Promise<IUp> {
+        try {
+            return await this.repo.getById(id);
         } catch (error) {
             this.httpContext.response.sendStatus(500);
             throw Error(error);

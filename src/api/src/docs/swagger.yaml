@@ -140,8 +140,8 @@ paths:
                         type: array
                         items:
                             $ref: '#/definitions/IUp'
-                '404':
-                    description: 'There are no users with those trades'
+                '400':
+                    description: 'Bad request'
                     schema:
                         type: string
                 '500':
@@ -154,6 +154,34 @@ paths:
                     description: ""
                     in: path
                     name: category_id
+                    required: true
+                    type: number
+                    format: double
+    '/api/up/{id}':
+        get:
+            operationId: UsersGetById
+            produces:
+                - application/json
+                - text/html
+            responses:
+                '200':
+                    description: Succes
+                    schema:
+                        $ref: '#/definitions/IUp'
+                '404':
+                    description: 'User not found'
+                    schema:
+                        type: string
+                '500':
+                    description: 'No connection to database'
+                    schema:
+                        type: string
+            description: ""
+            parameters:
+                -
+                    description: ""
+                    in: path
+                    name: id
                     required: true
                     type: number
                     format: double
