@@ -1,1 +1,25 @@
 @import '../../stylesheets/variables.scss';
+
+.tradesContainer {
+	margin-top: 1.5rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+	width: 0.7rem;
+	border: 1px solid $grey-strong;
+	border-radius: $border-md;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: $purple-soft;
+	border-radius: $border-md;
+	height: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: $purple-strong;
+}
