@@ -1,0 +1,16 @@
+/* SpinnerLogo.module.scss */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.spinnerLogo {
+	opacity: 0.5;
+	margin: 5rem;
+
+	animation: spin 1s linear infinite;
+}
