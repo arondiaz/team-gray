@@ -36,7 +36,7 @@ export class UsersController extends ApiController {
     @Action({ route: "/category/:category_id" })
     async getByCategory(@PathParam("category_id") category: number): Promise<IUp[]> {
         try {
-            if (category <= 16) return await this.repo.find("category_id = ?", [category]);
+            if (category <= 16 && category > 0) return await this.repo.find("category_id = ?", [category]);
             this.httpContext.response.sendStatus(400).send("Bad request");
         } catch (error) {
             this.httpContext.response.sendStatus(500);
