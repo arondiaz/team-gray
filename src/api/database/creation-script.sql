@@ -4,7 +4,7 @@ USE db_fastwork;
 CREATE TABLE IF NOT EXISTS `up` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(100) UNIQUE NOT NULL,
-  `password` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `lastname` VARCHAR(50) NOT NULL,
   `dni` VARCHAR(20) NOT NULL,
