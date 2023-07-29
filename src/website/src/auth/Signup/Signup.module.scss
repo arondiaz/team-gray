@@ -1,7 +1,9 @@
+//First Form
 .container1 {
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
+  margin-top: 7rem;
   min-height: 100vh;
 }
 
@@ -62,11 +64,13 @@
   outline: none;
   background-color: #4c3e7f;
   color: white;
+  font-size: 0.9rem;
   font-weight: bold;
   padding: 1rem 4rem;
   text-transform: uppercase;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
+  letter-spacing: 0.1rem;
 }
 
 .btn1:hover {
@@ -114,23 +118,29 @@
   border-radius: 0.4rem;
 }
 
-///
+/// Second Form
 
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
+  margin-top: 1rem;
   min-height: 100vh;
 }
 
 .formcontainer {
   width: 60rem;
-  height: 54rem;
+  height: 50rem;
   color: #626262;
-  padding: 4rem 4rem;
+  padding: 2rem 4rem;
   border: 0.2rem solid #4c3e7f;
   border-radius: 1rem;
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.3);
+}
+
+.formcontainer .inputbox {
+  height: 3.4rem;
+  margin: 1rem 0;
 }
 
 .registerform {
@@ -178,7 +188,7 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   height: 1.7rem;
-  margin: 1.7rem 0rem;
+  margin: 1.5rem 0rem;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -225,17 +235,19 @@ input::-webkit-inner-spin-button {
 
 .btn {
   position: absolute;
-  top: 4rem;
-  right: 20rem;
+  top: 2rem;
+  right: 18rem;
   border: none;
   outline: none;
   background-color: #4c3e7f;
   color: white;
+  font-size: 0.9rem;
   font-weight: bold;
   padding: 1rem 4rem;
   text-transform: uppercase;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
+  letter-spacing: 0.1rem;
 }
 
 .btn:hover {
@@ -248,7 +260,7 @@ input::-webkit-inner-spin-button {
 
 .backbtn svg {
   position: absolute;
-  top: 5rem;
+  top: 3rem;
   color: #4c3e7f;
   width: 2rem;
   height: 2rem;
@@ -264,7 +276,6 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
   margin-top: -1rem;
-  margin-bottom: -1rem;
 }
 
 .err span {
