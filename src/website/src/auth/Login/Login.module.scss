@@ -28,6 +28,7 @@
 }
 
 .logintext {
+  text-align: center;
   margin-top: -2.4rem;
 }
 
@@ -46,8 +47,8 @@
   color: #616161;
 }
 
-.inputbox input[type='text'],
-.inputbox input[type='password'] {
+.inputbox input[type="text"],
+.inputbox input[type="password"] {
   border: 0.15rem solid #4c3e7f;
   border-radius: 0.4rem;
   color: #616161;
@@ -66,11 +67,13 @@
   outline: none;
   background-color: #4c3e7f;
   color: white;
+  // font-size: 0.9rem;
   font-weight: bold;
   padding: 1rem 4rem;
   text-transform: uppercase;
   transition: background-color 0.2s ease-out;
   cursor: pointer;
+  letter-spacing: 0.1rem;
 }
 
 .btn:hover {
@@ -135,8 +138,8 @@
   margin-top: 0.6rem;
 }
 
-.errormail p,
-.errorpass p {
+.errormail span,
+.errorpass span {
   background-color: rgb(143, 1, 1);
   color: #ffff;
   text-align: center;
