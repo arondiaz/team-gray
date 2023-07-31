@@ -2,77 +2,77 @@
 
 /* Isotipo logo container */
 .isotipoLogoContainer {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	display: flex;
-	align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* Isotipo logo */
 .isotipoLogo {
-	width: auto;
-	height: 100vh;
-	opacity: 0.5;
+  width: auto;
+  height: 100vh;
+  opacity: 0.5;
 }
 
 /* Person image */
 .personImage {
-	height: 100%;
-	position: absolute;
-	top: 45%;
-	left: 25%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
+  height: 100%;
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 /* Text slogan container */
 .textSloganContainer {
-	position: absolute;
-	top: 37%;
-	right: 0;
-	text-align: right;
-	padding-right: 3%;
+  position: absolute;
+  top: 37%;
+  right: 0;
+  text-align: right;
+  padding-right: 3%;
 
-	/* Slogan */
-	.slogan {
-		font-size: 2.5rem;
-		color: $grey-strong;
-		font-weight: $bold-sm;
-	}
+  /* Slogan */
+  .slogan {
+    font-size: 2.5rem;
+    color: $grey-strong;
+    font-weight: $bold-sm;
+  }
 }
 
 /* Button */
 .button {
-	display: inline-block;
-	padding: 0.8rem;
-	padding-inline: 1.2rem;
-	width: auto;
-	height: auto;
-	border-radius: $border-md;
-	border: none;
-	color: $white;
-	background: $purple-strong;
-	cursor: pointer;
-	font-family: $Montserrat;
-	line-height: 1.5rem;
-	text-transform: uppercase;
-	letter-spacing: 0.02rem;
-	margin-top: 1.5rem;
-	margin-left: 1.5rem;
+  display: inline-block;
+  padding: 0.8rem;
+  padding-inline: 1.2rem;
+  width: auto;
+  height: auto;
+  border-radius: $border-md;
+  border: none;
+  color: $white;
+  background: $purple-strong;
+  cursor: pointer;
+  font-family: $Montserrat;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
 
-	/* Button text bold */
-	.buttonTextBold {
-		font-size: 0.9rem;
-		margin-top: auto;
-		display: inline;
-		color: $white;
-		font-weight: $bold-md;
-	}
+  /* Button text bold */
+  .buttonTextBold {
+    font-size: 0.9rem;
+    margin-top: auto;
+    display: inline;
+    color: $white;
+    font-weight: $bold-md;
+  }
 
-	/* Button text ocean */
-	& .buttonTextOcean {
-		color: $ocean-light;
-	}
+  /* Button text ocean */
+  & .buttonTextOcean {
+    color: $ocean-light;
+  }
 }
