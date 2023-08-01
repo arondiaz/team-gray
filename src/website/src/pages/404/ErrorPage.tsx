@@ -1,4 +1,5 @@
-import styles from "./ErrorPage.module.scss";
+import { Link } from 'react-router-dom';
+import styles from './ErrorPage.module.scss';
 
 export const ErrorPage = () => {
   return (
@@ -10,7 +11,7 @@ export const ErrorPage = () => {
         <span>Por favor vuelve al inicio </span>
       </p>
       <button className={styles.homebtn}>
-        <a href="#">HOME</a>
+        <Link to='/'>HOME</Link>
       </button>
     </div>
   );
