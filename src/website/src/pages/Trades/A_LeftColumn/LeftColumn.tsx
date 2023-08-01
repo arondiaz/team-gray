@@ -26,7 +26,11 @@ export const LeftColumn: React.FC = () => {
       });
   }, []);
 
-  console.log(trades.map((m) => m.id));
+  const handleCategory = async (id: any) => {
+    const pedido = await fetch(`http://www.localhost:5000/api/up/category/${id}`);
+    const json = await pedido.json();
+    console.log(json);
+  };
 
   return (
     <div className={styles.leftColumn}>
@@ -36,7 +40,7 @@ export const LeftColumn: React.FC = () => {
           <tbody>
             <ul>
               {trades.map((m) => (
-                <button>{m.name}</button>
+                <button onClick={() => handleCategory(m.id)}>{m.name}</button>
               ))}
             </ul>
           </tbody>
