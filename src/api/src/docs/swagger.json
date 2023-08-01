@@ -64,11 +64,6 @@
 					"description": ""
 				},
 				"gender": {
-					"enum": [
-						"Masculino",
-						"Femenino",
-						"Otro"
-					],
 					"type": "string",
 					"description": ""
 				},

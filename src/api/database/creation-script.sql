@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `up` (
   `tel` VARCHAR(50) NOT NULL,
   `link` VARCHAR(300),
   `about_me` TEXT,
-  `gender` VARCHAR NOT NULL,
+  `gender` VARCHAR(12) NOT NULL,
   `birthdate` DATE NOT NULL,
   `auth_number` VARCHAR(50),
   `img` TEXT DEFAULT NULL,

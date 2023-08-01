@@ -49,10 +49,6 @@ definitions:
                 type: string
                 description: ""
             gender:
-                enum:
-                    - Masculino
-                    - Femenino
-                    - Otro
                 type: string
                 description: ""
             birthdate:
