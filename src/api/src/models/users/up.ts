@@ -1,5 +1,5 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
-import { Gender, IUp } from "./up.interface";
+import { IUp } from "./up.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Transient })
 export class UP implements IUp {
@@ -13,7 +13,7 @@ export class UP implements IUp {
     tel: string = "";
     link?: string = "";
     about_me?: string = "";
-    gender: Gender.female;
+    gender: string = "";
     birthdate: string = "";
     auth_number?: string = "";
     img?: string = "";
