@@ -2,18 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import styles from './LeftColumn.module.scss';
-export interface UpData {
+export interface ICategory {
   id: number;
   name: string;
-  gender: string;
-  species: string;
-  status: string;
-  image: string;
-  text: string;
 }
 
 export const LeftColumn: React.FC = () => {
-  const [trades, setTrades] = useState<UpData[]>([]);
+  const [trades, setTrades] = useState<ICategory[]>([]);
 
   useEffect(() => {
     fetch('http://www.localhost:5000/api/categories')
