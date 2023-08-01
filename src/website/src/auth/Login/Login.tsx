@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import styles from "./Login.module.scss";
 import BgLayout from "../../shared/BgLayout";
@@ -79,15 +80,15 @@ export const Login = () => {
 
             <div className={styles.registerlink}>
               No tienes cuenta?
-              <a href="#">
-                <span> Regístrate! </span>
-              </a>
+              <Link to="/signup">
+                <span>Regístrate</span>
+              </Link>
             </div>
 
             <div className={styles.backbtn}>
-              <a href="#">
+              <Link to="/">
                 <FaArrowAltCircleLeft />
-              </a>
+              </Link>
             </div>
           </form>
         </div>
