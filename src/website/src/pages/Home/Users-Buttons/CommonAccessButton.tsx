@@ -3,27 +3,29 @@ import styles from '../Home.module.scss';
 import { Link } from 'react-router-dom';
 
 interface CommonAccessButtonProps {
-	buttonText: string;
+	buttonUsersText: string;
 	buttonSubText: string;
 	userType: string;
 }
 
 const CommonAccessButton: React.FC<CommonAccessButtonProps> = ({
-	buttonText,
+	buttonUsersText,
 	buttonSubText,
 	userType,
 }) => {
 	const isUserButton = userType.toLowerCase() === 'usuarios';
 	return (
-		<Link to={isUserButton ? 'trades' : '#'}>
-			<button className={styles.button}>
+		<Link to={isUserButton ? 'trades' : 'login'}>
+			<button className={styles.buttonUsers}>
 				<span>
-					Quiero <span className={styles.buttonTextBold}>{buttonText}</span>{' '}
+					Quiero{' '}
+					<span className={styles.buttonUsersTextBold}>{buttonUsersText}</span>{' '}
 					{buttonSubText}
 				</span>
 				<br />
 				Acceso
-				<span className={`${styles.buttonTextBold} ${styles.buttonTextOcean}`}>
+				<span
+					className={`${styles.buttonUsersTextBold} ${styles.buttonUsersTextOcean}`}>
 					{' '}
 					{userType}
 				</span>
