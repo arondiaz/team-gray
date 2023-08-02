@@ -22,7 +22,7 @@
 		align-items: center;
 		justify-content: space-between;
 		position: relative;
-		z-index: 100;
+		z-index: 80;
 
 		.header__content__logo {
 			display: flex;
@@ -136,7 +136,7 @@
 						bottom: 0rem;
 						width: 0;
 						height: 0.25rem;
-						background-color: $ocean-light;
+						background-color: $ocean-soft;
 						transition: width 0.4s ease;
 						border-radius: $border-sm;
 						display: inline-block;
