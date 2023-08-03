@@ -18,8 +18,9 @@ export class CategoriesController extends ApiController {
     async get(): Promise<ICategory[]> {
         try {
             return await this.repo.getAll();
-        } catch {
-            this.httpContext.response.sendStatus(500);
+        } catch (error) {
+            throw error;
         }
     }
 }
+
