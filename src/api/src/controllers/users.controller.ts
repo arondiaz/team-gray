@@ -14,7 +14,7 @@ export class UsersController extends ApiController {
     // get all UPs
 
     @GET
-    @Response<IUp[]>(200, "Succes")
+    @Response<IUp[]>(200, "Success")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<IUp[]> {
@@ -30,7 +30,7 @@ export class UsersController extends ApiController {
 
     @GET
     @Path("/category/:category_id")
-    @Response<IUp[]>(200, "Succes")
+    @Response<IUp[]>(200, "Success")
     @Response<string>(400, "Bad request")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/category/:category_id" })
@@ -48,7 +48,7 @@ export class UsersController extends ApiController {
 
     @GET
     @Path(":id")
-    @Response<IUp>(200, "Succes")
+    @Response<IUp>(200, "Success")
     @Response<string>(404, "User not found")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/:id" })
@@ -61,3 +61,4 @@ export class UsersController extends ApiController {
         }
     }
 }
+

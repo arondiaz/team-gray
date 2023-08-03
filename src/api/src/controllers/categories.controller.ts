@@ -12,7 +12,7 @@ export class CategoriesController extends ApiController {
     }
 
     @GET
-    @Response<ICategory[]>(200, "Succes")
+    @Response<ICategory[]>(200, "Success")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<ICategory[]> {
