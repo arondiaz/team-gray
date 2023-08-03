@@ -21,7 +21,6 @@ export class UsersController extends ApiController {
         try {
             return await this.repo.getAll();
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
@@ -37,9 +36,7 @@ export class UsersController extends ApiController {
     async getByCategory(@PathParam("category_id") category: number): Promise<IUp[]> {
         try {
             if (category <= 16 && category > 0) return await this.repo.find("category_id = ?", [category]);
-            this.httpContext.response.sendStatus(400).send("Bad request");
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
@@ -56,7 +53,6 @@ export class UsersController extends ApiController {
         try {
             return await this.repo.getById(id);
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
