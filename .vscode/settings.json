@@ -107,26 +107,5 @@
 		"imageandtext",
 		"Lexend",
 		"localizable"
-	],
-
-	"files.exclude": {
-		"**/build": true,
-		"**/publish": true,
-		"**/node_modules": true,
-		"package-lock.json": true
-	},
-	"workbench.colorCustomizations": {
-		//  a  unique titlebar  color  scheme  helps  differentiate  project windows (eg: Windows taskbar hover preview)}
-		"activityBar.background": "#164272",
-		"titleBar.activeBackground": "#455256",
-		"titleBar.activeForeground": "#FEFCFE"
-	},
-	"cSpell.words": [
-		"hotspot",
-		"Hotspot",
-		"hotspots",
-		"imageandtext",
-		"Lexend",
-		"localizable"
 	]
 }
