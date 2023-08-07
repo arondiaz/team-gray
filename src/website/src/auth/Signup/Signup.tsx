@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { FaArrowAltCircleLeft, FaUpload } from "react-icons/fa";
 import { useState } from "react";
 
@@ -25,7 +26,6 @@ export const Signup = () => {
     setView1(false);
     setView2(true);
   };
-
   return (
     <>
       {view1 && (
@@ -50,7 +50,10 @@ export const Signup = () => {
                 />
                 {errors.email && (
                   <div className={styles.err1}>
-                    <span>{errors?.email?.message?.toString()}</span>
+                    <span className={styles.errorspan1}>
+                      {" "}
+                      {errors?.email?.message?.toString()}
+                    </span>
                   </div>
                 )}
               </div>
@@ -77,7 +80,9 @@ export const Signup = () => {
                 />
                 {errors.password && (
                   <div className={styles.err1}>
-                    <span>{errors?.password?.message?.toString()}</span>
+                    <span className={styles.errorspan1}>
+                      {errors?.password?.message?.toString()}
+                    </span>
                   </div>
                 )}
               </div>
@@ -101,7 +106,9 @@ export const Signup = () => {
                 />
                 {errors.confirm && (
                   <div className={styles.err1}>
-                    <span>{errors?.confirm?.message?.toString()}</span>
+                    <span className={styles.errorspan1}>
+                      {errors?.confirm?.message?.toString()}
+                    </span>
                   </div>
                 )}
               </div>
@@ -117,9 +124,9 @@ export const Signup = () => {
               </div>
 
               <div className={styles.backbtn1}>
-                <a href="#">
+                <Link to="/login">
                   <FaArrowAltCircleLeft />
-                </a>
+                </Link>
               </div>
             </form>
           </div>
@@ -165,7 +172,9 @@ export const Signup = () => {
                   />
                   {errors.name && (
                     <div className={styles.err}>
-                      <span>{errors?.name?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.name?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -192,7 +201,9 @@ export const Signup = () => {
                   />
                   {errors.phone && (
                     <div className={styles.err}>
-                      <span>{errors?.phone?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.phone?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -214,7 +225,9 @@ export const Signup = () => {
 
                   {errors.surname && (
                     <div className={styles.err}>
-                      <span>{errors?.surname?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.surname?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -235,7 +248,9 @@ export const Signup = () => {
                   />
                   {errors.city && (
                     <div className={styles.err}>
-                      <span>{errors?.city?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.city?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -261,7 +276,9 @@ export const Signup = () => {
                   />
                   {errors.id && (
                     <div className={styles.err}>
-                      <span>{errors?.id?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.id?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -282,7 +299,9 @@ export const Signup = () => {
                   />
                   {errors.province && (
                     <div className={styles.err}>
-                      <span>{errors?.province?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.province?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -291,28 +310,52 @@ export const Signup = () => {
                   <label className={styles.label} htmlFor="genere">
                     Género *
                   </label>
-                  <input
-                    type="text"
+                  <select
+                    className={styles.select}
                     {...register("genere", {
-                      required: "El género es obligatorio",
-                      pattern: {
-                        value: /^[A-Z]+$/i,
-                        message: "El género no es válido",
-                      },
+                      required: "El género es requerido",
                     })}
-                  />
+                  >
+                    <option className={styles.option} value="">
+                      Selecciona una opción
+                    </option>
+                    <option className={styles.option} value="masculino">
+                      Masculino
+                    </option>
+                    <option className={styles.option} value="femenino">
+                      Femenino
+                    </option>
+                    <option className={styles.option} value="no binario">
+                      No binario
+                    </option>
+                  </select>
+
                   {errors.genere && (
                     <div className={styles.err}>
-                      <span>{errors?.genere?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.genere?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
 
                 <div className={styles.inputbox}>
-                  <label className={styles.label} htmlFor="link">
-                    Link
+                  <label className={styles.label} htmlFor="direction">
+                    Dirección *
                   </label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    {...register("direction", {
+                      required: "La dirección es obligatoria",
+                    })}
+                  />
+                  {errors.direction && (
+                    <div className={styles.err}>
+                      <span className={styles.errorspan}>
+                        {errors?.direction?.message?.toString()}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.inputbox}>
@@ -327,7 +370,9 @@ export const Signup = () => {
                   />
                   {errors.birth && (
                     <div className={styles.err}>
-                      <span>{errors?.birth?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.birth?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -348,24 +393,99 @@ export const Signup = () => {
                   />
                   {errors.habilitation && (
                     <div className={styles.err}>
-                      <span>{errors?.habilitation?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.habilitation?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
 
                 <div className={styles.inputbox}>
-                  <label className={styles.label} htmlFor="direction">
-                    Dirección *
+                  <label className={styles.label} htmlFor="link">
+                    Link
                   </label>
-                  <input
-                    type="text"
-                    {...register("direction", {
-                      required: "La dirección es obligatoria",
+                  <input type="text" />
+                </div>
+
+                <div className={styles.inputbox}>
+                  <label className={styles.label} htmlFor="category">
+                    Categoría *
+                  </label>
+                  <select
+                    className={styles.select}
+                    {...register("category", {
+                      required: "La categoría es requerida",
                     })}
-                  />
-                  {errors.direction && (
+                  >
+                    <option className={styles.option} value="">
+                      Selecciona una opción
+                    </option>
+                    <option className={styles.option} value="electricista">
+                      Electricista
+                    </option>
+                    <option className={styles.option} value="plomero">
+                      Plomero
+                    </option>
+                    <option className={styles.option} value="carpintero">
+                      Carpintero
+                    </option>
+                    <option className={styles.option} value="pintor">
+                      Pintor
+                    </option>
+                    <option className={styles.option} value="albañil">
+                      Albañil
+                    </option>
+                    <option className={styles.option} value="gasista">
+                      Gasista
+                    </option>
+                    <option className={styles.option} value="jardinero">
+                      Jardinero
+                    </option>
+                    <option
+                      className={styles.option}
+                      value="tecnico en aire acondicionado"
+                    >
+                      Técnico en aire acondicionado
+                    </option>
+                    <option className={styles.option} value="cerrajero">
+                      Cerrajero
+                    </option>
+                    <option className={styles.option} value="techador">
+                      Techador
+                    </option>
+                    <option
+                      className={styles.option}
+                      value="instalador de sistema de seguridad"
+                    >
+                      Instalador de sistema de seguridad
+                    </option>
+                    <option className={styles.option} value="vidriero">
+                      Vidriero
+                    </option>
+                    <option
+                      className={styles.option}
+                      value="instalador de pisos"
+                    >
+                      Instalador de pisos
+                    </option>
+                    <option className={styles.option} value="fontanero">
+                      Fontanero
+                    </option>
+                    <option
+                      className={styles.option}
+                      value="remodelador de interiores"
+                    >
+                      Remodelador de interiores
+                    </option>
+                    <option className={styles.option} value="soporte tecnico">
+                      Soporte Técnico en infórmatica
+                    </option>
+                  </select>
+                  {errors.category && (
                     <div className={styles.err}>
-                      <span>{errors?.direction?.message?.toString()}</span>
+                      <span className={styles.errorspan}>
+                        {errors?.category?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -374,22 +494,25 @@ export const Signup = () => {
                   <label className={styles.label} htmlFor="about">
                     Sobre mí
                   </label>
-                  <input type="text" />
+                  <input type="text" className={styles.aboutme} />
                 </div>
               </div>
 
               <div className={styles.backbtn}>
-                <a href="#">
+                <Link to="/login">
                   <FaArrowAltCircleLeft />
-                </a>
+                </Link>
               </div>
 
               <div className={styles.btncontainer}>
-                <input
-                  type="submit"
-                  className={styles.btn}
-                  value="Registrarse"
-                />
+                <Link to="/up-profile">
+                  <input
+                    type="submit"
+                    className={styles.btn}
+                    value="Registrarse"
+                    disabled={!isDirty || !isValid}
+                  />
+                </Link>
               </div>
             </form>
           </div>
