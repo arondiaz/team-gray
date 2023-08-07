@@ -4,7 +4,7 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDocument from "./docs/swagger.json";
 import { MySqlConnectionFilter } from "./filters/mysql.filter";
-import { HealthController } from "./controllers/health.controller";
+import { HealthController } from "./controllers/HealthController";
 import { Configuration } from "./configuration/configuration";
 import { CategoriesController } from "./controllers/categories.controller";
 import { ProfessionalUserController } from "./controllers/ProfessionalUserController";
