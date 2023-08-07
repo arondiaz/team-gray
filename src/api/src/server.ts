@@ -6,7 +6,7 @@ import * as swaggerDocument from "./docs/swagger.json";
 import { MySqlConnectionFilter } from "./filters/mysql.filter";
 import { HealthController } from "./controllers/HealthController";
 import { Configuration } from "./configuration/configuration";
-import { CategoriesController } from "./controllers/categories.controller";
+import { CategoriesController } from "./controllers/CategoriesController";
 import { ProfessionalUserController } from "./controllers/ProfessionalUserController";
 
 /**
