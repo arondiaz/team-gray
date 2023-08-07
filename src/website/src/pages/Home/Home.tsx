@@ -28,12 +28,12 @@ export const Home: React.FC = () => {
 
 				{/* Access buttons */}
 				<CommonAccessButton
-					buttonText='contratar'
-					buttonSubText='un servicios'
+					buttonUsersText='contratar'
+					buttonSubText='un servicio'
 					userType='usuarios'
 				/>
 				<CommonAccessButton
-					buttonText='ofrecer'
+					buttonUsersText='ofrecer'
 					buttonSubText='mis servicios'
 					userType='profesionales'
 				/>

@@ -3,86 +3,86 @@
 
 /* Contenedor principal izquierdo */
 .leftColumn {
-  width: 23rem;
-  height: 34rem;
-  padding: 0.5rem;
-  border: 1px solid $purple-soft;
-  font-family: $Lexend;
-  border-radius: $border-md;
-  display: flex;
-  flex-direction: column;
+	width: 23rem;
+	height: 34rem;
+	padding: 0.5rem;
+	border: 1px solid $purple-soft;
+	font-family: $Lexend;
+	border-radius: $border-md;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Estilos para el formulario de búsqueda */
 .formControl {
-  border: 1px solid $grey-strong;
-  border-radius: $border-md;
-  width: 17rem;
-  height: 2rem;
-  margin-bottom: 1rem;
-  padding: 0.3rem;
-  font-family: $Lexend;
-  font-size: 12px;
-  opacity: 0.5;
+	border: 1px solid $grey-strong;
+	border-radius: $border-md;
+	width: 17rem;
+	height: 2rem;
+	margin-bottom: 1rem;
+	padding: 0.3rem;
+	font-family: $Lexend;
+	font-size: 12px;
+	opacity: 0.5;
 
-  /* Estilos focus */
-  &:focus {
-    outline: none;
-    border-color: #a0a0a0;
-    box-shadow: 0 0 8px $purple-strong;
-  }
+	/* Estilos focus */
+	&:focus {
+		outline: none;
+		border-color: #a0a0a0;
+		box-shadow: 0 0 8px $purple-strong;
+	}
 }
 
 /* Contenedor del buscador */
 .searchContainer {
-  display: flex;
+	display: flex;
 }
 
 /* Estilos para botón reset  */
 .buttonReset {
-  height: 2rem;
-  width: 4rem;
-  margin-left: 2rem;
-  border-radius: $border-md;
-  border: none;
-  color: $white;
-  background: $purple-soft;
-  cursor: pointer;
-  font-family: $Lexend;
-  font-size: 10px;
-  text-transform: uppercase;
-  &:hover {
-    background: $purple-strong;
-  }
+	height: 2rem;
+	width: 4rem;
+	margin-left: 2rem;
+	border-radius: $border-md;
+	border: none;
+	color: $white;
+	background: $purple-soft;
+	cursor: pointer;
+	font-family: $Lexend;
+	font-size: 10px;
+	text-transform: uppercase;
+	&:hover {
+		background: $purple-strong;
+	}
 }
 
 /* Contenedor de la lista scrollable */
 .scrollableList {
-  flex: 1;
-  max-height: 30rem;
-  overflow-y: auto;
+	flex: 1;
+	max-height: 30rem;
+	overflow-y: auto;
 }
 
 /* Estilos para las tablas de oficios */
 .tradeList {
-  width: 100%;
-  font-size: 14px;
-  text-align: left;
-  color: $grey-strong;
-  margin-bottom: 1rem;
+	width: 100%;
+	font-size: 14px;
+	text-align: left;
+	color: $grey-strong;
+	margin-bottom: 1rem;
 
-  tr {
-    cursor: pointer;
-    &:hover {
-      td {
-        background-color: #28deeb41;
-      }
-    }
-  }
-  td {
-    padding: 0.6rem;
-    background: $white;
-    border-radius: $border-md;
-    border: 1px solid $grey-soft;
-  }
+	tr {
+		cursor: pointer;
+		&:hover {
+			td {
+				background-color: #28deeb41;
+			}
+		}
+	}
+	td {
+		padding: 0.6rem;
+		background: $white;
+		border-radius: $border-md;
+		border: 1px solid $grey-soft;
+	}
 }

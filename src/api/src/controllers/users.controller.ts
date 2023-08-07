@@ -14,14 +14,13 @@ export class UsersController extends ApiController {
     // get all UPs
 
     @GET
-    @Response<IUp[]>(200, "Succes")
+    @Response<IUp[]>(200, "Success")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<IUp[]> {
         try {
             return await this.repo.getAll();
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
@@ -30,16 +29,14 @@ export class UsersController extends ApiController {
 
     @GET
     @Path("/category/:category_id")
-    @Response<IUp[]>(200, "Succes")
+    @Response<IUp[]>(200, "Success")
     @Response<string>(400, "Bad request")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/category/:category_id" })
     async getByCategory(@PathParam("category_id") category: number): Promise<IUp[]> {
         try {
             if (category <= 16 && category > 0) return await this.repo.find("category_id = ?", [category]);
-            this.httpContext.response.sendStatus(400).send("Bad request");
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
@@ -48,7 +45,7 @@ export class UsersController extends ApiController {
 
     @GET
     @Path(":id")
-    @Response<IUp>(200, "Succes")
+    @Response<IUp>(200, "Success")
     @Response<string>(404, "User not found")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/:id" })
@@ -56,8 +53,8 @@ export class UsersController extends ApiController {
         try {
             return await this.repo.getById(id);
         } catch (error) {
-            this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
     }
 }
+
