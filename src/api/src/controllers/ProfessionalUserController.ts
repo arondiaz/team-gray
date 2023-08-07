@@ -6,7 +6,7 @@ import { Response } from "typescript-rest-swagger";
 
 @Path("/api/up")
 @Controller({ route: "/api/up" })
-export class UsersController extends ApiController {
+export class ProfessionalUserController extends ApiController {
     constructor(private repo: UpRepository) {
         super();
     }
