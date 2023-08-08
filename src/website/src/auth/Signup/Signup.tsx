@@ -393,13 +393,15 @@ export const Signup = () => {
                 </div>
 
                 <div className={styles.btnsignupcontainer}>
-                  <input
-                    type="submit"
-                    className={`${styles.btnsignup} ${
-                      !isDirty || !isValid ? styles.btnsignupdisabled : ''
-                    }`}
-                    value="Registrarse"
-                  />
+                  <Link to="/up-profile">
+                    <input
+                      type="submit"
+                      className={`${styles.btnsignup} ${
+                        !isDirty || !isValid ? styles.btnsignupdisabled : ''
+                      }`}
+                      value="Registrarse"
+                    />
+                  </Link>
                 </div>
               </form>
             </div>
