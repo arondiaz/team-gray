@@ -1,8 +1,8 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
-import { IUp } from "./up.interface";
+import { IProfessionalUser } from "./ProfessionalUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Transient })
-export class UP implements IUp {
+export class ProfessionalUser implements IProfessionalUser {
     id?: number = 0;
     email: string = "";
     name: string = "";
@@ -20,3 +20,4 @@ export class UP implements IUp {
     created_at?: string = "";
     category_id: string = "";
 }
+

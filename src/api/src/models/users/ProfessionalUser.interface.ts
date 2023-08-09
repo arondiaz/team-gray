@@ -1,4 +1,4 @@
-export interface IUp {
+export interface IProfessionalUser {
     id?: number;
     email: string;
     name: string;
@@ -16,3 +16,4 @@ export interface IUp {
     created_at?: string;
     category_id: string;
 }
+

@@ -1,23 +1,23 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
-import { UpRepository } from "../repositories/up.repository";
+import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { GET, Path, PathParam } from "typescript-rest";
-import { IUp } from "../models/users/up.interface";
+import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response } from "typescript-rest-swagger";
 
-@Path("/api/up")
-@Controller({ route: "/api/up" })
+@Path("/api/professional_user")
+@Controller({ route: "/api/professional_user" })
 export class ProfessionalUserController extends ApiController {
-    constructor(private repo: UpRepository) {
+    constructor(private repo: ProfessionalUserRepository) {
         super();
     }
 
     // get all UPs
 
     @GET
-    @Response<IUp[]>(200, "Success")
+    @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
-    async get(): Promise<IUp[]> {
+    async get(): Promise<IProfessionalUser[]> {
         try {
             return await this.repo.getAll();
         } catch (error) {
@@ -29,11 +29,11 @@ export class ProfessionalUserController extends ApiController {
 
     @GET
     @Path("/category/:category_id")
-    @Response<IUp[]>(200, "Success")
+    @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(400, "Bad request")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/category/:category_id" })
-    async getByCategory(@PathParam("category_id") category: number): Promise<IUp[]> {
+    async getByCategory(@PathParam("category_id") category: number): Promise<IProfessionalUser[]> {
         try {
             if (category <= 16 && category > 0) return await this.repo.find("category_id = ?", [category]);
         } catch (error) {
@@ -45,11 +45,11 @@ export class ProfessionalUserController extends ApiController {
 
     @GET
     @Path(":id")
-    @Response<IUp>(200, "Success")
+    @Response<IProfessionalUser>(200, "Success")
     @Response<string>(404, "User not found")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/:id" })
-    async getById(@PathParam("id") id: number): Promise<IUp> {
+    async getById(@PathParam("id") id: number): Promise<IProfessionalUser> {
         try {
             return await this.repo.getById(id);
         } catch (error) {
