@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './Signup.module.scss';
 import BgOverlay from '../../shared/BgOverlay';
@@ -29,6 +29,19 @@ export const Signup = () => {
     setView2(true);
   };
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/categories')
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
   return (
     <>
       {view1 && (
@@ -367,67 +380,11 @@ export const Signup = () => {
                       {...register('category', {
                         required: 'La categoría es requerida',
                       })}>
-                      <option className={styles.optionsv} value="">
-                        Selecciona una opción
-                      </option>
-                      <option className={styles.optionsv} value="electricista">
-                        Electricista
-                      </option>
-                      <option className={styles.optionsv} value="plomero">
-                        Plomero
-                      </option>
-                      <option className={styles.optionsv} value="carpintero">
-                        Carpintero
-                      </option>
-                      <option className={styles.optionsv} value="pintor">
-                        Pintor
-                      </option>
-                      <option className={styles.optionsv} value="albañil">
-                        Albañil
-                      </option>
-                      <option className={styles.optionsv} value="gasista">
-                        Gasista
-                      </option>
-                      <option className={styles.optionsv} value="jardinero">
-                        Jardinero
-                      </option>
-                      <option
-                        className={styles.optionsv}
-                        value="tecnico en aire acondicionado">
-                        Técnico en aire acondicionado
-                      </option>
-                      <option className={styles.optionsv} value="cerrajero">
-                        Cerrajero
-                      </option>
-                      <option className={styles.optionsv} value="techador">
-                        Techador
-                      </option>
-                      <option
-                        className={styles.optionsv}
-                        value="instalador de sistema de seguridad">
-                        Instalador de sistema de seguridad
-                      </option>
-                      <option className={styles.optionsv} value="vidriero">
-                        Vidriero
-                      </option>
-                      <option
-                        className={styles.optionsv}
-                        value="instalador de pisos">
-                        Instalador de pisos
-                      </option>
-                      <option className={styles.optionsv} value="fontanero">
-                        Fontanero
-                      </option>
-                      <option
-                        className={styles.optionsv}
-                        value="remodelador de interiores">
-                        Remodelador de interiores
-                      </option>
-                      <option
-                        className={styles.optionsv}
-                        value="soporte tecnico">
-                        Soporte Técnico en infórmatica
-                      </option>
+                      {categories.map((category: any) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
                     </select>
                     {errors.category && (
                       <div className={styles.errorcontainer}>
