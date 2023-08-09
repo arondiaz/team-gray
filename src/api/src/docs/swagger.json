@@ -19,7 +19,7 @@
 				"name"
 			]
 		},
-		"IUp": {
+		"IProfessionalUser": {
 			"description": "",
 			"properties": {
 				"id": {
@@ -121,7 +121,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Succes",
+						"description": "Success",
 						"schema": {
 							"type": "array",
 							"items": {
@@ -140,20 +140,20 @@
 				"parameters": []
 			}
 		},
-		"/api/up": {
+		"/api/professional_user": {
 			"get": {
-				"operationId": "UsersGet",
+				"operationId": "ProfessionalUserGet",
 				"produces": [
 					"application/json",
 					"text/html"
 				],
 				"responses": {
 					"200": {
-						"description": "Succes",
+						"description": "Success",
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/IUp"
+								"$ref": "#/definitions/IProfessionalUser"
 							}
 						}
 					},
@@ -168,20 +168,20 @@
 				"parameters": []
 			}
 		},
-		"/api/up/category/{category_id}": {
+		"/api/professional_user/category/{category_id}": {
 			"get": {
-				"operationId": "UsersGetByCategory",
+				"operationId": "ProfessionalUserGetByCategory",
 				"produces": [
 					"application/json",
 					"text/html"
 				],
 				"responses": {
 					"200": {
-						"description": "Succes",
+						"description": "Success",
 						"schema": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/IUp"
+								"$ref": "#/definitions/IProfessionalUser"
 							}
 						}
 					},
@@ -211,18 +211,18 @@
 				]
 			}
 		},
-		"/api/up/{id}": {
+		"/api/professional_user/{id}": {
 			"get": {
-				"operationId": "UsersGetById",
+				"operationId": "ProfessionalUserGetById",
 				"produces": [
 					"application/json",
 					"text/html"
 				],
 				"responses": {
 					"200": {
-						"description": "Succes",
+						"description": "Success",
 						"schema": {
-							"$ref": "#/definitions/IUp"
+							"$ref": "#/definitions/IProfessionalUser"
 						}
 					},
 					"404": {

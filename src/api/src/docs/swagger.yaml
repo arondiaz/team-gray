@@ -14,7 +14,7 @@ definitions:
         required:
             - id
             - name
-    IUp:
+    IProfessionalUser:
         description: ""
         properties:
             id:
@@ -93,7 +93,7 @@ paths:
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
@@ -104,38 +104,38 @@ paths:
                         type: string
             description: ""
             parameters: []
-    /api/up:
+    /api/professional_user:
         get:
-            operationId: UsersGet
+            operationId: ProfessionalUserGet
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
-                            $ref: '#/definitions/IUp'
+                            $ref: '#/definitions/IProfessionalUser'
                 '500':
                     description: 'No connection to database'
                     schema:
                         type: string
             description: ""
             parameters: []
-    '/api/up/category/{category_id}':
+    '/api/professional_user/category/{category_id}':
         get:
-            operationId: UsersGetByCategory
+            operationId: ProfessionalUserGetByCategory
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
-                            $ref: '#/definitions/IUp'
+                            $ref: '#/definitions/IProfessionalUser'
                 '400':
                     description: 'Bad request'
                     schema:
@@ -153,17 +153,17 @@ paths:
                     required: true
                     type: number
                     format: double
-    '/api/up/{id}':
+    '/api/professional_user/{id}':
         get:
-            operationId: UsersGetById
+            operationId: ProfessionalUserGetById
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
-                        $ref: '#/definitions/IUp'
+                        $ref: '#/definitions/IProfessionalUser'
                 '404':
                     description: 'User not found'
                     schema:
