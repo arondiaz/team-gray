@@ -1,5 +1,5 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
-import { CategoryRepository } from "../repositories/categories.repository";
+import { CategoryRepository } from "../repositories/Categories.repository";
 import { ICategory } from "../models/categories/Category.interface";
 import { GET, Path } from "typescript-rest";
 import { Response } from "typescript-rest-swagger";
