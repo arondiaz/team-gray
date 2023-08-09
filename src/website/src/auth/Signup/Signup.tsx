@@ -443,6 +443,7 @@ export const Signup = () => {
                         !isDirty || !isValid ? styles.btnsignupdisabled : ''
                       }`}
                       value="Registrarse"
+                      disabled={!isDirty || !isValid}
                     />
                   </Link>
                 </div>
