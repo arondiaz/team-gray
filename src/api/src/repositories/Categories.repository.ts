@@ -1,5 +1,5 @@
 import { DependencyContainer, DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
-import { Category } from "../models/categories/category";
+import { Category } from "../models/categories/Category";
 import { MySqlConnection } from "../core/mysql/mysql.connection";
 import { ReadonlyRepositoryBase } from "../core/repositories/readonly.repository";
 
@@ -9,3 +9,4 @@ export class CategoryRepository extends ReadonlyRepositoryBase<Category, number>
         super(dependencyContainer, connection, Category, "categories");
     }
 }
+
