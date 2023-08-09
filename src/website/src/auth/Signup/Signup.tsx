@@ -296,34 +296,6 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="genere">
-                      Género *
-                    </label>
-                    <input
-                      type="text"
-                      {...register('genere', {
-                        required: 'El género es obligatorio',
-                        pattern: {
-                          value: /^[A-Z]+$/i,
-                          message: 'El género no es válido',
-                        },
-                      })}
-                    />
-                    {errors.genere && (
-                      <div className={styles.errorcontainersv}>
-                        <span>{errors?.genere?.message?.toString()}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="link">
-                      Link
-                    </label>
-                    <input type="text" />
-                  </div>
-
-                  <div className={styles.inputboxsv}>
                     <label className={styles.labelsv} htmlFor="birth">
                       Fecha de nacimiento *
                     </label>
@@ -336,6 +308,130 @@ export const Signup = () => {
                     {errors.birth && (
                       <div className={styles.errorcontainersv}>
                         <span>{errors?.birth?.message?.toString()}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.inputboxsv}>
+                    <label className={styles.labelsv} htmlFor="direction">
+                      Dirección *
+                    </label>
+                    <input
+                      type="text"
+                      {...register('direction', {
+                        required: 'La dirección es obligatoria',
+                      })}
+                    />
+                    {errors.direction && (
+                      <div className={styles.errorcontainersv}>
+                        <span>{errors?.direction?.message?.toString()}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.inputboxsv}>
+                    <label className={styles.labelsv} htmlFor="genere">
+                      Género *
+                    </label>
+                    <select
+                      className={styles.selectsv}
+                      {...register('genere', {
+                        required: 'El género es obligatorio',
+                      })}>
+                      <option className={styles.optionsv} value="">
+                        Selecciona una opción
+                      </option>
+                      <option className={styles.optionsv} value="masculino">
+                        Masculino
+                      </option>
+                      <option className={styles.optionsv} value="femenino">
+                        Femenino
+                      </option>
+                      <option className={styles.optionsv} value="no binario">
+                        No binario
+                      </option>
+                    </select>
+                    {errors.genere && (
+                      <div className={styles.errorcontainersv}>
+                        <span>{errors?.genere?.message?.toString()}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.inputboxsv}>
+                    <label className={styles.labelsv} htmlFor="category">
+                      Categoría *
+                    </label>
+                    <select
+                      className={styles.selectsv}
+                      {...register('category', {
+                        required: 'La categoría es requerida',
+                      })}>
+                      <option className={styles.optionsv} value="">
+                        Selecciona una opción
+                      </option>
+                      <option className={styles.optionsv} value="electricista">
+                        Electricista
+                      </option>
+                      <option className={styles.optionsv} value="plomero">
+                        Plomero
+                      </option>
+                      <option className={styles.optionsv} value="carpintero">
+                        Carpintero
+                      </option>
+                      <option className={styles.optionsv} value="pintor">
+                        Pintor
+                      </option>
+                      <option className={styles.optionsv} value="albañil">
+                        Albañil
+                      </option>
+                      <option className={styles.optionsv} value="gasista">
+                        Gasista
+                      </option>
+                      <option className={styles.optionsv} value="jardinero">
+                        Jardinero
+                      </option>
+                      <option
+                        className={styles.optionsv}
+                        value="tecnico en aire acondicionado">
+                        Técnico en aire acondicionado
+                      </option>
+                      <option className={styles.optionsv} value="cerrajero">
+                        Cerrajero
+                      </option>
+                      <option className={styles.optionsv} value="techador">
+                        Techador
+                      </option>
+                      <option
+                        className={styles.optionsv}
+                        value="instalador de sistema de seguridad">
+                        Instalador de sistema de seguridad
+                      </option>
+                      <option className={styles.optionsv} value="vidriero">
+                        Vidriero
+                      </option>
+                      <option
+                        className={styles.optionsv}
+                        value="instalador de pisos">
+                        Instalador de pisos
+                      </option>
+                      <option className={styles.optionsv} value="fontanero">
+                        Fontanero
+                      </option>
+                      <option
+                        className={styles.optionsv}
+                        value="remodelador de interiores">
+                        Remodelador de interiores
+                      </option>
+                      <option
+                        className={styles.optionsv}
+                        value="soporte tecnico">
+                        Soporte Técnico en infórmatica
+                      </option>
+                    </select>
+                    {errors.category && (
+                      <div className={styles.errorcontainer}>
+                        <span>{errors?.category?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -362,20 +458,10 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="direction">
-                      Dirección *
+                    <label className={styles.labelsv} htmlFor="link">
+                      Link
                     </label>
-                    <input
-                      type="text"
-                      {...register('direction', {
-                        required: 'La dirección es obligatoria',
-                      })}
-                    />
-                    {errors.direction && (
-                      <div className={styles.errorcontainersv}>
-                        <span>{errors?.direction?.message?.toString()}</span>
-                      </div>
-                    )}
+                    <input type="text" />
                   </div>
 
                   <div className={styles.inputboxsv}>
@@ -386,7 +472,7 @@ export const Signup = () => {
                   </div>
                 </div>
 
-                <div className={styles.backbtnsv}>
+                <div className={styles.backarrowcontainersv}>
                   <Link to="/login">
                     <FaArrowAltCircleLeft />
                   </Link>

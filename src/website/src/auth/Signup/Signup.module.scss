@@ -131,7 +131,7 @@
 
   .formcontainersv {
     width: 60rem;
-    height: 36rem;
+    height: 35rem;
     color: $grey-strong;
     padding: 2rem 4rem;
     background: $white;
@@ -141,7 +141,7 @@
   }
 
   .formcontainersv .inputboxsv {
-    height: 2rem;
+    height: 1.8rem;
     margin: 1rem 0;
   }
 
@@ -191,6 +191,7 @@
     font-size: 1rem;
     height: 1rem;
     margin: 1.2rem 0rem;
+    background: transparent;
   }
 
   input[type='file']::-webkit-file-upload-button {
@@ -205,7 +206,7 @@
 
   .labelsv {
     margin-left: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .inputcontainersv {
@@ -224,6 +225,28 @@
     outline: none;
   }
 
+  .inputboxsv .selectsv {
+    color: white;
+    font-size: 1rem;
+    height: 1.7rem;
+    margin: 1.5rem 0rem 1.5rem 2rem;
+    padding-left: 1rem;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0.1rem solid $purple-strong;
+    text-align: center;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    background-color: $purple-soft;
+    border-radius: 0.2rem;
+  }
+
+  .selectsv .optionsv {
+    background-color: $purple-soft;
+    font-size: 1.2rem;
+  }
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -237,7 +260,7 @@
   .btnsignup {
     position: absolute;
     outline: none;
-    top: 3rem;
+    top: 1rem;
     right: 22rem;
     border: none;
     outline: none;
@@ -266,17 +289,22 @@
     cursor: not-allowed;
   }
 
-  .backbtnsv {
+  .backarrowcontainersv {
     position: relative;
   }
 
-  .backbtnsv svg {
+  .backarrowcontainersv svg {
     position: absolute;
-    top: 3rem;
-    color: #4c3e7f;
+    top: 1rem;
+    right: 0.5rem;
+    color: $purple-soft;
     width: 2rem;
     height: 2rem;
-    transition: color 0.2s ease-out;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $purple-strong;
+    }
   }
 
   .errorcontainersv {
