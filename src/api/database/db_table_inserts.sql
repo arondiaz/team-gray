@@ -19,7 +19,7 @@ VALUES
   ('Remodelador de interiores'),
   ('Soporte técnico en informática');
 
-INSERT INTO up (email, password, name, lastname, dni, province, city, tel, link, about_me, gender, birthdate, auth_number, img, category_id)
+INSERT INTO professional_user (email, password, name, lastname, dni, province, city, tel, link, about_me, gender, birthdate, auth_number, img, category_id)
 VALUES
 ('ana.lopez@example.com', 'contra_segura123', 'Ana', 'López', 34123456, 'Buenos Aires', 'CABA', '11-2345-6789', 'https://www.analopez.com', 'Electricista matriculada con experiencia en instalaciones eléctricas residenciales.', 'Female', '1990-06-15', 'ABC123', 'ana_lopez.jpg', 1),
 ('juan.gomez@example.com', 'clave_segura789', 'Juan', 'Gómez', 40234567, 'Buenos Aires', 'La Plata', '221-345-6789', 'https://www.juangomez.com', 'Plomero con amplia trayectoria y servicio de alta calidad.', 'Male', '1985-09-25', 'DEF456', 'juan_gomez.jpg', 2),
