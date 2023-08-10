@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Categories } from '../../components/Categories';
 
 import styles from './Signup.module.scss';
 import BgOverlay from '../../shared/BgOverlay';
@@ -29,19 +30,6 @@ export const Signup = () => {
     setView2(true);
   };
 
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/categories')
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []);
   return (
     <>
       {view1 && (
@@ -375,17 +363,7 @@ export const Signup = () => {
                     <label className={styles.labelsv} htmlFor="category">
                       Categoría *
                     </label>
-                    <select
-                      className={styles.selectsv}
-                      {...register('category', {
-                        required: 'La categoría es requerida',
-                      })}>
-                      {categories.map((category: any) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
+                    <Categories />
                     {errors.category && (
                       <div className={styles.errorcontainer}>
                         <span>{errors?.category?.message?.toString()}</span>
