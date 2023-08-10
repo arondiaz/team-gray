@@ -1,51 +1,55 @@
-.containererror {
+@import '../../stylesheets/variables.scss';
+
+.errorcodecontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: left;
   margin-top: 10%;
-}
-.number {
-  font-size: 5rem;
-  font-weight: bold;
-  color: #4c3e7f;
-}
 
-.notfound {
-  font-size: 2rem;
-  color: #6e629b;
-}
+  .errorcode {
+    font-size: 5rem;
+    font-weight: bold;
+    color: $purple-strong;
+  }
 
-.backhome {
-  font-size: 1.2rem;
-  color: #848282;
-  margin-top: 2rem;
-}
+  .notfound {
+    font-size: 2rem;
+    color: $purple-strong;
+  }
 
-.backhome span {
-  display: block;
-  text-align: center;
-  font-size: 1.2rem;
-}
+  .notexist {
+    font-size: 1.2rem;
+    color: $grey-medium;
+    margin-top: 2rem;
+  }
 
-.homebtn {
-  background-color: #4c3e7f;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  cursor: pointer;
-  letter-spacing: 0.1rem;
-  transition: background-color 0.2s ease-out;
-}
+  .notexist .backhome {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+  }
 
-.homebtn:hover {
-  background-color: #2a1280;
-}
+  .homebtn {
+    background-color: $purple-soft;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    width: 7rem;
+    height: 1.8rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+    transition: background-color 0.3s ease-in-out;
+  }
 
-.homebtn a {
-  color: white;
-  text-decoration: none;
+  .homebtn:hover {
+    background-color: $purple-strong;
+  }
+
+  .homebtn a {
+    color: $white;
+    text-decoration: none;
+  }
 }
