@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { Categories } from '../../../components/Categories';
 import styles from './UP-profile.module.scss';
 import BgOverlay from '../../../shared/BgOverlay';
 import BgLayout from '../../../shared/BgLayout';
@@ -16,20 +16,6 @@ export const UPProfile = () => {
   });
 
   const onSubmit = (data: any) => console.log(JSON.stringify(data));
-
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/categories')
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []);
 
   return (
     <>
@@ -267,17 +253,7 @@ export const UPProfile = () => {
                   <label className={styles.label} htmlFor="category">
                     Categoría *
                   </label>
-                  <select
-                    className={styles.selectsv}
-                    {...register('category', {
-                      required: 'La categoría es requerida',
-                    })}>
-                    {categories.map((category: any) => (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
+                  <Categories />
                   {errors.category && (
                     <div className={styles.err}>
                       <span>{errors?.category?.message?.toString()}</span>
