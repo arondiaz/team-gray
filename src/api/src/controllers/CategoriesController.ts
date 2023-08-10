@@ -2,9 +2,10 @@ import { Action, ApiController, Controller } from "@miracledevs/paradigm-express
 import { CategoryRepository } from "../repositories/Categories.repository";
 import { ICategory } from "../models/categories/Category.interface";
 import { GET, Path } from "typescript-rest";
-import { Response } from "typescript-rest-swagger";
+import { Response, Tags } from "typescript-rest-swagger";
 
 @Path("/api/categories")
+@Tags("Categories")
 @Controller({ route: "/api/categories" })
 export class CategoriesController extends ApiController {
     constructor(private repo: CategoryRepository) {

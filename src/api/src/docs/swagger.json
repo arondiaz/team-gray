@@ -137,6 +137,9 @@
 					}
 				},
 				"description": "",
+				"tags": [
+					"Categories"
+				],
 				"parameters": []
 			}
 		},
@@ -165,6 +168,9 @@
 					}
 				},
 				"description": "",
+				"tags": [
+					"Professional Users"
+				],
 				"parameters": []
 			}
 		},
@@ -199,6 +205,9 @@
 					}
 				},
 				"description": "",
+				"tags": [
+					"Professional Users"
+				],
 				"parameters": [
 					{
 						"description": "",
@@ -239,6 +248,9 @@
 					}
 				},
 				"description": "",
+				"tags": [
+					"Professional Users"
+				],
 				"parameters": [
 					{
 						"description": "",

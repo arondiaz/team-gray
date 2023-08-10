@@ -103,6 +103,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - Categories
             parameters: []
     /api/professional_user:
         get:
@@ -122,6 +124,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters: []
     '/api/professional_user/category/{category_id}':
         get:
@@ -145,6 +149,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters:
                 -
                     description: ""
@@ -173,6 +179,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters:
                 -
                     description: ""

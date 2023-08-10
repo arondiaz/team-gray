@@ -2,9 +2,10 @@ import { Action, ApiController, Controller } from "@miracledevs/paradigm-express
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { GET, Path, PathParam } from "typescript-rest";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
-import { Response } from "typescript-rest-swagger";
+import { Response, Tags } from "typescript-rest-swagger";
 
 @Path("/api/professional_user")
+@Tags("Professional Users")
 @Controller({ route: "/api/professional_user" })
 export class ProfessionalUserController extends ApiController {
     constructor(private repo: ProfessionalUserRepository) {
