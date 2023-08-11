@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { FaArrowAltCircleLeft, FaKaaba, FaUpload } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { Categories } from '../../components/Categories';
 
@@ -337,12 +337,12 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="genere">
+                    <label className={styles.labelsv} htmlFor="gender">
                       Género *
                     </label>
                     <select
                       className={styles.selectsv}
-                      {...register('genere', {
+                      {...register('gender', {
                         required: 'El género es obligatorio',
                       })}>
                       <option className={styles.optionsv} value="">
@@ -362,9 +362,9 @@ export const Signup = () => {
                         Otro
                       </option>
                     </select>
-                    {errors.genere && (
+                    {errors.gender && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.genere?.message?.toString()}</span>
+                        <span>{errors?.gender?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
