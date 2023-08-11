@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaKaaba, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { Categories } from '../../components/Categories';
 
@@ -26,8 +26,8 @@ export const Signup = () => {
   const [view2, setView2] = useState(false);
 
   const handleView = () => {
-    setView1(false);
-    setView2(true);
+    setView1(!view1);
+    setView2(!view2);
   };
 
   return (
@@ -408,9 +408,7 @@ export const Signup = () => {
                 </div>
 
                 <div className={styles.backarrowcontainersv}>
-                  <Link to="/login">
-                    <FaArrowAltCircleLeft />
-                  </Link>
+                  <FaArrowAltCircleLeft onClick={handleView} />
                 </div>
 
                 <div className={styles.btnsignupcontainer}>
