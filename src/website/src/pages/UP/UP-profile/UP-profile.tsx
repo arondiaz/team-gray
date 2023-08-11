@@ -221,12 +221,12 @@ export const UPProfile = () => {
                 </div>
 
                 <div className={styles.inputboxprofile}>
-                  <label className={styles.label} htmlFor="genere">
+                  <label className={styles.label} htmlFor="gender">
                     Género *
                   </label>
                   <select
                     className={styles.selectsv}
-                    {...register('genere', {
+                    {...register('gender', {
                       required: 'El género es obligatorio',
                     })}>
                     <option className={styles.optionsv} value="">
@@ -242,9 +242,9 @@ export const UPProfile = () => {
                       No binario
                     </option>
                   </select>
-                  {errors.genere && (
+                  {errors.gender && (
                     <div className={styles.err}>
-                      <span>{errors?.genere?.message?.toString()}</span>
+                      <span>{errors?.gender?.message?.toString()}</span>
                     </div>
                   )}
                 </div>
