@@ -8,6 +8,12 @@ import styles from './Signup.module.scss';
 import BgOverlay from '../../shared/BgOverlay';
 import BgLayout from '../../shared/BgLayout';
 
+export enum Gender {
+  Masculino = 'Male',
+  Femenino = 'Female',
+  Otro = 'Other',
+}
+
 export const Signup = () => {
   const {
     register,
@@ -342,14 +348,18 @@ export const Signup = () => {
                       <option className={styles.optionsv} value="">
                         Selecciona una opción
                       </option>
-                      <option className={styles.optionsv} value="masculino">
+                      <option
+                        className={styles.optionsv}
+                        value={Gender.Masculino}>
                         Masculino
                       </option>
-                      <option className={styles.optionsv} value="femenino">
+                      <option
+                        className={styles.optionsv}
+                        value={Gender.Femenino}>
                         Femenino
                       </option>
-                      <option className={styles.optionsv} value="no binario">
-                        No binario
+                      <option className={styles.optionsv} value={Gender.Otro}>
+                        Otro
                       </option>
                     </select>
                     {errors.genere && (
