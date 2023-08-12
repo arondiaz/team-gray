@@ -405,7 +405,7 @@
 	},
 	"swagger": "2.0",
 	"securityDefinitions": {
-		"client secret": {
+		"default": {
 			"type": "apiKey",
 			"name": "x-auth",
 			"in": "header"

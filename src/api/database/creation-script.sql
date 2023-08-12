@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `professional_user` (
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `name` ENUM ('Electricista', 'Plomero', 'Carpintero', 'Pintor', 'Albañil', 'Gasista', 'Jardinero', 'Técnico en aire acondicionado', 'Cerrajero', 'Techador', 'Instalador de sistema de seguridad', 'Vidriero', 'Instalador de pisos', 'Fontanero', 'Remodelador de interiores', 'Soporte técnico en informática') NOT NULL UNIQUE
+  `name` VARCHAR (50) NOT NULL UNIQUE
 );
 
 ALTER TABLE `professional_user` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);

@@ -1,8 +1,9 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
 import { CategoryRepository } from "../repositories/Categories.repository";
 import { ICategory } from "../models/categories/Category.interface";
-import { GET, Path } from "typescript-rest";
+import { GET, POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
+import { Category } from "../models/categories/Category";
 
 @Path("/api/categories")
 @Tags("Categories")
@@ -22,6 +23,12 @@ export class CategoriesController extends ApiController {
         } catch (error) {
             throw error;
         }
+    }
+
+    @POST
+    @Action({ route: "/", fromBody: true })
+    async post(category: ICategory) {
+        await this.repo.insertOne(category);
     }
 }
 
