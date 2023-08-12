@@ -1,6 +1,6 @@
 {
 	"definitions": {
-		"ProfessionalUser": {
+		"AuthProfessionalUser": {
 			"description": "",
 			"properties": {
 				"id": {
@@ -9,6 +9,10 @@
 					"description": ""
 				},
 				"email": {
+					"type": "string",
+					"description": ""
+				},
+				"password": {
 					"type": "string",
 					"description": ""
 				},
@@ -71,7 +75,9 @@
 			},
 			"type": "object",
 			"required": [
+				"id",
 				"email",
+				"password",
 				"name",
 				"lastname",
 				"dni",
@@ -80,6 +86,7 @@
 				"tel",
 				"gender",
 				"birthdate",
+				"created_at",
 				"category_id"
 			]
 		},
@@ -162,10 +169,6 @@
 					"type": "string",
 					"description": ""
 				},
-				"created_at": {
-					"type": "string",
-					"description": ""
-				},
 				"category_id": {
 					"type": "string",
 					"description": ""
@@ -239,10 +242,10 @@
 					{
 						"description": "",
 						"in": "body",
-						"name": "professionalUser",
+						"name": "authUser",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/ProfessionalUser"
+							"$ref": "#/definitions/AuthProfessionalUser"
 						}
 					}
 				]

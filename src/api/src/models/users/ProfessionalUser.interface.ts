@@ -1,7 +1,6 @@
 export interface IProfessionalUser {
     id?: number;
     email: string;
-    password: string;
     name: string;
     lastname: string;
     dni: string;
@@ -14,7 +13,6 @@ export interface IProfessionalUser {
     birthdate: string;
     auth_number?: string;
     img?: string;
-    created_at?: string;
     category_id: string;
 }
 
