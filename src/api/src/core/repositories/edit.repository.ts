@@ -50,3 +50,4 @@ export abstract class EditRepositoryBase<TEntity, TId = number> extends Readonly
         await this.connection.connection.query(`TRUNCATE \`${this.tableName}\``);
     }
 }
+

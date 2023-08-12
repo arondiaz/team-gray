@@ -1,5 +1,69 @@
 basePath: null
 definitions:
+    ProfessionalUser:
+        description: ""
+        properties:
+            id:
+                type: number
+                format: double
+                description: ""
+            email:
+                type: string
+                description: ""
+            name:
+                type: string
+                description: ""
+            lastname:
+                type: string
+                description: ""
+            dni:
+                type: string
+                description: ""
+            province:
+                type: string
+                description: ""
+            city:
+                type: string
+                description: ""
+            tel:
+                type: string
+                description: ""
+            link:
+                type: string
+                description: ""
+            about_me:
+                type: string
+                description: ""
+            gender:
+                type: string
+                description: ""
+            birthdate:
+                type: string
+                description: ""
+            auth_number:
+                type: string
+                description: ""
+            img:
+                type: string
+                description: ""
+            created_at:
+                type: string
+                description: ""
+            category_id:
+                type: string
+                description: ""
+        type: object
+        required:
+            - email
+            - name
+            - lastname
+            - dni
+            - province
+            - city
+            - tel
+            - gender
+            - birthdate
+            - category_id
     ICategory:
         description: ""
         properties:
@@ -85,6 +149,42 @@ info:
     title: fastwork-api
     version: 1.0.0
 paths:
+    /api/auth/signup:
+        post:
+            operationId: AuthPost
+            produces:
+                - text/html
+                - application/json
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        type: object
+                '201':
+                    description: 'Professional User created'
+                    schema:
+                        type: string
+                '400':
+                    description: 'Bad request'
+                    schema:
+                        type: string
+                '500':
+                    description: 'Error server'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - AuthUser
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: professionalUser
+                    required: true
+                    schema:
+                        $ref: '#/definitions/ProfessionalUser'
     /api/categories:
         get:
             operationId: CategoriesGet
