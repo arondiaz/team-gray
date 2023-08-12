@@ -4,6 +4,7 @@ import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import path from "path";
+import { InsertionResult } from "../core/repositories/commands/db.command";
 
 @Path("/api/auth")
 @Tags("AuthUser")
@@ -20,13 +21,9 @@ export class AuthController extends ApiController {
     @Response<string>(500, "Error server")
     @Action({ route: "/signup", fromBody: true })
     async post(professionalUser: ProfessionalUser): Promise<any> {
-        console.log(professionalUser);
         try {
             const insert = await this.service.register(professionalUser);
-
-            if (insert) {
-                this.httpContext.response.status(201);
-            }
+            console.log(insert.insertId);
         } catch (error) {
             console.log(error);
         }

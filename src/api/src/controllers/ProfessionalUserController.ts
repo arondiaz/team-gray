@@ -1,6 +1,6 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
-import { GET, Path, PathParam } from "typescript-rest";
+import { GET, Path, PathParam, Security } from "typescript-rest";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response, Tags } from "typescript-rest-swagger";
 

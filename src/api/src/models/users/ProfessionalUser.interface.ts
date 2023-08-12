@@ -1,6 +1,7 @@
 export interface IProfessionalUser {
     id?: number;
     email: string;
+    password: string;
     name: string;
     lastname: string;
     dni: string;
