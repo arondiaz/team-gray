@@ -9,12 +9,17 @@ import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interfa
 export class AuthService {
     constructor(private repo: ProfessionalUserRepository) {}
 
-    async register(authUser: IAuthProfessionalUser): Promise<InsertionResult<number>> {
+    async register(authUser: IAuthProfessionalUser): Promise<boolean> {
         try {
+            // TODO validations
             const salt = await bcrypt.genSalt(10);
             authUser.password = await bcrypt.hash(authUser.password, salt);
             const response = await this.repo.insertOne(authUser);
-            return response;
+            if (response) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (error) {
             console.log(error);
         }
