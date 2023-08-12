@@ -1,5 +1,5 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
-import { AuthService, IError } from "../service/AuthUser.service";
+import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
