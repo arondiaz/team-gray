@@ -20,4 +20,7 @@ export class Configuration {
      * Session timeout
      */
     sessionTimeout: string;
+
+    jwtSecret: string;
 }
+
