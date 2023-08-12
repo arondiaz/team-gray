@@ -5,21 +5,29 @@ import { InsertionResult } from "../core/repositories/commands/db.command";
 import bcrypt from "bcrypt";
 import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interface";
 
+export interface IError {
+    error: string;
+    message: string;
+    code: number;
+}
+
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
     constructor(private repo: ProfessionalUserRepository) {}
 
-    async register(authUser: IAuthProfessionalUser): Promise<boolean> {
+    async register(authUser: IAuthProfessionalUser): Promise<boolean | IError> {
         try {
-            // TODO validations
+            const validateEmail = await this.repo.find("email = ?", [authUser.email]);
+            if (validateEmail.length === 1) {
+                return {
+                    error: "email_already_registered",
+                    message: "The email is already registered",
+                    code: 409,
+                };
+            }
             const salt = await bcrypt.genSalt(10);
             authUser.password = await bcrypt.hash(authUser.password, salt);
-            const response = await this.repo.insertOne(authUser);
-            if (response) {
-                return true;
-            } else {
-                return false;
-            }
+            await this.repo.insertOne(authUser);
         } catch (error) {
             console.log(error);
         }

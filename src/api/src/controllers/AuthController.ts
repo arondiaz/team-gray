@@ -1,5 +1,5 @@
 import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
-import { AuthService } from "../service/AuthUser.service";
+import { AuthService, IError } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
@@ -18,15 +18,17 @@ export class AuthController extends ApiController {
     @Response<string>(400, "Bad request")
     @Response<string>(500, "Error server")
     @Action({ route: "/signup", fromBody: true })
-    async post(authUser: IAuthProfessionalUser): Promise<any> {
+    async post(authUser: IAuthProfessionalUser): Promise<IError | boolean> {
         try {
-            const insert = await this.service.register(authUser);
-            if (insert) {
-                this.httpContext.response.status(201).end();
-            } else {
-                this.httpContext.response.sendStatus(500);
+            const user = await this.service.register(authUser);
+            console.log(typeof user);
+
+            if (typeof user != "boolean") {
+                this.httpContext.response.status(user.code).end(user.message);
+                return;
             }
         } catch (error) {
+            this.httpContext.response.sendStatus(500);
             console.log(error);
         }
     }
