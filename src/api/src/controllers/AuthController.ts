@@ -18,7 +18,7 @@ export class AuthController extends ApiController {
     @Response<string>(400, "Bad request")
     @Response<string>(500, "Error server")
     @Action({ route: "/signup", fromBody: true })
-    async post(authUser: IAuthProfessionalUser): Promise<IError | boolean> {
+    async post(authUser: IAuthProfessionalUser): Promise<string> {
         try {
             const user = await this.service.register(authUser);
             console.log(typeof user);
@@ -26,10 +26,13 @@ export class AuthController extends ApiController {
             if (typeof user != "boolean") {
                 this.httpContext.response.status(user.code).end(user.message);
                 return;
+            } else {
+                this.httpContext.response.status(201).end("Created user");
+                return;
             }
         } catch (error) {
             this.httpContext.response.sendStatus(500);
-            console.log(error);
+            throw Error(error);
         }
     }
 }
