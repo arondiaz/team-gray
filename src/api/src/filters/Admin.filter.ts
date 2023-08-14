@@ -18,7 +18,7 @@ export class AdminFilter implements IFilter {
         try {
             const token = httpContext.request.header("x-auth");
 
-            if (!token || !jwt.verify(token, this.config.jwtSecret)) {
+            if (!token || !jwt.verify(token, this.config.jwtSecret.secret)) {
                 httpContext.response.sendStatus(401);
             }
         } catch (error) {
