@@ -9,7 +9,6 @@ export const Categories = ({ register }: any) => {
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error('Error:', error);
