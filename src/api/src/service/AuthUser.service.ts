@@ -111,5 +111,18 @@ export class AuthService {
             throw Error(error);
         }
     }
+
+    async login(authUser: IAuthProfessionalUser): Promise<boolean | IError> {
+        const user = await this.authRepo.find("email = ?", [authUser.email]);
+
+        if (!user[0]) {
+            return {
+                message: "User not found",
+                code: 404,
+            };
+        } else {
+            // todo jwt
+        }
+    }
 }
 

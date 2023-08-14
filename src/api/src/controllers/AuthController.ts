@@ -1,4 +1,4 @@
-import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
+import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/paradigm-express-webapi";
 import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
@@ -34,6 +34,13 @@ export class AuthController extends ApiController {
             this.httpContext.response.sendStatus(500);
             throw Error(error);
         }
+    }
+
+    @POST
+    @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
+    async login(authUser: IAuthProfessionalUser): Promise<string> {
+        await this.service.login(authUser);
+        return "jwt";
     }
 }
 
