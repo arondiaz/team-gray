@@ -2,6 +2,7 @@ import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import bcrypt from "bcrypt";
 import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interface";
+import { AuthRepository } from "../repositories/Auth.repository";
 
 export interface IError {
     message: string;
@@ -10,12 +11,12 @@ export interface IError {
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
-    constructor(private repo: ProfessionalUserRepository) {}
+    constructor(private authRepo: AuthRepository) {}
 
     async register(authUser: IAuthProfessionalUser): Promise<boolean | IError> {
         try {
             // email already registered validation
-            const validateEmail = await this.repo.find("email = ?", [authUser.email]);
+            const validateEmail = await this.authRepo.find("email = ?", [authUser.email]);
             if (validateEmail.length === 1) {
                 return {
                     message: "The email is already registered",
@@ -104,7 +105,7 @@ export class AuthService {
             // hashed password
             authUser.password = await bcrypt.hash(authUser.password, salt);
             // insert on database
-            await this.repo.insertOne(authUser);
+            await this.authRepo.insertOne(authUser);
             return true;
         } catch (error) {
             throw Error(error);
