@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 
-export const Categories = () => {
+export const Categories = ({ register }: any) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -17,12 +17,12 @@ export const Categories = () => {
   }, []);
 
   return (
-    <select className={styles.select}>
+    <select
+      className={styles.select}
+      {...register('categories', { required: 'La categoría es obligatoria' })}>
+      <option value="">Selecciona una opción</option>
       {categories.map((category: any) => (
-        <option
-          className={styles.options}
-          key={category.id}
-          value={category.id}>
+        <option key={category.id} value={category.id}>
           {category.name}
         </option>
       ))}

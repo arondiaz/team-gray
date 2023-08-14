@@ -253,7 +253,7 @@ export const UPProfile = () => {
                   <label className={styles.label} htmlFor="category">
                     Categoría *
                   </label>
-                  <Categories />
+                  <Categories register={register} />
                   {errors.category && (
                     <div className={styles.err}>
                       <span>{errors?.category?.message?.toString()}</span>

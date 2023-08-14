@@ -264,7 +264,6 @@ export const Signup = () => {
                       {...register('id', {
                         required: 'El DNI es obligatorio',
                         pattern: {
-                          ////
                           value: /^[0-9]+$/i,
                           message: 'El DNI no es válido',
                         },
@@ -373,7 +372,7 @@ export const Signup = () => {
                     <label className={styles.labelsv} htmlFor="category">
                       Categoría *
                     </label>
-                    <Categories />
+                    <Categories register={register} />
                     {errors.category && (
                       <div className={styles.errorcontainer}>
                         <span>{errors?.category?.message?.toString()}</span>
