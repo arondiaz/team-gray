@@ -19,20 +19,14 @@ export class AuthController extends ApiController {
     @Response<string>(500, "Error server")
     @Action({ route: "/signup", fromBody: true })
     async post(authUser: IAuthProfessionalUser): Promise<string> {
-        try {
-            const user = await this.service.register(authUser);
+        const user = await this.service.register(authUser);
 
-            if (user.error) {
-                this.httpContext.response.status(user.code).end(user.message);
-                return;
-            } else {
-                this.httpContext.response.status(user.code).end(user.message);
-                return;
-            }
-        } catch (error) {
-            this.httpContext.response.sendStatus(500);
-            throw Error(error);
+        if (user.error) {
+            this.httpContext.response.status(user.code).end(user.message);
+        } else {
+            this.httpContext.response.status(user.code).end(user.message);
         }
+        return;
     }
 
     @POST
