@@ -19,11 +19,7 @@ export class ProfessionalUserController extends ApiController {
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<IProfessionalUser[]> {
-        try {
-            return await this.repo.getAll();
-        } catch (error) {
-            throw Error(error);
-        }
+        return await this.repo.getAll();
     }
 
     // get by category
@@ -35,11 +31,8 @@ export class ProfessionalUserController extends ApiController {
     @Response<string>(500, "No connection to database")
     @Action({ route: "/category/:category_id" })
     async getByCategory(@PathParam("category_id") category: number): Promise<IProfessionalUser[]> {
-        try {
-            if (category <= 16 && category > 0) return await this.repo.find("category_id = ?", [category]);
-        } catch (error) {
-            throw Error(error);
-        }
+        // todo implement service
+        return await this.repo.find("category_id = ?", [category]);
     }
 
     // get by id
@@ -51,11 +44,7 @@ export class ProfessionalUserController extends ApiController {
     @Response<string>(500, "No connection to database")
     @Action({ route: "/:id" })
     async getById(@PathParam("id") id: number): Promise<IProfessionalUser> {
-        try {
-            return await this.repo.getById(id);
-        } catch (error) {
-            throw Error(error);
-        }
+        return await this.repo.getById(id);
     }
 }
 
