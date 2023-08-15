@@ -6,7 +6,6 @@ import { Response, Tags } from "typescript-rest-swagger";
 import { Configuration } from "../configuration/configuration";
 import { AdminFilter } from "../filters/Admin.filter";
 import { AdminService } from "../service/Admin.service";
-import { IResponse } from "../service/Response.interface";
 
 @Path("/api/categories")
 @Controller({ route: "/api/categories" })
