@@ -270,7 +270,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: ""
+                    description: " This controller is implemented to add \n categories by an authenticated administrator. \n For now, for testing purposes, you can generate \n the token in jwt.io by passing the jwt.secret from \n the .env file in the signature."
                     in: body
                     name: category
                     required: true
