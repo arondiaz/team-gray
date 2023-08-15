@@ -16,7 +16,8 @@ export class MySqlConnectionFilter implements IFilter {
         try {
             this.connection = this.dependencyContainer.resolve(MySqlConnection);
             await this.mysqlConnector.createScopedConnection(this.connection);
-        } catch {
+        } catch (error) {
+            console.log(error);
             httpContext.response.sendStatus(500);
         }
     }
@@ -29,3 +30,4 @@ export class MySqlConnectionFilter implements IFilter {
         this.mysqlConnector.releaseConnection(this.connection);
     }
 }
+

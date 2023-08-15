@@ -1,10 +1,11 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
-import { Gender, IUp } from "./up.interface";
+import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Transient })
-export class UP implements IUp {
-    id?: number = 0;
+export class AuthProfessionalUser implements IAuthProfessionalUser {
+    id: number = 0;
     email: string = "";
+    password: string = "";
     name: string = "";
     lastname: string = "";
     dni: string = "";
@@ -13,10 +14,11 @@ export class UP implements IUp {
     tel: string = "";
     link?: string = "";
     about_me?: string = "";
-    gender: Gender.female;
+    gender: string = "";
     birthdate: string = "";
     auth_number?: string = "";
     img?: string = "";
-    created_at?: string = "";
+    created_at: string = "";
     category_id: string = "";
 }
+

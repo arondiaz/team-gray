@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
-    "shardulm94.trailing-spaces"
+    "shardulm94.trailing-spaces",
+    "enkia.tokyo-night"
   ]
 }

@@ -1,5 +1,70 @@
 basePath: null
 definitions:
+    IAuthProfessionalUser:
+        description: ""
+        properties:
+            email:
+                type: string
+                description: ""
+            password:
+                type: string
+                description: ""
+            name:
+                type: string
+                description: ""
+            lastname:
+                type: string
+                description: ""
+            dni:
+                type: string
+                description: ""
+            province:
+                type: string
+                description: ""
+            city:
+                type: string
+                description: ""
+            tel:
+                type: string
+                description: ""
+            link:
+                type: string
+                description: ""
+            about_me:
+                type: string
+                description: ""
+            gender:
+                type: string
+                description: ""
+            birthdate:
+                type: string
+                description: ""
+            auth_number:
+                type: string
+                description: ""
+            img:
+                type: string
+                description: ""
+            created_at:
+                type: string
+                description: ""
+            category_id:
+                type: string
+                description: ""
+        type: object
+        required:
+            - email
+            - password
+            - name
+            - lastname
+            - dni
+            - province
+            - city
+            - tel
+            - gender
+            - birthdate
+            - created_at
+            - category_id
     ICategory:
         description: ""
         properties:
@@ -14,7 +79,7 @@ definitions:
         required:
             - id
             - name
-    IUp:
+    IProfessionalUser:
         description: ""
         properties:
             id:
@@ -49,10 +114,6 @@ definitions:
                 type: string
                 description: ""
             gender:
-                enum:
-                    - Masculino
-                    - Femenino
-                    - Otro
                 type: string
                 description: ""
             birthdate:
@@ -62,9 +123,6 @@ definitions:
                 type: string
                 description: ""
             img:
-                type: string
-                description: ""
-            created_at:
                 type: string
                 description: ""
             category_id:
@@ -89,7 +147,73 @@ info:
     title: fastwork-api
     version: 1.0.0
 paths:
-    /api/categories:
+    /api/auth/signup:
+        post:
+            operationId: AuthPost
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        type: string
+                '201':
+                    description: 'Professional User created'
+                    schema:
+                        type: string
+                '400':
+                    description: 'Bad request'
+                    schema:
+                        type: string
+                '500':
+                    description: 'Error server'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - AuthUser
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: authUser
+                    required: true
+                    schema:
+                        $ref: '#/definitions/IAuthProfessionalUser'
+    /api/auth/login:
+        post:
+            operationId: AuthLogin
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: Success
+                    schema:
+                        type: string
+                '400':
+                    description: 'Bad request'
+                    schema:
+                        type: string
+                '500':
+                    description: 'Error server'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - AuthUser
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: authUser
+                    required: true
+                    schema:
+                        $ref: '#/definitions/IAuthProfessionalUser'
+    /api/categories/:
         get:
             operationId: CategoriesGet
             produces:
@@ -97,49 +221,95 @@ paths:
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
                             $ref: '#/definitions/ICategory'
                 '500':
-                    description: 'No connection to database'
+                    description: 'Server error'
                     schema:
                         type: string
             description: ""
+            tags:
+                - Categories
             parameters: []
-    /api/up:
+        post:
+            operationId: CategoriesPost
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        type: string
+                '201':
+                    description: 'Created category'
+                    schema:
+                        type: string
+                '400':
+                    description: 'Bad request'
+                    schema:
+                        type: string
+                '409':
+                    description: 'The category is already exists'
+                    schema:
+                        type: string
+                '500':
+                    description: 'Server error'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - Admin
+            security:
+                -
+                    default:
+                        - x-auth
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: " This controller is implemented to add \n categories by an authenticated administrator. \n For now, for testing purposes, you can generate \n the token in jwt.io by passing the jwt.secret from \n the .env file in the signature."
+                    in: body
+                    name: category
+                    required: true
+                    schema:
+                        $ref: '#/definitions/ICategory'
+    /api/professional_user:
         get:
-            operationId: UsersGet
+            operationId: ProfessionalUserGet
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
-                            $ref: '#/definitions/IUp'
+                            $ref: '#/definitions/IProfessionalUser'
                 '500':
                     description: 'No connection to database'
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters: []
-    '/api/up/category/{category_id}':
+    '/api/professional_user/category/{category_id}':
         get:
-            operationId: UsersGetByCategory
+            operationId: ProfessionalUserGetByCategory
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
                         type: array
                         items:
-                            $ref: '#/definitions/IUp'
+                            $ref: '#/definitions/IProfessionalUser'
                 '400':
                     description: 'Bad request'
                     schema:
@@ -149,6 +319,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters:
                 -
                     description: ""
@@ -157,17 +329,17 @@ paths:
                     required: true
                     type: number
                     format: double
-    '/api/up/{id}':
+    '/api/professional_user/{id}':
         get:
-            operationId: UsersGetById
+            operationId: ProfessionalUserGetById
             produces:
                 - application/json
                 - text/html
             responses:
                 '200':
-                    description: Succes
+                    description: Success
                     schema:
-                        $ref: '#/definitions/IUp'
+                        $ref: '#/definitions/IProfessionalUser'
                 '404':
                     description: 'User not found'
                     schema:
@@ -177,6 +349,8 @@ paths:
                     schema:
                         type: string
             description: ""
+            tags:
+                - 'Professional Users'
             parameters:
                 -
                     description: ""
@@ -187,7 +361,7 @@ paths:
                     format: double
 swagger: '2.0'
 securityDefinitions:
-    'client secret':
+    default:
         type: apiKey
         name: x-auth
         in: header

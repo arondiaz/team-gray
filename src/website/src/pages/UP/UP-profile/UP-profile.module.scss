@@ -1,0 +1,310 @@
+@import '../../../stylesheets/variables.scss';
+
+.fullcontainer {
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.leftcontainer {
+  width: 60rem;
+  height: 35rem;
+  color: $grey-strong;
+  padding: 2rem 4rem;
+  background: $white;
+  border-radius: $border-md;
+  box-shadow: $shadow-medium;
+  z-index: 95;
+}
+
+.leftcontainer .inputboxprofile {
+  height: 1.6rem;
+  margin: 1rem 0;
+}
+
+.registerform {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.inputupload {
+  position: relative;
+}
+
+.imageprofile {
+  position: absolute;
+  bottom: -5rem;
+  left: 23rem;
+  border-radius: 50%;
+  border: 0.2rem solid $purple-soft;
+}
+
+.inputupload .round {
+  position: absolute;
+  bottom: -5rem;
+  left: 26rem;
+  background: #00b4ff;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.inputupload .round input[type='file'] {
+  position: absolute;
+  transform: scale(2);
+  opacity: 0;
+}
+
+.inputboxprofile input[type='text'],
+.inputboxprofile input[type='number'],
+.inputboxprofile input[type='date'] {
+  color: $grey-strong;
+  padding: 1rem;
+  font-size: 1rem;
+  height: 1.2rem;
+  margin: 0.2rem 0rem;
+  background: transparent;
+}
+
+input[type='file']::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+input[type='date'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.label {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+}
+
+.inputcontainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 1.5rem;
+}
+
+.inputcontainer .inputprofile {
+  margin: 1rem;
+  border: none;
+  border-bottom: 1px solid $grey-strong;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.inputboxprofile .selectsv {
+  color: white;
+  font-size: 1rem;
+  height: 1.7rem;
+  margin: 1.5rem 1rem 1.7rem 2rem;
+  padding: 0rem 0.5rem;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0.1rem solid $purple-strong;
+  text-align: center;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background-color: $purple-soft;
+  border-radius: 0.2rem;
+}
+
+.selectsv .optionsv {
+  background-color: $purple-soft;
+  font-size: 1.2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btnacceptcontainer {
+  position: relative;
+}
+
+.btnaccept {
+  position: absolute;
+  outline: none;
+  top: 2rem;
+  right: 22rem;
+  border: none;
+  outline: none;
+  background-color: $purple-soft;
+  color: $white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  width: 10rem;
+  height: 2rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-out;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+}
+
+.btnaccept:hover {
+  background-color: $purple-strong;
+}
+
+.btnacceptdisabled {
+  background-color: #dddddd;
+}
+
+.btnacceptdisabled:hover {
+  background-color: #dddddd;
+  cursor: not-allowed;
+}
+
+.backbtn {
+  position: relative;
+}
+
+.backbtn svg {
+  position: absolute;
+  color: $purple-soft;
+  top: 2rem;
+  left: -2rem;
+  width: 2rem;
+  height: 2rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.backbtn svg:hover {
+  color: $purple-strong;
+}
+
+.err {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -1rem;
+}
+
+.err span {
+  background-color: $error-soft;
+  color: $error-strong;
+  font-size: 0.8rem;
+  font-weight: $bold-sm;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+}
+
+//Right side of the page
+
+.textbox {
+  position: absolute;
+  color: #626262;
+}
+
+.textbox h2 {
+  position: relative;
+  top: -22rem;
+  right: 6rem;
+}
+
+.fullcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container1 {
+  z-index: 95;
+  background-color: white;
+  width: 25rem;
+  border-radius: 1rem;
+}
+
+.rightbox {
+  background-color: #84828234;
+  width: 25rem;
+  height: 32rem;
+  margin-right: 2rem;
+  border-radius: 1rem;
+}
+
+.officeimg {
+  width: 25rem;
+  height: 8rem;
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.section:first-child {
+  width: 17rem;
+  height: 3rem;
+  background-color: $purple-soft;
+  border-radius: 1rem;
+}
+
+.section:first-child h3,
+.section:first-child p {
+  margin-left: 1rem;
+  color: #fff;
+}
+
+.section {
+  margin-top: 0.8rem;
+  margin-left: 1rem;
+}
+
+.linka {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: white;
+}
+
+.textright {
+  font-size: 1rem;
+  color: $purple-strong;
+}
+
+span {
+  font-size: medium;
+  color: $purple-soft;
+}
+.circlecontainer {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  left: 18rem;
+  top: -4rem;
+  width: 6rem;
+  height: 6rem;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: $purple-soft;
+}
+
+.section:last-child {
+  width: 24rem;
+  height: 6rem;
+  overflow: auto;
+}
+
+.section:last-child::-webkit-scrollbar {
+  width: 0.8rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.section:last-child::-webkit-scrollbar-thumb {
+  width: 0.8rem;
+  background-color: #4c3e7f;
+  border-radius: 1rem;
+}

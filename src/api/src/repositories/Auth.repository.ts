@@ -1,11 +1,13 @@
 import { DependencyContainer, DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { MySqlConnection } from "../core/mysql/mysql.connection";
 import { EditRepositoryBase } from "../core/repositories/edit.repository";
-import { UP } from "../models/users/up";
+import { AuthProfessionalUser } from "../controllers/AuthProfessionalUser";
+import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
-export class UpRepository extends EditRepositoryBase<UP, number> {
+export class AuthRepository extends EditRepositoryBase<IAuthProfessionalUser, number> {
     constructor(dependencyContainer: DependencyContainer, connection: MySqlConnection) {
-        super(dependencyContainer, connection, UP, "up");
+        super(dependencyContainer, connection, AuthProfessionalUser, "professional_user");
     }
 }
+

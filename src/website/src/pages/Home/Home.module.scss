@@ -44,12 +44,10 @@
 }
 
 /* Button */
-.button {
+.buttonUsers {
 	display: inline-block;
 	padding: 0.8rem;
 	padding-inline: 1.2rem;
-	width: auto;
-	height: auto;
 	border-radius: $border-md;
 	border: none;
 	color: $white;
@@ -63,7 +61,7 @@
 	margin-left: 1.5rem;
 
 	/* Button text bold */
-	.buttonTextBold {
+	.buttonUsersTextBold {
 		font-size: 0.9rem;
 		margin-top: auto;
 		display: inline;
@@ -72,7 +70,7 @@
 	}
 
 	/* Button text ocean */
-	& .buttonTextOcean {
-		color: $ocean-light;
+	& .buttonUsersTextOcean {
+		color: $ocean-soft;
 	}
 }

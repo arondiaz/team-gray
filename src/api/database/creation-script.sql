@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS db_fastwork; 
 USE db_fastwork;
 
-CREATE TABLE IF NOT EXISTS `up` (
+CREATE TABLE IF NOT EXISTS `professional_user` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(100) UNIQUE NOT NULL,
   `password` VARCHAR(100) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `up` (
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `name` ENUM ('Electricista', 'Plomero', 'Carpintero', 'Pintor', 'Albañil', 'Gasista', 'Jardinero', 'Técnico en aire acondicionado', 'Cerrajero', 'Techador', 'Instalador de sistema de seguridad', 'Vidriero', 'Instalador de pisos', 'Fontanero', 'Remodelador de interiores', 'Soporte técnico en informática') NOT NULL UNIQUE
+  `name` VARCHAR (50) NOT NULL UNIQUE
 );
 
-ALTER TABLE `up` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+ALTER TABLE `professional_user` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
