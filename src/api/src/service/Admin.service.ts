@@ -8,36 +8,31 @@ export class AdminService {
     constructor(private repo: CategoryRepository) {}
 
     async addCategory(category: ICategory): Promise<IResponse> {
+        console.log(category.name);
+
         if (category.name.length === 1)
             return {
                 error: true,
                 message: "Bad request",
                 code: 400,
             };
-        const arr = category.name.split("");
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] === " ") {
-                arr.splice(i, 1);
-            }
-        }
-        const categoryClean = arr.join("");
 
-        const validate = await this.repo.find("name = ?", [categoryClean]);
-        console.log(validate[0]);
+        const categoryFound = await this.repo.find("name = ?", [category.name]);
 
-        if (validate.length === 1) {
+        if (categoryFound.length === 1) {
             return {
                 error: true,
                 message: "The category is already exists",
                 code: 409,
             };
+        } else {
+            await this.repo.insertOne(category);
+            return {
+                error: false,
+                message: "Category created",
+                code: 201,
+            };
         }
-
-        return {
-            error: false,
-            message: "Category created",
-            code: 201,
-        };
     }
 }
 
