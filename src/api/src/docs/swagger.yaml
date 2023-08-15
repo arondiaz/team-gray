@@ -182,7 +182,7 @@ paths:
                     required: true
                     schema:
                         $ref: '#/definitions/IAuthProfessionalUser'
-    '/api/auth/login"':
+    /api/auth/login:
         post:
             operationId: AuthLogin
             produces:
