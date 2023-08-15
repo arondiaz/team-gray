@@ -24,14 +24,17 @@ export const Signup = () => {
     mode: 'onChange',
   });
 
+  const [view1Data, setView1Data] = useState({});
+
   const onSubmitView1 = (data: any) => {
-    console.log('View 1', JSON.stringify(data));
+    setView1Data(data);
     setView1(!view1);
     setView2(!view2);
   };
 
   const onSubmitView2 = (data: any) => {
-    console.log('View 2', JSON.stringify(data));
+    const allData = { ...view1Data, ...data };
+    alert(JSON.stringify(allData));
   };
   const password = watch('password');
 
@@ -429,11 +432,12 @@ export const Signup = () => {
                 <div className={styles.btnsignupcontainer}>
                   <Link to="/up-profile">
                     <button
-                      type="submit"
+                      type="button"
                       className={`${styles.btnsignup} ${
                         !isDirty || !isValid ? styles.btnsignupdisabled : ''
                       }`}
-                      disabled={!isDirty || !isValid}>
+                      disabled={!isDirty || !isValid}
+                      onClick={() => onSubmitView2(watch())}>
                       Registrarse
                     </button>
                   </Link>
