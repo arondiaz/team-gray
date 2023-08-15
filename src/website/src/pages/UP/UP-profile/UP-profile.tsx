@@ -74,7 +74,6 @@ export const UPProfile = () => {
                     {...register('phone', {
                       required: 'El celular es obligatorio',
                       pattern: {
-                        //
                         value: /^[0-9]*$/,
                         message: 'El celular no es válido',
                       },
@@ -263,13 +262,12 @@ export const UPProfile = () => {
 
                 <div className={styles.inputboxprofile}>
                   <label className={styles.label} htmlFor="habilitation">
-                    N° Habilitación *
+                    N° Habilitación
                   </label>
                   <input
                     className={styles.inputprofile}
                     type="text"
                     {...register('habilitation', {
-                      required: 'El número de habilitación es obligatorio',
                       minLength: {
                         value: 8,
                         message: 'Longitud mínima de 8 dígitos',
