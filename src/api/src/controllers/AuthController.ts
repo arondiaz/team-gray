@@ -37,6 +37,10 @@ export class AuthController extends ApiController {
     }
 
     @POST
+    @Path('/login"')
+    @Response<string>(200, "Success")
+    @Response<string>(400, "Bad request")
+    @Response<string>(500, "Error server")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IAuthProfessionalUser): Promise<string> {
         await this.service.login(authUser);

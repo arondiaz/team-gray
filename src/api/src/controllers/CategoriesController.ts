@@ -20,7 +20,7 @@ export class CategoriesController extends ApiController {
     @Tags("Categories")
     @Path("/")
     @Response<ICategory[]>(200, "Success")
-    @Response<string>(500, "No connection to database")
+    @Response<string>(500, "Server error")
     @Action({ route: "/" })
     async get(): Promise<ICategory[]> {
         try {
@@ -35,6 +35,8 @@ export class CategoriesController extends ApiController {
     @Tags("Admin")
     @Path("/")
     @Response<string>(201, "Created category")
+    @Response<string>(400, "Bad request")
+    @Response<string>(409, "The category is already exists")
     @Response<string>(500, "Server error")
     @Action({ route: "/", fromBody: true, filters: [AdminFilter] })
     async post(category: ICategory): Promise<string> {
