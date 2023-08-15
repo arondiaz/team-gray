@@ -6,6 +6,7 @@ import { Response, Tags } from "typescript-rest-swagger";
 import { Configuration } from "../configuration/configuration";
 import { AdminFilter } from "../filters/Admin.filter";
 import { AdminService } from "../service/Admin.service";
+import { IResponse } from "../service/Response.interface";
 
 @Path("/api/categories")
 @Controller({ route: "/api/categories" })
@@ -50,20 +51,13 @@ export class CategoriesController extends ApiController {
     @Response<string>(409, "The category is already exists")
     @Response<string>(500, "Server error")
     @Action({ route: "/", fromBody: true, filters: [AdminFilter] })
-    async post(category: ICategory): Promise<string> {
-        try {
-            const addCategory = await this.service.addCategory(category);
+    async post(category: ICategory) {
+        const addCategory = await this.service.addCategory(category);
 
-            if (addCategory.error) {
-                this.httpContext.response.status(addCategory.code).end(addCategory.message);
-                return;
-            } else {
-                this.httpContext.response.status(addCategory.code).end(addCategory.message);
-                return;
-            }
-        } catch (error) {
-            console.log(error);
-            this.httpContext.response.sendStatus(500);
+        if (addCategory.error) {
+            this.httpContext.response.status(addCategory.code).end(addCategory.message);
+        } else {
+            this.httpContext.response.status(addCategory.code).end(addCategory.message);
         }
     }
 }

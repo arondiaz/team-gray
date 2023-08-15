@@ -8,9 +8,7 @@ export class AdminService {
     constructor(private repo: CategoryRepository) {}
 
     async addCategory(category: ICategory): Promise<IResponse> {
-        console.log(category.name);
-
-        if (category.name.length === 1)
+        if (category.name.length <= 1)
             return {
                 error: true,
                 message: "Bad request",
