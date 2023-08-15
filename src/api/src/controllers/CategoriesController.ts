@@ -23,11 +23,7 @@ export class CategoriesController extends ApiController {
     @Response<string>(500, "Server error")
     @Action({ route: "/" })
     async get(): Promise<ICategory[]> {
-        try {
-            return await this.repo.getAll();
-        } catch (error) {
-            throw error;
-        }
+        return await this.repo.getAll();
     }
 
     /**
