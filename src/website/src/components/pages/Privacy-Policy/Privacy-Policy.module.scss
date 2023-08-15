@@ -1,0 +1,16 @@
+@import '../../../stylesheets/variables.scss';
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  margin: 5rem 25rem;
+  gap: 2rem;
+}
+.textStyle {
+  font-family: $Lexend;
+  font-size: 1rem;
+  color: $grey-strong;
+  font-weight: $bold-xs;
+}

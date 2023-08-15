@@ -1,0 +1,139 @@
+@import '../../../stylesheets/variables.scss';
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-family: $Lexend;
+
+  .formContainer {
+    width: 24rem;
+    height: 24rem;
+    background: $white;
+    color: $grey-strong;
+    border-radius: $border-md;
+    box-shadow: $shadow-medium;
+    padding: 2rem;
+    z-index: 95;
+
+    a {
+      text-decoration: none;
+      color: $grey-medium;
+    }
+
+    .loginTitle {
+      text-align: center;
+    }
+
+    .mailContainer,
+    .passwordContainer {
+      margin-top: 1.5rem;
+      margin-inline: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .fieldsLabel {
+      font-size: 0.9rem;
+      text-align: left;
+      color: $grey-medium;
+    }
+
+    .passwordContainer {
+      margin-top: 2rem;
+    }
+
+    .fieldsInput {
+      font-family: $Lexend;
+      border: 1px solid $grey-strong;
+      border-radius: $border-sm;
+      height: 1.8rem;
+      width: 14rem;
+      font-size: 0.8rem;
+      color: $grey-strong;
+      border-color: $grey-strong;
+
+      &:focus {
+        outline: none;
+        box-shadow: $shadow-small;
+      }
+    }
+
+    .buttonLoginContainer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .buttonLogin {
+      font-family: $Lexend;
+      margin-top: 2rem;
+      border: none;
+      background-color: $purple-soft;
+      color: $white;
+      height: 2rem;
+      width: 10rem;
+      border-radius: $border-sm;
+      transition: background-color 0.3s ease-in-out;
+      font-size: 0.8rem;
+      letter-spacing: 0.05rem;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $purple-strong;
+      }
+    }
+
+    .signUpLink,
+    .passwordForgotLink {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      color: $grey-medium;
+      font-size: 0.8rem;
+    }
+
+    .signUpLink:hover {
+      color: $ocean-strong;
+    }
+
+    .passwordForgotLink:hover {
+      color: $error-strong;
+    }
+
+    .errorMessage {
+      position: absolute;
+      bottom: -1.4rem;
+      right: 0;
+    }
+
+    .errorMessage {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: $bold-sm;
+      color: $error-strong;
+
+      span {
+        background-color: $error-soft;
+        color: $error-strong;
+        padding: 0.3rem;
+        border-radius: $border-sm;
+        font-size: 0.6rem;
+      }
+    }
+
+    .backArrowContainer {
+      margin-top: -1rem;
+    }
+
+    .backArrow {
+      color: $purple-soft;
+      transition: color 0.3s ease-in-out;
+      width: 1rem;
+
+      &:hover {
+        color: $purple-strong;
+      }
+    }
+  }
+}

@@ -1,6 +1,13 @@
-import { Login } from '../auth/Login/Login';
-import { Signup } from '../auth/Signup/Signup';
-import { About, ErrorPage, Home, PrivacyPolicy, Trades, UPProfile } from '../pages';
+import { Login } from '../components/auth/Login/index';
+import { Signup } from '../components/auth/Signup/index';
+import {
+  About,
+  ErrorPage,
+  Home,
+  PrivacyPolicy,
+  Trades,
+  UPProfile,
+} from '../components/pages';
 
 export interface IRoute {
   url: string;

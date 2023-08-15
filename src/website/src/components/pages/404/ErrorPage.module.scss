@@ -1,0 +1,55 @@
+@import '../../../stylesheets/variables.scss';
+
+.errorcodecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-top: 10%;
+
+  .errorcode {
+    font-size: 5rem;
+    font-weight: bold;
+    color: $purple-strong;
+  }
+
+  .notfound {
+    font-size: 2rem;
+    color: $purple-strong;
+  }
+
+  .notexist {
+    font-size: 1.2rem;
+    color: $grey-medium;
+    margin-top: 2rem;
+  }
+
+  .notexist .backhome {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .homebtn {
+    background-color: $purple-soft;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    width: 7rem;
+    height: 1.8rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .homebtn:hover {
+    background-color: $purple-strong;
+  }
+
+  .homebtn a {
+    color: $white;
+    text-decoration: none;
+  }
+}

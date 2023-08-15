@@ -1,39 +1,39 @@
 @import '../../stylesheets/variables.scss';
 .footer {
-	display: flex;
-	width: 100%;
-	padding: 0;
-	position: fixed;
-	bottom: 0;
-	height: 3rem;
-	background-color: $white;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	z-index: 100;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  height: 3rem;
+  background-color: $white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 100;
 
-	.text {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: $grey-strong;
-		font-family: $Lexend;
-		font-size: 0.9rem;
-		font-style: normal;
-		font-weight: $bold-xs;
-		line-height: normal;
-		margin-top: 0.3rem;
-	}
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: $grey-strong;
+    font-family: $Lexend;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: $bold-xs;
+    line-height: normal;
+    margin-top: 0.3rem;
+  }
 
-	.icons {
-		position: absolute;
-		right: 1rem;
-	}
+  .icons {
+    position: absolute;
+    right: 1rem;
+  }
 
-	.icon {
-		margin: 0.4rem;
-		width: 1.7rem;
-		height: auto;
-	}
+  .icon {
+    margin: 0.4rem;
+    width: 1.7rem;
+    height: auto;
+  }
 }
