@@ -42,7 +42,13 @@ export class AuthController extends ApiController {
     @Response<string>(500, "Error server")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IAuthProfessionalUser): Promise<string> {
-        return await this.service.login(authUser);
+        const user = await this.service.login(authUser);
+        if (user.error) {
+            this.httpContext.response.status(user.code).end(user.message);
+        } else {
+            this.httpContext.response.send(user.token);
+        }
+        return;
     }
 }
 

@@ -129,11 +129,15 @@ export class AuthService {
         }
     }
 
-    async login(authUser: IAuthProfessionalUser): Promise<string> {
+    async login(authUser: IAuthProfessionalUser): Promise<IResponse> {
         const user = await this.authRepo.find("email = ?", [authUser.email]);
 
         if (!user[0]) {
-            return "User not found";
+            return {
+                error: true,
+                message: "The email does not exist in the database",
+                code: 404,
+            };
         }
 
         const compare = await bcrypt.compare(authUser.password, user[0].password);
@@ -148,9 +152,18 @@ export class AuthService {
                 this.config.jwt.secret
             );
 
-            return token;
+            return {
+                error: false,
+                message: "Invalid credentials",
+                code: 401,
+                token: token,
+            };
         } else {
-            return "Invalid credentials";
+            return {
+                error: true,
+                message: "Invalid credentials",
+                code: 401,
+            };
         }
     }
 }
