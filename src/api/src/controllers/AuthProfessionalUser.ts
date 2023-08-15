@@ -1,4 +1,7 @@
+import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
+
+@Injectable({ lifeTime: DependencyLifeTime.Transient })
 export class AuthProfessionalUser implements IAuthProfessionalUser {
     id: number = 0;
     email: string = "";

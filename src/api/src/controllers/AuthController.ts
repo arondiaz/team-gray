@@ -23,11 +23,11 @@ export class AuthController extends ApiController {
             const user = await this.service.register(authUser);
             console.log(typeof user);
 
-            if (typeof user != "boolean") {
+            if (user.error) {
                 this.httpContext.response.status(user.code).end(user.message);
                 return;
             } else {
-                this.httpContext.response.status(201).end("Created user");
+                this.httpContext.response.status(user.code).end(user.message);
                 return;
             }
         } catch (error) {
