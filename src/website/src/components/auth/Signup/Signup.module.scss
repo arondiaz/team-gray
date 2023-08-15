@@ -1,0 +1,322 @@
+@import '../../../stylesheets/variables.scss';
+
+//First Form
+.containerfirstview {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-family: $Lexend;
+
+  .formcontainerfv {
+    width: 27rem;
+    height: 26rem;
+    color: $grey-strong;
+    background: $white;
+    padding: 2rem 4rem;
+    border-radius: $border-md;
+    box-shadow: $shadow-medium;
+    z-index: 95;
+  }
+
+  .formcontainerfv .inputboxfv {
+    width: 100%;
+    height: 1.7rem;
+    margin: 4rem 1rem;
+    color: $grey-medium;
+  }
+
+  .inputboxfv:first-child,
+  .inputboxfv:nth-child(2) {
+    margin-top: 1rem;
+  }
+
+  .labelfv {
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
+  }
+
+  .inputboxfv input[type='text'],
+  .inputboxfv input[type='password'] {
+    border: 1px solid $grey-strong;
+    border-radius: $border-sm;
+    color: $grey-strong;
+    width: 17rem;
+    height: 1.8rem;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shadow-small;
+    }
+  }
+
+  .btncontainerfv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btnnextfv {
+    border: none;
+    outline: none;
+    margin-top: 1rem;
+    background-color: $purple-soft;
+    color: $white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 10rem;
+    height: 2rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+  }
+
+  .btnnextfv:hover {
+    background-color: $purple-strong;
+  }
+  .btnnextfvdisabled {
+    background-color: #dddddd;
+  }
+
+  .btnnextfvdisabled:hover {
+    background-color: #dddddd;
+    cursor: not-allowed;
+  }
+
+  .backbtnfv {
+    position: relative;
+  }
+
+  .backbtnfv svg {
+    position: absolute;
+    color: $purple-soft;
+    top: -2rem;
+    left: -2rem;
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .backbtnfv svg:hover {
+    color: $purple-strong;
+  }
+
+  .errorcontainerfv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.6rem;
+  }
+
+  .errorcontainerfv span {
+    background-color: $error-soft;
+    color: $error-strong;
+    font-size: 0.8rem;
+    font-weight: $bold-sm;
+    text-align: center;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+  }
+}
+
+/// Second Form
+
+.containersecondview {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-family: $Lexend;
+
+  .formcontainersv {
+    width: 60rem;
+    height: 35rem;
+    color: $grey-strong;
+    padding: 2rem 4rem;
+    background: $white;
+    border-radius: $border-md;
+    box-shadow: $shadow-medium;
+    z-index: 95;
+  }
+
+  .formcontainersv .inputboxsv {
+    height: 1.8rem;
+    margin: 1rem 0;
+  }
+
+  .registerformsv {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .inputuploadsv {
+    position: relative;
+  }
+
+  .imageprofilesv {
+    position: absolute;
+    bottom: -5rem;
+    left: 23rem;
+    border-radius: 50%;
+    border: 0.2rem solid $purple-strong;
+  }
+
+  .inputuploadsv .round {
+    position: absolute;
+    bottom: -5rem;
+    left: 26rem;
+    background: #00b4ff;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .inputuploadsv .round input[type='file'] {
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  .inputboxsv input[type='text'],
+  .inputboxsv input[type='number'],
+  .inputboxsv input[type='date'] {
+    color: $grey-strong;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    height: 1rem;
+    margin: 1.2rem 0rem;
+    background: transparent;
+  }
+
+  input[type='file']::-webkit-file-upload-button {
+    cursor: pointer;
+  }
+
+  input[type='date'] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .labelsv {
+    margin-left: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .inputcontainersv {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 2rem;
+  }
+
+  .inputcontainersv input {
+    margin: 1rem;
+    border: none;
+    border-bottom: 1px solid $grey-strong;
+    font-size: 1.2rem;
+    outline: none;
+  }
+
+  .inputboxsv .selectsv {
+    color: white;
+    font-size: 1rem;
+    height: 1.7rem;
+    margin: 1.5rem 1rem 1.7rem 2rem;
+    padding: 0rem 0.5rem;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0.1rem solid $purple-strong;
+    text-align: center;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    background-color: $purple-soft;
+    border-radius: 0.2rem;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .btnsignupcontainer {
+    position: relative;
+  }
+
+  .btnsignup {
+    position: absolute;
+    outline: none;
+    top: 1rem;
+    right: 22rem;
+    border: none;
+    outline: none;
+    background-color: $purple-soft;
+    color: $white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 10rem;
+    height: 2rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-out;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+  }
+
+  .btnsignup:hover {
+    background-color: $purple-strong;
+  }
+
+  .btnsignupdisabled {
+    background-color: #dddddd;
+  }
+
+  .btnsignupdisabled:hover {
+    background-color: #dddddd;
+    cursor: not-allowed;
+  }
+
+  .backarrowcontainersv {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .backarrowcontainersv svg {
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+    color: $purple-soft;
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $purple-strong;
+    }
+  }
+
+  .errorcontainersv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1rem;
+  }
+
+  .errorcontainersv span {
+    background-color: $error-soft;
+    color: $error-strong;
+    font-size: 0.8rem;
+    font-weight: $bold-sm;
+    text-align: center;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+  }
+}

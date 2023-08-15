@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './index.module.scss';
+import styles from './Categories.module.scss';
 
 export const Categories = ({ register }: any) => {
   const [categories, setCategories] = useState([]);
