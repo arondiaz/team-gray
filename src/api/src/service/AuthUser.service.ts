@@ -3,10 +3,16 @@ import bcrypt from "bcrypt";
 import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interface";
 import { AuthRepository } from "../repositories/Auth.repository";
 import { IResponse } from "./Response.interface";
+import jwt from "jsonwebtoken";
+import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
+import { Configuration } from "../configuration/configuration";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
-    constructor(private authRepo: AuthRepository) {}
+    config: Configuration;
+    constructor(private authRepo: AuthRepository, config: ConfigurationBuilder) {
+        this.config = config.build(Configuration);
+    }
 
     async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
         try {
@@ -123,17 +129,28 @@ export class AuthService {
         }
     }
 
-    async login(authUser: IAuthProfessionalUser): Promise<boolean | IResponse> {
+    async login(authUser: IAuthProfessionalUser): Promise<string> {
         const user = await this.authRepo.find("email = ?", [authUser.email]);
 
         if (!user[0]) {
-            return {
-                error: true,
-                message: "User not found",
-                code: 404,
-            };
+            return "User not found";
+        }
+
+        const compare = await bcrypt.compare(authUser.password, user[0].password);
+
+        if (compare) {
+            const token = jwt.sign(
+                {
+                    user: user[0].name,
+                    last_name: user[0].lastname,
+                    phone: user[0].tel,
+                },
+                this.config.jwt.secret
+            );
+
+            return token;
         } else {
-            // todo jwt
+            return "Invalid credentials";
         }
     }
 }

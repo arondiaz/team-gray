@@ -3,6 +3,8 @@ import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
+import { IResponse } from "../service/Response.interface";
+import { log } from "console";
 
 @Path("/api/auth")
 @Tags("AuthUser")
@@ -21,7 +23,6 @@ export class AuthController extends ApiController {
     async post(authUser: IAuthProfessionalUser): Promise<string> {
         try {
             const user = await this.service.register(authUser);
-            console.log(typeof user);
 
             if (user.error) {
                 this.httpContext.response.status(user.code).end(user.message);
@@ -37,14 +38,13 @@ export class AuthController extends ApiController {
     }
 
     @POST
-    @Path('/login"')
+    @Path("/login")
     @Response<string>(200, "Success")
     @Response<string>(400, "Bad request")
     @Response<string>(500, "Error server")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IAuthProfessionalUser): Promise<string> {
-        await this.service.login(authUser);
-        return "jwt";
+        return await this.service.login(authUser);
     }
 }
 
