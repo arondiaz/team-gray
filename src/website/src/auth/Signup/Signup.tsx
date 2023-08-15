@@ -24,8 +24,15 @@ export const Signup = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => console.log(JSON.stringify(data));
+  const onSubmitView1 = (data: any) => {
+    console.log('View 1', JSON.stringify(data));
+    setView1(!view1);
+    setView2(!view2);
+  };
 
+  const onSubmitView2 = (data: any) => {
+    console.log('View 2', JSON.stringify(data));
+  };
   const password = watch('password');
 
   const [view1, setView1] = useState(true);
@@ -42,7 +49,7 @@ export const Signup = () => {
         <>
           <div className={styles.containerfirstview}>
             <div className={styles.formcontainerfv}>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmitView1)}>
                 <div className={styles.inputboxfv}>
                   <label htmlFor="email" className={styles.labelfv}>
                     Mail
@@ -118,15 +125,14 @@ export const Signup = () => {
                 </div>
 
                 <div className={styles.btncontainerfv}>
-                  <input
+                  <button
                     type="submit"
                     className={`${styles.btnnextfv} ${
                       !isDirty || !isValid ? styles.btnnextfvdisabled : ''
                     }`}
-                    onClick={handleView}
-                    value="Siguiente"
-                    disabled={!isDirty || !isValid}
-                  />
+                    disabled={!isDirty || !isValid}>
+                    Siguiente
+                  </button>
                 </div>
 
                 <div className={styles.backbtnfv}>
@@ -148,7 +154,7 @@ export const Signup = () => {
             <div className={styles.formcontainersv}>
               <form
                 className={styles.registerformsv}
-                onSubmit={handleSubmit(onSubmit)}>
+                onSubmit={handleSubmit(onSubmitView2)}>
                 <div className={styles.inputuploadsv}>
                   <img
                     src="src\assets\images\Signup\profile.webp"
@@ -422,14 +428,14 @@ export const Signup = () => {
 
                 <div className={styles.btnsignupcontainer}>
                   <Link to="/up-profile">
-                    <input
+                    <button
                       type="submit"
                       className={`${styles.btnsignup} ${
                         !isDirty || !isValid ? styles.btnsignupdisabled : ''
                       }`}
-                      value="Registrarse"
-                      disabled={!isDirty || !isValid}
-                    />
+                      disabled={!isDirty || !isValid}>
+                      Registrarse
+                    </button>
                   </Link>
                 </div>
               </form>
