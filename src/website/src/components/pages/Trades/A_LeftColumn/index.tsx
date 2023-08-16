@@ -7,26 +7,15 @@ import { CategoriesService } from '../../../../services/Categories.service';
 import { HttpClient } from '@miracledevs/paradigm-web-fetch';
 import { ProfessionalUserService } from '../../../../services/ProfessionalUser.service';
 import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
+import { useCategories } from '../../../../hooks/useCategories';
 
 export const LeftColumn: React.FC = () => {
-  const [trades, setTrades] = useState<ICategories[]>([]);
-
   const http = new HttpClient();
-  const categoryService = new CategoriesService(http);
   const professionalUserService = new ProfessionalUserService(http);
+  const { trades, setTrades } = useCategories();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await categoryService.getAll();
-        if (data) {
-          setTrades(data as ICategories[]);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
+    setTrades(trades);
   }, []);
 
   const [professional, setProfessional] = useState<IProfessionalUser[]>([]);
