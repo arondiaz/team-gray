@@ -18,10 +18,12 @@ export class HttpServiceBase {
     return (await response.json()) as T;
   }
 
-  protected async getByCategory<T>(category_id: string): Promise<T> {
-    const response = await this.httpClient.get(
-      `${this.baseUrl}/${endpoints.professionalUserByCategory}/${category_id}`
-    );
+  protected async getById<T>(
+    id: string,
+    url?: string | boolean,
+    endpoint?: string
+  ): Promise<T> {
+    const response = await this.httpClient.get(`${url}/${endpoint}/${id}`);
     return (await response.json()) as T;
   }
 
