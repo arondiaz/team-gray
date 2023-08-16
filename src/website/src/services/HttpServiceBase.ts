@@ -1,9 +1,12 @@
 import { HttpClient } from '@miracledevs/paradigm-web-fetch';
 import { QueryString } from '@miracledevs/paradigm-web-fetch';
 import { environment } from './environment';
+import { endpoints } from './endpoints';
+import { BiInjection } from 'react-icons/bi';
 
 export class HttpServiceBase {
   baseUrl = environment.production || environment.baseUrl;
+  endpoints = endpoints;
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -11,6 +14,13 @@ export class HttpServiceBase {
     const response = await this.httpClient.get(
       `${this.baseUrl}/${url}`,
       queryString
+    );
+    return (await response.json()) as T;
+  }
+
+  protected async getByCategory<T>(category_id: string): Promise<T> {
+    const response = await this.httpClient.get(
+      `${this.baseUrl}/${endpoints.professionalUserByCategory}/${category_id}`
     );
     return (await response.json()) as T;
   }
