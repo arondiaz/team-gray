@@ -28,7 +28,7 @@ export const LeftColumn: React.FC = () => {
 
   const handleCategory = async (id: string) => {
     const pedido = await fetch(
-      `http://www.localhost:5000/api/up/category/${id}`
+      `http://www.localhost:5000/api/professional_user/category/${id}`
     );
     const json = await pedido.json();
     console.log(json);
