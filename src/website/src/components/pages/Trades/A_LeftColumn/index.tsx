@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './LeftColumn.module.scss';
-export interface ICategory {
-  id: number;
-  name: string;
-}
+import { ICategory } from '../../../../interfaces/Category.interface';
 
 export const LeftColumn: React.FC = () => {
   const [trades, setTrades] = useState<ICategory[]>([]);
@@ -22,7 +19,9 @@ export const LeftColumn: React.FC = () => {
   }, []);
 
   const handleCategory = async (id: any) => {
-    const pedido = await fetch(`http://www.localhost:5000/api/up/category/${id}`);
+    const pedido = await fetch(
+      `http://www.localhost:5000/api/up/category/${id}`
+    );
     const json = await pedido.json();
     console.log(json);
   };
