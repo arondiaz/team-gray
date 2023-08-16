@@ -12,6 +12,13 @@ export class AuthController extends ApiController {
         super();
     }
 
+    /**
+     *
+     * @param authUser
+     * This is an endpoint to register as a professional user.
+     * @returns
+     */
+
     @POST
     @Path("/signup")
     @Response<string>(201, "Professional User created")
@@ -28,6 +35,12 @@ export class AuthController extends ApiController {
         }
         return;
     }
+
+    /**
+     * @param authUser
+     * This is an endpoint to login as a professional user. The user will receive an authentication token to be validated when making requests.
+     * @returns
+     */
 
     @POST
     @Path("/login")

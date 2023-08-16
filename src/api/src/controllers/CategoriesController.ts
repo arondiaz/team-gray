@@ -16,6 +16,11 @@ export class CategoriesController extends ApiController {
         this.config = config.build(Configuration);
     }
 
+    /**
+     *
+     * @returns This endpoint returns all categories added by an administrator.
+     */
+
     @GET
     @Tags("Categories")
     @Path("/")
@@ -29,11 +34,7 @@ export class CategoriesController extends ApiController {
     /**
      *
      * @param category
-        This controller is implemented to add 
-        categories by an authenticated administrator. 
-        For now, for testing purposes, you can generate 
-        the token in jwt.io by passing the jwt.secret from 
-        the .env file in the signature.
+        This endpoint is implemented to add categories by an authenticated administrator. For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from the .env file in the signature.
      * @returns
      */
 

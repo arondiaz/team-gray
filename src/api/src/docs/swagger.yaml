@@ -176,7 +176,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: ""
+                    description: 'This is an endpoint to register as a professional user.'
                     in: body
                     name: authUser
                     required: true
@@ -207,7 +207,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: ""
+                    description: 'This is an endpoint to login as a professional user. The user will receive an authentication token to be validated when making requests.'
                     in: body
                     name: authUser
                     required: true
@@ -239,14 +239,12 @@ paths:
             produces:
                 - text/html
             responses:
-                '200':
-                    description: Ok
-                    schema:
-                        type: string
                 '201':
                     description: 'Created category'
                     schema:
                         type: string
+                '204':
+                    description: 'No content'
                 '400':
                     description: 'Bad request'
                     schema:
@@ -270,7 +268,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: " This controller is implemented to add \n categories by an authenticated administrator. \n For now, for testing purposes, you can generate \n the token in jwt.io by passing the jwt.secret from \n the .env file in the signature."
+                    description: ' This endpoint is implemented to add categories by an authenticated administrator. For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from the .env file in the signature.'
                     in: body
                     name: category
                     required: true
@@ -323,7 +321,7 @@ paths:
                 - 'Professional Users'
             parameters:
                 -
-                    description: ""
+                    description: 'This endpoint returns all registered professional users by trade category to which they belong.'
                     in: path
                     name: category_id
                     required: true
@@ -353,7 +351,7 @@ paths:
                 - 'Professional Users'
             parameters:
                 -
-                    description: ""
+                    description: 'This endpoint returns an professional user by id.'
                     in: path
                     name: id
                     required: true

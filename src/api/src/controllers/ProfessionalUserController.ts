@@ -12,8 +12,6 @@ export class ProfessionalUserController extends ApiController {
         super();
     }
 
-    // get all UPs
-
     @GET
     @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(500, "No connection to database")
@@ -22,7 +20,11 @@ export class ProfessionalUserController extends ApiController {
         return await this.repo.getAll();
     }
 
-    // get by category
+    /**
+     * @param category
+     * This endpoint returns all registered professional users by trade category to which they belong.
+     * @returns
+     */
 
     @GET
     @Path("/category/:category_id")
@@ -35,7 +37,11 @@ export class ProfessionalUserController extends ApiController {
         return await this.repo.find("category_id = ?", [category]);
     }
 
-    // get by id
+    /**
+     * @param id
+     * This endpoint returns an professional user by id.
+     * @returns
+     */
 
     @GET
     @Path(":id")
