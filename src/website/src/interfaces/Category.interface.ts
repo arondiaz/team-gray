@@ -1,4 +1,4 @@
-export interface ICategory {
-  id: number;
+export interface ICategories {
+  id: string;
   name: string;
 }

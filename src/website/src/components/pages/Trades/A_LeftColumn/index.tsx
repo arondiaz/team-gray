@@ -2,23 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import styles from './LeftColumn.module.scss';
-import { ICategory } from '../../../../interfaces/Category.interface';
+import { ICategories } from '../../../../interfaces/Category.interface';
+import { CategoriesService } from '../../../../services/Categories.service';
+import { HttpClient } from '@miracledevs/paradigm-web-fetch';
 
 export const LeftColumn: React.FC = () => {
-  const [trades, setTrades] = useState<ICategory[]>([]);
+  const [trades, setTrades] = useState<ICategories[]>([]);
+
+  const http = new HttpClient();
+  const categoryService = new CategoriesService(http);
 
   useEffect(() => {
-    fetch('http://www.localhost:5000/api/categories')
-      .then((response) => response.json())
-      .then((data) => {
-        setTrades(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data from the API:', error);
-      });
+    async function fetchData() {
+      try {
+        const data = await categoryService.getAll();
+        if (data) {
+          setTrades(data as ICategories[]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
   }, []);
 
-  const handleCategory = async (id: any) => {
+  const handleCategory = async (id: string) => {
     const pedido = await fetch(
       `http://www.localhost:5000/api/up/category/${id}`
     );
