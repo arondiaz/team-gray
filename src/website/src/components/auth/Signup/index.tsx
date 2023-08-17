@@ -417,12 +417,11 @@ export const Signup = () => {
 
                   <div className={styles.inputboxsv}>
                     <label className={styles.labelsv} htmlFor="habilitation">
-                      N° Habilitación *
+                      N° Habilitación
                     </label>
                     <input
                       type="text"
                       {...register('habilitation', {
-                        required: 'El número de habilitación es obligatorio',
                         minLength: {
                           value: 8,
                           message: 'Longitud mínima de 8 dígitos',
