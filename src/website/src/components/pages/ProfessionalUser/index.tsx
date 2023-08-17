@@ -192,6 +192,32 @@ export const UPProfile = () => {
                     type="date"
                     {...register('birth', {
                       required: 'La fecha de nacimiento es obligatoria',
+                      validate: (value: any) => {
+                        const birthDate = new Date(value);
+                        const today = new Date();
+
+                        const minYears = 18;
+                        const minAgeDate = new Date(
+                          today.getFullYear() - minYears,
+                          today.getMonth(),
+                          today.getDate()
+                        );
+
+                        const maxYears = 100;
+                        const maxAgeDate = new Date(
+                          today.getFullYear() - maxYears,
+                          today.getMonth(),
+                          today.getDate()
+                        );
+
+                        if (birthDate > minAgeDate) {
+                          return 'Debes ser mayor de 18 años';
+                        }
+                        if (birthDate < maxAgeDate) {
+                          return 'Fecha no válida';
+                        }
+                        return true;
+                      },
                     })}
                   />
                   {errors.birth && (
