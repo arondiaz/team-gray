@@ -1,8 +1,8 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import bcrypt from "bcrypt";
-import { IAuthProfessionalUser } from "../controllers/AuthProfessionUser.interface";
+import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
 import { AuthRepository } from "../repositories/Auth.repository";
-import { IResponse } from "./Response.interface";
+import { IResponse } from "../models/Response.interface";
 import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";

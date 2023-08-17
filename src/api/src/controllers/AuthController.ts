@@ -2,7 +2,7 @@ import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/para
 import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
-import { IAuthProfessionalUser } from "./AuthProfessionUser.interface";
+import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
 
 @Path("/api/auth")
 @Tags("AuthUser")

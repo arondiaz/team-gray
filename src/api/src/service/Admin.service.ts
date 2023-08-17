@@ -1,7 +1,7 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { ICategory } from "../models/categories/Category.interface";
 import { CategoryRepository } from "../repositories/Categories.repository";
-import { IResponse } from "./Response.interface";
+import { IResponse } from "../models/Response.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AdminService {
