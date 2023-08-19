@@ -1,12 +1,9 @@
 import { HttpClient } from '@miracledevs/paradigm-web-fetch';
 import { QueryString } from '@miracledevs/paradigm-web-fetch';
 import { environment } from './environment';
-import { endpoints } from './endpoints';
-import { BiInjection } from 'react-icons/bi';
 
 export class HttpServiceBase {
   baseUrl = environment.production || environment.baseUrl;
-  endpoints = endpoints;
 
   constructor(private readonly httpClient: HttpClient) {}
 
