@@ -1,13 +1,28 @@
-import { HttpClient } from '@miracledevs/paradigm-web-fetch';
+import {
+  AddHeaderInterceptor,
+  HttpClient,
+} from '@miracledevs/paradigm-web-fetch';
 import { QueryString } from '@miracledevs/paradigm-web-fetch';
 import { environment } from './environment';
 
-export class HttpServiceBase {
-  baseUrl = environment.production || environment.baseUrl;
+export class ApiService {
+  private baseUrl = environment.baseUrl;
+  private readonly httpClient: HttpClient;
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor() {
+    this.httpClient = new HttpClient();
+    this.httpClient.registerInterceptor(
+      new AddHeaderInterceptor('content-type', 'application/json')
+    );
+  }
 
-  protected async get<T>(url?: string, queryString?: QueryString): Promise<T> {
+  authorize(token: string): void {
+    this.httpClient.registerInterceptor(
+      new AddHeaderInterceptor('x-auth', token)
+    );
+  }
+
+  async get<T>(url?: string, queryString?: QueryString): Promise<T> {
     const response = await this.httpClient.get(
       `${this.baseUrl}/${url}`,
       queryString
@@ -15,11 +30,7 @@ export class HttpServiceBase {
     return (await response.json()) as T;
   }
 
-  protected async getById<T>(
-    id: string,
-    url?: string | boolean,
-    endpoint?: string
-  ): Promise<T> {
+  async getById<T>(id: string, url?: string, endpoint?: string): Promise<T> {
     const response = await this.httpClient.get(`${url}/${endpoint}/${id}`);
     return (await response.json()) as T;
   }
@@ -74,3 +85,5 @@ export class HttpServiceBase {
     return (await response.json()) as T;
   }
 }
+
+export const apiServiceInstance = new ApiService();

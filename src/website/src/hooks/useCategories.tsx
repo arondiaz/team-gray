@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
-import { ICategories } from '../interfaces/Category.interface';
-import { CategoriesService } from '../services/Categories.service';
-import { HttpClient } from '@miracledevs/paradigm-web-fetch';
+import { ICategory } from '../interfaces/Category.interface';
+import { categoryServiceInstance } from '../services/Category.service';
 
 export function useCategories() {
-  const [trades, setTrades] = useState<ICategories[]>([]);
+  const [trades, setTrades] = useState<ICategory[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const http = new HttpClient();
-        const categoryService = new CategoriesService(http);
-        const data = await categoryService.getAll();
+        const data = await categoryServiceInstance.getAll();
         if (data) {
-          setTrades(data as ICategories[]);
+          setTrades(data as ICategory[]);
         }
       } catch (error) {
         console.log(error);

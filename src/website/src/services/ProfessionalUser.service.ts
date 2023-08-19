@@ -1,14 +1,21 @@
-import { HttpServiceBase } from './HttpServiceBase';
 import { environment } from './environment';
 import { Endpoint } from './endpoints';
+import { ApiService, apiServiceInstance } from './ApiService';
 
-const url = environment.production || environment.baseUrl;
+const url = environment.baseUrl;
 
-const endpoint = Endpoint.professionalUserByCategory;
-
-export class ProfessionalUserService extends HttpServiceBase {
+export class ProfessionalUserService {
+  constructor(private apiService: ApiService) {}
   async getProfessionalUserByCategory(category_id: string) {
-    const request = await this.getById(category_id, url, endpoint);
+    const request = await this.apiService.getById(
+      category_id,
+      url,
+      Endpoint.professionalUserByCategory
+    );
     return request;
   }
 }
+
+export const professionalUserServiceInstance = new ProfessionalUserService(
+  apiServiceInstance
+);
