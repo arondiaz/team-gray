@@ -9,9 +9,9 @@ import jwt from "jsonwebtoken";
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AdminFilter implements IFilter {
-    config: Configuration;
-    constructor(private service: AdminService, config: ConfigurationBuilder) {
-        this.config = config.build(Configuration);
+    private config: Configuration;
+    constructor(private readonly service: AdminService, private readonly configBuilder: ConfigurationBuilder) {
+        this.config = configBuilder.build(Configuration);
     }
 
     async beforeExecute(httpContext: HttpContext): Promise<void> {
@@ -20,7 +20,10 @@ export class AdminFilter implements IFilter {
 
             if (!token || !jwt.verify(token, this.config.jwt.secret)) {
                 httpContext.response.sendStatus(401);
+                return;
             }
+
+            // todo insert ProfessionalUserRepository
         } catch (error) {
             console.log(error);
             httpContext.response.sendStatus(500);
