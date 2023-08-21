@@ -140,6 +140,27 @@ definitions:
             - gender
             - birthdate
             - category_id
+    IResponse:
+        description: ""
+        properties:
+            message:
+                type: string
+                description: ""
+            code:
+                type: number
+                format: double
+                description: ""
+            error:
+                type: boolean
+                description: ""
+            token:
+                type: string
+                description: ""
+        type: object
+        required:
+            - message
+            - code
+            - error
 info:
     description: 'FastWork API.'
     license:
@@ -295,6 +316,37 @@ paths:
             tags:
                 - 'Professional Users'
             parameters: []
+        put:
+            operationId: ProfessionalUserEditUser
+            produces:
+                - text/html
+                - application/json
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        $ref: '#/definitions/IResponse'
+                'User updated':
+                    description: ""
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - 'Professional Users'
+            security:
+                -
+                    default:
+                        - x-auth
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: professionalUser
+                    required: true
+                    schema:
+                        $ref: '#/definitions/IProfessionalUser'
     '/api/professional_user/category/{category_id}':
         get:
             operationId: ProfessionalUserGetByCategory
