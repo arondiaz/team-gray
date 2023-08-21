@@ -1,16 +1,17 @@
 import { Injectable, DependencyLifeTime } from "@miracledevs/paradigm-web-di";
 import { IFilter, HttpContext, ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
-import { AdminService } from "../service/Admin.service";
 import jwt from "jsonwebtoken";
+import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
+import { IPayLoad } from "../models/users/Payload.interface";
 
 /**
- * middleware to authenticate administrators
+ * middleware to authenticate Professional User
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
-export class AdminFilter implements IFilter {
+export class UserFilter implements IFilter {
     private config: Configuration;
-    constructor(private readonly configBuilder: ConfigurationBuilder) {
+    constructor(private readonly configBuilder: ConfigurationBuilder, private readonly repo: ProfessionalUserRepository) {
         this.config = configBuilder.build(Configuration);
     }
 
@@ -23,6 +24,9 @@ export class AdminFilter implements IFilter {
                 httpContext.response.sendStatus(401);
                 return;
             }
+
+            const decode = jwt.decode(token) as IPayLoad;
+            console.log(decode.last_name);
         } catch (error) {
             throw new Error(error);
         }

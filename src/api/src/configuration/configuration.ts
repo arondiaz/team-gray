@@ -22,6 +22,10 @@ export class Configuration {
      */
     sessionTimeout: string;
 
+    /**
+     * Jwt Configuration
+     */
+
     jwt: JwtConfiguration;
 }
 

@@ -31,11 +31,11 @@ export class AuthController extends ApiController {
 
         if (user.error) {
             this.httpContext.response.status(user.code).send(user.message);
-            throw Error(user.message);
+            throw new Error(user.message);
         } else {
             this.httpContext.response.status(user.code).send(user.message);
+            return;
         }
-        return;
     }
 
     /**
@@ -51,13 +51,14 @@ export class AuthController extends ApiController {
     @Response<string>(500, "Error server")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IAuthProfessionalUser): Promise<string> {
-        const user = await this.service.login(authUser);
-        if (user.error) {
-            this.httpContext.response.status(user.code).end(user.message);
+        const response = await this.service.login(authUser);
+        if (response.error) {
+            this.httpContext.response.status(response.code).end(response.message);
+            throw new Error(response.message);
         } else {
-            this.httpContext.response.send(user.token);
+            this.httpContext.response.send(response.token);
+            return;
         }
-        return;
     }
 }
 

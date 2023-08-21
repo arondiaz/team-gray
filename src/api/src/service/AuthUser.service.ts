@@ -9,9 +9,9 @@ import { Configuration } from "../configuration/configuration";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
-    config: Configuration;
-    constructor(private authRepo: AuthRepository, config: ConfigurationBuilder) {
-        this.config = config.build(Configuration);
+    private config: Configuration;
+    constructor(private readonly authRepo: AuthRepository, private readonly configBuilder: ConfigurationBuilder) {
+        this.config = this.configBuilder.build(Configuration);
     }
 
     async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
@@ -31,7 +31,7 @@ export class AuthService {
             if (!authUser.birthdate) {
                 return {
                     error: true,
-                    message: "Birtdate field not found",
+                    message: "Birth date field not found",
                     code: 400,
                 };
             }
@@ -79,7 +79,7 @@ export class AuthService {
             if (!authUser.lastname) {
                 return {
                     error: true,
-                    message: "Lastname field not found",
+                    message: "Last name field not found",
                     code: 400,
                 };
             }
@@ -145,17 +145,17 @@ export class AuthService {
         if (compare) {
             const token = jwt.sign(
                 {
-                    user: user[0].name,
+                    name: user[0].name,
                     last_name: user[0].lastname,
-                    phone: user[0].tel,
+                    email: user[0].email,
                 },
                 this.config.jwt.secret
             );
 
             return {
                 error: false,
-                message: "Invalid credentials",
-                code: 401,
+                message: "Success",
+                code: 200,
                 token: token,
             };
         } else {

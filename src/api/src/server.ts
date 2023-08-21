@@ -9,6 +9,7 @@ import { Configuration } from "./configuration/configuration";
 import { CategoriesController } from "./controllers/CategoriesController";
 import { ProfessionalUserController } from "./controllers/ProfessionalUserController";
 import { AuthController } from "./controllers/AuthController";
+import { UserFilter } from "./filters/UserFilter";
 
 /**
  * Represents the api server application.
