@@ -3,6 +3,7 @@ import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
+import { error } from "console";
 
 @Path("/api/auth")
 @Tags("AuthUser")
@@ -29,9 +30,10 @@ export class AuthController extends ApiController {
         const user = await this.service.register(authUser);
 
         if (user.error) {
-            this.httpContext.response.status(user.code).end(user.message);
+            this.httpContext.response.status(user.code).send(user.message);
+            throw Error(user.message);
         } else {
-            this.httpContext.response.status(user.code).end(user.message);
+            this.httpContext.response.status(user.code).send(user.message);
         }
         return;
     }
