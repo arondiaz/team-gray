@@ -1,8 +1,6 @@
 import { DependencyContainer, DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { MySqlConnection } from "../core/mysql/mysql.connection";
 import { EditRepositoryBase } from "../core/repositories/edit.repository";
-import { AuthProfessionalUser } from "../models/auth/AuthProfessionalUser";
-import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { ProfessionalUser } from "../models/users/ProfessionalUser";
 
@@ -12,18 +10,13 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         super(dependencyContainer, connection, ProfessionalUser, "professional_user");
     }
 
-    async validateEmail(email: string): Promise<boolean> {
+    async getByEmail(email: string): Promise<IProfessionalUser | undefined> {
         const validated = await this.find("email = ?", [email]);
 
         if (validated.length === 1) {
-            return true;
+            return validated[0];
         }
-        return false;
-    }
-
-    async getByEmail(email: string): Promise<IAuthProfessionalUser[]> {
-        const validated = await this.find("email = ?", [email]);
-        return validated;
+        return undefined;
     }
 }
 

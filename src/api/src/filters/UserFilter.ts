@@ -30,7 +30,7 @@ export class UserFilter implements IFilter {
 
             // gets email from repository
 
-            const user = await this.repo.validateEmail(decodedPayload.email);
+            const user = await this.repo.getByEmail(decodedPayload.email);
 
             console.log(user);
         } catch (error) {

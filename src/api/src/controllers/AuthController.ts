@@ -2,7 +2,7 @@ import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/para
 import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
-import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
+import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 
 @Path("/api/auth")
 @Tags("AuthUser")
@@ -25,7 +25,7 @@ export class AuthController extends ApiController {
     @Response<string>(400, "Bad request")
     @Response<string>(500, "Error server")
     @Action({ route: "/signup", fromBody: true })
-    async post(authUser: IAuthProfessionalUser): Promise<string> {
+    async post(authUser: IProfessionalUser): Promise<string> {
         const user = await this.service.register(authUser);
 
         if (user.error) {
@@ -49,7 +49,7 @@ export class AuthController extends ApiController {
     @Response<string>(400, "Bad request")
     @Response<string>(500, "Error server")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
-    async login(authUser: IAuthProfessionalUser): Promise<string> {
+    async login(authUser: IProfessionalUser): Promise<string> {
         const response = await this.service.login(authUser);
         if (response.error) {
             this.httpContext.response.status(response.code).end(response.message);

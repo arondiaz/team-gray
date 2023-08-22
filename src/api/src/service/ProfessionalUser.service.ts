@@ -38,7 +38,7 @@ export class ProfessionalUserService {
     }
 
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
-        const response = await this.repo.validateEmail(professionalUser.email);
+        const response = await this.repo.getByEmail(professionalUser.email);
         if (response) {
             return {
                 error: false,

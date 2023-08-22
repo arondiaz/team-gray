@@ -5,7 +5,7 @@ import { IProfessionalUser } from "./ProfessionalUser.interface";
 export class ProfessionalUser implements IProfessionalUser {
     id?: number = 0;
     email: string = "";
-    private password: string = "";
+    password: string = "";
     name: string = "";
     last_name: string = "";
     dni: string = "";

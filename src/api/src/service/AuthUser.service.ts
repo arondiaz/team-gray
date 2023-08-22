@@ -1,11 +1,11 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import bcrypt from "bcrypt";
-import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
 import { IResponse } from "../models/Response.interface";
 import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
+import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
@@ -14,10 +14,10 @@ export class AuthService {
         this.config = this.configBuilder.build(Configuration);
     }
 
-    async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
+    async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
             // email already registered validation
-            const validateEmail = await this.repo.validateEmail(authUser.email);
+            const validateEmail = await this.repo.getByEmail(authUser.email);
             if (validateEmail) {
                 return {
                     error: true,
@@ -129,11 +129,11 @@ export class AuthService {
         }
     }
 
-    async login(authUser: IAuthProfessionalUser): Promise<IResponse> {
+    async login(authUser: IProfessionalUser): Promise<IResponse> {
         const user = await this.repo.getByEmail(authUser.email);
         console.log(user);
 
-        if (!user[0]) {
+        if (!user) {
             return {
                 error: true,
                 message: "The email does not exist in the database",
@@ -141,14 +141,14 @@ export class AuthService {
             };
         }
 
-        const compare = await bcrypt.compare(authUser.password, user[0].password);
+        const compare = await bcrypt.compare(authUser.password, user.password);
 
         if (compare) {
             const token = jwt.sign(
                 {
-                    name: user[0].name,
-                    last_name: user[0].last_name,
-                    email: user[0].email,
+                    name: user.name,
+                    last_name: user.last_name,
+                    email: user.email,
                 },
                 this.config.jwt.secret
             );
