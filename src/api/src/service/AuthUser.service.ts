@@ -1,23 +1,23 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import bcrypt from "bcrypt";
 import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
-import { AuthRepository } from "../repositories/Auth.repository";
 import { IResponse } from "../models/Response.interface";
 import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
+import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
     private config: Configuration;
-    constructor(private readonly authRepo: AuthRepository, private readonly configBuilder: ConfigurationBuilder) {
+    constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {
         this.config = this.configBuilder.build(Configuration);
     }
 
     async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
         try {
             // email already registered validation
-            const validateEmail = await this.authRepo.validateEmail(authUser.email);
+            const validateEmail = await this.repo.validateEmail(authUser.email);
             if (validateEmail) {
                 return {
                     error: true,
@@ -28,7 +28,7 @@ export class AuthService {
 
             // fields not empty validation
 
-            if (!authUser.birthdate) {
+            if (!authUser.birth_date) {
                 return {
                     error: true,
                     message: "Birth date field not found",
@@ -76,7 +76,7 @@ export class AuthService {
                 };
             }
 
-            if (!authUser.lastname) {
+            if (!authUser.last_name) {
                 return {
                     error: true,
                     message: "Last name field not found",
@@ -118,7 +118,7 @@ export class AuthService {
             // hashed password
             authUser.password = await bcrypt.hash(authUser.password, salt);
             // insert on database
-            await this.authRepo.insertOne(authUser);
+            await this.repo.insertOne(authUser);
             return {
                 error: false,
                 message: "Created user",
@@ -130,7 +130,8 @@ export class AuthService {
     }
 
     async login(authUser: IAuthProfessionalUser): Promise<IResponse> {
-        const user = await this.authRepo.find("email = ?", [authUser.email]);
+        const user = await this.repo.getByEmail(authUser.email);
+        console.log(user);
 
         if (!user[0]) {
             return {
@@ -146,7 +147,7 @@ export class AuthService {
             const token = jwt.sign(
                 {
                     name: user[0].name,
-                    last_name: user[0].lastname,
+                    last_name: user[0].last_name,
                     email: user[0].email,
                 },
                 this.config.jwt.secret
@@ -166,5 +167,7 @@ export class AuthService {
             };
         }
     }
+
+    async authenticate() {}
 }
 

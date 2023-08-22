@@ -2,8 +2,8 @@ import { Injectable, DependencyLifeTime } from "@miracledevs/paradigm-web-di";
 import { IFilter, HttpContext, ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
 import jwt from "jsonwebtoken";
-import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { IPayLoad } from "../models/users/Payload.interface";
+import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 
 /**
  * middleware to authenticate Professional User
@@ -25,8 +25,14 @@ export class UserFilter implements IFilter {
                 return;
             }
 
-            const decode = jwt.decode(token) as IPayLoad;
-            console.log(decode.last_name);
+            // decoded payload from jwt token.
+            const decodedPayload = jwt.decode(token) as IPayLoad;
+
+            // gets email from repository
+
+            const user = await this.repo.validateEmail(decodedPayload.email);
+
+            console.log(user);
         } catch (error) {
             throw new Error(error);
         }

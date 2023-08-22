@@ -2,7 +2,7 @@ export interface IProfessionalUser {
     id?: number;
     email: string;
     name: string;
-    lastname: string;
+    last_name: string;
     dni: string;
     province: string;
     city: string;
@@ -10,7 +10,7 @@ export interface IProfessionalUser {
     link?: string;
     about_me?: string;
     gender: string;
-    birthdate: string;
+    birth_date: string;
     auth_number?: string;
     img?: string;
     category_id: string;

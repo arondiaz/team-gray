@@ -1,8 +1,8 @@
 export interface IAuthProfessionalUser {
     email: string;
-    password: string;
+    password?: string;
     name: string;
-    lastname: string;
+    last_name: string;
     dni: string;
     province: string;
     city: string;
@@ -10,10 +10,10 @@ export interface IAuthProfessionalUser {
     link?: string;
     about_me?: string;
     gender: string;
-    birthdate: string;
+    birth_date: string;
     auth_number?: string;
     img?: string;
-    created_at: string;
+    created_at?: string;
     category_id: string;
 }
 

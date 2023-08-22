@@ -5,8 +5,9 @@ import { IProfessionalUser } from "./ProfessionalUser.interface";
 export class ProfessionalUser implements IProfessionalUser {
     id?: number = 0;
     email: string = "";
+    private password: string = "";
     name: string = "";
-    lastname: string = "";
+    last_name: string = "";
     dni: string = "";
     province: string = "";
     city: string = "";
@@ -14,7 +15,7 @@ export class ProfessionalUser implements IProfessionalUser {
     link?: string = "";
     about_me?: string = "";
     gender: string = "";
-    birthdate: string = "";
+    birth_date: string = "";
     auth_number?: string = "";
     img?: string = "";
     category_id: string = "";
