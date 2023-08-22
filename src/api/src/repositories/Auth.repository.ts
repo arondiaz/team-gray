@@ -9,5 +9,14 @@ export class AuthRepository extends EditRepositoryBase<IAuthProfessionalUser, nu
     constructor(dependencyContainer: DependencyContainer, connection: MySqlConnection) {
         super(dependencyContainer, connection, AuthProfessionalUser, "professional_user");
     }
+
+    async validateEmail(email: string): Promise<boolean> {
+        const validated = await this.find("email = ?", [email]);
+
+        if (validated.length === 1) {
+            return true;
+        }
+        return false;
+    }
 }
 

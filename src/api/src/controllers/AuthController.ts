@@ -3,7 +3,6 @@ import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
-import { error } from "console";
 
 @Path("/api/auth")
 @Tags("AuthUser")

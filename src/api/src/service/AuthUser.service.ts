@@ -17,8 +17,8 @@ export class AuthService {
     async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
         try {
             // email already registered validation
-            const validateEmail = await this.authRepo.find("email = ?", [authUser.email]);
-            if (validateEmail.length === 1) {
+            const validateEmail = await this.authRepo.validateEmail(authUser.email);
+            if (validateEmail) {
                 return {
                     error: true,
                     message: "The email is already registered",
