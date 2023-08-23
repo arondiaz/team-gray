@@ -132,7 +132,6 @@ export class AuthService {
 
     async login(authUser: IProfessionalUser): Promise<IResponse> {
         const user = await this.repo.getByEmail(authUser.email);
-        console.log(user);
 
         if (!user) {
             return {
@@ -174,6 +173,9 @@ export class AuthService {
         if (!user) throw new Error("User not authenticated.");
 
         // is available to the authenticated user.
+
+        if (user.state === 0) throw new Error("The user not exist");
+
         this.authUser = user;
 
         return user;

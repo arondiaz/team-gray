@@ -23,5 +23,11 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         const response = this.find("state = ?", [true]);
         return response;
     }
+
+    async changeState(professionalUser: IProfessionalUser) {
+        professionalUser.state = 0;
+        const response = await this.update(professionalUser);
+        return response;
+    }
 }
 

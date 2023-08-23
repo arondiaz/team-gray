@@ -52,6 +52,9 @@ definitions:
             category_id:
                 type: string
                 description: ""
+            state:
+                type: boolean
+                description: ""
         type: object
         required:
             - email
@@ -263,6 +266,29 @@ paths:
                     required: true
                     schema:
                         $ref: '#/definitions/IProfessionalUser'
+        delete:
+            operationId: ProfessionalUserDelete
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: 'Deleted user'
+                    schema:
+                        type: string
+                '204':
+                    description: 'No content'
+                '404':
+                    description: 'User not found'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - 'Professional Users'
+            security:
+                -
+                    default:
+                        - x-auth
+            parameters: []
     '/api/professional_user/category/{category_id}':
         get:
             operationId: ProfessionalUserGetByCategory

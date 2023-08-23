@@ -15,5 +15,6 @@ export interface IProfessionalUser {
     auth_number?: string;
     img?: string;
     category_id: string;
+    state?: number;
 }
 

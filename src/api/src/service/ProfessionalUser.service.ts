@@ -3,6 +3,7 @@ import { IResponse } from "../models/Response.interface";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { AuthService } from "./AuthUser.service";
+import { ProfessionalUser } from "../models/users/ProfessionalUser";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
@@ -51,6 +52,15 @@ export class ProfessionalUserService {
             };
         }
         throw new Error("User could not edit");
+    }
+
+    public async remove(authUser: IProfessionalUser) {
+        if (authUser.state === 1) {
+            const deleted = await this.repo.changeState(authUser);
+            return deleted;
+        } else {
+            throw new Error("The user is not available");
+        }
     }
 }
 

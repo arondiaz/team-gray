@@ -1,11 +1,12 @@
 import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/paradigm-express-webapi";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
-import { GET, PUT, Path, PathParam, Security } from "typescript-rest";
+import { DELETE, GET, PUT, Path, PathParam, Security } from "typescript-rest";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response, Tags } from "typescript-rest-swagger";
 import { UserFilter } from "../filters/UserFilter";
 import { ProfessionalUserService } from "../service/ProfessionalUser.service";
 import { AuthService } from "../service/AuthUser.service";
+import { IpcNetConnectOpts } from "net";
 
 @Path("/api/professional_user")
 @Tags("Professional Users")
@@ -99,6 +100,17 @@ export class ProfessionalUserController extends ApiController {
             this.httpContext.response.send(response.message);
             return;
         }
+    }
+
+    @DELETE
+    @Security("x-auth")
+    @Action({ route: "/", filters: [UserFilter] })
+    @Response<string>(200, "Deleted user")
+    @Response<string>(404, "User not found")
+    async delete(): Promise<IProfessionalUser> {
+        const removed = await this.service.remove(this.authService.authUser);
+
+        return removed;
     }
 }
 
