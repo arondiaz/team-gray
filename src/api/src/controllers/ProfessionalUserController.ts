@@ -24,7 +24,7 @@ export class ProfessionalUserController extends ApiController {
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<any[]> {
-        return await this.service.getAllProfessionalUser();
+        return await this.service.getAll();
     }
 
     /**

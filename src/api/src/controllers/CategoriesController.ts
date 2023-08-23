@@ -35,9 +35,10 @@ export class CategoriesController extends ApiController {
         For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from 
         the .env file in the signature.
 
-     *  * Example:
+     *  Example:
      *   
-        "name": "Cerrajero"
+            "name": "Cerrajero"
+
      * @returns
      */
 

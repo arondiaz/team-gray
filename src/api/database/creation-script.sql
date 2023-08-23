@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS `professional_user` (
   `auth_number` VARCHAR(50),
   `img` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `category_id` INT NOT NULL
+  `category_id` INT NOT NULL,
+  `state` BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE IF NOT EXISTS `categories` (

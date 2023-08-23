@@ -290,7 +290,7 @@
 				],
 				"parameters": [
 					{
-						"description": " * This endpoint is implemented to add categories by an authenticated administrator. \n For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from \n the .env file in the signature.\n\n * Example:\n  \n \"name\": \"Cerrajero\"",
+						"description": " * This endpoint is implemented to add categories by an authenticated administrator. \n For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from \n the .env file in the signature.\n\n Example:\n  \n     \"name\": \"Cerrajero\"",
 						"in": "body",
 						"name": "category",
 						"required": true,

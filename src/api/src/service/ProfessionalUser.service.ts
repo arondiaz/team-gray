@@ -8,8 +8,8 @@ import { AuthService } from "./AuthUser.service";
 export class ProfessionalUserService {
     constructor(private readonly repo: ProfessionalUserRepository, private readonly service: AuthService) {}
 
-    public async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
-        const response = await this.repo.getAll();
+    public async getAll(): Promise<IProfessionalUser[]> {
+        const response = await this.repo.getAllProfessionalUser();
 
         if (response.length > 0) {
             const users: IProfessionalUser[] = response.map(professionalUser => {

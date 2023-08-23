@@ -18,5 +18,10 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         }
         return undefined;
     }
+
+    async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
+        const response = this.find("state = ?", [true]);
+        return response;
+    }
 }
 
