@@ -53,7 +53,8 @@ definitions:
                 type: string
                 description: ""
             state:
-                type: boolean
+                type: number
+                format: double
                 description: ""
         type: object
         required:
@@ -275,13 +276,11 @@ paths:
                     description: 'Deleted user'
                     schema:
                         type: string
-                '204':
-                    description: 'No content'
-                '404':
-                    description: 'User not found'
+                '500':
+                    description: 'The user no longer exists'
                     schema:
                         type: string
-            description: ""
+            description: '* This endpoint is for removing a professional user when authenticated. It is not removed from the database, it changes its state to 0.'
             tags:
                 - 'Professional Users'
             security:

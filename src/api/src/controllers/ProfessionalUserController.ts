@@ -102,11 +102,18 @@ export class ProfessionalUserController extends ApiController {
         }
     }
 
+    /**
+     * * This endpoint is for removing a professional user when authenticated. It is not removed from the database, it changes its state to 0.
+     * @returns
+     *
+     *
+     */
+
     @DELETE
     @Security("x-auth")
     @Action({ route: "/", filters: [UserFilter] })
     @Response<string>(200, "Deleted user")
-    @Response<string>(404, "User not found")
+    @Response<string>(500, "The user no longer exists")
     async delete(): Promise<IProfessionalUser> {
         const removed = await this.service.remove(this.authService.authUser);
 

@@ -1,0 +1,28 @@
+
+> fastwork-api@1.0.0 build
+> npm install && npm run build:doc && npm run build:typescript
+
+
+up to date, audited 666 packages in 4s
+
+90 packages are looking for funding
+  run `npm fund` for details
+
+11 vulnerabilities (6 moderate, 5 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> fastwork-api@1.0.0 build:doc
+> swaggerGen -c swagger.config.json
+
+Generation completed.
+
+> fastwork-api@1.0.0 build:typescript
+> tsc --project ./src
+
