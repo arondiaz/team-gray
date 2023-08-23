@@ -173,7 +173,7 @@ export class AuthService {
         if (!user) throw new Error("User not authenticated.");
 
         // if the user has false state, it is deleted.
-        if (user.state === 0) throw new Error("The user no longer exists");
+        if (user.state === 0) throw new Error("The user is not enable");
 
         // is available to the authenticated user.
         this.authUser = user;

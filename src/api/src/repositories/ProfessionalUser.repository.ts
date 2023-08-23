@@ -24,8 +24,14 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         return response;
     }
 
+    // method for change state to 0.
     async changeState(professionalUser: IProfessionalUser) {
-        professionalUser.state = 0;
+        if (professionalUser.state === 1) {
+            professionalUser.state = 0;
+        } else {
+            professionalUser.state = 1;
+        }
+
         const response = await this.update(professionalUser);
         return response;
     }

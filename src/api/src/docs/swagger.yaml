@@ -276,11 +276,13 @@ paths:
                     description: 'Deleted user'
                     schema:
                         type: string
+                '204':
+                    description: 'No content'
                 '500':
                     description: 'The user no longer exists'
                     schema:
                         type: string
-            description: '* This endpoint is for removing a professional user when authenticated. It is not removed from the database, it changes its state to 0.'
+            description: '* This endpoint is for remove a professional user when authenticated. It is removed from the database.'
             tags:
                 - 'Professional Users'
             security:
@@ -350,6 +352,32 @@ paths:
                     required: true
                     type: number
                     format: double
+    /api/professional_user/disable:
+        put:
+            operationId: ProfessionalUserDisableAccount
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: 'Disabled user'
+                    schema:
+                        type: string
+                '204':
+                    description: 'No content'
+                '500':
+                    description: 'The user no longer exists'
+                    schema:
+                        type: string
+            description: '* This endpoint is for disable a professional user when authenticated. It is not removed from the database, it changes its state to 0.'
+            tags:
+                - 'Professional Users'
+            security:
+                -
+                    default:
+                        - x-auth
+            consumes:
+                - application/json
+            parameters: []
 swagger: '2.0'
 securityDefinitions:
     default:

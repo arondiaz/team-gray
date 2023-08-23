@@ -54,13 +54,17 @@ export class ProfessionalUserService {
         throw new Error("User could not edit");
     }
 
-    public async remove(authUser: IProfessionalUser) {
+    public async changingStateToFalse(authUser: IProfessionalUser) {
         if (authUser.state === 1) {
-            const deleted = await this.repo.changeState(authUser);
-            return deleted;
+            const changed = await this.repo.changeState(authUser);
+            return changed;
         } else {
             throw new Error("The user is not available");
         }
+    }
+
+    public async remove(authUser: IProfessionalUser): Promise<void> {
+        await this.repo.delete(authUser.id);
     }
 }
 

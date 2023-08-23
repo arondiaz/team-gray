@@ -1,12 +1,11 @@
 import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/paradigm-express-webapi";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
-import { DELETE, GET, PUT, Path, PathParam, Security } from "typescript-rest";
+import { DELETE, GET, PATCH, PUT, Path, PathParam, Security } from "typescript-rest";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response, Tags } from "typescript-rest-swagger";
 import { UserFilter } from "../filters/UserFilter";
 import { ProfessionalUserService } from "../service/ProfessionalUser.service";
 import { AuthService } from "../service/AuthUser.service";
-import { IpcNetConnectOpts } from "net";
 
 @Path("/api/professional_user")
 @Tags("Professional Users")
@@ -103,10 +102,27 @@ export class ProfessionalUserController extends ApiController {
     }
 
     /**
-     * * This endpoint is for removing a professional user when authenticated. It is not removed from the database, it changes its state to 0.
+     * * This endpoint is for disable a professional user when authenticated. It is not removed from the database, it changes its state to 0.
      * @returns
      *
      *
+     */
+
+    @PUT
+    @Security("x-auth")
+    @Path("disable")
+    @Action({ route: "/disable", method: HttpMethod.PUT, filters: [UserFilter] })
+    @Response<string>(200, "Disabled user")
+    @Response<string>(500, "The user no longer exists")
+    async disableAccount(): Promise<void> {
+        await this.service.changingStateToFalse(this.authService.authUser);
+        this.httpContext.response.send("Disabled user");
+        return;
+    }
+
+    /**
+     * * This endpoint is for remove a professional user when authenticated. It is removed from the database.
+     * @returns
      */
 
     @DELETE
@@ -114,10 +130,10 @@ export class ProfessionalUserController extends ApiController {
     @Action({ route: "/", filters: [UserFilter] })
     @Response<string>(200, "Deleted user")
     @Response<string>(500, "The user no longer exists")
-    async delete(): Promise<IProfessionalUser> {
-        const removed = await this.service.remove(this.authService.authUser);
-
-        return removed;
+    async delete(): Promise<void> {
+        await this.service.remove(this.authService.authUser);
+        this.httpContext.response.send("Deleted user");
+        return;
     }
 }
 
