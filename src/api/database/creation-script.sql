@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `professional_user` (
   `tel` VARCHAR(50) NOT NULL,
   `link` VARCHAR(300),
   `about_me` TEXT,
-  `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
+  `gender` ENUM('Male', 'Female', 'Non-binary') NOT NULL,
   `birth_date` DATE NOT NULL,
   `auth_number` VARCHAR(50),
   `img` TEXT DEFAULT NULL,
