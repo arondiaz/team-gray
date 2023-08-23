@@ -10,6 +10,7 @@ import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
     private config: Configuration;
+    public authUser: IProfessionalUser;
     constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {
         this.config = this.configBuilder.build(Configuration);
     }
@@ -168,6 +169,16 @@ export class AuthService {
         }
     }
 
-    async authenticate() {}
+    // gets email to authenticate user.
+    async authenticate(email: string): Promise<IProfessionalUser> {
+        const user = await this.repo.getByEmail(email);
+
+        if (!user) throw new Error("User not authenticated.");
+
+        // is available to the authenticated user.
+        this.authUser = user;
+
+        return user;
+    }
 }
 

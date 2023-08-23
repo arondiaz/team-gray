@@ -2,10 +2,11 @@ import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { IResponse } from "../models/Response.interface";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
+import { AuthService } from "./AuthUser.service";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
-    constructor(private readonly repo: ProfessionalUserRepository) {}
+    constructor(private readonly repo: ProfessionalUserRepository, private readonly service: AuthService) {}
 
     public async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
         const response = await this.repo.getAll();

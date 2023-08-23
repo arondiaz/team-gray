@@ -39,7 +39,8 @@ export class AuthController extends ApiController {
 
     /**
      * @param authUser
-     * This is an endpoint to login as a professional user. The user will receive an authentication token to be validated when making requests.
+     * This is an endpoint to login as a professional user. The user will receive an authentication
+     * token to be validated when making requests.
      * @returns
      */
 

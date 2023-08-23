@@ -6,12 +6,17 @@ import { Response, Tags } from "typescript-rest-swagger";
 import { UserFilter } from "../filters/UserFilter";
 import { ProfessionalUserService } from "../service/ProfessionalUser.service";
 import { IResponse } from "../models/Response.interface";
+import { AuthService } from "../service/AuthUser.service";
 
 @Path("/api/professional_user")
 @Tags("Professional Users")
 @Controller({ route: "/api/professional_user" })
 export class ProfessionalUserController extends ApiController {
-    constructor(private readonly repo: ProfessionalUserRepository, private readonly service: ProfessionalUserService) {
+    constructor(
+        private readonly repo: ProfessionalUserRepository,
+        private readonly service: ProfessionalUserService,
+        private readonly authService: AuthService
+    ) {
         super();
     }
 
@@ -63,6 +68,7 @@ export class ProfessionalUserController extends ApiController {
     @Action({ route: "/", fromBody: true, method: HttpMethod.PUT, filters: [UserFilter] })
     async editUser(professionalUser: IProfessionalUser): Promise<IResponse> {
         const response = await this.service.edit(professionalUser);
+
         if (response.error) {
             this.httpContext.response.status(response.code).send(response.message);
             throw new Error(response.message);
