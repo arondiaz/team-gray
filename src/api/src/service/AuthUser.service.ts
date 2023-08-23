@@ -136,7 +136,7 @@ export class AuthService {
         if (!user) {
             return {
                 error: true,
-                message: "The email does not exist in the database",
+                message: "The user does not exist in the database",
                 code: 404,
             };
         }

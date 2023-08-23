@@ -79,7 +79,7 @@ export class AuthController extends ApiController {
     async login(authUser: IProfessionalUser): Promise<string> {
         const response = await this.service.login(authUser);
         if (response.error) {
-            this.httpContext.response.status(response.code).end(response.message);
+            this.httpContext.response.status(response.code).send(response.message);
             throw new Error(response.message);
         } else {
             this.httpContext.response.send(response.token);
