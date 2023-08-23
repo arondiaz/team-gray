@@ -14,8 +14,8 @@ export class CategoriesController extends ApiController {
     }
 
     /**
-     *
-     * @returns This endpoint returns all categories added by an administrator.
+     * * This endpoint returns all categories added by an administrator.
+     * @returns
      */
 
     @GET
@@ -31,9 +31,13 @@ export class CategoriesController extends ApiController {
     /**
      *
      * @param category
-        This endpoint is implemented to add categories by an authenticated administrator. 
+     *  * This endpoint is implemented to add categories by an authenticated administrator. 
         For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from 
         the .env file in the signature.
+
+     *  * Example:
+     *   
+        "name": "Cerrajero"
      * @returns
      */
 

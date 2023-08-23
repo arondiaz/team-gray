@@ -2,6 +2,7 @@ import { DependencyContainer, DependencyLifeTime, Injectable } from "@miracledev
 import { Category } from "../models/categories/Category";
 import { MySqlConnection } from "../core/mysql/mysql.connection";
 import { EditRepositoryBase } from "../core/repositories/edit.repository";
+
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class CategoryRepository extends EditRepositoryBase<Category, number> {
     constructor(dependencyContainer: DependencyContainer, connection: MySqlConnection) {

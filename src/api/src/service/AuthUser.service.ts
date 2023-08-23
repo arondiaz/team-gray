@@ -147,8 +147,6 @@ export class AuthService {
         if (compare) {
             const token = jwt.sign(
                 {
-                    name: user.name,
-                    last_name: user.last_name,
                     email: user.email,
                 },
                 this.config.jwt.secret

@@ -39,20 +39,18 @@ export class ProfessionalUserService {
     }
 
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
-        const response = await this.repo.getByEmail(professionalUser.email);
+        // assign the id to the authenticated user
+        professionalUser.id = this.service.authUser.id;
+        const response = await this.repo.update(professionalUser);
+
         if (response) {
             return {
                 error: false,
-                message: "The email has been found",
+                message: "Updated user",
                 code: 200,
             };
-        } else {
-            return {
-                error: true,
-                message: "Email not found",
-                code: 404,
-            };
         }
+        throw new Error("User could not edit");
     }
 }
 

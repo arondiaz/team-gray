@@ -5,7 +5,6 @@ import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response, Tags } from "typescript-rest-swagger";
 import { UserFilter } from "../filters/UserFilter";
 import { ProfessionalUserService } from "../service/ProfessionalUser.service";
-import { IResponse } from "../models/Response.interface";
 import { AuthService } from "../service/AuthUser.service";
 
 @Path("/api/professional_user")
@@ -30,7 +29,7 @@ export class ProfessionalUserController extends ApiController {
 
     /**
      * @param category
-     * This endpoint returns all registered professional users by trade category to which they belong.
+     * * This endpoint returns all registered professional users by trade category to which they belong.
      * @returns
      */
 
@@ -47,7 +46,7 @@ export class ProfessionalUserController extends ApiController {
 
     /**
      * @param id
-     * This endpoint returns an professional user by id.
+     * * This endpoint returns an professional user by id.
      * @returns
      */
 
@@ -61,12 +60,36 @@ export class ProfessionalUserController extends ApiController {
         return await this.repo.getById(id);
     }
 
+    /**
+     * 
+     * @param professionalUser 
+     * 
+     * * This endpoint is for edit a professional user.
+     * 
+     * Example: 
+     * 
+            "name": "Juan Pedro",
+            "last_name": "Lopez",
+            "dni": "34614738",
+            "province": "Santa Fe",
+            "city": "Franck",
+            "tel": "0341434454",
+            "link": "hi-world.com.ar",
+            "about_me": "Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.",
+            "gender": "Male",
+            "birth_date": "1990-01-03",
+            "auth_number": "12312da134123QWw",
+            "img": "photo.png",
+            "category_id": "3"
+        
+     * @returns 
+     */
     @PUT
     @Security("x-auth")
     @Response<string>(200, "Updated user")
     @Response<string>(404, "User not found")
     @Action({ route: "/", fromBody: true, method: HttpMethod.PUT, filters: [UserFilter] })
-    async editUser(professionalUser: IProfessionalUser): Promise<IResponse> {
+    async editUser(professionalUser: IProfessionalUser): Promise<string> {
         const response = await this.service.edit(professionalUser);
 
         if (response.error) {
