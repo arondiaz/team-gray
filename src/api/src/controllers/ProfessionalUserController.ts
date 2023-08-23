@@ -19,11 +19,17 @@ export class ProfessionalUserController extends ApiController {
         super();
     }
 
+    /**
+     * @param category
+     * * This endpoint returns all registered professional users.
+     * @returns
+     */
+
     @GET
     @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
-    async get(): Promise<any[]> {
+    async get(): Promise<IProfessionalUser[]> {
         return await this.service.getAll();
     }
 
@@ -114,9 +120,14 @@ export class ProfessionalUserController extends ApiController {
     @Action({ route: "/disable", method: HttpMethod.PUT, filters: [UserFilter] })
     @Response<string>(200, "Disabled user")
     @Response<string>(500, "The user no longer exists")
-    async disableAccount(): Promise<void> {
-        await this.service.changingStateToFalse(this.authService.authUser);
-        this.httpContext.response.send("Disabled user");
+    async disableAccount(): Promise<string> {
+        const response = await this.service.changeStateToFalse(this.authService.authUser);
+        if (response.error) {
+            this.httpContext.response.send(response.message);
+            return;
+        }
+
+        this.httpContext.response.send(response.message);
         return;
     }
 

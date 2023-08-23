@@ -21,17 +21,13 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
     }
 
     async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
-        const response = this.find("state = ?", [true]);
+        const response = await this.find("state = ?", [true]);
         return response;
     }
 
     // method for change state to 0.
-    async changeState(professionalUser: IProfessionalUser) {
-        if (professionalUser.state === 1) {
-            professionalUser.state = 0;
-        } else {
-            professionalUser.state = 1;
-        }
+    async changeState(professionalUser: IProfessionalUser): Promise<IProfessionalUser> {
+        professionalUser.state = 0;
 
         const response = await this.update(professionalUser);
         return response;

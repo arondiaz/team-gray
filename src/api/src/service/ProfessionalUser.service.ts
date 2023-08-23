@@ -3,7 +3,6 @@ import { IResponse } from "../models/Response.interface";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { AuthService } from "./AuthUser.service";
-import { ProfessionalUser } from "../models/users/ProfessionalUser";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
@@ -34,9 +33,8 @@ export class ProfessionalUserService {
             });
 
             return users;
-        } else {
-            throw new Error("There are no registered users");
         }
+        throw new Error("There are no registered users");
     }
 
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
@@ -54,13 +52,21 @@ export class ProfessionalUserService {
         throw new Error("User could not edit");
     }
 
-    public async changingStateToFalse(authUser: IProfessionalUser) {
-        if (authUser.state === 1) {
-            const changed = await this.repo.changeState(authUser);
-            return changed;
-        } else {
-            throw new Error("The user is not available");
+    public async changeStateToFalse(authUser: IProfessionalUser): Promise<IResponse> {
+        const changed = await this.repo.changeState(authUser);
+        if (!changed) {
+            return {
+                error: true,
+                message: "The user could not be disabled",
+                code: 500,
+            };
         }
+
+        return {
+            error: false,
+            message: "The account has been disabled",
+            code: 200,
+        };
     }
 
     public async remove(authUser: IProfessionalUser): Promise<void> {
