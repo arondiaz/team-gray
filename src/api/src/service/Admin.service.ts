@@ -15,10 +15,9 @@ export class AdminService {
                 code: 400,
             };
 
-        // todo create repo
-        const categoryFound = await this.repo.find("name = ?", [category.name]);
+        const categoryFound = await this.repo.findCategory(category);
 
-        if (categoryFound.length === 1) {
+        if (categoryFound) {
             return {
                 error: true,
                 message: "The category is already exists",
