@@ -41,8 +41,8 @@ export class ProfessionalUserService {
         const response = await this.repo.getByCategory(category);
 
         if (response.length > 0) {
-            const users = response.map(professionalUser => {
-                const user = {
+            const users: IProfessionalUser[] = response.map(professionalUser => {
+                const user: IProfessionalUser = {
                     email: professionalUser.email,
                     name: professionalUser.name,
                     last_name: professionalUser.last_name,
