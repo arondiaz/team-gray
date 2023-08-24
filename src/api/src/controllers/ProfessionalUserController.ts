@@ -126,7 +126,7 @@ export class ProfessionalUserController extends ApiController {
     @DELETE
     @Security("x-auth")
     @Path("disable")
-    @Action({ route: "/disable", method: HttpMethod.PUT, filters: [UserFilter] })
+    @Action({ route: "/disable", method: HttpMethod.DELETE, filters: [UserFilter] })
     @Response<string>(200, "The account has been disabled")
     @Response<string>(500, "The user could not be disabled")
     async disableAccount(): Promise<string> {

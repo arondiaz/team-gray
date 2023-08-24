@@ -65,7 +65,7 @@ export class ProfessionalUserService {
     }
 
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
-        // assign the id to the authenticated user
+        // Assign the id to the authenticated user.
         professionalUser.id = this.service.authUser.id;
         const response = await this.repo.update(professionalUser);
 
@@ -80,9 +80,9 @@ export class ProfessionalUserService {
     }
 
     public async changeStateToFalse(authUser: IProfessionalUser): Promise<IResponse> {
-        // state changed
+        // State changed.
         authUser.state = 0;
-        const changed = await this.repo.changeState(authUser);
+        const changed = await this.repo.update(authUser);
         if (!changed) {
             return {
                 error: true,
