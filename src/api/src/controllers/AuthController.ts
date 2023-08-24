@@ -49,7 +49,7 @@ export class AuthController extends ApiController {
 
         if (user.error) {
             this.httpContext.response.status(user.code).send(user.message);
-            throw new Error(user.message);
+            return;
         } else {
             this.httpContext.response.status(user.code).send(user.message);
             return;
@@ -74,13 +74,13 @@ export class AuthController extends ApiController {
     @Path("/login")
     @Response<string>(200, "Success")
     @Response<string>(400, "Bad request")
-    @Response<string>(500, "Error server")
+    @Response<string>(500, "Server error")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IProfessionalUser): Promise<string> {
         const response = await this.service.login(authUser);
         if (response.error) {
             this.httpContext.response.status(response.code).send(response.message);
-            throw new Error(response.message);
+            return;
         } else {
             this.httpContext.response.send(response.token);
             return;

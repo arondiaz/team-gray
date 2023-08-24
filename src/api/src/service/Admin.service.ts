@@ -15,6 +15,7 @@ export class AdminService {
                 code: 400,
             };
 
+        // todo create service
         const categoryFound = await this.repo.find("name = ?", [category.name]);
 
         if (categoryFound.length === 1) {

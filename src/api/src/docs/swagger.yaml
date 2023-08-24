@@ -67,7 +67,6 @@ definitions:
             - tel
             - gender
             - birth_date
-            - category_id
     ICategory:
         description: ""
         properties:
@@ -139,7 +138,7 @@ paths:
                     schema:
                         type: string
                 '500':
-                    description: 'Error server'
+                    description: 'Server error'
                     schema:
                         type: string
             description: ""
@@ -265,7 +264,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: "* This endpoint is for edit a professional user.\n\nExample: \n\n     \"name\": \"Juan Pedro\",\n     \"last_name\": \"Lopez\",\n     \"dni\": \"34614738\",\n     \"province\": \"Santa Fe\",\n     \"city\": \"Franck\",\n     \"tel\": \"0341434454\",\n     \"link\": \"hi-world.com.ar\",\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\n     \"gender\": \"Male\",\n     \"birth_date\": \"1990-01-03\",\n     \"auth_number\": \"12312da134123QWw\",\n     \"img\": \"photo.png\",\n     \"category_id\": \"3\""
+                    description: "* This endpoint is for editing an account by an authenticated professional user.\n\nExample: \n\n     \"name\": \"Juan Pedro\",\n     \"last_name\": \"Lopez\",\n     \"dni\": \"34614738\",\n     \"province\": \"Santa Fe\",\n     \"city\": \"Franck\",\n     \"tel\": \"0341434454\",\n     \"link\": \"hi-world.com.ar\",\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\n     \"gender\": \"Male\",\n     \"birth_date\": \"1990-01-03\",\n     \"auth_number\": \"12312da134123QWw\",\n     \"img\": \"photo.png\",\n     \"category_id\": \"3\""
                     in: body
                     name: professionalUser
                     required: true
@@ -283,10 +282,10 @@ paths:
                 '204':
                     description: 'No content'
                 '500':
-                    description: 'The user no longer exists'
+                    description: 'Server error'
                     schema:
                         type: string
-            description: '* This endpoint is for remove a professional user when authenticated. It is removed from the database.'
+            description: '* This endpoint is for remove a professional user when he is authenticated. It is removed from the database.'
             tags:
                 - 'Professional Users'
             security:
@@ -357,28 +356,26 @@ paths:
                     type: number
                     format: double
     /api/professional_user/disable:
-        put:
+        delete:
             operationId: ProfessionalUserDisableAccount
             produces:
                 - text/html
             responses:
                 '200':
-                    description: 'Disabled user'
+                    description: 'The account has been disabled'
                     schema:
                         type: string
                 '500':
-                    description: 'The user no longer exists'
+                    description: 'The user could not be disabled'
                     schema:
                         type: string
-            description: '* This endpoint is for disable a professional user when authenticated. It is not removed from the database, it changes its state to 0.'
+            description: '* This endpoint is for disable a professional user when he is authenticated. It is not removed from the database, it changes its state to false.'
             tags:
                 - 'Professional Users'
             security:
                 -
                     default:
                         - x-auth
-            consumes:
-                - application/json
             parameters: []
 swagger: '2.0'
 securityDefinitions:

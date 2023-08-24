@@ -17,7 +17,7 @@ export class AuthService {
 
     async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
-            // email already registered validation
+            // Email already registered validation.
             const validateEmail = await this.repo.getByEmail(authUser.email);
             if (validateEmail) {
                 return {
@@ -27,8 +27,7 @@ export class AuthService {
                 };
             }
 
-            // fields not empty validation
-
+            // Fields not empty validation.
             if (!authUser.birth_date) {
                 return {
                     error: true,
@@ -114,19 +113,24 @@ export class AuthService {
                 };
             }
 
-            // generate salt
+            // Generate salt.
             const salt = await bcrypt.genSalt(10);
-            // hashed password
+
+            // Hashed password.
             authUser.password = await bcrypt.hash(authUser.password, salt);
-            // insert on database
-            await this.repo.insertOne(authUser);
-            return {
-                error: false,
-                message: "Created user",
-                code: 201,
-            };
+
+            // insert on database.
+            const response = await this.repo.insertOne(authUser);
+
+            if (response) {
+                return {
+                    error: false,
+                    message: "Created user",
+                    code: 201,
+                };
+            }
         } catch (error) {
-            throw Error(error);
+            throw new Error(error);
         }
     }
 
@@ -166,7 +170,7 @@ export class AuthService {
         }
     }
 
-    // gets email to authenticate user.
+    // Gets email to authenticate user.
     async authenticate(email: string): Promise<IProfessionalUser> {
         const user = await this.repo.getByEmail(email);
 

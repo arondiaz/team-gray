@@ -25,6 +25,7 @@ export class CategoriesController extends ApiController {
     @Response<string>(500, "Server error")
     @Action({ route: "/" })
     async get(): Promise<ICategory[]> {
+        // todo create service
         return await this.repo.getAll();
     }
 

@@ -79,7 +79,7 @@ export class ProfessionalUserController extends ApiController {
      * 
      * @param professionalUser 
      * 
-     * * This endpoint is for edit a professional user.
+     * * This endpoint is for editing an account by an authenticated professional user.
      * 
      * Example: 
      * 
@@ -117,18 +117,18 @@ export class ProfessionalUserController extends ApiController {
     }
 
     /**
-     * * This endpoint is for disable a professional user when authenticated. It is not removed from the database, it changes its state to 0.
+     * * This endpoint is for disable a professional user when he is authenticated. It is not removed from the database, it changes its state to false.
      * @returns
      *
      *
      */
 
-    @PUT
+    @DELETE
     @Security("x-auth")
     @Path("disable")
     @Action({ route: "/disable", method: HttpMethod.PUT, filters: [UserFilter] })
-    @Response<string>(200, "Disabled user")
-    @Response<string>(500, "The user no longer exists")
+    @Response<string>(200, "The account has been disabled")
+    @Response<string>(500, "The user could not be disabled")
     async disableAccount(): Promise<string> {
         const response = await this.service.changeStateToFalse(this.authService.authUser);
         if (response.error) {
@@ -141,7 +141,7 @@ export class ProfessionalUserController extends ApiController {
     }
 
     /**
-     * * This endpoint is for remove a professional user when authenticated. It is removed from the database.
+     * * This endpoint is for remove a professional user when he is authenticated. It is removed from the database.
      * @returns
      */
 
@@ -149,7 +149,7 @@ export class ProfessionalUserController extends ApiController {
     @Security("x-auth")
     @Action({ route: "/", filters: [UserFilter] })
     @Response<string>(200, "Deleted user")
-    @Response<string>(500, "The user no longer exists")
+    @Response<string>(500, "Server error")
     async delete(): Promise<void> {
         await this.service.remove(this.authService.authUser);
         this.httpContext.response.send("Deleted user");
