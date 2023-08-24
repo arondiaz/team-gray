@@ -3,7 +3,7 @@ import { ICategory } from "./Category.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Transient })
 export class Category implements ICategory {
-    id: number = 0;
+    id?: number = 0;
     name: string = "";
 }
 

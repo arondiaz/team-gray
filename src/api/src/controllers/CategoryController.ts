@@ -1,15 +1,15 @@
 import { Action, ApiController, ConfigurationBuilder, Controller } from "@miracledevs/paradigm-express-webapi";
-import { CategoryRepository } from "../repositories/Categories.repository";
 import { ICategory } from "../models/categories/Category.interface";
 import { GET, POST, Path, Security } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { AdminFilter } from "../filters/Admin.filter";
 import { AdminService } from "../service/Admin.service";
+import { CategoryService } from "../service/Category.service";
 
 @Path("/api/categories")
 @Controller({ route: "/api/categories" })
-export class CategoriesController extends ApiController {
-    constructor(private readonly repo: CategoryRepository, private readonly service: AdminService) {
+export class CategoryController extends ApiController {
+    constructor(private readonly service: AdminService, private readonly categoryService: CategoryService) {
         super();
     }
 
@@ -22,11 +22,15 @@ export class CategoriesController extends ApiController {
     @Tags("Categories")
     @Path("/")
     @Response<ICategory[]>(200, "Success")
+    @Response<string>(404, "There are not categories")
     @Response<string>(500, "Server error")
     @Action({ route: "/" })
     async get(): Promise<ICategory[]> {
-        // todo create service
-        return await this.repo.getAll();
+        const response = await this.categoryService.getAllCategories();
+
+        if (!response) this.httpContext.response.status(404).send("There are not categories");
+
+        return response;
     }
 
     /**

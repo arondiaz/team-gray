@@ -79,7 +79,6 @@ definitions:
                 description: ""
         type: object
         required:
-            - id
             - name
 info:
     description: 'FastWork API.'
@@ -156,7 +155,7 @@ paths:
                         $ref: '#/definitions/IProfessionalUser'
     /api/categories/:
         get:
-            operationId: CategoriesGet
+            operationId: CategoryGet
             produces:
                 - application/json
                 - text/html
@@ -167,6 +166,10 @@ paths:
                         type: array
                         items:
                             $ref: '#/definitions/ICategory'
+                '404':
+                    description: 'There are not categories'
+                    schema:
+                        type: string
                 '500':
                     description: 'Server error'
                     schema:
@@ -176,7 +179,7 @@ paths:
                 - Categories
             parameters: []
         post:
-            operationId: CategoriesPost
+            operationId: CategoryPost
             produces:
                 - text/html
             responses:

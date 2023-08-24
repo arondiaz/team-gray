@@ -102,7 +102,6 @@
 			},
 			"type": "object",
 			"required": [
-				"id",
 				"name"
 			]
 		}
@@ -216,7 +215,7 @@
 		},
 		"/api/categories/": {
 			"get": {
-				"operationId": "CategoriesGet",
+				"operationId": "CategoryGet",
 				"produces": [
 					"application/json",
 					"text/html"
@@ -229,6 +228,12 @@
 							"items": {
 								"$ref": "#/definitions/ICategory"
 							}
+						}
+					},
+					"404": {
+						"description": "There are not categories",
+						"schema": {
+							"type": "string"
 						}
 					},
 					"500": {
@@ -245,7 +250,7 @@
 				"parameters": []
 			},
 			"post": {
-				"operationId": "CategoriesPost",
+				"operationId": "CategoryPost",
 				"produces": [
 					"text/html"
 				],
