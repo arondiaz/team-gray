@@ -61,7 +61,7 @@ export class CategoryController extends ApiController {
 
         if (response.error) {
             this.httpContext.response.status(response.code).send(response.message);
-            throw new Error(response.message);
+            return;
         } else {
             this.httpContext.response.status(response.code).send(response.message);
             return;
