@@ -27,27 +27,16 @@ export class ProfessionalUserController extends ApiController {
 
     @GET
     @Response<IProfessionalUser[]>(200, "Success")
+    @Response<string>(404, "There are no registered users")
     @Response<string>(500, "No connection to database")
     @Action({ route: "/" })
     async get(): Promise<IProfessionalUser[]> {
-        return await this.service.getAll();
-    }
-
-    /**
-     * @param category
-     * * This endpoint returns all registered professional users by trade category to which they belong.
-     * @returns
-     */
-
-    @GET
-    @Path("/category/:category_id")
-    @Response<IProfessionalUser[]>(200, "Success")
-    @Response<string>(400, "Bad request")
-    @Response<string>(500, "No connection to database")
-    @Action({ route: "/category/:category_id" })
-    async getByCategory(@PathParam("category_id") category: number): Promise<IProfessionalUser[]> {
-        // todo implement service
-        return await this.repo.find("category_id = ?", [category]);
+        const response = await this.service.getAll();
+        if (!response) {
+            this.httpContext.response.status(404).send("There are no registered users");
+            return;
+        }
+        return response;
     }
 
     /**
@@ -64,6 +53,26 @@ export class ProfessionalUserController extends ApiController {
     @Action({ route: "/:id" })
     async getById(@PathParam("id") id: number): Promise<IProfessionalUser> {
         return await this.repo.getById(id);
+    }
+
+    /**
+     * @param category
+     * * This endpoint returns all registered professional users by trade category to which they belong.
+     * @returns
+     */
+
+    @GET
+    @Path("/category/:category_id")
+    @Response<IProfessionalUser[]>(200, "Success")
+    @Response<string>(404, "There are no professional users registered with that category")
+    @Response<string>(500, "No connection to database")
+    @Action({ route: "/category/:category_id" })
+    async getByCategory(@PathParam("category_id") category: number): Promise<IProfessionalUser[]> {
+        const response = await this.service.findByCategory(category);
+
+        if (!response) this.httpContext.response.status(404).send("There are no professional users registered with that category");
+
+        return response;
     }
 
     /**

@@ -10,6 +10,16 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         super(dependencyContainer, connection, ProfessionalUser, "professional_user");
     }
 
+    async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
+        const request = await this.find("state = ?", [true]);
+        return request;
+    }
+
+    async getByCategory(category: number): Promise<IProfessionalUser[]> {
+        const request = this.find("category_id = ?", [category]);
+        return request;
+    }
+
     async getByEmail(email: string): Promise<IProfessionalUser | undefined> {
         const validated = await this.find("email = ?", [email]);
 
@@ -20,17 +30,12 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
         return undefined;
     }
 
-    async getAllProfessionalUser(): Promise<IProfessionalUser[]> {
-        const response = await this.find("state = ?", [true]);
-        return response;
-    }
-
     // method for change state to 0.
     async changeState(professionalUser: IProfessionalUser): Promise<IProfessionalUser> {
         professionalUser.state = 0;
 
-        const response = await this.update(professionalUser);
-        return response;
+        const request = await this.update(professionalUser);
+        return request;
     }
 }
 

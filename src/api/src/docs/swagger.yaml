@@ -229,6 +229,10 @@ paths:
                         type: array
                         items:
                             $ref: '#/definitions/IProfessionalUser'
+                '404':
+                    description: 'There are no registered users'
+                    schema:
+                        type: string
                 '500':
                     description: 'No connection to database'
                     schema:
@@ -290,38 +294,6 @@ paths:
                     default:
                         - x-auth
             parameters: []
-    '/api/professional_user/category/{category_id}':
-        get:
-            operationId: ProfessionalUserGetByCategory
-            produces:
-                - application/json
-                - text/html
-            responses:
-                '200':
-                    description: Success
-                    schema:
-                        type: array
-                        items:
-                            $ref: '#/definitions/IProfessionalUser'
-                '400':
-                    description: 'Bad request'
-                    schema:
-                        type: string
-                '500':
-                    description: 'No connection to database'
-                    schema:
-                        type: string
-            description: ""
-            tags:
-                - 'Professional Users'
-            parameters:
-                -
-                    description: '* This endpoint returns all registered professional users by trade category to which they belong.'
-                    in: path
-                    name: category_id
-                    required: true
-                    type: number
-                    format: double
     '/api/professional_user/{id}':
         get:
             operationId: ProfessionalUserGetById
@@ -352,6 +324,38 @@ paths:
                     required: true
                     type: number
                     format: double
+    '/api/professional_user/category/{category_id}':
+        get:
+            operationId: ProfessionalUserGetByCategory
+            produces:
+                - application/json
+                - text/html
+            responses:
+                '200':
+                    description: Success
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#/definitions/IProfessionalUser'
+                '404':
+                    description: 'There are no professional users registered with that category'
+                    schema:
+                        type: string
+                '500':
+                    description: 'No connection to database'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - 'Professional Users'
+            parameters:
+                -
+                    description: '* This endpoint returns all registered professional users by trade category to which they belong.'
+                    in: path
+                    name: category_id
+                    required: true
+                    type: number
+                    format: double
     /api/professional_user/disable:
         put:
             operationId: ProfessionalUserDisableAccount
@@ -362,8 +366,6 @@ paths:
                     description: 'Disabled user'
                     schema:
                         type: string
-                '204':
-                    description: 'No content'
                 '500':
                     description: 'The user no longer exists'
                     schema:
