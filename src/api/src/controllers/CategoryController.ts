@@ -1,4 +1,4 @@
-import { Action, ApiController, ConfigurationBuilder, Controller } from "@miracledevs/paradigm-express-webapi";
+import { Action, ApiController, Controller } from "@miracledevs/paradigm-express-webapi";
 import { ICategory } from "../models/categories/Category.interface";
 import { GET, POST, Path, Security } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";

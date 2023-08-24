@@ -3,7 +3,6 @@ import { IFilter, HttpContext, ConfigurationBuilder } from "@miracledevs/paradig
 import { Configuration } from "../configuration/configuration";
 import jwt from "jsonwebtoken";
 import { IPayLoad } from "../models/users/Payload.interface";
-import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { AuthService } from "../service/AuthUser.service";
 
 /**

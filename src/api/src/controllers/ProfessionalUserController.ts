@@ -1,6 +1,6 @@
 import { Action, ApiController, Controller, HttpMethod } from "@miracledevs/paradigm-express-webapi";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
-import { DELETE, GET, PATCH, PUT, Path, PathParam, Security } from "typescript-rest";
+import { DELETE, GET, PUT, Path, PathParam, Security } from "typescript-rest";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Response, Tags } from "typescript-rest-swagger";
 import { UserFilter } from "../filters/UserFilter";

@@ -1,7 +1,6 @@
 import { Injectable, DependencyLifeTime } from "@miracledevs/paradigm-web-di";
 import { IFilter, HttpContext, ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
-import { AdminService } from "../service/Admin.service";
 import jwt from "jsonwebtoken";
 
 /**
