@@ -80,6 +80,8 @@ export class ProfessionalUserService {
     }
 
     public async changeStateToFalse(authUser: IProfessionalUser): Promise<IResponse> {
+        // state changed
+        authUser.state = 0;
         const changed = await this.repo.changeState(authUser);
         if (!changed) {
             return {

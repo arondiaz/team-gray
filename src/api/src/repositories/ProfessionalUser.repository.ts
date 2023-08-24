@@ -32,8 +32,6 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
 
     // method for change state to 0.
     async changeState(professionalUser: IProfessionalUser): Promise<IProfessionalUser> {
-        professionalUser.state = 0;
-
         const request = await this.update(professionalUser);
         return request;
     }
