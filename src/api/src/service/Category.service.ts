@@ -10,14 +10,7 @@ export class CategoryService {
         const response = await this.repo.getAll();
 
         if (response.length > 0) {
-            const categories = response.map(c => {
-                const category = {
-                    name: c.name,
-                };
-                return category;
-            });
-
-            return categories;
+            return response;
         }
         return undefined;
     }
