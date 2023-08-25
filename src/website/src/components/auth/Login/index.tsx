@@ -14,7 +14,9 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => console.log(JSON.stringify(data));
+  const onSubmit = (data: any) => {
+    console.log('Data', data);
+  };
 
   return (
     <>
