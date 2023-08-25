@@ -3,7 +3,7 @@ export interface IProfessionalUser {
 	id?: string;
 	email: string;
 	name: string;
-	lastname: string;
+	last_name: string;
 	dni: string;
 	province: string;
 	city: string;

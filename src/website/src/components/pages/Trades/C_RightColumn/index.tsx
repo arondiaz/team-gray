@@ -17,7 +17,7 @@ export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
 				{' '}
 				Perfil Profesional:{' '}
 				{selectedPerson
-					? `${selectedPerson.name} ${selectedPerson.lastname}`
+					? `${selectedPerson.name} ${selectedPerson.last_name}`
 					: 'Perfil Profesional'}
 			</div>
 			<div className={styles.coverImage}>
@@ -45,7 +45,7 @@ export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
 								<th className={styles.profileTitle}>
 									Nombre:{' '}
 									<span className={styles.regularData}>
-										{selectedPerson.name} {selectedPerson.lastname}
+										{selectedPerson.name} {selectedPerson.last_name}
 									</span>
 								</th>
 							</tr>
