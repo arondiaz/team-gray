@@ -160,7 +160,7 @@ export class AuthService {
                     link: user.link,
                     about_me: user.about_me,
                     gender: user.gender,
-                    birth_date: user.gender,
+                    birth_date: user.birth_date,
                     auth_number: user.auth_number,
                     img: user.img,
                     category_id: user.category_id,
