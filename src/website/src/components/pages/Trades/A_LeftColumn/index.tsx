@@ -1,42 +1,36 @@
-// LeftColumn.tsx
-
-import { useState, useEffect } from 'react';
-import styles from './LeftColumn.module.scss';
 import { professionalUserServiceInstance } from '../../../../services/ProfessionalUser.service';
 import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
 import { useCategories } from '../../../../hooks/useCategories';
+import styles from './LeftColumn.module.scss';
 
-export const LeftColumn: React.FC = () => {
-  const { trades, setTrades } = useCategories();
+export interface LeftColumnProps {
+	onCategoryClick: (professionals: IProfessionalUser[]) => void;
+}
 
-  useEffect(() => {
-    setTrades(trades);
-  });
+export const LeftColumn: React.FC<LeftColumnProps> = ({ onCategoryClick }) => {
+	const { trades } = useCategories();
 
-  const [professional, setProfessional] = useState<IProfessionalUser[]>([]);
+	const handleCategory = async (id: string) => {
+		const professionals =
+			await professionalUserServiceInstance.getProfessionalUserByCategory(id);
 
-  const handleCategory = async (id: string) => {
-    const request =
-      await professionalUserServiceInstance.getProfessionalUserByCategory(id);
+		onCategoryClick(professionals as IProfessionalUser[]);
+	};
 
-    setProfessional(request as IProfessionalUser[]);
-  };
-  console.log(professional);
-
-  return (
-    <div className={styles.leftColumn}>
-      <div className={styles.searchContainer}></div>
-      <div className={styles.scrollableList}>
-        <table className={styles.tradeList}>
-          <tbody>
-            <ul>
-              {trades.map((m) => (
-                <button onClick={() => handleCategory(m.id)}>{m.name}</button>
-              ))}
-            </ul>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.leftColumn}>
+			<div className={styles.topBanner}>Seleccionar Oficio</div>
+			<div className={styles.scrollableList}>
+				<table className={styles.tradeList}>
+					<tbody>
+						{trades.map((m) => (
+							<tr key={m.id} onClick={() => handleCategory(m.id)}>
+								<td>{m.name}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	);
 };
