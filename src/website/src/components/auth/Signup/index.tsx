@@ -10,9 +10,9 @@ import BgOverlay from '../../shared/BackgroundOverly';
 import BgLayout from '../../shared/BackgroundLayout';
 
 export enum Gender {
-  Masculino = 'Male',
-  Femenino = 'Female',
-  Otro = 'Other',
+  Male = 'Male',
+  Female = 'Female',
+  NonBinary = 'Non-binary',
 }
 
 export const Signup = () => {
@@ -387,18 +387,16 @@ export const Signup = () => {
                       <option className={styles.optionsv} value="">
                         Selecciona una opción
                       </option>
-                      <option
-                        className={styles.optionsv}
-                        value={Gender.Masculino}>
+                      <option className={styles.optionsv} value={Gender.Male}>
                         Masculino
                       </option>
-                      <option
-                        className={styles.optionsv}
-                        value={Gender.Femenino}>
+                      <option className={styles.optionsv} value={Gender.Female}>
                         Femenino
                       </option>
-                      <option className={styles.optionsv} value={Gender.Otro}>
-                        Otro
+                      <option
+                        className={styles.optionsv}
+                        value={Gender.NonBinary}>
+                        No binarie
                       </option>
                     </select>
                     {errors.gender && (
