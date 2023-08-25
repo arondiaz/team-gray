@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { Categories } from '../../Categories';
+import { useRegister } from '../../../hooks/useRegister';
 
 import styles from './Signup.module.scss';
 import BgOverlay from '../../shared/BackgroundOverly';
@@ -15,6 +16,7 @@ export enum Gender {
 }
 
 export const Signup = () => {
+  const { result, makeRegister } = useRegister();
   const {
     register,
     handleSubmit,
@@ -32,9 +34,10 @@ export const Signup = () => {
     setView2(!view2);
   };
 
-  const onSubmitView2 = (data: any) => {
+  const onSubmitView2 = async (data: any) => {
     const allData = { ...view1Data, ...data };
-    alert(JSON.stringify(allData));
+    await makeRegister({ ...allData });
+    console.log(result);
   };
   const password = watch('password');
 
