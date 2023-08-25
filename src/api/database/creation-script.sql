@@ -6,19 +6,20 @@ CREATE TABLE IF NOT EXISTS `professional_user` (
   `email` VARCHAR(100) UNIQUE NOT NULL,
   `password` VARCHAR(100) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
-  `lastname` VARCHAR(50) NOT NULL,
+  `last_name` VARCHAR(50) NOT NULL,
   `dni` VARCHAR(20) NOT NULL,
   `province` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50) NOT NULL,
   `tel` VARCHAR(50) NOT NULL,
   `link` VARCHAR(300),
   `about_me` TEXT,
-  `gender` ENUM('Male', 'Female', 'Other') NOT NULL,
-  `birthdate` DATE NOT NULL,
+  `gender` ENUM('Male', 'Female', 'Non-binary') NOT NULL,
+  `birth_date` DATE NOT NULL,
   `auth_number` VARCHAR(50),
   `img` TEXT DEFAULT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `category_id` INT NOT NULL
+  `category_id` INT NOT NULL,
+  `state` BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE IF NOT EXISTS `categories` (

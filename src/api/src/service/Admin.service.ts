@@ -1,6 +1,6 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { ICategory } from "../models/categories/Category.interface";
-import { CategoryRepository } from "../repositories/Categories.repository";
+import { CategoryRepository } from "../repositories/Category.repository";
 import { IResponse } from "../models/Response.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
@@ -15,9 +15,9 @@ export class AdminService {
                 code: 400,
             };
 
-        const categoryFound = await this.repo.find("name = ?", [category.name]);
+        const categoryFound = await this.repo.findCategory(category);
 
-        if (categoryFound.length === 1) {
+        if (categoryFound) {
             return {
                 error: true,
                 message: "The category is already exists",

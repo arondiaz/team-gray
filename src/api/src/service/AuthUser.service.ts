@@ -1,24 +1,25 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import bcrypt from "bcrypt";
-import { IAuthProfessionalUser } from "../models/auth/AuthProfessionUser.interface";
-import { AuthRepository } from "../repositories/Auth.repository";
 import { IResponse } from "../models/Response.interface";
 import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
+import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
+import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
     private config: Configuration;
-    constructor(private readonly authRepo: AuthRepository, private readonly configBuilder: ConfigurationBuilder) {
+    public authUser: IProfessionalUser;
+    constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {
         this.config = this.configBuilder.build(Configuration);
     }
 
-    async register(authUser: IAuthProfessionalUser): Promise<IResponse> {
+    async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
-            // email already registered validation
-            const validateEmail = await this.authRepo.find("email = ?", [authUser.email]);
-            if (validateEmail.length === 1) {
+            // Email already registered validation.
+            const validateEmail = await this.repo.getByEmail(authUser.email);
+            if (validateEmail) {
                 return {
                     error: true,
                     message: "The email is already registered",
@@ -26,9 +27,8 @@ export class AuthService {
                 };
             }
 
-            // fields not empty validation
-
-            if (!authUser.birthdate) {
+            // Fields not empty validation.
+            if (!authUser.birth_date) {
                 return {
                     error: true,
                     message: "Birth date field not found",
@@ -76,7 +76,7 @@ export class AuthService {
                 };
             }
 
-            if (!authUser.lastname) {
+            if (!authUser.last_name) {
                 return {
                     error: true,
                     message: "Last name field not found",
@@ -113,41 +113,44 @@ export class AuthService {
                 };
             }
 
-            // generate salt
+            // Generate salt.
             const salt = await bcrypt.genSalt(10);
-            // hashed password
+
+            // Hashed password.
             authUser.password = await bcrypt.hash(authUser.password, salt);
-            // insert on database
-            await this.authRepo.insertOne(authUser);
-            return {
-                error: false,
-                message: "Created user",
-                code: 201,
-            };
+
+            // insert on database.
+            const response = await this.repo.insertOne(authUser);
+
+            if (response) {
+                return {
+                    error: false,
+                    message: "Created user",
+                    code: 201,
+                };
+            }
         } catch (error) {
-            throw Error(error);
+            throw new Error(error);
         }
     }
 
-    async login(authUser: IAuthProfessionalUser): Promise<IResponse> {
-        const user = await this.authRepo.find("email = ?", [authUser.email]);
+    async login(authUser: IProfessionalUser): Promise<IResponse> {
+        const user = await this.repo.getByEmail(authUser.email);
 
-        if (!user[0]) {
+        if (!user) {
             return {
                 error: true,
-                message: "The email does not exist in the database",
+                message: "The user does not exist in the database",
                 code: 404,
             };
         }
 
-        const compare = await bcrypt.compare(authUser.password, user[0].password);
+        const compare = await bcrypt.compare(authUser.password, user.password);
 
         if (compare) {
             const token = jwt.sign(
                 {
-                    name: user[0].name,
-                    last_name: user[0].lastname,
-                    email: user[0].email,
+                    email: user.email,
                 },
                 this.config.jwt.secret
             );
@@ -165,6 +168,21 @@ export class AuthService {
                 code: 401,
             };
         }
+    }
+
+    // Gets email to authenticate user.
+    async authenticate(email: string): Promise<IProfessionalUser> {
+        const user = await this.repo.getByEmail(email);
+
+        if (!user) throw new Error("User not authenticated.");
+
+        // If the user has false state, it is deleted.
+        if (user.state === 0) throw new Error("The user is not enable");
+
+        // Is available to the authenticated user.
+        this.authUser = user;
+
+        return user;
     }
 }
 
