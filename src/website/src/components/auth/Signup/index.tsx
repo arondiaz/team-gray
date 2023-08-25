@@ -114,15 +114,17 @@ export const Signup = () => {
                       return false;
                     }}
                     className={styles.input1}
-                    {...register('confirm', {
+                    {...register('confirmPassword', {
                       required: 'Confirmar contraseña es requerido',
                       validate: (value: any) =>
                         value === password || 'Las contraseñas no coinciden',
                     })}
                   />
-                  {errors.confirm && (
+                  {errors.confirmPassword && (
                     <div className={styles.errorcontainerfv}>
-                      <span>{errors?.confirm?.message?.toString()}</span>
+                      <span>
+                        {errors?.confirmPassword?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -195,13 +197,13 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="phone">
+                    <label className={styles.labelsv} htmlFor="tel">
                       Celular *
                     </label>
                     <input
                       autoComplete="off"
                       type="number"
-                      {...register('phone', {
+                      {...register('tel', {
                         required: 'El celular es obligatorio',
                         pattern: {
                           //
@@ -214,20 +216,20 @@ export const Signup = () => {
                         },
                       })}
                     />
-                    {errors.phone && (
+                    {errors.tel && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.phone?.message?.toString()}</span>
+                        <span>{errors?.tel?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="surname">
+                    <label className={styles.labelsv} htmlFor="last_name">
                       Apellido *
                     </label>
                     <input
                       type="text"
-                      {...register('surname', {
+                      {...register('last_name', {
                         required: 'El apellido es obligatorio',
                         pattern: {
                           value: /^[A-Z]+$/i,
@@ -236,9 +238,9 @@ export const Signup = () => {
                       })}
                     />
 
-                    {errors.surname && (
+                    {errors.last_name && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.surname?.message?.toString()}</span>
+                        <span>{errors?.last_name?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -265,12 +267,12 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="id">
+                    <label className={styles.labelsv} htmlFor="dni">
                       DNI *
                     </label>
                     <input
                       type="text"
-                      {...register('id', {
+                      {...register('dni', {
                         required: 'El DNI es obligatorio',
                         pattern: {
                           value: /^[0-9]+$/i,
@@ -282,9 +284,9 @@ export const Signup = () => {
                         },
                       })}
                     />
-                    {errors.id && (
+                    {errors.dni && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.id?.message?.toString()}</span>
+                        <span>{errors?.dni?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -311,12 +313,12 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="birth">
+                    <label className={styles.labelsv} htmlFor="birth_date">
                       Fecha de nacimiento *
                     </label>
                     <input
                       type="date"
-                      {...register('birth', {
+                      {...register('birth_date', {
                         required: 'La fecha de nacimiento es obligatoria',
                         validate: (value: any) => {
                           const birthDate = new Date(value);
@@ -346,9 +348,9 @@ export const Signup = () => {
                         },
                       })}
                     />
-                    {errors.birth && (
+                    {errors.birth_date && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.birth?.message?.toString()}</span>
+                        <span>{errors?.birth_date?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -404,33 +406,33 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="category">
+                    <label className={styles.labelsv} htmlFor="category_id">
                       Categoría *
                     </label>
                     <Categories register={register} />
-                    {errors.category && (
+                    {errors.category_id && (
                       <div className={styles.errorcontainer}>
-                        <span>{errors?.category?.message?.toString()}</span>
+                        <span>{errors?.category_id?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="habilitation">
+                    <label className={styles.labelsv} htmlFor="auth_number">
                       N° Habilitación
                     </label>
                     <input
                       type="text"
-                      {...register('habilitation', {
+                      {...register('auth_number', {
                         minLength: {
                           value: 8,
                           message: 'Longitud mínima de 8 dígitos',
                         },
                       })}
                     />
-                    {errors.habilitation && (
+                    {errors.auth_number && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.habilitation?.message?.toString()}</span>
+                        <span>{errors?.auth_number?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -443,7 +445,7 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="about">
+                    <label className={styles.labelsv} htmlFor="about_me">
                       Sobre mí
                     </label>
                     <input type="text" />
