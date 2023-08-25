@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ILoginToken } from '../interfaces/LoginProfessionalUser.interface';
 import { authServiceInstance } from '../services/Auth.service';
 
-export const useAuth = () => {
+export function useAuth() {
   const [result, setResult] = useState<ILoginToken>();
 
   const apiPostRequest = async ({
@@ -27,4 +27,4 @@ export const useAuth = () => {
   };
 
   return { result, apiPostRequest };
-};
+}
