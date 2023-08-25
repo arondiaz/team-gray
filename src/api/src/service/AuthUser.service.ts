@@ -151,6 +151,19 @@ export class AuthService {
             const token = jwt.sign(
                 {
                     email: user.email,
+                    name: user.name,
+                    last_name: user.last_name,
+                    dni: user.dni,
+                    province: user.province,
+                    city: user.city,
+                    tel: user.tel,
+                    link: user.link,
+                    about_me: user.about_me,
+                    gender: user.gender,
+                    birth_date: user.birth_date,
+                    auth_number: user.auth_number,
+                    img: user.img,
+                    category_id: user.category_id,
                 },
                 this.config.jwt.secret
             );

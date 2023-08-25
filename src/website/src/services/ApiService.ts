@@ -35,7 +35,7 @@ export class ApiService {
     return (await response.json()) as T;
   }
 
-  protected async post<T>(
+  async post<T>(
     url?: string,
     queryString?: QueryString,
     body?: BodyInit

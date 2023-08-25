@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../../hooks/useAuth';
 import styles from './Login.module.scss';
 import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
@@ -14,7 +15,22 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => console.log(JSON.stringify(data));
+  const { result, apiPostRequest } = useAuth();
+
+  const onSubmit = async (data: any) => {
+    console.log('Data', data);
+    await apiPostRequest({
+      email: data.email,
+      password: data.email,
+    });
+
+    if (result?.token) {
+      localStorage.setItem('token', result.token);
+      //Redirect to trades after login
+      //route.push("/trades")
+    }
+    console.log('result', result);
+  };
 
   return (
     <>
@@ -64,7 +80,7 @@ export const Login = () => {
                   message: 'Longitud mínima 8 caracteres',
                 },
                 maxLength: {
-                  value: 16,
+                  value: 32,
                   message: 'Longitud máxima 16 caracteres',
                 },
               })}
