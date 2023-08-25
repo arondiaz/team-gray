@@ -1,12 +1,14 @@
 //Card.tsx
+
 import React from 'react';
+
 export interface TradeCardProps {
+	img?: string;
 	name: string;
+	lastName: string;
+	birthDate: string;
 	gender: string;
-	species: string;
-	status: string;
-	image: string;
-	text: string;
+
 	styles?: {
 		tradeCard?: string;
 		tradePhoto?: string;
@@ -17,12 +19,23 @@ export interface TradeCardProps {
 	};
 }
 
-const TradeCard: React.FC<TradeCardProps> = ({
+const calculateAge = (birthdate: string) => {
+	const today = new Date();
+	const birthDate = new Date(birthdate);
+	const ageInMilliseconds = today.getTime() - birthDate.getTime();
+	const ageInYears = Math.floor(
+		ageInMilliseconds / (365 * 24 * 60 * 60 * 1000)
+	);
+	return ageInYears;
+};
+
+export const TradeCard: React.FC<TradeCardProps> = ({
+	img,
 	name,
+	lastName,
+	birthDate,
 	gender,
-	species,
-	status,
-	image,
+
 	styles,
 }) => {
 	return (
@@ -31,19 +44,18 @@ const TradeCard: React.FC<TradeCardProps> = ({
 				<div className={styles?.tradePhoto}>
 					<img
 						className={styles?.styleImageProfile}
-						src={image}
+						src={img}
 						alt={`${name}`}
 					/>
 				</div>
 				<div className={styles?.tradeInfo}>
 					<p>Nombre: {name}</p>
+					<p>Apellido: {lastName}</p>
+					<p>Edad: {calculateAge(birthDate)}</p>
 					<p>Genero: {gender}</p>
-					{species && <p>Especie: {species}</p>}
-					<p>Estatus: {status}</p>
 				</div>
 			</div>
 		</>
 	);
 };
-
 export default TradeCard;
