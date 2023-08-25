@@ -11,6 +11,8 @@ interface RightColumnProps {
 }
 
 export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
+	console.log({ selectedPerson });
+
 	return (
 		<div className={styles.rightColumn}>
 			<div className={styles.topBanner}>
@@ -22,7 +24,7 @@ export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
 			</div>
 			<div className={styles.coverImage}>
 				{selectedPerson && (
-					<ProfileImages categoryId={Number(selectedPerson.category_id)} />
+					<ProfileImages categoryId={selectedPerson.category_id} />
 				)}
 			</div>
 
