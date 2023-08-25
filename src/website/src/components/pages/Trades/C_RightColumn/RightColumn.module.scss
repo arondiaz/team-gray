@@ -1,106 +1,118 @@
 //RightColumn.module.scss
+
 @import '../../../../stylesheets/variables.scss';
+@import '../../../../stylesheets/main.scss';
 
-/* Estilos del contenedor principal derecho */
 .rightColumn {
-  font-family: $Lexend;
-  width: 24rem;
-  height: 34rem;
-  border-radius: $border-md;
-  border: 1px solid $purple-soft;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #edebf2;
-  padding: 0.5rem;
-}
+	font-family: $Lexend;
+	width: 24rem;
+	height: 34rem;
+	border-radius: $border-md;
+	border: 1px solid $purple-soft;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	background: #edebf2;
 
-/* Estilos para la imagen de portada */
-.coverImage {
-  width: 23rem;
-  border: 1px solid $purple-soft;
-  border-radius: $border-md $border-md 0 0;
-}
+	.topBanner {
+		font-family: $Lexend;
+		color: $white;
+		font-size: 1rem;
+		display: flex;
+		justify-content: left;
+		align-items: center;
+		width: 24rem;
+		height: 2.5rem;
+		background-color: $purple-soft;
+		padding: 0.7rem;
+	}
 
-/* Estilos para la ficha de datos */
-.tradeCard {
-  border: 1px solid $grey-soft;
-  height: 7rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-}
-/* Estilos para el link */
-.uPlink {
-  margin-top: 0.5rem;
-  background: $purple-soft;
-  width: 10rem;
-  height: 2rem;
-  border-radius: 0 $border-md $border-md 0;
+	.uPlink {
+		margin-top: 0.5rem;
+		background: $purple-soft;
+		width: 10rem;
+		height: 2rem;
+		border-radius: 0 $border-md $border-md 0;
 
-  a {
-    padding: 0.5rem;
-    display: flex;
-    justify-content: center;
-    font-size: 12px;
-    text-transform: capitalize;
-    text-decoration: none;
-    color: $white;
+		a {
+			padding: 0.5rem;
+			display: flex;
+			justify-content: center;
+			font-size: 12px;
+			text-transform: capitalize;
+			text-decoration: none;
+			color: $white;
 
-    &:hover {
-      background: $purple-strong;
-      border-radius: 0 $border-md $border-md 0;
-      cursor: pointer;
-    }
-  }
-}
+			&:hover {
+				background: $purple-strong;
+				border-radius: 0 $border-md $border-md 0;
+				cursor: pointer;
+			}
+		}
+	}
+	.profileInfo {
+		margin-top: 0.5rem;
+	}
 
-/* Estilos para la imagen de perfil */
-.styleImageProfile {
-  height: 5.5rem;
-  border-radius: $border-md;
-  margin-top: -5.5rem;
-  margin-left: 15rem;
-  border-radius: $border-sm;
-  display: flex;
-  z-index: 150;
-}
+	.profileImage {
+		height: 5.5rem;
+		width: 5.5rem;
+		margin-top: 2.5rem;
+		position: absolute;
+		top: 3rem;
+		margin-left: 16rem;
+		display: flex;
+		background: $purple-strong;
+		border: 2px solid $purple-soft;
+		border-radius: 50%;
+		transform: translateY(180%);
+		z-index: 2;
+	}
+	.profileTable {
+		width: 100%;
+		height: 90%;
+		border-collapse: collapse;
+	}
 
-/* Estilos para la información de los trades */
-.tradeInfo {
-  margin-top: 1rem;
-  margin-left: 1rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  text-align: left;
-}
+	.profileTitle {
+		font-size: 0.8rem;
+		font-weight: bold;
+		color: $purple-strong;
+		text-align: left;
+		padding-left: 1rem;
+	}
+	.regularData {
+		font-size: 0.8rem;
+		font-weight: normal;
+	}
 
-.scrollableText {
-  background: #9189a7;
-  color: $white;
-  height: 7rem;
-  overflow-y: auto;
-  margin-top: 7rem;
-  padding: 0.8rem;
-  font-size: 12px;
-  line-height: 1rem;
-  text-align: left;
-  border-radius: 8px;
-  text-align: justify;
-}
+	.scrollableText {
+		background: $purple-strong;
+		color: $white;
+		height: 7rem;
+		overflow-y: auto;
+		padding: 0.8rem;
+		font-size: 12px;
+		line-height: 1rem;
+		text-align: left;
+		border-radius: 8px;
+		text-align: justify;
+	}
 
-.scrollableText::-webkit-scrollbar {
-  width: 0.7rem;
-  border: none;
-  border-radius: $border-md;
-  background-color: $white;
-}
+	.scrollableText::-webkit-scrollbar {
+		width: 0.7rem;
+		border: none;
+		border-radius: $border-md;
+		background-color: $white;
+	}
 
-.scrollableText::-webkit-scrollbar-thumb {
-  background-color: $purple-soft;
-  border-radius: $border-md;
-}
+	.scrollableText::-webkit-scrollbar-thumb {
+		background-color: $purple-soft;
+		border-radius: $border-md;
+	}
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: $purple-strong;
+	::-webkit-scrollbar-thumb:hover {
+		background-color: $purple-strong;
+	}
 }
