@@ -8,15 +8,14 @@ import jwt from "jsonwebtoken";
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AdminFilter implements IFilter {
-    private config: Configuration;
-    constructor(private readonly configBuilder: ConfigurationBuilder) {
-        this.config = configBuilder.build(Configuration);
-    }
+    constructor(private configBuilder: ConfigurationBuilder) {}
 
     async beforeExecute(httpContext: HttpContext): Promise<void> {
+        const config: Configuration = this.configBuilder.build(Configuration);
+
         try {
             const token = httpContext.request.header("x-auth");
-            const validate = jwt.verify(token, this.config.jwt.secret);
+            const validate = jwt.verify(token, config.jwt.secret);
 
             if (!token || !validate) {
                 httpContext.response.sendStatus(401);

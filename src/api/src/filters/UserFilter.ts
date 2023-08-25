@@ -10,24 +10,22 @@ import { AuthService } from "../service/AuthUser.service";
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class UserFilter implements IFilter {
-    private config: Configuration;
-    constructor(private readonly configBuilder: ConfigurationBuilder, private readonly service: AuthService) {
-        this.config = configBuilder.build(Configuration);
-    }
+    constructor(private readonly configBuilder: ConfigurationBuilder, private readonly service: AuthService) {}
 
     async beforeExecute(httpContext: HttpContext): Promise<void> {
+        const config = this.configBuilder.build(Configuration);
         const token = httpContext.request.header("x-auth");
-        const validate = jwt.verify(token, this.config.jwt.secret);
+        const validate = jwt.verify(token, config.jwt.secret);
 
         if (!token || !validate) {
             httpContext.response.sendStatus(401);
             return;
         }
 
-        // decoded payload from jwt token.
+        // Decoded payload from jwt token.
         const decodedPayload = jwt.decode(token) as IPayLoad;
 
-        // authenticating professional user requests.
+        // Authenticating professional user requests.
         await this.service.authenticate(decodedPayload.email);
     }
 
