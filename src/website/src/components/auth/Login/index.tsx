@@ -5,6 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import styles from './Login.module.scss';
 import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
+import { ILoginProfessionalUser } from '../../../interfaces/LoginProfessionalUser.interface';
 
 export const Login = () => {
   const {
@@ -17,11 +18,11 @@ export const Login = () => {
 
   const { result, apiPostRequest } = useAuth();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ILoginProfessionalUser) => {
     console.log('Data', data);
     await apiPostRequest({
       email: data.email,
-      password: data.email,
+      password: data.password,
     });
 
     if (result?.token) {
