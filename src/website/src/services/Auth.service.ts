@@ -1,7 +1,7 @@
 import { ApiService, apiServiceInstance } from './ApiService';
 import { Endpoint } from './endpoints';
 import { ILoginToken } from '../interfaces/LoginProfessionalUser.interface';
-import { ISignupProfessionalUser } from '../interfaces/SignupProfessionalUser.interface';
+import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export class AuthService {
   constructor(private apiService: ApiService) {}
@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   async ProfessionalUserRegister(
-    user: ISignupProfessionalUser
+    user: IProfessionalUser
   ): Promise<ILoginToken> {
     const response = await this.apiService.post<ILoginToken>(
       Endpoint.signupProfessionalUser,
