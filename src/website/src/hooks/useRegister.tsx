@@ -1,7 +1,7 @@
 import { authServiceInstance } from '../services/Auth.service';
 import { ILoginToken } from '../interfaces/LoginProfessionalUser.interface';
-import { ISignupProfessionalUser } from '../interfaces/SignupProfessionalUser.interface';
 import { useState } from 'react';
+import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export function useRegister() {
   const [result, setResult] = useState<ILoginToken>();
@@ -22,7 +22,7 @@ export function useRegister() {
     auth_number,
     img,
     category_id,
-  }: ISignupProfessionalUser) => {
+  }: IProfessionalUser) => {
     try {
       const data = await authServiceInstance.ProfessionalUserRegister({
         email,
