@@ -9,11 +9,8 @@ import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
-    private config: Configuration;
     public authUser: IProfessionalUser;
-    constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {
-        this.config = this.configBuilder.build(Configuration);
-    }
+    constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {}
 
     async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
@@ -135,6 +132,7 @@ export class AuthService {
     }
 
     async login(authUser: IProfessionalUser): Promise<IResponse> {
+        const config = this.configBuilder.build(Configuration);
         const user = await this.repo.getByEmail(authUser.email);
 
         if (!user) {
@@ -165,7 +163,7 @@ export class AuthService {
                     img: user.img,
                     category_id: user.category_id,
                 },
-                this.config.jwt.secret
+                config.jwt.secret
             );
 
             return {

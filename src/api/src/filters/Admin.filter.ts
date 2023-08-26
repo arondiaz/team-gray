@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AdminFilter implements IFilter {
-    constructor(private configBuilder: ConfigurationBuilder) {}
+    constructor(private readonly configBuilder: ConfigurationBuilder) {}
 
     async beforeExecute(httpContext: HttpContext): Promise<void> {
         const config: Configuration = this.configBuilder.build(Configuration);
