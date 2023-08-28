@@ -19,19 +19,13 @@ export const Login = () => {
   const { result, apiPostRequest } = useAuth();
 
   const onSubmit = async (data: ILoginProfessionalUser) => {
-    console.log('Data', data);
     await apiPostRequest({
       email: data.email,
       password: data.password,
     });
-
-    if (result?.token) {
-      localStorage.setItem('token', result.token);
-      //Redirect to trades after login
-      //route.push("/trades")
-    }
-    console.log('result', result);
   };
+
+  if (result) localStorage.setItem('token', result);
 
   return (
     <>
