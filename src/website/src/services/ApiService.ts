@@ -45,7 +45,7 @@ export class ApiService {
       queryString,
       body
     );
-    return (await response.json()) as T;
+    return (await response.text()) as T;
   }
 
   protected async put<T>(

@@ -20,6 +20,7 @@ export function useAuth() {
       console.log('Data', data);
       if (data) {
         setResult(data);
+        localStorage.setItem('token', result);
       }
     } catch (error) {
       console.log('Error', error);
