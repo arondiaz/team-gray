@@ -46,8 +46,8 @@ const GenderFilter: React.FC<GenderFilterProps> = ({
 			<label>
 				<input
 					type='radio'
-					value='Unknown'
-					checked={genderFilter === 'Unknown'}
+					value='Non-binary'
+					checked={genderFilter === 'Non-binary'}
 					onChange={handleGenderFilterChange}
 				/>
 				NB
