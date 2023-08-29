@@ -1,5 +1,4 @@
 export interface IProfessionalUser {
-  occupation?: string;
   id?: string;
   email: string;
   password?: string;

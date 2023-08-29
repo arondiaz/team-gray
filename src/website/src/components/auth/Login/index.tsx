@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styles from './Login.module.scss';
 import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
-import { ILoginProfessionalUser } from '../../../interfaces/LoginProfessionalUser.interface';
 import { useAuth } from '../../../hooks/useAuth';
 
 export const Login = () => {
