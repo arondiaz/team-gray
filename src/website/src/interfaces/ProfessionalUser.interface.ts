@@ -1,6 +1,5 @@
 export interface IProfessionalUser {
-  // todo: specify type
-  occupation?: any;
+  occupation?: string;
   id?: string;
   email: string;
   password?: string;

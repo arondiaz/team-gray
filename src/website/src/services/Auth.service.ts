@@ -6,7 +6,9 @@ import decodeToken from 'jwt-decode';
 
 export class AuthService {
   constructor(private apiService: ApiService) {}
-  async ProfessionalUserLogin(login: ILoginProfessionalUser): Promise<any> {
+  async ProfessionalUserLogin(
+    login: ILoginProfessionalUser
+  ): Promise<IProfessionalUser | undefined> {
     const response = await this.apiService.post<string>(
       Endpoint.loginProfessionalUser,
       undefined,
@@ -15,8 +17,9 @@ export class AuthService {
     if (response) {
       localStorage.setItem('token', response);
       const authUser = decodeToken(response);
-      return authUser;
+      return authUser as IProfessionalUser;
     }
+    return undefined;
   }
 
   async ProfessionalUserRegister(user: IProfessionalUser): Promise<string> {

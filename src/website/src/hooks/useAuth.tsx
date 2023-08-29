@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { authServiceInstance } from '../services/Auth.service';
+import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export function useAuth() {
-  const [user, setResult] = useState<string | undefined>();
+  const [user, setUser] = useState<IProfessionalUser>();
 
   const request = async ({
     email,
@@ -17,7 +18,7 @@ export function useAuth() {
         password,
       });
       if (data) {
-        setResult(data);
+        setUser(data);
       }
     } catch (error) {
       console.log('Error', error);
