@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { authServiceInstance } from '../services/Auth.service';
 
-export function useAuth() {
+export function useLogin() {
   const [result, setResult] = useState<string | undefined>();
 
-  const apiPostRequest = async ({
+  const request = async ({
     email,
     password,
   }: {
@@ -24,5 +24,5 @@ export function useAuth() {
     }
   };
 
-  return { result, apiPostRequest };
+  return { result, request };
 }

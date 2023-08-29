@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
+import { useLogin } from '../../../hooks/useLogin';
 import styles from './Login.module.scss';
 import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
@@ -16,10 +16,10 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const { result, apiPostRequest } = useAuth();
+  const { result, request } = useLogin();
 
   const onSubmit = async (data: ILoginProfessionalUser) => {
-    await apiPostRequest({
+    await request({
       email: data.email,
       password: data.password,
     });
