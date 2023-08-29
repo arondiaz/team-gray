@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.scss';
@@ -18,7 +18,7 @@ export const Login = () => {
 
   const { request } = useAuth();
 
-  const onSubmit = async (data: ILoginProfessionalUser) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     await request({
       email: data.email,
       password: data.password,
