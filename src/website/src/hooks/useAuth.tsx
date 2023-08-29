@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { authServiceInstance } from '../services/Auth.service';
 
-export function useLogin() {
-  const [result, setResult] = useState<string | undefined>();
+export function useAuth() {
+  const [user, setResult] = useState<string | undefined>();
 
   const request = async ({
     email,
@@ -24,5 +24,5 @@ export function useLogin() {
     }
   };
 
-  return { result, request };
+  return { user, request };
 }

@@ -1,10 +1,9 @@
 import { authServiceInstance } from '../services/Auth.service';
-import { ILoginToken } from '../interfaces/LoginProfessionalUser.interface';
 import { useState } from 'react';
 import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export function useRegister() {
-  const [result, setResult] = useState<ILoginToken>();
+  const [result, setResult] = useState<string>();
 
   const makeRegister = async ({
     email,

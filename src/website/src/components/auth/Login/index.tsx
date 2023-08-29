@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useLogin } from '../../../hooks/useLogin';
 import styles from './Login.module.scss';
 import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
 import { ILoginProfessionalUser } from '../../../interfaces/LoginProfessionalUser.interface';
+import { useAuth } from '../../../hooks/useAuth';
 
 export const Login = () => {
   const {
@@ -16,7 +16,7 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const { result, request } = useLogin();
+  const { request } = useAuth();
 
   const onSubmit = async (data: ILoginProfessionalUser) => {
     await request({
@@ -24,8 +24,6 @@ export const Login = () => {
       password: data.password,
     });
   };
-
-  if (result) localStorage.setItem('token', result);
 
   return (
     <>
