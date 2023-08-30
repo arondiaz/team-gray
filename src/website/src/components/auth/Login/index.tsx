@@ -2,11 +2,12 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.scss';
-import BgLayout from '../../shared/BackgroundLayout';
 import BgOverlay from '../../shared/BackgroundOverly';
 import { useAuth } from '../../../hooks/useAuth';
+import { useState } from 'react';
 
 export const Login = () => {
+  const [redirectTo, setRedirectTo] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -22,6 +23,10 @@ export const Login = () => {
       email: data.email,
       password: data.password,
     });
+    setRedirectTo('up-profile');
+    if (redirectTo) window.location.href = redirectTo;
+
+    console.log(request);
   };
 
   return (
@@ -107,7 +112,6 @@ export const Login = () => {
         </form>
       </div>
       <BgOverlay />
-      <BgLayout />
     </>
   );
 };

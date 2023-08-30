@@ -1,3 +1,4 @@
+import { tr } from 'date-fns/locale';
 import { authServiceInstance } from '../services/Auth.service';
 
 export function useAuth() {
@@ -13,8 +14,10 @@ export function useAuth() {
         email,
         password,
       });
+      return true;
     } catch (error) {
       console.log('Error', error);
+      return false;
     }
   };
 
