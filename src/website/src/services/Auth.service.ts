@@ -2,34 +2,33 @@ import { ApiService, apiServiceInstance } from './ApiService';
 import { Endpoint } from './endpoints';
 import { ILoginProfessionalUser } from '../interfaces/LoginProfessionalUser.interface';
 import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
-import decodeToken from 'jwt-decode';
 
 export class AuthService {
   constructor(private apiService: ApiService) {}
   async ProfessionalUserLogin(
     login: ILoginProfessionalUser
-  ): Promise<IProfessionalUser | undefined> {
-    const response = await this.apiService.post<string>(
+  ): Promise<string | undefined> {
+    const response = await this.apiService.post(
       Endpoint.loginProfessionalUser,
       undefined,
       JSON.stringify(login)
     );
-    if (response) {
-      localStorage.setItem('token', response);
-      const authUser = decodeToken(response);
-      return authUser as IProfessionalUser;
+
+    if (response.status === 200) {
+      const token = (await response.text()) as string;
+      localStorage.setItem('token', token);
     }
     return undefined;
   }
 
   async ProfessionalUserRegister(user: IProfessionalUser): Promise<string> {
-    const response = await this.apiService.post<string>(
+    const response = await this.apiService.post(
       Endpoint.signupProfessionalUser,
       undefined,
       JSON.stringify(user)
     );
 
-    return response;
+    return (await response.text()) as string;
   }
 }
 

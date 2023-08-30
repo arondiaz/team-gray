@@ -1,10 +1,10 @@
 import {
   AddHeaderInterceptor,
   HttpClient,
+  HttpResponse,
 } from '@miracledevs/paradigm-web-fetch';
 import { QueryString } from '@miracledevs/paradigm-web-fetch';
 import { environment } from './environment';
-
 export class ApiService {
   private baseUrl = environment.baseUrl;
   private readonly httpClient: HttpClient;
@@ -35,17 +35,18 @@ export class ApiService {
     return (await response.json()) as T;
   }
 
-  async post<T>(
+  async post(
     url?: string,
     queryString?: QueryString,
     body?: BodyInit
-  ): Promise<T> {
+  ): Promise<HttpResponse> {
     const response = await this.httpClient.post(
       `${this.baseUrl}/${url}`,
       queryString,
       body
     );
-    return (await response.text()) as T;
+
+    return response as HttpResponse;
   }
 
   protected async put<T>(
