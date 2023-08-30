@@ -5,15 +5,10 @@ import { IProfessionalUser } from '../../../interfaces/ProfessionalUser.interfac
 
 export const BgLayout: React.FC = () => {
   const [user, setUser] = useState<IProfessionalUser>();
-
   useEffect(() => {
-    if (localStorage.length > 0) {
-      const token = localStorage.getItem('token');
-
-      if (token) setUser(decodeToken(token as string) as IProfessionalUser);
-    } else {
-      return;
-    }
+    const token = localStorage.getItem('token');
+    if (!token) location.href = 'login';
+    setUser(decodeToken(token as string) as IProfessionalUser);
   }, []);
 
   return (

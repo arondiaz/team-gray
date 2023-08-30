@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import styles from './Login.module.scss';
 import BgOverlay from '../../shared/BackgroundOverly';
 import { useAuth } from '../../../hooks/useAuth';
-import { useState } from 'react';
 
 export const Login = () => {
-  const [redirectTo, setRedirectTo] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -19,14 +17,13 @@ export const Login = () => {
   const { request } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    await request({
+    const petition = await request({
       email: data.email,
       password: data.password,
     });
-    setRedirectTo('up-profile');
-    if (redirectTo) window.location.href = redirectTo;
 
-    console.log(request);
+    // todo handle status in service
+    if (petition?.status === 200) window.location.href = 'up-profile';
   };
 
   return (

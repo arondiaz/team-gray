@@ -6,7 +6,7 @@ import {
 import { QueryString } from '@miracledevs/paradigm-web-fetch';
 import { environment } from './environment';
 export class ApiService {
-  private baseUrl = environment.baseUrl;
+  private readonly baseUrl = environment.baseUrl;
   private readonly httpClient: HttpClient;
 
   constructor() {

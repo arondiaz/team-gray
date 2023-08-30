@@ -1,4 +1,3 @@
-import { tr } from 'date-fns/locale';
 import { authServiceInstance } from '../services/Auth.service';
 
 export function useAuth() {
@@ -10,14 +9,13 @@ export function useAuth() {
     password: string;
   }) => {
     try {
-      await authServiceInstance.ProfessionalUserLogin({
+      const data = await authServiceInstance.ProfessionalUserLogin({
         email,
         password,
       });
-      return true;
+      return data;
     } catch (error) {
       console.log('Error', error);
-      return false;
     }
   };
 

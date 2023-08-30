@@ -2,12 +2,13 @@ import { ApiService, apiServiceInstance } from './ApiService';
 import { Endpoint } from './endpoints';
 import { ILoginProfessionalUser } from '../interfaces/LoginProfessionalUser.interface';
 import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
+import { HttpResponse } from '@miracledevs/paradigm-web-fetch';
 
 export class AuthService {
   constructor(private apiService: ApiService) {}
   async ProfessionalUserLogin(
     login: ILoginProfessionalUser
-  ): Promise<string | undefined> {
+  ): Promise<HttpResponse | undefined> {
     const response = await this.apiService.post(
       Endpoint.loginProfessionalUser,
       undefined,
@@ -17,8 +18,8 @@ export class AuthService {
     if (response.status === 200) {
       const token = (await response.text()) as string;
       localStorage.setItem('token', token);
+      return response;
     }
-    return undefined;
   }
 
   async ProfessionalUserRegister(user: IProfessionalUser): Promise<string> {
