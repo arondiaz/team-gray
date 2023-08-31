@@ -14,7 +14,7 @@ export const ProfessionalUserProfile = () => {
   return (
     <>
       <h1>
-        Hola {user?.name} {user?.category_id}
+        Hola {user?.name} {user?.category_id} {user?.about_me}
       </h1>
       <BgLayout />
     </>

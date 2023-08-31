@@ -5,7 +5,7 @@ import { ApiService, apiServiceInstance } from './ApiService';
 const url = environment.baseUrl;
 
 export class ProfessionalUserService {
-  constructor(private apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) {}
   async getProfessionalUserByCategory(category_id: string) {
     const request = await this.apiService.getById(
       category_id,

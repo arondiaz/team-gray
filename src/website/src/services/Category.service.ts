@@ -3,7 +3,7 @@ import { ApiService, apiServiceInstance } from './ApiService';
 import { Endpoint } from './endpoints';
 
 export class CategoryService {
-  constructor(private apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) {}
 
   // Method to get all categories.
   async getAll(): Promise<ICategory[]> {

@@ -5,7 +5,7 @@ import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 import { HttpResponse } from '@miracledevs/paradigm-web-fetch';
 
 export class AuthService {
-  constructor(private apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) {}
   async ProfessionalUserLogin(
     login: ILoginProfessionalUser
   ): Promise<HttpResponse | undefined> {
