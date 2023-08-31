@@ -1,12 +1,12 @@
 @import '../../../stylesheets/variables.scss';
 
-.containersecondview {
+.containeredit {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   font-family: $Lexend;
 
-  .formcontainersv {
+  .formeditcontainer {
     width: 60rem;
     height: 35rem;
     color: $grey-strong;
@@ -17,23 +17,23 @@
     z-index: 95;
   }
 
-  .formcontainersv .inputboxsv {
+  .formeditcontainer .inputbox {
     height: 1.8rem;
     margin: 1rem 0;
   }
 
-  .registerformsv {
+  .editform {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
   }
 
-  .inputuploadsv {
+  .inputupload {
     position: relative;
   }
 
-  .imageprofilesv {
+  .imageprofile {
     position: absolute;
     bottom: -5rem;
     left: 23rem;
@@ -41,7 +41,7 @@
     border: 0.2rem solid $purple-strong;
   }
 
-  .inputuploadsv .round {
+  .inputupload .round {
     position: absolute;
     bottom: -5rem;
     left: 26rem;
@@ -54,15 +54,15 @@
     overflow: hidden;
   }
 
-  .inputuploadsv .round input[type='file'] {
+  .inputupload .round input[type='file'] {
     position: absolute;
     transform: scale(2);
     opacity: 0;
   }
 
-  .inputboxsv input[type='text'],
-  .inputboxsv input[type='number'],
-  .inputboxsv input[type='date'] {
+  .inputbox input[type='text'],
+  .inputbox input[type='number'],
+  .inputbox input[type='date'] {
     color: $grey-strong;
     padding: 1rem 1rem;
     font-size: 1rem;
@@ -81,12 +81,12 @@
     -moz-appearance: none;
   }
 
-  .labelsv {
+  .label {
     margin-left: 1rem;
     font-size: 1.1rem;
   }
 
-  .inputcontainersv {
+  .inputcontainer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -94,7 +94,7 @@
     margin-top: 2rem;
   }
 
-  .inputcontainersv input {
+  .inputcontainer input {
     margin: 1rem;
     border: none;
     border-bottom: 1px solid $grey-strong;
@@ -102,7 +102,7 @@
     outline: none;
   }
 
-  .inputboxsv .selectsv {
+  .inputbox .select {
     color: white;
     font-size: 1rem;
     height: 1.7rem;
@@ -125,69 +125,14 @@
     margin: 0;
   }
 
-  .btnsignupcontainer {
-    position: relative;
-  }
-
-  .btnsignup {
-    position: absolute;
-    outline: none;
-    top: 1rem;
-    right: 22rem;
-    border: none;
-    outline: none;
-    background-color: $purple-soft;
-    color: $white;
-    font-size: 0.9rem;
-    font-weight: bold;
-    width: 10rem;
-    height: 2rem;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease-out;
-    letter-spacing: 0.05rem;
-    cursor: pointer;
-  }
-
-  .btnsignup:hover {
-    background-color: $purple-strong;
-  }
-
-  .btnsignupdisabled {
-    background-color: #dddddd;
-  }
-
-  .btnsignupdisabled:hover {
-    background-color: #dddddd;
-    cursor: not-allowed;
-  }
-
-  .backarrowcontainersv {
-    cursor: pointer;
-    position: relative;
-  }
-
-  .backarrowcontainersv svg {
-    position: absolute;
-    top: 1rem;
-    right: 0.5rem;
-    color: $purple-soft;
-    width: 2rem;
-    height: 2rem;
-    transition: color 0.3s ease-in-out;
-
-    &:hover {
-      color: $purple-strong;
-    }
-  }
-
-  .errorcontainersv {
+  .errorcontainer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -1rem;
   }
 
-  .errorcontainersv span {
+  .errorcontainer span {
     background-color: $error-soft;
     color: $error-strong;
     font-size: 0.8rem;

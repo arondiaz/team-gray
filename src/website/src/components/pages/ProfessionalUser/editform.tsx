@@ -24,16 +24,16 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
 
   return (
     <>
-      <div className={styles.containersecondview}>
-        <div className={styles.formcontainersv}>
+      <div className={styles.containeredit}>
+        <div className={styles.formeditcontainer}>
           <form
-            className={styles.registerformsv}
+            className={styles.editform}
             onSubmit={handleSubmit(onSubmitView2)}>
-            <div className={styles.inputuploadsv}>
+            <div className={styles.inputupload}>
               <img
                 src="src\assets\images\Signup\profile.webp"
                 width={80}
-                className={styles.imageprofilesv}
+                className={styles.imageprofile}
                 alt=""
               />
 
@@ -43,9 +43,9 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
               </div>
             </div>
 
-            <div className={styles.inputcontainersv}>
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="name">
+            <div className={styles.inputcontainer}>
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="name">
                   Nombre *
                 </label>
                 <input
@@ -59,14 +59,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.name && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.name?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="tel">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="tel">
                   Celular *
                 </label>
                 <input
@@ -86,14 +86,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.tel && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.tel?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="last_name">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="last_name">
                   Apellido *
                 </label>
                 <input
@@ -108,14 +108,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                 />
 
                 {errors.last_name && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.last_name?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="city">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="city">
                   Ciudad *
                 </label>
                 <input
@@ -129,14 +129,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.city && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.city?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="dni">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="dni">
                   DNI *
                 </label>
                 <input
@@ -154,14 +154,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.dni && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.dni?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="province">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="province">
                   Provincia *
                 </label>
                 <input
@@ -175,14 +175,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.province && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.province?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="birth_date">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="birth_date">
                   Fecha de nacimiento *
                 </label>
                 <input
@@ -218,14 +218,14 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.birth_date && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.birth_date?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="direction">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="direction">
                   Dirección *
                 </label>
                 <input
@@ -235,17 +235,18 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.direction && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.direction?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="gender">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="gender">
                   Género *
                 </label>
                 <select
+                  className={styles.select}
                   {...register('gender', {
                     required: 'El género es obligatorio',
                   })}>
@@ -255,26 +256,26 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   <option value={Gender.NonBinary}>No binarie</option>
                 </select>
                 {errors.gender && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.gender?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="category_id">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="category_id">
                   Categoría *
                 </label>
                 <Categories register={register} />
                 {errors.category_id && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.category_id?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="auth_number">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="auth_number">
                   N° Habilitación
                 </label>
                 <input
@@ -287,30 +288,26 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   })}
                 />
                 {errors.auth_number && (
-                  <div className={styles.errorcontainersv}>
+                  <div className={styles.errorcontainer}>
                     <span>{errors?.auth_number?.message?.toString()}</span>
                   </div>
                 )}
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="link">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="link">
                   Link
                 </label>
                 <input type="text" />
               </div>
 
-              <div className={styles.inputboxsv}>
-                <label className={styles.labelsv} htmlFor="about_me">
+              <div className={styles.inputbox}>
+                <label className={styles.label} htmlFor="about_me">
                   Sobre mí
                 </label>
                 <input type="text" />
               </div>
             </div>
-
-            {/* <div >
-                <FaArrowAltCircleLeft onClick={handleView} />
-              </div> */}
 
             <div>
               <button
