@@ -43,6 +43,10 @@
   background-color: #6e629b;
 }
 
+.titledata {
+  margin: 0.5rem 0;
+}
+
 .containerbtn {
   display: flex;
   margin: 1rem 0rem;
@@ -66,7 +70,7 @@
 }
 
 .deletebtn {
-  background-color: rgb(182, 9, 9);
+  background-color: rgb(172, 9, 9);
 }
 
 .deletebtn:hover {
@@ -77,6 +81,20 @@
 //Modal Edit
 
 .modaleditform {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//
+//Modal Delete
+.modaldelete {
   position: fixed;
   top: 0;
   left: 0;

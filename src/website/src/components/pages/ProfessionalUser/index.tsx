@@ -6,9 +6,11 @@ import { Navigate } from 'react-router-dom';
 import styles from './ProfessionalUser.module.scss';
 import ProfileImages from '../Trades/assets/ProfileImage';
 import { Editform } from './editform';
+import { Deleteprofile } from './deleteprofile';
 
 export const ProfessionalUserProfile = () => {
   const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const openEditModal = () => {
     setEditModal(true);
@@ -16,6 +18,14 @@ export const ProfessionalUserProfile = () => {
 
   const closeEditModal = () => {
     setEditModal(false);
+  };
+
+  const openDeleteModal = () => {
+    setDeleteModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
   };
 
   const [user, setUser] = useState<IProfessionalUser>();
@@ -38,23 +48,23 @@ export const ProfessionalUserProfile = () => {
           </h3>
           <h3 className={styles.titledata}>
             Nombre:
-            <p className={styles.data}>{user?.name}</p>
+            <span className={styles.data}> {user?.name}</span>
           </h3>
           <h3 className={styles.titledata}>
-            Edad: <p className={styles.data}>{user?.age}</p>
+            Edad: <span className={styles.data}>{user?.age}</span>
           </h3>
           <h3 className={styles.titledata}>
-            Género: <p className={styles.data}>{user?.gender}</p>
+            Género: <span className={styles.data}>{user?.gender}</span>
           </h3>
           <h3 className={styles.titledata}>
             Número de habilitación:{' '}
-            <p className={styles.data}>{user?.auth_number}</p>
+            <span className={styles.data}>{user?.auth_number}</span>
           </h3>
           <h3 className={styles.titledata}>
-            Teléfono: <p className={styles.data}> {user?.tel}</p>
+            Teléfono: <span className={styles.data}> {user?.tel}</span>
           </h3>
           <h3 className={styles.titledata}>
-            Sobre mí: <p className={styles.data}>{user?.about_me}</p>
+            Sobre mí: <span className={styles.data}>{user?.about_me}</span>
           </h3>
         </div>
       </div>
@@ -64,7 +74,9 @@ export const ProfessionalUserProfile = () => {
           onClick={openEditModal}>
           Editar
         </button>
-        <button className={`${styles.deletebtn} ${styles.btn}`}>
+        <button
+          className={`${styles.deletebtn} ${styles.btn}`}
+          onClick={openDeleteModal}>
           Eliminar
         </button>
       </div>
@@ -72,6 +84,12 @@ export const ProfessionalUserProfile = () => {
       {editModal && (
         <div className={styles.modaleditform}>
           <Editform onCloseForm={closeEditModal} />
+        </div>
+      )}
+
+      {deleteModal && (
+        <div className={styles.modaldelete}>
+          <Deleteprofile onCloseDelete={closeDeleteModal} />
         </div>
       )}
 
