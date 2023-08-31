@@ -1,12 +1,11 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import BgOverlay from '../../shared/BackgroundOverly';
 import { useAuth } from '../../../hooks/useAuth';
 
 export const Login = () => {
-  if (localStorage.length > 0) window.location.href = 'profile';
   const {
     register,
     handleSubmit,
@@ -23,6 +22,9 @@ export const Login = () => {
       password: data.password,
     });
   };
+
+  const token = localStorage.getItem('token');
+  if (token) return <Navigate to="/profile" />;
 
   return (
     <>
