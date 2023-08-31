@@ -37,7 +37,7 @@ export function Trades() {
         <div>
           <RightColumn selectedPerson={selectedPerson} />
         </div>
-        {/*<BgLayout />*/}
+        <BgLayout />
       </div>
     </>
   );

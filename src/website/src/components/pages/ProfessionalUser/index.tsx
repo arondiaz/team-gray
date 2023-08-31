@@ -1,14 +1,21 @@
-// import { useForm } from 'react-hook-form';
-// import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
-// import { Categories } from '../../Categories';
-// import styles from './ProfessionalUser.module.scss';
-// import BgOverlay from '../../shared/BackgroundOverly';
 import BgLayout from '../../shared/BackgroundLayout';
-// import { Link } from 'react-router-dom';
+import decodeToken from 'jwt-decode';
+import { IProfessionalUser } from '../../../interfaces/ProfessionalUser.interface';
+import { useEffect, useState } from 'react';
 
-export const UPProfile = () => {
+export const ProfessionalUserProfile = () => {
+  const [user, setUser] = useState<IProfessionalUser>();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) location.href = 'login';
+    setUser(decodeToken(token as string) as IProfessionalUser);
+  }, []);
+
   return (
     <>
+      <h1>
+        Hola {user?.name} {user?.category_id}
+      </h1>
       <BgLayout />
     </>
   );

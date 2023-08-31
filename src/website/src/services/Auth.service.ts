@@ -18,8 +18,8 @@ export class AuthService {
     if (response.status === 200) {
       const token = (await response.text()) as string;
       localStorage.setItem('token', token);
-      return response;
     }
+    return response;
   }
 
   async ProfessionalUserRegister(user: IProfessionalUser): Promise<string> {

@@ -6,6 +6,7 @@ import BgOverlay from '../../shared/BackgroundOverly';
 import { useAuth } from '../../../hooks/useAuth';
 
 export const Login = () => {
+  if (localStorage.length > 0) window.location.href = 'profile';
   const {
     register,
     handleSubmit,
@@ -17,13 +18,10 @@ export const Login = () => {
   const { request } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    const petition = await request({
+    await request({
       email: data.email,
       password: data.password,
     });
-
-    // todo handle status in service
-    if (petition?.status === 200) window.location.href = 'up-profile';
   };
 
   return (
