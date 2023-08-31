@@ -13,6 +13,7 @@
     "@miracledevs/paradigm-web-fetch": "^1.0.4",
     "date-fns": "^2.30.0",
     "icons": "^1.0.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
