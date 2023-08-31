@@ -43,7 +43,7 @@ export const About = () => {
         </div>
       </section>
       <div className={styles.text}>{text}</div>
-      <BgLayout />
+      {/*<BgLayout />*/}
     </div>
   );
 };

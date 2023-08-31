@@ -62,7 +62,7 @@ export const PrivacyPolicy = () => {
           experiencia de nuestros usuarios
         </p>
       </div>
-      <BgLayout />
+      {/*<BgLayout />*/}
     </>
   );
 };
