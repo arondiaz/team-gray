@@ -35,6 +35,7 @@ export const ProfessionalUserProfile = () => {
   }, [token]);
   if (!token) return <Navigate to="/login" />;
 
+  console.log(user);
   return (
     <div className={styles.containerprofile}>
       <h1 className={styles.title}>Así se muestra tu perfil</h1>
@@ -43,29 +44,55 @@ export const ProfessionalUserProfile = () => {
           <ProfileImages categoryId={user?.category_id || '1'} />
         </div>
         <div className={styles.datacontainer}>
-          <h3 className={`${styles.titledata} ${styles.link}`}>
-            Link: <p className={styles.data}>{user?.link}</p>
-          </h3>
-          <h3 className={styles.titledata}>
-            Nombre:
-            <span className={styles.data}> {user?.name}</span>
-          </h3>
-          <h3 className={styles.titledata}>
-            Edad: <span className={styles.data}>{user?.age}</span>
-          </h3>
-          <h3 className={styles.titledata}>
-            Género: <span className={styles.data}>{user?.gender}</span>
-          </h3>
-          <h3 className={styles.titledata}>
-            Número de habilitación:{' '}
-            <span className={styles.data}>{user?.auth_number}</span>
-          </h3>
-          <h3 className={styles.titledata}>
-            Teléfono: <span className={styles.data}> {user?.tel}</span>
-          </h3>
-          <h3 className={styles.titledata}>
-            Sobre mí: <span className={styles.data}>{user?.about_me}</span>
-          </h3>
+          <div className={styles.section}>
+            <h3 className={`${styles.titledata} ${styles.link}`}>
+              Link:{' '}
+              <span className={`${styles.data} ${styles.linkspan} `}>
+                {user?.link}
+              </span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Nombre:
+              <span className={styles.data}>
+                {' '}
+                {user?.name} {user?.last_name}
+              </span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Edad: <span className={styles.data}>{user?.age}</span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Género: <span className={styles.data}>{user?.gender}</span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Número de habilitación:{' '}
+              <span className={styles.data}>{user?.auth_number}</span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Teléfono: <span className={styles.data}> {user?.tel}</span>
+            </h3>
+          </div>
+
+          <div className={styles.section}>
+            <h3 className={styles.titledata}>
+              Sobre mí: <span className={styles.data}>{user?.about_me}</span>
+            </h3>
+          </div>
         </div>
       </div>
       <div className={styles.containerbtn}>
