@@ -442,14 +442,14 @@ export const Signup = () => {
                     <label className={styles.labelsv} htmlFor="link">
                       Link
                     </label>
-                    <input type="text" />
+                    <input type="text" {...register('link', {})} />
                   </div>
 
                   <div className={styles.inputboxsv}>
                     <label className={styles.labelsv} htmlFor="about_me">
                       Sobre mí
                     </label>
-                    <input type="text" />
+                    <input type="text" {...register('about_me', {})} />
                   </div>
                 </div>
 
