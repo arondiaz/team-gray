@@ -24,13 +24,13 @@ export class AdminService {
                 code: 409,
             };
         } else {
-            await this.repo.insertOne(category);
-            return {
-                error: false,
-                message: "Category created",
-                code: 201,
-            };
+            const response = await this.repo.insertOne(category);
+            if (response)
+                return {
+                    error: false,
+                    message: "Category created",
+                    code: 201,
+                };
         }
     }
 }
-
