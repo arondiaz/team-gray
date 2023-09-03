@@ -98,38 +98,7 @@ paths:
                     schema:
                         type: string
                 '201':
-                    description: 'Professional User created'
-                    schema:
-                        type: string
-                '400':
-                    description: 'Bad request'
-                    schema:
-                        type: string
-                '500':
-                    description: 'Error server'
-                    schema:
-                        type: string
-            description: ""
-            tags:
-                - AuthUser
-            consumes:
-                - application/json
-            parameters:
-                -
-                    description: "   * This is an endpoint to register as a professional user.\n\n  Example:\n\n     \"email\": \"juan@gmail.com\",\n     \"password\": \"1234\",\n     \"name\": \"Juan\",\n     \"last_name\": \"Lopez\",\n     \"dni\": \"34614738\",\n     \"province\": \"Santa Fe\",\n     \"city\": \"Rosario\",\n     \"tel\": \"2477434454\",\n     \"link\": \"hi-world.com.ar\",\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\n     \"gender\": \"Male\",\n     \"birth_date\": \"1990-01-03\",\n     \"auth_number\": \"12312da134123QWw\",\n     \"img\": \"photo.png\",\n     \"category_id\": \"3\""
-                    in: body
-                    name: authUser
-                    required: true
-                    schema:
-                        $ref: '#/definitions/IProfessionalUser'
-    /api/auth/login:
-        post:
-            operationId: AuthLogin
-            produces:
-                - text/html
-            responses:
-                '200':
-                    description: Success
+                    description: 'Created user'
                     schema:
                         type: string
                 '400':
@@ -147,7 +116,42 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: "  * This is an endpoint to login as a professional user. The user will receive an authentication\n    token to be validated when making requests.\n\n  Example:\n\n     \"email\": \"juan@gmail.com\",\n     \"password\": \"1234\""
+                    description: "   * This is an endpoint to register as a professional user.\r\n\r\n  Example:\r\n\r\n     \"email\": \"juan@gmail.com\",\r\n     \"password\": \"12345678\",\r\n     \"name\": \"Juan\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"34614738\",\r\n     \"province\": \"Santa Fe\",\r\n     \"city\": \"Rosario\",\r\n     \"tel\": \"2477434454\",\r\n     \"link\": \"hi-world.com.ar\",\r\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1990-01-03\",\r\n     \"auth_number\": \"12312da134123QWw\",\r\n     \"img\": \"photo.png\",\r\n     \"category_id\": \"3\""
+                    in: body
+                    name: authUser
+                    required: true
+                    schema:
+                        $ref: '#/definitions/IProfessionalUser'
+    /api/auth/login:
+        post:
+            operationId: AuthLogin
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        type: string
+                '401':
+                    description: 'Invalid credentials'
+                    schema:
+                        type: string
+                '403':
+                    description: 'Disabled account'
+                    schema:
+                        type: string
+                '404':
+                    description: 'The user does not exist in the database'
+                    schema:
+                        type: string
+            description: ""
+            tags:
+                - AuthUser
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: "  * This is an endpoint to login as a professional user. The user will receive an authentication\r\n    token to be validated when making requests.\r\n\r\n  Example:\r\n\r\n     \"email\": \"juan@gmail.com\",\r\n     \"password\": \"12345678\""
                     in: body
                     name: authUser
                     required: true
@@ -212,7 +216,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: " * This endpoint is implemented to add categories by an authenticated administrator. \n For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from \n the .env file in the signature.\n\n Example:\n  \n     \"name\": \"Cerrajero\""
+                    description: " * This endpoint is implemented to add categories by an authenticated administrator. \r\n For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from \r\n the .env file in the signature.\r\n\r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\""
                     in: body
                     name: category
                     required: true
@@ -267,7 +271,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: "* This endpoint is for editing an account by an authenticated professional user.\n\nExample: \n\n     \"name\": \"Juan Pedro\",\n     \"last_name\": \"Lopez\",\n     \"dni\": \"34614738\",\n     \"province\": \"Santa Fe\",\n     \"city\": \"Franck\",\n     \"tel\": \"0341434454\",\n     \"link\": \"hi-world.com.ar\",\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\n     \"gender\": \"Male\",\n     \"birth_date\": \"1990-01-03\",\n     \"auth_number\": \"12312da134123QWw\",\n     \"img\": \"photo.png\",\n     \"category_id\": \"3\""
+                    description: "* This endpoint is for editing an account by an authenticated professional user.\r\n\r\nExample: \r\n\r\n     \"name\": \"Juan Pedro\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"34614738\",\r\n     \"province\": \"Santa Fe\",\r\n     \"city\": \"Franck\",\r\n     \"tel\": \"0341434454\",\r\n     \"link\": \"hi-world.com.ar\",\r\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1990-01-03\",\r\n     \"auth_number\": \"12312da134123QWw\",\r\n     \"img\": \"photo.png\",\r\n     \"category_id\": \"3\""
                     in: body
                     name: professionalUser
                     required: true

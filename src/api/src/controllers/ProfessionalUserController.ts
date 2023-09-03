@@ -28,7 +28,7 @@ export class ProfessionalUserController extends ApiController {
     @GET
     @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(404, "There are no registered users")
-    @Response<string>(500, "No connection to database")
+    @Response<string>(500, "Server error")
     @Action({ route: "/" })
     async get(): Promise<IProfessionalUser[]> {
         const response = await this.service.getAll();
@@ -49,7 +49,7 @@ export class ProfessionalUserController extends ApiController {
     @Path(":id")
     @Response<IProfessionalUser>(200, "Success")
     @Response<string>(404, "User not found")
-    @Response<string>(500, "No connection to database")
+    @Response<string>(500, "Server error")
     @Action({ route: "/:id" })
     async getById(@PathParam("id") id: number): Promise<IProfessionalUser> {
         return await this.repo.getById(id);
@@ -65,7 +65,7 @@ export class ProfessionalUserController extends ApiController {
     @Path("/category/:category_id")
     @Response<IProfessionalUser[]>(200, "Success")
     @Response<string>(404, "There are no professional users registered with that category")
-    @Response<string>(500, "No connection to database")
+    @Response<string>(500, "Server error")
     @Action({ route: "/category/:category_id" })
     async getByCategory(@PathParam("category_id") category: number): Promise<IProfessionalUser[]> {
         const response = await this.service.findByCategory(category);
@@ -102,7 +102,7 @@ export class ProfessionalUserController extends ApiController {
     @PUT
     @Security("x-auth")
     @Response<string>(200, "Updated user")
-    @Response<string>(404, "User not found")
+    @Response<string>(500, "Server error")
     @Action({ route: "/", fromBody: true, method: HttpMethod.PUT, filters: [UserFilter] })
     async editUser(professionalUser: IProfessionalUser): Promise<string> {
         const response = await this.service.edit(professionalUser);
@@ -128,7 +128,7 @@ export class ProfessionalUserController extends ApiController {
     @Path("disable")
     @Action({ route: "/disable", method: HttpMethod.DELETE, filters: [UserFilter] })
     @Response<string>(200, "The account has been disabled")
-    @Response<string>(500, "The user could not be disabled")
+    @Response<string>(500, "Server error")
     async disableAccount(): Promise<string> {
         const response = await this.service.changeStateToFalse(this.authService.authUser);
         if (response.error) {

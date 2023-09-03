@@ -20,7 +20,7 @@ export class AuthController extends ApiController {
      *   Example:
      * 
             "email": "juan@gmail.com",
-            "password": "1234",
+            "password": "12345678",
             "name": "Juan",
             "last_name": "Lopez",
             "dni": "34614738",
@@ -40,9 +40,9 @@ export class AuthController extends ApiController {
 
     @POST
     @Path("/signup")
-    @Response<string>(201, "Professional User created")
+    @Response<string>(201, "Created user")
     @Response<string>(400, "Bad request")
-    @Response<string>(500, "Error server")
+    @Response<string>(500, "Server error")
     @Action({ route: "/signup", fromBody: true })
     async post(authUser: IProfessionalUser): Promise<string> {
         const user = await this.service.register(authUser);
@@ -65,15 +65,16 @@ export class AuthController extends ApiController {
      *   Example:
      * 
             "email": "juan@gmail.com",
-            "password": "1234"        
+            "password": "12345678"        
 
      * @returns
      */
 
     @POST
     @Path("/login")
-    @Response<string>(200, "Success")
-    @Response<string>(400, "Bad request")
+    @Response<string>(401, "Invalid credentials")
+    @Response<string>(403, "Disabled account")
+    @Response<string>(404, "The user does not exist in the database")
     @Response<string>(500, "Server error")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
     async login(authUser: IProfessionalUser): Promise<string> {
