@@ -35,7 +35,29 @@ export const ProfessionalUserProfile = () => {
   }, [token]);
   if (!token) return <Navigate to="/login" />;
 
-  console.log(user);
+  //Calculate age of user
+  const birth_date = user?.birth_date;
+
+  function calculateAge(birth_date: any) {
+    const birthDateObj = new Date(birth_date);
+    const today = new Date();
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDifference = today.getMonth() - birthDateObj.getMonth();
+
+    if (monthDifference < 0) {
+      age -= 1;
+    }
+
+    if (monthDifference === 0 && today.getDate() < birthDateObj.getDate()) {
+      age -= 1;
+    }
+
+    return age;
+  }
+
+  const age = calculateAge(birth_date);
+
+  // console.log(user);
   return (
     <div className={styles.containerprofile}>
       <h1 className={styles.title}>Así se muestra tu perfil</h1>
@@ -65,7 +87,7 @@ export const ProfessionalUserProfile = () => {
 
           <div className={styles.section}>
             <h3 className={styles.titledata}>
-              Edad: <span className={styles.data}>{user?.age}</span>
+              Edad: <span className={styles.data}>{age}</span>
             </h3>
           </div>
 
