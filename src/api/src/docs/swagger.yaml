@@ -144,6 +144,10 @@ paths:
                     description: 'The user does not exist in the database'
                     schema:
                         type: string
+                '500':
+                    description: 'Server error'
+                    schema:
+                        type: string
             description: ""
             tags:
                 - AuthUser
@@ -240,7 +244,7 @@ paths:
                     schema:
                         type: string
                 '500':
-                    description: 'No connection to database'
+                    description: 'Server error'
                     schema:
                         type: string
             description: ""
@@ -256,8 +260,8 @@ paths:
                     description: 'Updated user'
                     schema:
                         type: string
-                '404':
-                    description: 'User not found'
+                '500':
+                    description: 'Server error'
                     schema:
                         type: string
             description: ""
@@ -311,12 +315,8 @@ paths:
                     description: Success
                     schema:
                         $ref: '#/definitions/IProfessionalUser'
-                '404':
-                    description: 'User not found'
-                    schema:
-                        type: string
                 '500':
-                    description: 'No connection to database'
+                    description: 'Unable to retrieve the entity'
                     schema:
                         type: string
             description: ""
@@ -348,7 +348,7 @@ paths:
                     schema:
                         type: string
                 '500':
-                    description: 'No connection to database'
+                    description: 'Server error'
                     schema:
                         type: string
             description: ""
@@ -373,7 +373,7 @@ paths:
                     schema:
                         type: string
                 '500':
-                    description: 'The user could not be disabled'
+                    description: 'Server error'
                     schema:
                         type: string
             description: '* This endpoint is for disable a professional user when he is authenticated. It is not removed from the database, it changes its state to false.'

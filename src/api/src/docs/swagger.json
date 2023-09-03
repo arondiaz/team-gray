@@ -197,6 +197,12 @@
 						"schema": {
 							"type": "string"
 						}
+					},
+					"500": {
+						"description": "Server error",
+						"schema": {
+							"type": "string"
+						}
 					}
 				},
 				"description": "",
@@ -340,7 +346,7 @@
 						}
 					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -364,8 +370,8 @@
 							"type": "string"
 						}
 					},
-					"404": {
-						"description": "User not found",
+					"500": {
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -447,14 +453,8 @@
 							"$ref": "#/definitions/IProfessionalUser"
 						}
 					},
-					"404": {
-						"description": "User not found",
-						"schema": {
-							"type": "string"
-						}
-					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Unable to retrieve the entity",
 						"schema": {
 							"type": "string"
 						}
@@ -500,7 +500,7 @@
 						}
 					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -536,7 +536,7 @@
 						}
 					},
 					"500": {
-						"description": "The user could not be disabled",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
