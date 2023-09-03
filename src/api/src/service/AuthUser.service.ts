@@ -143,6 +143,13 @@ export class AuthService {
             };
         }
 
+        if (user.state === 0)
+            return {
+                error: true,
+                message: "Disabled account",
+                code: 403,
+            };
+
         const compare = await bcrypt.compare(authUser.password, user.password);
 
         if (compare) {
@@ -196,4 +203,3 @@ export class AuthService {
         return user;
     }
 }
-

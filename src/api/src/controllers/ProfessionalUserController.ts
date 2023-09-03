@@ -132,7 +132,7 @@ export class ProfessionalUserController extends ApiController {
     async disableAccount(): Promise<string> {
         const response = await this.service.changeStateToFalse(this.authService.authUser);
         if (response.error) {
-            this.httpContext.response.send(response.message);
+            this.httpContext.response.end(response.message);
             return;
         }
 
@@ -156,4 +156,3 @@ export class ProfessionalUserController extends ApiController {
         return;
     }
 }
-
