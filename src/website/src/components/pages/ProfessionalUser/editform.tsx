@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { FaUpload } from 'react-icons/fa';
 import { Categories } from '../../Categories';
 import { Gender } from '../../auth/Signup';
@@ -17,7 +17,7 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
     mode: 'onChange',
   });
 
-  const onSubmitView2 = (data: any) => {
+  const onSubmitEditForm = (data: FieldValues) => {
     const editData = { ...data };
     console.log(editData);
   };
@@ -28,7 +28,7 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
         <div className={styles.formeditcontainer}>
           <form
             className={styles.editform}
-            onSubmit={handleSubmit(onSubmitView2)}>
+            onSubmit={handleSubmit(onSubmitEditForm)}>
             <div className={styles.inputupload}>
               <img
                 src="src\assets\images\Signup\profile.webp"
@@ -38,7 +38,7 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
               />
 
               <div className={styles.round}>
-                <input type="file" />
+                <input type="file" {...register('img', {})} />
                 <FaUpload />
               </div>
             </div>
@@ -75,7 +75,6 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                   {...register('tel', {
                     required: 'El celular es obligatorio',
                     pattern: {
-                      //
                       value: /^[0-9]*$/,
                       message: 'El celular no es válido',
                     },
@@ -298,25 +297,24 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
                 <label className={styles.label} htmlFor="link">
                   Link
                 </label>
-                <input type="text" />
+                <input type="text" {...register('link', {})} />
               </div>
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="about_me">
                   Sobre mí
                 </label>
-                <input type="text" />
+                <input type="text" {...register('about_me', {})} />
               </div>
             </div>
 
             <div>
               <button
-                type="button"
+                type="submit"
                 className={`${styles.btnaccept} ${styles.btn} ${
                   !isDirty || !isValid ? styles.btnacceptdissabled : ''
                 }`}
-                disabled={!isDirty || !isValid}
-                onClick={() => onSubmitView2}>
+                disabled={!isDirty || !isValid}>
                 Aceptar
               </button>
             </div>
