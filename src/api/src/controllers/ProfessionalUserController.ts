@@ -110,7 +110,7 @@ export class ProfessionalUserController extends ApiController {
             this.httpContext.response.status(response.code).send(response.message);
             throw new Error(response.message);
         } else {
-            this.httpContext.response.send(response.message);
+            this.httpContext.response.send(response.token);
             return;
         }
     }

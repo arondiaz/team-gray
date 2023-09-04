@@ -3,10 +3,17 @@ import { IResponse } from "../models/Response.interface";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { AuthService } from "./AuthUser.service";
+import jwt from "jsonwebtoken";
+import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
+import { Configuration } from "../configuration/configuration";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
-    constructor(private readonly repo: ProfessionalUserRepository, private readonly service: AuthService) {}
+    constructor(
+        private readonly repo: ProfessionalUserRepository,
+        private readonly service: AuthService,
+        private readonly configBuilder: ConfigurationBuilder
+    ) {}
 
     public async getAll(): Promise<IProfessionalUser[] | undefined> {
         const response = await this.repo.getAllProfessionalUser();
@@ -67,13 +74,35 @@ export class ProfessionalUserService {
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
         // Assign the id to the authenticated user.
         professionalUser.id = this.service.authUser.id;
-        const response = await this.repo.update(professionalUser);
+        const user: IProfessionalUser = await this.repo.update(professionalUser);
 
-        if (response) {
+        if (user) {
+            const config = this.configBuilder.build(Configuration);
+
+            const token = jwt.sign(
+                {
+                    email: user.email,
+                    name: user.name,
+                    last_name: user.last_name,
+                    dni: user.dni,
+                    province: user.province,
+                    city: user.city,
+                    tel: user.tel,
+                    link: user.link,
+                    about_me: user.about_me,
+                    gender: user.gender,
+                    birth_date: user.birth_date,
+                    auth_number: user.auth_number,
+                    img: user.img,
+                    category_id: user.category_id,
+                },
+                config.jwt.secret
+            );
             return {
                 error: false,
                 message: "Updated user",
                 code: 200,
+                token: token,
             };
         }
         throw new Error("User could not edit");
@@ -102,4 +131,3 @@ export class ProfessionalUserService {
         await this.repo.delete(authUser.id);
     }
 }
-
