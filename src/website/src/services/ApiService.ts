@@ -30,8 +30,10 @@ export class ApiService {
     return (await response.json()) as T;
   }
 
-  async getById<T>(id: string, url?: string, endpoint?: string): Promise<T> {
-    const response = await this.httpClient.get(`${url}/${endpoint}/${id}`);
+  async getById<T>(id: string, endpoint?: string): Promise<T> {
+    const response = await this.httpClient.get(
+      `${this.baseUrl}/${endpoint}/${id}`
+    );
     return (await response.json()) as T;
   }
 
@@ -49,7 +51,7 @@ export class ApiService {
     return response as HttpResponse;
   }
 
-  protected async put<T>(
+  async put<T>(
     url?: string,
     queryString?: QueryString,
     body?: BodyInit
