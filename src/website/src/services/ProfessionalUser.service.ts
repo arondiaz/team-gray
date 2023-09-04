@@ -4,11 +4,11 @@ import { ApiService, apiServiceInstance } from './ApiService';
 export class ProfessionalUserService {
   constructor(private readonly apiService: ApiService) {}
   async getProfessionalUserByCategory(category_id: string) {
-    const request = await this.apiService.getById(
+    const response = await this.apiService.getById(
       category_id,
       Endpoint.professionalUserByCategory
     );
-    return request;
+    return response;
   }
 }
 

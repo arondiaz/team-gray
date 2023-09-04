@@ -7,8 +7,8 @@ export class CategoryService {
 
   // Method to get all categories.
   async getAll(): Promise<ICategory[]> {
-    const petition = await this.apiService.get(Endpoint.categories);
-    return petition as ICategory[];
+    const response = await this.apiService.get(Endpoint.categories);
+    return response as ICategory[];
   }
 }
 
