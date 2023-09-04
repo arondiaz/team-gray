@@ -4,6 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import BgOverlay from '../../shared/BackgroundOverly';
 import { useAuth } from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const {
@@ -17,10 +18,39 @@ export const Login = () => {
   const { request } = useAuth();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    await request({
+    const res = await request({
       email: data.email,
       password: data.password,
     });
+
+    if (res?.status === 200) {
+      toast.success('¡Inicio de sesión exitoso!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid green',
+        },
+      });
+    } else if (res?.status === 401) {
+      toast.error('Inicio de sesión no autorizado', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    } else {
+      toast.error('¡Inicio de sesión incorrecto!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    }
   };
 
   const token = localStorage.getItem('token');
