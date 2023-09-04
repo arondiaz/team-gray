@@ -1,7 +1,7 @@
 import { FieldValues, useForm } from 'react-hook-form';
 import { FaUpload } from 'react-icons/fa';
-import { Categories } from '../../Categories';
-import { Gender } from '../../auth/Signup';
+import { Categories } from '../../../Categories';
+import { Gender } from '../../../auth/Signup';
 import styles from './EditForm.module.scss';
 
 interface EditformProps {

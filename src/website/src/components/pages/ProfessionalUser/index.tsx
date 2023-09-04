@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import styles from './ProfessionalUser.module.scss';
 import ProfileImages from '../Trades/assets/ProfileImage';
-import { Editform } from './editform';
-import { Deleteprofile } from './deleteprofile';
+import { Editform } from './Edit-Form';
+import { Deleteprofile } from './Delete-Profile/deleteprofile';
 
 export const ProfessionalUserProfile = () => {
   const [editModal, setEditModal] = useState(false);
