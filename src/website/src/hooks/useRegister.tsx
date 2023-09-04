@@ -23,7 +23,7 @@ export function useRegister() {
     category_id,
   }: IProfessionalUser) => {
     try {
-      const data = await authServiceInstance.ProfessionalUserRegister({
+      const data = await authServiceInstance.professionalUserRegister({
         email,
         password,
         name,

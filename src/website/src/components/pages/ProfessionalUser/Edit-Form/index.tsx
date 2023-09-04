@@ -3,12 +3,14 @@ import { FaUpload } from 'react-icons/fa';
 import { Categories } from '../../../Categories';
 import { Gender } from '../../../auth/Signup';
 import styles from './EditForm.module.scss';
+import { UseEdit } from '../../../../hooks/useEdit';
+import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
 
-interface EditformProps {
+interface EditFormProps {
   onCloseForm: () => void;
 }
 
-export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
+export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
   const {
     register,
     handleSubmit,
@@ -17,9 +19,11 @@ export const Editform: React.FC<EditformProps> = ({ onCloseForm }) => {
     mode: 'onChange',
   });
 
-  const onSubmitEditForm = (data: FieldValues) => {
+  const { editUser } = UseEdit();
+
+  const onSubmitEditForm = async (data: FieldValues): Promise<void> => {
     const editData = { ...data };
-    console.log(editData);
+    await editUser(editData as IProfessionalUser);
   };
 
   return (

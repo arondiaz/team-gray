@@ -1,13 +1,32 @@
 import { Endpoint } from './endpoints';
 import { ApiService, apiServiceInstance } from './ApiService';
+import { HttpResponse } from '@miracledevs/paradigm-web-fetch';
+import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export class ProfessionalUserService {
   constructor(private readonly apiService: ApiService) {}
+
   async getProfessionalUserByCategory(category_id: string) {
     const response = await this.apiService.getById(
       category_id,
       Endpoint.professionalUserByCategory
     );
+    return response;
+  }
+
+  async updateProfessionalUser(
+    professionalUSer: IProfessionalUser
+  ): Promise<HttpResponse | undefined> {
+    const response = await this.apiService.put(
+      Endpoint.professionalUser,
+      undefined,
+      JSON.stringify(professionalUSer)
+    );
+
+    if (response.status === 200) {
+      const token = (await response.text()) as string;
+      localStorage.setItem('token', token);
+    }
     return response;
   }
 }

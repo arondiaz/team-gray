@@ -51,17 +51,17 @@ export class ApiService {
     return response as HttpResponse;
   }
 
-  async put<T>(
+  async put(
     url?: string,
     queryString?: QueryString,
     body?: BodyInit
-  ): Promise<T> {
+  ): Promise<HttpResponse> {
     const response = await this.httpClient.put(
       `${this.baseUrl}/${url}`,
       queryString,
       body
     );
-    return (await response.json()) as T;
+    return response as HttpResponse;
   }
 
   protected async patch<T>(

@@ -9,7 +9,7 @@ export function useAuth() {
     password: string;
   }) => {
     try {
-      const data = await authServiceInstance.ProfessionalUserLogin({
+      const data = await authServiceInstance.professionalUserLogin({
         email,
         password,
       });

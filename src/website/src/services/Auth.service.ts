@@ -6,7 +6,7 @@ import { HttpResponse } from '@miracledevs/paradigm-web-fetch';
 
 export class AuthService {
   constructor(private readonly apiService: ApiService) {}
-  async ProfessionalUserLogin(
+  async professionalUserLogin(
     login: ILoginProfessionalUser
   ): Promise<HttpResponse | undefined> {
     const response = await this.apiService.post(
@@ -22,7 +22,7 @@ export class AuthService {
     return response;
   }
 
-  async ProfessionalUserRegister(user: IProfessionalUser): Promise<string> {
+  async professionalUserRegister(user: IProfessionalUser): Promise<string> {
     const response = await this.apiService.post(
       Endpoint.signupProfessionalUser,
       undefined,
