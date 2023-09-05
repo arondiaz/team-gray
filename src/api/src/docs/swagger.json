@@ -365,7 +365,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Updated user",
+						"description": "Ok",
 						"schema": {
 							"type": "string"
 						}

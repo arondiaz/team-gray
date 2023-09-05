@@ -100,7 +100,7 @@ export class ProfessionalUserController extends ApiController {
      */
     @PUT
     @Security("x-auth")
-    @Response<string>(200, "Updated user")
+    @Response<string>(200, "Ok")
     @Response<string>(500, "Server error")
     @Action({ route: "/", fromBody: true, method: HttpMethod.PUT, filters: [UserFilter] })
     async editUser(professionalUser: IProfessionalUser): Promise<string> {
