@@ -41,6 +41,24 @@ export const Login = () => {
           border: '0.1rem solid red',
         },
       });
+    } else if (res?.status === 404) {
+      toast.error('El mail no existe o no fue registrado', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    } else if (res?.status === 403) {
+      toast.error('Cuenta deshabilitada', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
     } else {
       toast.error('¡Inicio de sesión incorrecto!', {
         position: toast.POSITION.BOTTOM_RIGHT,
