@@ -22,14 +22,16 @@ export class AuthService {
     return response;
   }
 
-  async professionalUserRegister(user: IProfessionalUser): Promise<string> {
+  async professionalUserRegister(
+    user: IProfessionalUser
+  ): Promise<HttpResponse | undefined> {
     const response = await this.apiService.post(
       Endpoint.signupProfessionalUser,
       undefined,
       JSON.stringify(user)
     );
 
-    return (await response.text()) as string;
+    return response;
   }
 }
 

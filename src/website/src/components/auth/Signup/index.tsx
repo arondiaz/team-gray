@@ -16,7 +16,7 @@ export enum Gender {
 }
 
 export const Signup = () => {
-  const { result, makeRegister } = useRegister();
+  const { makeRegister } = useRegister();
   const {
     register,
     handleSubmit,
@@ -36,8 +36,8 @@ export const Signup = () => {
 
   const onSubmitView2 = async (data: any) => {
     const allData = { ...view1Data, ...data };
-    await makeRegister({ ...allData });
-    console.log(result);
+    const response = await makeRegister({ ...allData });
+    // TODO: Use response to show message
   };
   const password = watch('password');
 

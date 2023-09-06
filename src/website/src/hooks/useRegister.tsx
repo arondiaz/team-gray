@@ -1,10 +1,7 @@
 import { authServiceInstance } from '../services/Auth.service';
-import { useState } from 'react';
 import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 
 export function useRegister() {
-  const [result, setResult] = useState<string>();
-
   const makeRegister = async ({
     email,
     password,
@@ -40,13 +37,11 @@ export function useRegister() {
         img,
         category_id,
       });
-      console.log(data);
-      if (data) {
-        setResult(data);
-      }
+
+      return data;
     } catch (error) {
       console.log(error);
     }
   };
-  return { result, makeRegister };
+  return { makeRegister };
 }
