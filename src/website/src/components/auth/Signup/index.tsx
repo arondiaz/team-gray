@@ -458,7 +458,7 @@ export const Signup = () => {
                 </div>
 
                 <div className={styles.btnsignupcontainer}>
-                  <Link to="/up-profile">
+                  <Link to="/login">
                     <button
                       type="button"
                       className={`${styles.btnsignup} ${
