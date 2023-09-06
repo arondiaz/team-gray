@@ -116,7 +116,7 @@ export class AuthService {
             // Hashed password.
             authUser.password = await bcrypt.hash(authUser.password, salt);
 
-            // insert on database.
+            // Insert on database.
             const response = await this.repo.insertOne(authUser);
 
             if (response) {

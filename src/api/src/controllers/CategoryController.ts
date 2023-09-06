@@ -34,7 +34,6 @@ export class CategoryController extends ApiController {
     }
 
     /**
-     *
      * @param category
      *  * This endpoint is implemented to add categories by an authenticated administrator. 
         For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from 
@@ -68,4 +67,3 @@ export class CategoryController extends ApiController {
         }
     }
 }
-

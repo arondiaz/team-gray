@@ -75,11 +75,8 @@ export class ProfessionalUserController extends ApiController {
     }
 
     /**
-     * 
      * @param professionalUser 
-     * 
      * * This endpoint is for editing an account by an authenticated professional user.
-     * 
      * Example: 
      * 
             "name": "Juan Pedro",
@@ -98,6 +95,7 @@ export class ProfessionalUserController extends ApiController {
         
      * @returns 
      */
+
     @PUT
     @Security("x-auth")
     @Response<string>(200, "Ok")
@@ -118,8 +116,6 @@ export class ProfessionalUserController extends ApiController {
     /**
      * * This endpoint is for disable a professional user when he is authenticated. It is not removed from the database, it changes its state to false.
      * @returns
-     *
-     *
      */
 
     @DELETE

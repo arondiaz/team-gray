@@ -4,7 +4,7 @@ import { Configuration } from "../configuration/configuration";
 import jwt from "jsonwebtoken";
 
 /**
- * middleware to authenticate administrators
+ * Middleware to authenticate administrators.
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AdminFilter implements IFilter {
@@ -30,4 +30,3 @@ export class AdminFilter implements IFilter {
 
     async onError() {}
 }
-

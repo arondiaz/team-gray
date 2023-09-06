@@ -13,8 +13,8 @@ export class AuthController extends ApiController {
     }
 
     /**
-     *
      * @param authUser
+     * 
      *    * This is an endpoint to register as a professional user.
      * 
      *   Example:
@@ -58,7 +58,6 @@ export class AuthController extends ApiController {
 
     /**
      * @param authUser
-     * 
      *   * This is an endpoint to login as a professional user. The user will receive an authentication
      *     token to be validated when making requests.
      * 

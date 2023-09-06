@@ -6,7 +6,7 @@ import { IPayLoad } from "../models/users/Payload.interface";
 import { AuthService } from "../service/AuthUser.service";
 
 /**
- * middleware to authenticate professional user.
+ * Middleware to authenticate professional user.
  */
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class UserFilter implements IFilter {
@@ -33,4 +33,3 @@ export class UserFilter implements IFilter {
 
     async onError() {}
 }
-
