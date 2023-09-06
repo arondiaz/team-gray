@@ -29,6 +29,19 @@ export class ProfessionalUserService {
     }
     return response;
   }
+
+  async deleteProfessionalUser(
+    user: IProfessionalUser
+  ): Promise<HttpResponse | undefined> {
+    const response = await this.apiService.delete(
+      Endpoint.professionalUserDisable,
+      undefined,
+      JSON.stringify(user)
+    );
+
+    if (response) return response;
+    return undefined;
+  }
 }
 
 export const professionalUserServiceInstance = new ProfessionalUserService(

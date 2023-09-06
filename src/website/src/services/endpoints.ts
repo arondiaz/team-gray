@@ -4,4 +4,5 @@ export enum Endpoint {
   categories = `categories`,
   professionalUser = `professional_user`,
   professionalUserByCategory = `professional_user/category`,
+  professionalUserDisable = `professional_user/disable`,
 }

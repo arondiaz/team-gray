@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 import styles from './ProfessionalUser.module.scss';
 import ProfileImages from '../Trades/assets/ProfileImage';
 import { Editform } from './Edit-Form';
-import { Deleteprofile } from './Delete-Profile/deleteprofile';
+import { DeleteProfile } from './Delete-Profile';
 
 export const ProfessionalUserProfile = () => {
   const [editModal, setEditModal] = useState(false);
@@ -138,7 +138,7 @@ export const ProfessionalUserProfile = () => {
 
       {deleteModal && (
         <div className={styles.modaldelete}>
-          <Deleteprofile onCloseDelete={closeDeleteModal} />
+          <DeleteProfile onCloseDelete={closeDeleteModal} />
         </div>
       )}
 

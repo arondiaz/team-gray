@@ -47,7 +47,6 @@ export class ApiService {
       queryString,
       body
     );
-
     return response as HttpResponse;
   }
 
@@ -77,15 +76,17 @@ export class ApiService {
     return (await response.json()) as T;
   }
 
-  protected async delete<T>(
+  async delete(
     url?: string,
-    queryString?: QueryString
-  ): Promise<T> {
+    queryString?: QueryString,
+    body?: BodyInit | undefined
+  ): Promise<HttpResponse> {
     const response = await this.httpClient.delete(
       `${this.baseUrl}/${url}`,
-      queryString
+      queryString,
+      body
     );
-    return (await response.json()) as T;
+    return response as HttpResponse;
   }
 }
 
