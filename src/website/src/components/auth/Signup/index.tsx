@@ -4,6 +4,7 @@ import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { Categories } from '../../Categories';
 import { useRegister } from '../../../hooks/useRegister';
+import { toast } from 'react-toastify';
 
 import styles from './Signup.module.scss';
 import BgOverlay from '../../shared/BackgroundOverly';
@@ -37,7 +38,44 @@ export const Signup = () => {
   const onSubmitView2 = async (data: any) => {
     const allData = { ...view1Data, ...data };
     const response = await makeRegister({ ...allData });
-    // TODO: Use response to show message
+
+    if (response?.status === 201) {
+      toast.success('¡Usuario creado correctamente!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid green',
+        },
+      });
+    } else if (response?.status === 409) {
+      toast.error('El mail ya existe en la base de datos', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    } else if (response?.status === 400) {
+      toast.error('Registro inválido', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    } else {
+      toast.error('Registro incorrecto', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        style: {
+          fontWeight: 'bold',
+          border: '0.1rem solid red',
+        },
+      });
+    }
   };
   const password = watch('password');
 
