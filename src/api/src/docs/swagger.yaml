@@ -275,7 +275,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: "* This endpoint is for editing an account by an authenticated professional user.\r\n\r\nExample: \r\n\r\n     \"name\": \"Juan Pedro\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"34614738\",\r\n     \"province\": \"Santa Fe\",\r\n     \"city\": \"Franck\",\r\n     \"tel\": \"0341434454\",\r\n     \"link\": \"hi-world.com.ar\",\r\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1990-01-03\",\r\n     \"auth_number\": \"12312da134123QWw\",\r\n     \"img\": \"photo.png\",\r\n     \"category_id\": \"3\""
+                    description: "* This endpoint is for editing an account by an authenticated professional user.\r\nExample: \r\n\r\n     \"name\": \"Juan Pedro\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"34614738\",\r\n     \"province\": \"Santa Fe\",\r\n     \"city\": \"Franck\",\r\n     \"tel\": \"0341434454\",\r\n     \"link\": \"hi-world.com.ar\",\r\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1990-01-03\",\r\n     \"auth_number\": \"12312da134123QWw\",\r\n     \"img\": \"photo.png\",\r\n     \"category_id\": \"3\""
                     in: body
                     name: professionalUser
                     required: true
@@ -286,12 +286,10 @@ paths:
             produces:
                 - text/html
             responses:
-                '200':
-                    description: 'Deleted user'
+                '204':
+                    description: ""
                     schema:
                         type: string
-                '204':
-                    description: 'No content'
                 '500':
                     description: 'Server error'
                     schema:
