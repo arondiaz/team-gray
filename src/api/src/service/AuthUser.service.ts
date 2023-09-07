@@ -138,7 +138,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testPhone(authUser.tel)) {
+            if (!this.validate.testNumber(authUser.tel)) {
                 return {
                     error: true,
                     message: "The field is not a valid phone",

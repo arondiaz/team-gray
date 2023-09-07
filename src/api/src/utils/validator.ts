@@ -20,9 +20,8 @@ export class Validator {
         return test.test(name);
     }
 
-    public testPhone(phone: string): boolean {
-        // todo: implement validate to min length
+    public testNumber(number: string): boolean {
         const test = /^[0-9]*$/;
-        return test.test(phone);
+        return test.test(number);
     }
 }
