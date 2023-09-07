@@ -170,6 +170,14 @@ export class AuthService {
                 };
             }
 
+            if (!this.validate.testName(authUser.province)) {
+                return {
+                    error: true,
+                    message: "The field is not a valid province",
+                    code: 400,
+                };
+            }
+
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
 
