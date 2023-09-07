@@ -15,8 +15,9 @@ export const DeleteProfile: React.FC<DeleteProfileProps> = ({
 
     // TODO: Handle responses to display modals based on the status.
     switch (response?.status) {
-      case 200:
-        console.log('200');
+      case 204:
+        console.log('204');
+        localStorage.clear();
         break;
       case 500:
         console.log('500');
