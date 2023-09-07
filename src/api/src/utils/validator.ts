@@ -15,8 +15,13 @@ export class Validator {
         return false;
     }
 
-    public testName(name: string) {
+    public testName(name: string): boolean {
         const test = /^[A-Z]+$/i;
         return test.test(name);
+    }
+
+    public testPhone(phone: string): boolean {
+        const test = /^[0-9]*$/;
+        return test.test(phone);
     }
 }
