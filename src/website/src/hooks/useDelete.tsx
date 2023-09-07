@@ -2,18 +2,22 @@ import { professionalUserServiceInstance } from '../services/ProfessionalUser.se
 import jwtDecode from 'jwt-decode';
 import { IProfessionalUser } from '../interfaces/ProfessionalUser.interface';
 import { apiServiceInstance } from '../services/ApiService';
+import { HttpResponse } from '@miracledevs/paradigm-web-fetch';
 
 export function useDelete() {
   const token = localStorage.getItem('token');
 
-  const request = async () => {
+  const request = async (): Promise<HttpResponse | undefined> => {
     try {
       apiServiceInstance.authorize(token as string);
       const authUser = jwtDecode(token as string);
 
-      await professionalUserServiceInstance.deleteProfessionalUser(
-        authUser as IProfessionalUser
-      );
+      const response =
+        await professionalUserServiceInstance.deleteProfessionalUser(
+          authUser as IProfessionalUser
+        );
+
+      return response;
     } catch (error) {
       console.log(error);
     }

@@ -8,11 +8,22 @@ interface DeleteProfileProps {
 export const DeleteProfile: React.FC<DeleteProfileProps> = ({
   onCloseDelete,
 }) => {
-  const { request } = useDelete() as any;
+  const { request } = useDelete();
 
   const handleDelete = async () => {
-    const data = await request();
-    if (data) console.log('borrado');
+    const response = await request();
+
+    // TODO: Handle responses to display modals based on the status.
+    switch (response?.status) {
+      case 200:
+        console.log('200');
+        break;
+      case 500:
+        console.log('500');
+        break;
+      default:
+        console.log('default');
+    }
   };
 
   return (
