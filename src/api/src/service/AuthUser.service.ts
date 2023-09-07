@@ -6,11 +6,16 @@ import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
+import { Validator } from "../utils/validator";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
     public authUser: IProfessionalUser;
-    constructor(private readonly repo: ProfessionalUserRepository, private readonly configBuilder: ConfigurationBuilder) {}
+    constructor(
+        private readonly repo: ProfessionalUserRepository,
+        private readonly configBuilder: ConfigurationBuilder,
+        private readonly validate: Validator
+    ) {}
 
     async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
@@ -109,6 +114,14 @@ export class AuthService {
                     code: 400,
                 };
             }
+
+            // Fields validated with Validator Class.
+            if (!this.validate.testEmail(authUser.email))
+                return {
+                    error: true,
+                    message: "The field is not a valid email",
+                    code: 400,
+                };
 
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
