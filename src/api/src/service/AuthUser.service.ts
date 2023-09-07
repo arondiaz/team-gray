@@ -130,6 +130,14 @@ export class AuthService {
                     code: 400,
                 };
 
+            if (!this.validate.testName(authUser.name)) {
+                return {
+                    error: true,
+                    message: "The field is not a valid name",
+                    code: 400,
+                };
+            }
+
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
 

@@ -14,4 +14,9 @@ export class Validator {
         if (password.length > 16) return "The field cannot be greater than 16";
         return false;
     }
+
+    public testName(name: string) {
+        const test = /^[A-Z]+$/i;
+        return test.test(name);
+    }
 }
