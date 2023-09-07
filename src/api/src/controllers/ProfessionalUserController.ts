@@ -143,11 +143,11 @@ export class ProfessionalUserController extends ApiController {
     @DELETE
     @Security("x-auth")
     @Action({ route: "/", filters: [UserFilter] })
-    @Response<string>(200, "Deleted user")
+    @Response<string>(204)
     @Response<string>(500, "Server error")
     async delete(): Promise<void> {
         await this.service.remove(this.authService.authUser);
-        this.httpContext.response.send("Deleted user");
+        this.httpContext.response.sendStatus(204);
         return;
     }
 }
