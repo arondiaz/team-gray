@@ -30,4 +30,3 @@ export class MySqlConnectionFilter implements IFilter {
         this.mysqlConnector.releaseConnection(this.connection);
     }
 }
-

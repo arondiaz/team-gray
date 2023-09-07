@@ -24,4 +24,21 @@ export class Validator {
         const test = /^[0-9]*$/;
         return test.test(number);
     }
+
+    public testAge(birthDateUser: string): string | boolean {
+        const birthDate = new Date(birthDateUser);
+
+        const today = new Date();
+
+        const minYears = 18;
+        const maxYears = 115;
+
+        const minDate = new Date(today.getFullYear() - minYears, today.getMonth(), today.getDate());
+        const maxDate = new Date(today.getFullYear() - maxYears, today.getMonth(), today.getDate());
+
+        if (birthDate > today || birthDate < maxDate) return "Invalid date";
+        if (birthDate > minDate) return "You must be over 18 years old";
+
+        return false;
+    }
 }

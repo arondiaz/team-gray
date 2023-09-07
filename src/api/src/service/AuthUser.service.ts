@@ -178,6 +178,14 @@ export class AuthService {
                 };
             }
 
+            if (this.validate.testAge(authUser.birth_date)) {
+                return {
+                    error: true,
+                    message: this.validate.testAge(authUser.birth_date) as string,
+                    code: 400,
+                };
+            }
+
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
 
