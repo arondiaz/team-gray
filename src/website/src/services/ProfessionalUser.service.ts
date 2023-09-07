@@ -30,11 +30,31 @@ export class ProfessionalUserService {
     return response;
   }
 
-  async deleteProfessionalUser(
+  /**
+   *
+   * @param user
+   * Method to disable to professional user logged in.
+   * @returns
+   */
+
+  protected async disableProfessionalUser(
     user: IProfessionalUser
   ): Promise<HttpResponse | undefined> {
     const response = await this.apiService.delete(
       Endpoint.professionalUserDisable,
+      undefined,
+      JSON.stringify(user)
+    );
+
+    if (response) return response;
+    return undefined;
+  }
+
+  async deleteProfessionalUser(
+    user: IProfessionalUser
+  ): Promise<HttpResponse | undefined> {
+    const response = await this.apiService.delete(
+      Endpoint.professionalUser,
       undefined,
       JSON.stringify(user)
     );
