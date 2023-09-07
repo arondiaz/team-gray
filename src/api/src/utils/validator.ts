@@ -21,6 +21,7 @@ export class Validator {
     }
 
     public testPhone(phone: string): boolean {
+        // todo: implement validate to min length
         const test = /^[0-9]*$/;
         return test.test(phone);
     }
