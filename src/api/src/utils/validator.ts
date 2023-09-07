@@ -16,7 +16,7 @@ export class Validator {
     }
 
     public testName(name: string): boolean {
-        const test = /^[A-Z]+$/i;
+        const test = /^[A-Z\s]+$/i;
         return test.test(name);
     }
 
