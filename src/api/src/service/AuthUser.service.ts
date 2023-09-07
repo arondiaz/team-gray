@@ -123,6 +123,13 @@ export class AuthService {
                     code: 400,
                 };
 
+            if (this.validate.testPassword(authUser.password))
+                return {
+                    error: true,
+                    message: this.validate.testPassword(authUser.password) as string,
+                    code: 400,
+                };
+
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
 
