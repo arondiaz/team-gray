@@ -15,7 +15,7 @@ export class ProfessionalUser implements IProfessionalUser {
     tel: string = "";
     link?: string = "";
     about_me?: string = "";
-    gender: Gender.female;
+    gender: Gender = Gender.female;
     birth_date: string = "";
     auth_number?: string = "";
     img?: string = "";
