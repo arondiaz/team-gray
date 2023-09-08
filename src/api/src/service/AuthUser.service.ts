@@ -93,6 +93,7 @@ export class AuthService {
                     code: 400,
                 };
             }
+
             if (!authUser.password) {
                 return {
                     error: true,
@@ -100,6 +101,7 @@ export class AuthService {
                     code: 400,
                 };
             }
+
             if (!authUser.province) {
                 return {
                     error: true,
@@ -107,6 +109,7 @@ export class AuthService {
                     code: 400,
                 };
             }
+
             if (!authUser.tel) {
                 return {
                     error: true,
@@ -115,7 +118,7 @@ export class AuthService {
                 };
             }
 
-            // Fields validated with Validator Class.
+            // Fields validation with Validator Class.
             if (!this.validate.testEmail(authUser.email))
                 return {
                     error: true,
