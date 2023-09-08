@@ -130,7 +130,7 @@ export class AuthService {
                     code: 400,
                 };
 
-            if (!this.validate.testName(authUser.name)) {
+            if (!this.validate.testString(authUser.name)) {
                 return {
                     error: true,
                     message: "The field is not a valid name",
@@ -146,7 +146,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testName(authUser.last_name)) {
+            if (!this.validate.testString(authUser.last_name)) {
                 return {
                     error: true,
                     message: "The field is not a valid last name",
@@ -154,7 +154,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testName(authUser.city)) {
+            if (!this.validate.testString(authUser.city)) {
                 return {
                     error: true,
                     message: "The field is not a valid city",
@@ -170,7 +170,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testName(authUser.province)) {
+            if (!this.validate.testString(authUser.province)) {
                 return {
                     error: true,
                     message: "The field is not a valid province",
