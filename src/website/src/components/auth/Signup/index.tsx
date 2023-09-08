@@ -397,23 +397,6 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="direction">
-                      Dirección *
-                    </label>
-                    <input
-                      type="text"
-                      {...register('direction', {
-                        required: 'La dirección es obligatoria',
-                      })}
-                    />
-                    {errors.direction && (
-                      <div className={styles.errorcontainersv}>
-                        <span>{errors?.direction?.message?.toString()}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className={styles.inputboxsv}>
                     <label className={styles.labelsv} htmlFor="gender">
                       Género *
                     </label>
