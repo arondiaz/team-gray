@@ -12,8 +12,8 @@ export class Validator {
     }
 
     public testPassword(password: string): string | boolean {
-        if (password.length < 8) return "The field cannot be less than 8";
-        if (password.length > 16) return "The field cannot be greater than 16";
+        if (password.length < 8) return "The password field cannot be less than 8";
+        if (password.length > 16) return "The password field cannot be greater than 16";
         return false;
     }
 
