@@ -228,23 +228,6 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
               </div>
 
               <div className={styles.inputbox}>
-                <label className={styles.label} htmlFor="direction">
-                  Dirección *
-                </label>
-                <input
-                  type="text"
-                  {...register('direction', {
-                    required: 'La dirección es obligatoria',
-                  })}
-                />
-                {errors.direction && (
-                  <div className={styles.errorcontainer}>
-                    <span>{errors?.direction?.message?.toString()}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="gender">
                   Género *
                 </label>
