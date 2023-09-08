@@ -165,7 +165,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testNumber(authUser.dni)) {
+            if (!this.validate.testNumber(authUser.dni) || !this.validate.testDni(authUser.dni)) {
                 return {
                     error: true,
                     message: "The field is not a valid DNI",

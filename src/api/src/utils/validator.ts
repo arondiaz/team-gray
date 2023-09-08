@@ -27,6 +27,12 @@ export class Validator {
         return test.test(number);
     }
 
+    public testDni(dni: string): boolean {
+        console.log(dni.length);
+        if (dni.length < 8 || dni.length > 9) return false;
+        return true;
+    }
+
     public testAge(birthDateUser: string): string | boolean {
         const birthDate = new Date(birthDateUser);
 
