@@ -1,5 +1,6 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { Gender } from "../models/users/Gender";
+import { getMaxListeners } from "process";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class Validator {
@@ -41,5 +42,10 @@ export class Validator {
         if (birthDate > minDate) return "You must be over 18 years old";
 
         return false;
+    }
+
+    public testGender(gender: Gender | string): boolean {
+        if (gender === Gender.female || gender === Gender.male || gender === Gender.nonBinary) return false;
+        return true;
     }
 }

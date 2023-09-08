@@ -186,6 +186,14 @@ export class AuthService {
                 };
             }
 
+            if (this.validate.testGender(authUser.gender)) {
+                return {
+                    error: true,
+                    message: "Gender must be 'Male', 'Female' or 'Non-binary'",
+                    code: 400,
+                };
+            }
+
             // Generate salt.
             const salt = await bcrypt.genSalt(10);
 
