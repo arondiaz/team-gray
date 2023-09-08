@@ -118,6 +118,33 @@ export class AuthService {
                 };
             }
 
+            // Data string type validation with Validator Class.
+            const arrData = [
+                authUser.email,
+                authUser.password,
+                authUser.name,
+                authUser.last_name,
+                authUser.dni,
+                authUser.province,
+                authUser.city,
+                authUser.tel,
+                authUser.link,
+                authUser.about_me,
+                authUser.gender,
+                authUser.birth_date,
+                authUser.auth_number,
+                authUser.img,
+                authUser.category_id,
+            ];
+
+            if (this.validate.testStringTypeData(arrData)) {
+                return {
+                    error: true,
+                    message: "There are fields that are not of type string",
+                    code: 400,
+                };
+            }
+
             // Fields validation with Validator Class.
             if (!this.validate.testEmail(authUser.email))
                 return {

@@ -1,14 +1,23 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
 import { Gender } from "../models/users/Gender";
-import { getMaxListeners } from "process";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class Validator {
     constructor() {}
 
+    public testStringTypeData(data: string[]) {
+        for (let i = 0; i < data.length; i++) {
+            console.log(typeof data[i]);
+            if (typeof data[i] === "undefined") return false;
+            if (typeof data[i] != "string") return true;
+        }
+        return false;
+    }
+
     public testEmail(email: string): boolean {
         const test = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        return test.test(email);
+        if (!test.test(email) || typeof email != "string") return false;
+        return true;
     }
 
     public testPassword(password: string): string | boolean {
@@ -28,7 +37,6 @@ export class Validator {
     }
 
     public testDni(dni: string): boolean {
-        console.log(dni.length);
         if (dni.length < 8 || dni.length > 9) return false;
         return true;
     }
