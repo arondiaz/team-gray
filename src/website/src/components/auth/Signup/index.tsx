@@ -225,7 +225,7 @@ export const Signup = () => {
                       {...register('name', {
                         required: 'El nombre es obligatorio',
                         pattern: {
-                          value: /^[A-Z]+$/i,
+                          value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                           message: 'El nombre no es válido',
                         },
                       })}
@@ -273,7 +273,7 @@ export const Signup = () => {
                       {...register('last_name', {
                         required: 'El apellido es obligatorio',
                         pattern: {
-                          value: /^[A-Z]+$/i,
+                          value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                           message: 'El apellido no es válido',
                         },
                       })}
