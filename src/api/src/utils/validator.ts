@@ -7,7 +7,6 @@ export class Validator {
 
     public testStringTypeData(data: string[]) {
         for (let i = 0; i < data.length; i++) {
-            console.log(typeof data[i]);
             if (typeof data[i] === "undefined") return false;
             if (typeof data[i] != "string") return true;
         }
@@ -42,6 +41,9 @@ export class Validator {
     }
 
     public testAge(birthDateUser: string): string | boolean {
+        const test = /^\d{4}-\d{2}-\d{2}$/;
+        if (!test.test(birthDateUser)) return "Invalid format on birth_date";
+
         const birthDate = new Date(birthDateUser);
 
         const today = new Date();
