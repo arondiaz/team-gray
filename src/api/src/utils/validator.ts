@@ -1,4 +1,5 @@
 import { DependencyLifeTime, Injectable } from "@miracledevs/paradigm-web-di";
+import { Gender } from "../models/users/Gender";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class Validator {
