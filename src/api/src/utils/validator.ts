@@ -16,7 +16,7 @@ export class Validator {
 
     public testEmail(email: string): boolean {
         const test = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        if (!test.test(email) || typeof email != "string") return false;
+        if (!test.test(email)) return false;
         return true;
     }
 
