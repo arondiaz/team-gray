@@ -186,7 +186,7 @@ paths:
                     description: 'Server error'
                     schema:
                         type: string
-            description: '* This endpoint returns all categories added by an administrator.'
+            description: "\r\n* This endpoint returns all categories added by an administrator."
             tags:
                 - Categories
             parameters: []
@@ -220,7 +220,7 @@ paths:
                 - application/json
             parameters:
                 -
-                    description: " * This endpoint is implemented to add categories.  \r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\""
+                    description: " * This endpoint is implemented to add categories. It will be security so that only an administrator user can add categories. Does not apply to the current MVP. \r\n\r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\""
                     in: body
                     name: category
                     required: true

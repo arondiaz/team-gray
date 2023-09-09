@@ -12,7 +12,9 @@ export class CategoryController extends ApiController {
     }
 
     /**
-     * * This endpoint returns all categories added by an administrator.
+     *
+     *  * This endpoint returns all categories added by an administrator.
+     *
      * @returns
      */
 
@@ -33,7 +35,9 @@ export class CategoryController extends ApiController {
 
     /**
      * @param category
-     *  * This endpoint is implemented to add categories.  
+     * 
+     *  * This endpoint is implemented to add categories. It will be security so that only an administrator user can add categories. Does not apply to the current MVP. 
+     * 
      *  Example:
      *   
             "name": "Cerrajero"
