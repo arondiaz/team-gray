@@ -1,37 +1,51 @@
 $breakpoints: (
-  'xsmall': 120px,
-  'small': 480px,
-  'medium': 770px,
-  'large': 960px,
-  'xlarge': 1280px,
+  'xsmall': (
+    min: 0px,
+    max: 479px,
+  ),
+  'small': (
+    min: 480px,
+    max: 769px,
+  ),
+  'medium': (
+    min: 770px,
+    max: 959px,
+  ),
+  'large': (
+    min: 960px,
+    max: 1279px,
+  ),
+  'xlarge': (
+    min: 1280px,
+  ),
 );
 
 @mixin xsmall {
-  @media (min-width: map-get($breakpoints, 'xsmall')) {
+  @media (min-width: map-get(map-get($breakpoints, 'xsmall'), 'min')) and (max-width: map-get(map-get($breakpoints, 'xsmall'), 'max')) {
     @content;
   }
 }
 
 @mixin small {
-  @media (min-width: map-get($breakpoints, 'small')) {
+  @media (min-width: map-get(map-get($breakpoints, 'small'), 'min')) and (max-width: map-get(map-get($breakpoints, 'small'), 'max')) {
     @content;
   }
 }
 
 @mixin medium {
-  @media (min-width: map-get($breakpoints, 'medium')) {
+  @media (min-width: map-get(map-get($breakpoints, 'medium'), 'min')) and (max-width: map-get(map-get($breakpoints, 'medium'), 'max')) {
     @content;
   }
 }
 
 @mixin large {
-  @media (min-width: map-get($breakpoints, 'large')) {
+  @media (min-width: map-get(map-get($breakpoints, 'large'), 'min')) and (max-width: map-get(map-get($breakpoints, 'large'), 'max')) {
     @content;
   }
 }
 
 @mixin xlarge {
-  @media (min-width: map-get($breakpoints, 'xlarge')) {
+  @media (min-width: map-get(map-get($breakpoints, 'xlarge'), 'min')) {
     @content;
   }
 }
