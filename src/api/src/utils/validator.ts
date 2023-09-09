@@ -7,8 +7,7 @@ export class Validator {
 
     public testStringTypeData(data: string[]) {
         for (let i = 0; i < data.length; i++) {
-            if (typeof data[i] === "undefined") return false;
-            if (typeof data[i] != "string") return true;
+            if (data[i] && typeof data[i] != "string") return true;
         }
         return false;
     }
