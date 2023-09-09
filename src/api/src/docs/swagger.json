@@ -49,6 +49,11 @@
 					"description": ""
 				},
 				"gender": {
+					"enum": [
+						"Male",
+						"Female",
+						"Non-binary"
+					],
 					"type": "string",
 					"description": ""
 				},
@@ -297,21 +302,14 @@
 				},
 				"description": "",
 				"tags": [
-					"Admin"
-				],
-				"security": [
-					{
-						"default": [
-							"x-auth"
-						]
-					}
+					"Categories"
 				],
 				"consumes": [
 					"application/json"
 				],
 				"parameters": [
 					{
-						"description": " * This endpoint is implemented to add categories by an authenticated administrator. \r\n For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from \r\n the .env file in the signature.\r\n\r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\"",
+						"description": " * This endpoint is implemented to add categories.  \r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\"",
 						"in": "body",
 						"name": "category",
 						"required": true,
