@@ -2,14 +2,12 @@ import { Action, ApiController, Controller } from "@miracledevs/paradigm-express
 import { ICategory } from "../models/categories/Category.interface";
 import { GET, POST, Path, Security } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
-import { AdminFilter } from "../filters/Admin.filter";
-import { AdminService } from "../service/Admin.service";
 import { CategoryService } from "../service/Category.service";
 
 @Path("/api/categories")
 @Controller({ route: "/api/categories" })
 export class CategoryController extends ApiController {
-    constructor(private readonly service: AdminService, private readonly categoryService: CategoryService) {
+    constructor(private readonly service: CategoryService, private readonly categoryService: CategoryService) {
         super();
     }
 
@@ -35,10 +33,7 @@ export class CategoryController extends ApiController {
 
     /**
      * @param category
-     *  * This endpoint is implemented to add categories by an authenticated administrator. 
-        For now, for testing purposes, you can generate the token in jwt.io by passing the jwt.secret from 
-        the .env file in the signature.
-
+     *  * This endpoint is implemented to add categories.  
      *  Example:
      *   
             "name": "Cerrajero"
@@ -47,14 +42,13 @@ export class CategoryController extends ApiController {
      */
 
     @POST
-    @Security("x-auth")
-    @Tags("Admin")
+    @Tags("Categories")
     @Path("/")
     @Response<string>(201, "Created category")
     @Response<string>(400, "Bad request")
     @Response<string>(409, "The category is already exists")
     @Response<string>(500, "Server error")
-    @Action({ route: "/", fromBody: true, filters: [AdminFilter] })
+    @Action({ route: "/", fromBody: true })
     async post(category: ICategory) {
         const response = await this.service.addCategory(category);
 
