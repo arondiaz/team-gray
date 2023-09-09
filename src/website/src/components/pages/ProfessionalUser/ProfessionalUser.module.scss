@@ -1,4 +1,5 @@
 @import '../../../stylesheets/variables.scss';
+@import '../../../stylesheets/mixins.scss';
 
 .containerprofile {
   display: flex;
@@ -10,6 +11,7 @@
 
 .containerimage * {
   border-radius: 1rem 1rem 0rem 0rem;
+  width: 100%;
 }
 
 .section {
@@ -27,6 +29,26 @@
 .title {
   font-size: 1.4rem;
   color: $grey-strong;
+
+  @include xsmall {
+    font-size: 1.1rem;
+  }
+
+  @include small {
+    font-size: 1.1rem;
+  }
+
+  @include medium {
+    font-size: 1.2rem;
+  }
+
+  @include large {
+    font-size: 1.2rem;
+  }
+
+  @include xlarge {
+    font-size: 1.5rem;
+  }
 }
 
 .cardprofile {
@@ -34,14 +56,79 @@
   height: 36rem;
   background-color: gainsboro;
   border-radius: 1rem;
+
+  @include xsmall {
+    width: 17rem;
+    height: 28rem;
+  }
+
+  @include small {
+    width: 22rem;
+    height: 30rem;
+  }
+
+  @include medium {
+    width: 24rem;
+    height: 30rem;
+  }
+
+  @include large {
+    width: 26rem;
+    height: 30rem;
+  }
+
+  @include xlarge {
+    width: 28rem;
+    height: 38rem;
+  }
 }
 
 .cardprofile .titledata {
   color: $purple-strong;
+
+  @include xsmall {
+    font-size: 0.9rem;
+  }
+
+  @include small {
+    font-size: 1rem;
+  }
+
+  @include medium {
+    font-size: 1.1rem;
+  }
+
+  @include large {
+    font-size: 1.1rem;
+  }
+
+  @include xlarge {
+    font-size: 1.4rem;
+  }
 }
 
 .cardprofile .data {
   color: $purple-soft;
+
+  @include xsmall {
+    font-size: 0.8rem;
+  }
+
+  @include small {
+    font-size: 0.9rem;
+  }
+
+  @include large {
+    font-size: 1.2rem;
+  }
+
+  @include xlarge {
+    font-size: 1.2rem;
+  }
+
+  @include xlarge {
+    font-size: 1.3rem;
+  }
 }
 
 .link {
@@ -50,6 +137,10 @@
   padding: 0.1rem;
   border-radius: 0.2rem;
   width: 14rem;
+
+  @include xsmall {
+    width: 10rem;
+  }
 }
 
 .titledata {
@@ -88,6 +179,24 @@
   cursor: pointer;
   margin: 0.1rem 1.4rem;
   border-radius: 0.5rem;
+
+  @include xsmall {
+    padding: 0.3rem 0.7rem;
+    font-size: 1rem;
+  }
+
+  @include small {
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  @include large {
+    padding: 0.5rem 1.4rem;
+  }
+
+  @include xlarge {
+    padding: 0.8rem 1.8rem;
+  }
 }
 .editbtn {
   background-color: #14a9b3;
