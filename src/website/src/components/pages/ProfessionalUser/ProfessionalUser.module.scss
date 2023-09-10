@@ -44,6 +44,10 @@
   @include large {
     margin-top: 0.6rem;
   }
+
+  @include ultralarge {
+    margin-top: 0.6rem;
+  }
 }
 
 .containerimage:first-child {
@@ -83,7 +87,7 @@
   }
 
   @include ultralarge {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -126,7 +130,7 @@
   }
 
   @include ultralarge {
-    height: 68vh;
+    height: 70vh;
   }
 }
 
@@ -205,16 +209,7 @@
     width: 10rem;
   }
 }
-//////
-// .portaitimage {
-//   width: 100%;
-//   height: auto;
 
-//   @include large {
-//     width: 50%;
-//     height: auto;
-//   }
-// }
 .titledata {
   margin: 0.5rem 0;
 }
@@ -241,7 +236,7 @@
     height: 8rem;
   }
   @include ultralarge {
-    height: 60vh;
+    height: 7rem;
   }
 }
 
