@@ -31,11 +31,11 @@
   color: $grey-strong;
 
   @include xsmall {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   @include small {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   @include medium {
@@ -47,39 +47,50 @@
   }
 
   @include xlarge {
+    font-size: 1.4rem;
+  }
+
+  @include xxlarge {
     font-size: 1.5rem;
   }
 }
 
 .cardprofile {
-  width: 25rem;
-  height: 36rem;
+  width: 70vw;
+  height: 80vh;
   background-color: gainsboro;
   border-radius: 1rem;
+  transition: width 0.3s, height 0.3s;
+  max-width: 28rem;
+  min-width: 17rem;
 
   @include xsmall {
-    width: 17rem;
-    height: 28rem;
+    width: 40vw;
+    height: 55vh;
   }
 
   @include small {
-    width: 22rem;
-    height: 30rem;
+    width: 50vw;
+    height: 65vh;
   }
 
   @include medium {
-    width: 24rem;
-    height: 30rem;
+    width: 60vw;
+    height: 45vh;
   }
 
   @include large {
-    width: 26rem;
-    height: 30rem;
+    width: 40vw;
+    height: 70vh;
   }
 
   @include xlarge {
-    width: 28rem;
-    height: 38rem;
+    width: 50vw;
+    height: 65vh;
+  }
+  @include xxlarge {
+    width: 75vw;
+    height: 70vh;
   }
 }
 
@@ -91,7 +102,7 @@
   }
 
   @include small {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   @include medium {
@@ -99,11 +110,11 @@
   }
 
   @include large {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   @include xlarge {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -115,11 +126,11 @@
   }
 
   @include small {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   @include large {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
 
   @include xlarge {
@@ -127,7 +138,7 @@
   }
 
   @include xlarge {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -139,6 +150,10 @@
   width: 14rem;
 
   @include xsmall {
+    width: 10rem;
+  }
+
+  @include small {
     width: 10rem;
   }
 }
@@ -186,16 +201,16 @@
   }
 
   @include small {
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.6rem;
     font-size: 1rem;
   }
 
   @include large {
-    padding: 0.5rem 1.4rem;
+    padding: 0.6rem 1rem;
   }
 
   @include xlarge {
-    padding: 0.8rem 1.8rem;
+    padding: 0.6rem 1.2rem;
   }
 }
 .editbtn {
