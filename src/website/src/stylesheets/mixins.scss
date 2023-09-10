@@ -1,14 +1,14 @@
 $breakpoints: (
   'xsmall': (
     min: 0px,
-    max: 479px,
+    max: 399px,
   ),
   'small': (
-    min: 480px,
-    max: 769px,
+    min: 400px,
+    max: 639px,
   ),
   'medium': (
-    min: 770px,
+    min: 640px,
     max: 959px,
   ),
   'large': (
@@ -17,14 +17,10 @@ $breakpoints: (
   ),
   'xlarge': (
     min: 1280px,
-    max: 1469px,
+    max: 1599px,
   ),
   'xxlarge': (
-    min: 1470px,
-    max: 1680px,
-  ),
-  'ultralarge': (
-    min: 1680px,
+    min: 1600px,
     max: 1920px,
   ),
 );
@@ -61,12 +57,6 @@ $breakpoints: (
 
 @mixin xxlarge {
   @media (min-width: map-get(map-get($breakpoints, 'xxlarge'), 'min')) and (max-width: map-get(map-get($breakpoints, 'xxlarge'), 'max')) {
-    @content;
-  }
-}
-
-@mixin ultralarge {
-  @media (min-width: map-get(map-get($breakpoints, 'ultralarge'), 'min')) and (max-width: map-get(map-get($breakpoints, 'ultralarge'), 'max')) {
     @content;
   }
 }
