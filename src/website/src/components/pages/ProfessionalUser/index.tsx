@@ -63,10 +63,7 @@ export const ProfessionalUserProfile = () => {
       <h1 className={styles.title}>Así se muestra tu perfil</h1>
       <div className={styles.cardprofile}>
         <div className={styles.containerimage}>
-          <ProfileImages
-            className={styles.portaitimage}
-            categoryId={user?.category_id || '1'}
-          />
+          <ProfileImages categoryId={user?.category_id || '1'} />
         </div>
         <div className={styles.datacontainer}>
           <div className={styles.section}>
