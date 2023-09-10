@@ -27,11 +27,6 @@
     height: 12rem;
     object-fit: cover;
   }
-
-  @include ultralarge {
-    height: 14rem;
-    object-fit: cover;
-  }
 }
 
 .section {
@@ -45,8 +40,8 @@
     margin-top: 0.6rem;
   }
 
-  @include ultralarge {
-    margin-top: 0.6rem;
+  @include xlarge {
+    margin-top: 0.8rem;
   }
 }
 
@@ -85,10 +80,6 @@
   @include xxlarge {
     font-size: 1.5rem;
   }
-
-  @include ultralarge {
-    font-size: 1.6rem;
-  }
 }
 
 .cardprofile {
@@ -121,16 +112,12 @@
   }
 
   @include xlarge {
-    width: 50vw;
-    height: 68vh;
+    width: 70vw;
+    height: 85vh;
   }
   @include xxlarge {
     width: 80vw;
     height: 68vh;
-  }
-
-  @include ultralarge {
-    height: 70vh;
   }
 }
 
@@ -160,10 +147,6 @@
   @include xxlarge {
     font-size: 1.2rem;
   }
-
-  @include ultralarge {
-    font-size: 1.3rem;
-  }
 }
 
 .cardprofile .data {
@@ -187,10 +170,6 @@
 
   @include xlarge {
     font-size: 1.1rem;
-  }
-
-  @include ultralarge {
-    font-size: 1.2rem;
   }
 }
 
@@ -229,14 +208,11 @@
   }
 
   @include xlarge {
-    height: 60vh;
+    height: 15vh;
   }
 
   @include xxlarge {
     height: 8rem;
-  }
-  @include ultralarge {
-    height: 7rem;
   }
 }
 
@@ -289,11 +265,6 @@
   @include xxlarge {
     padding: 0.7rem 1.2rem;
     font-size: 1.2rem;
-  }
-
-  @include ultralarge {
-    padding: 0.7rem 1.4rem;
-    font-size: 1.3rem;
   }
 }
 .editbtn {
