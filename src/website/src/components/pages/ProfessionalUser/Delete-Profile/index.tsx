@@ -1,5 +1,7 @@
 import { useDelete } from '../../../../hooks/useDelete';
 import styles from './DeleteProfile.module.scss';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface DeleteProfileProps {
   onCloseDelete: () => void;
@@ -16,14 +18,29 @@ export const DeleteProfile: React.FC<DeleteProfileProps> = ({
     // TODO: Handle responses to display modals based on the status.
     switch (response?.status) {
       case 204:
-        console.log('204');
+        toast.success('Cuenta eliminada!', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+          style: {
+            fontWeight: 'bold',
+            border: '0.1rem solid green',
+          },
+        });
         localStorage.clear();
         break;
       case 500:
-        console.log('500');
+        toast.error('Error, por favor inténtelo de nuevo.', {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 5000,
+          style: {
+            fontWeight: 'bold',
+            border: '0.1rem solid red',
+          },
+        });
         break;
       default:
         console.log('default');
+        toast.info('Default');
     }
   };
 
