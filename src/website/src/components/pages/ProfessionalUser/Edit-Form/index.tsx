@@ -23,7 +23,9 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
   const onSubmitEditForm = async (data: FieldValues): Promise<void> => {
     const editData = { ...data };
-    await editUser(editData as IProfessionalUser);
+    const response = await editUser(editData as IProfessionalUser);
+    // todo: take response to show modal
+    console.log(response);
   };
 
   return (

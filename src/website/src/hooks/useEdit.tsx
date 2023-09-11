@@ -24,21 +24,23 @@ export function UseEdit() {
       if (token) {
         apiServiceInstance.authorize(token);
 
-        await professionalUserServiceInstance.updateProfessionalUser({
-          name,
-          last_name,
-          dni,
-          province,
-          city,
-          tel,
-          link,
-          about_me,
-          gender,
-          birth_date,
-          auth_number,
-          img,
-          category_id,
-        });
+        const response =
+          await professionalUserServiceInstance.updateProfessionalUser({
+            name,
+            last_name,
+            dni,
+            province,
+            city,
+            tel,
+            link,
+            about_me,
+            gender,
+            birth_date,
+            auth_number,
+            img,
+            category_id,
+          });
+        return response;
       }
     } catch (error) {
       console.log(error);
