@@ -14,7 +14,7 @@
   width: 100%;
 
   @include large {
-    height: 6rem;
+    height: 7rem;
     object-fit: cover;
   }
 
@@ -24,6 +24,10 @@
   }
 
   @include xxlarge {
+    height: 10rem;
+    object-fit: cover;
+  }
+  @include ultralarge {
     height: 12rem;
     object-fit: cover;
   }
@@ -58,7 +62,7 @@
   color: $grey-strong;
 
   @include xsmall {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
 
   @include small {
@@ -80,6 +84,9 @@
   @include xxlarge {
     font-size: 1.5rem;
   }
+  @include ultralarge {
+    font-size: 1.7rem;
+  }
 }
 
 .cardprofile {
@@ -88,11 +95,9 @@
   background-color: gainsboro;
   border-radius: 1rem;
   transition: width 0.3s, height 0.3s;
-  max-width: 28rem;
-  min-width: 17rem;
 
   @include xsmall {
-    width: 40vw;
+    width: 65vw;
     height: 55vh;
   }
 
@@ -108,16 +113,21 @@
 
   @include large {
     width: 45vw;
-    height: 65vh;
+    height: 60vh;
   }
 
   @include xlarge {
-    width: 70vw;
-    height: 85vh;
+    width: 40vw;
+    height: 60vh;
   }
+
   @include xxlarge {
-    width: 80vw;
-    height: 68vh;
+    width: 30vw;
+    height: 65vh;
+  }
+  @include ultralarge {
+    width: 30vw;
+    height: 65vh;
   }
 }
 
@@ -125,7 +135,7 @@
   color: $purple-strong;
 
   @include xsmall {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 
   @include small {
@@ -147,13 +157,17 @@
   @include xxlarge {
     font-size: 1.2rem;
   }
+
+  @include ultralarge {
+    font-size: 1.3rem;
+  }
 }
 
 .cardprofile .data {
   color: $purple-soft;
 
   @include xsmall {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
 
   @include small {
@@ -171,6 +185,10 @@
   @include xlarge {
     font-size: 1.1rem;
   }
+
+  @include ultralarge {
+    font-size: 1.2rem;
+  }
 }
 
 .link {
@@ -178,15 +196,7 @@
   color: white;
   padding: 0.1rem;
   border-radius: 0.2rem;
-  width: 14rem;
-
-  @include xsmall {
-    width: 10rem;
-  }
-
-  @include small {
-    width: 10rem;
-  }
+  width: 70%;
 }
 
 .titledata {
@@ -200,7 +210,7 @@
   word-wrap: break-word;
 
   @include xsmall {
-    height: 3.5rem;
+    height: 4.5rem;
   }
 
   @include large {
@@ -213,6 +223,10 @@
 
   @include xxlarge {
     height: 8rem;
+  }
+
+  @include ultralarge {
+    height: 12rem;
   }
 }
 
@@ -244,7 +258,7 @@
 
   @include xsmall {
     padding: 0.3rem 0.7rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   @include small {
@@ -265,6 +279,11 @@
   @include xxlarge {
     padding: 0.7rem 1.2rem;
     font-size: 1.2rem;
+  }
+
+  @include ultralarge {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.3rem;
   }
 }
 .editbtn {

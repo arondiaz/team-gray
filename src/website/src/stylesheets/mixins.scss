@@ -21,7 +21,11 @@ $breakpoints: (
   ),
   'xxlarge': (
     min: 1600px,
-    max: 1920px,
+    max: 1919px,
+  ),
+  'ultralarge': (
+    min: 1920px,
+    max: 2200px,
   ),
 );
 
@@ -57,6 +61,12 @@ $breakpoints: (
 
 @mixin xxlarge {
   @media (min-width: map-get(map-get($breakpoints, 'xxlarge'), 'min')) and (max-width: map-get(map-get($breakpoints, 'xxlarge'), 'max')) {
+    @content;
+  }
+}
+
+@mixin ultralarge {
+  @media (min-width: map-get(map-get($breakpoints, 'ultralarge'), 'min')) and (max-width: map-get(map-get($breakpoints, 'ultralarge'), 'max')) {
     @content;
   }
 }
