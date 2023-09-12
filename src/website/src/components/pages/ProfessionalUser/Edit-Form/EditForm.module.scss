@@ -1,4 +1,5 @@
 @import '../../../../stylesheets/variables.scss';
+@import '../../../../stylesheets/mixins.scss';
 
 .containeredit {
   display: flex;
@@ -6,141 +7,330 @@
   margin-top: 1rem;
   font-family: $Lexend;
 
-  .formeditcontainer {
-    width: 60rem;
-    height: 35rem;
-    color: $grey-strong;
-    padding: 2rem 4rem;
-    background: $white;
-    border-radius: $border-md;
-    box-shadow: $shadow-medium;
-    z-index: 95;
+  @include large {
+    height: 70vh;
+
+    .formeditcontainer {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
   }
 
-  .formeditcontainer .inputbox {
-    height: 1.8rem;
-    margin: 1rem 0;
+  @include small {
+    justify-content: flex-start;
+    padding: 1rem;
+    margin-top: 5rem;
+
+    .label {
+      font-size: 0.8rem;
+    }
+
+    .select {
+      font-size: 0.2rem;
+    }
+
+    .formeditcontainer {
+      width: 100%;
+      padding: 1rem;
+      height: auto;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
+
+    .formeditcontainer .inputbox {
+      margin: 0.5rem 0;
+    }
+
+    .editform {
+      flex-direction: column;
+    }
+
+    .imageprofile {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .inputupload .round {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .inputcontainer {
+      flex-direction: column;
+    }
+
+    .inputcontainer input {
+      margin: 0.5rem 0;
+    }
+
+    .inputbox .select {
+      margin: 0.5rem 0;
+    }
+
+    .errorcontainer {
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    .inputbox {
+      display: block;
+      width: 100%;
+      margin-bottom: 5rem;
+    }
+
+    .inputcontainer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inputbox .select {
+      color: white;
+      font-size: 0.7rem;
+      height: 1.5rem;
+      margin: 1.5rem 1rem 1.7rem 2rem;
+      padding: 0rem 0.5rem;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0.1rem solid $purple-strong;
+      text-align: center;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      background-color: $purple-soft;
+      border-radius: 0.2rem;
+    }
   }
 
-  .editform {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
+  @include xsmall {
+    justify-content: flex-start;
+    padding: 1rem;
+    margin-top: 5rem;
 
-  .inputupload {
-    position: relative;
-  }
+    .label {
+      font-size: 0.8rem;
+    }
 
-  .imageprofile {
-    position: absolute;
-    bottom: -5rem;
-    left: 23rem;
-    border-radius: 50%;
-    border: 0.2rem solid $purple-strong;
-  }
+    .select {
+      font-size: 0.2rem;
+    }
 
-  .inputupload .round {
-    position: absolute;
-    bottom: -5rem;
-    left: 26rem;
-    background: #00b4ff;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    border-radius: 50%;
-    overflow: hidden;
-  }
+    .formeditcontainer {
+      width: 100%;
+      padding: 1rem;
+      height: auto;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
 
-  .inputupload .round input[type='file'] {
-    position: absolute;
-    transform: scale(2);
-    opacity: 0;
-  }
+    .formeditcontainer .inputbox {
+      margin: 0.5rem 0;
+    }
 
-  .inputbox input[type='text'],
-  .inputbox input[type='number'],
-  .inputbox input[type='date'] {
-    color: $grey-strong;
-    padding: 1rem 1rem;
-    font-size: 1rem;
-    height: 1rem;
-    margin: 1.2rem 0rem;
-    background: transparent;
-  }
+    .editform {
+      flex-direction: column;
+    }
 
-  input[type='file']::-webkit-file-upload-button {
-    cursor: pointer;
-  }
+    .imageprofile {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-  input[type='date'] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
+    .inputupload .round {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-  .label {
-    margin-left: 1rem;
-    font-size: 1.1rem;
-  }
+    .inputcontainer {
+      flex-direction: column;
+    }
 
-  .inputcontainer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin-top: 2rem;
-  }
+    .inputcontainer input {
+      margin: 0.5rem 0;
+    }
 
-  .inputcontainer input {
-    margin: 1rem;
-    border: none;
-    border-bottom: 1px solid $grey-strong;
-    font-size: 1.2rem;
-    outline: none;
-  }
+    .inputbox .select {
+      margin: 0.5rem 0;
+    }
 
-  .inputbox .select {
-    color: white;
-    font-size: 1rem;
-    height: 1.7rem;
-    margin: 1.5rem 1rem 1.7rem 2rem;
-    padding: 0rem 0.5rem;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0.1rem solid $purple-strong;
-    text-align: center;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    background-color: $purple-soft;
-    border-radius: 0.2rem;
-  }
+    .errorcontainer {
+      margin-top: 0.5rem;
+    }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    .btn {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
 
-  .errorcontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -1rem;
-  }
+    .inputbox {
+      display: block;
+      width: 100%;
+      margin-bottom: 5rem;
+    }
 
-  .errorcontainer span {
-    background-color: $error-soft;
-    color: $error-strong;
-    font-size: 0.8rem;
-    font-weight: $bold-sm;
-    text-align: center;
-    padding: 0.3rem;
-    border-radius: 0.4rem;
+    .inputcontainer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inputbox .select {
+      color: white;
+      font-size: 0.7rem;
+      height: 1.5rem;
+      margin: 1.5rem 1rem 1.7rem 2rem;
+      padding: 0rem 0.5rem;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0.1rem solid $purple-strong;
+      text-align: center;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      background-color: $purple-soft;
+      border-radius: 0.2rem;
+    }
   }
+}
+
+.formeditcontainer {
+  width: 60rem;
+  height: 35rem;
+  color: $grey-strong;
+  padding: 2rem 4rem;
+  background: $white;
+  border-radius: $border-md;
+  box-shadow: $shadow-medium;
+  z-index: 95;
+}
+
+.formeditcontainer .inputbox {
+  height: 1.8rem;
+  margin: 1rem 0;
+}
+
+.editform {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.inputupload {
+  position: relative;
+}
+
+.imageprofile {
+  position: absolute;
+  bottom: -5rem;
+  left: 23rem;
+  border-radius: 50%;
+  border: 0.2rem solid $purple-strong;
+}
+
+.inputupload .round {
+  position: absolute;
+  bottom: -5rem;
+  left: 26rem;
+  background: #00b4ff;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.inputupload .round input[type='file'] {
+  position: absolute;
+  transform: scale(2);
+  opacity: 0;
+}
+
+.inputbox input[type='text'],
+.inputbox input[type='number'],
+.inputbox input[type='date'] {
+  color: $grey-strong;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  height: 1rem;
+  margin: 1.2rem 0rem;
+  background: transparent;
+}
+
+input[type='file']::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+input[type='date'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.label {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+}
+
+.inputcontainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+
+.inputcontainer input {
+  margin: 1rem;
+  border: none;
+  border-bottom: 1px solid $grey-strong;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.inputbox .select {
+  color: white;
+  font-size: 1rem;
+  height: 1.7rem;
+  margin: 1.5rem 1rem 1.7rem 2rem;
+  padding: 0rem 0.5rem;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0.1rem solid $purple-strong;
+  text-align: center;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background-color: $purple-soft;
+  border-radius: 0.2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.errorcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.errorcontainer span {
+  background-color: $error-soft;
+  color: $error-strong;
+  font-size: 0.8rem;
+  font-weight: $bold-sm;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
 }
 
 .btn {
