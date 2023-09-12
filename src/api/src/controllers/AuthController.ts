@@ -8,7 +8,7 @@ import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 @Tags("AuthUser")
 @Controller({ route: "/api/auth" })
 export class AuthController extends ApiController {
-    constructor(private service: AuthService) {
+    constructor(private readonly service: AuthService) {
         super();
     }
 
