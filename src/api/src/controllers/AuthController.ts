@@ -3,6 +3,7 @@ import { AuthService } from "../service/AuthUser.service";
 import { POST, Path } from "typescript-rest";
 import { Response, Tags } from "typescript-rest-swagger";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
+import { ILoginProfessionalUser } from "../models/users/LoginProfessionalUser.interface";
 
 @Path("/api/auth")
 @Tags("AuthUser")
@@ -76,7 +77,7 @@ export class AuthController extends ApiController {
     @Response<string>(404, "The user does not exist in the database")
     @Response<string>(500, "Server error")
     @Action({ route: "/login", fromBody: true, method: HttpMethod.POST })
-    async login(authUser: IProfessionalUser): Promise<string> {
+    async login(authUser: ILoginProfessionalUser): Promise<string> {
         const response = await this.service.login(authUser);
         if (response.error) {
             this.httpContext.response.status(response.code).send(response.message);

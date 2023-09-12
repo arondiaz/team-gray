@@ -7,6 +7,7 @@ import { Configuration } from "../configuration/configuration";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Validator } from "../utils/validator";
+import { ILoginProfessionalUser } from "../models/users/LoginProfessionalUser.interface";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
@@ -264,7 +265,7 @@ export class AuthService {
         }
     }
 
-    async login(authUser: IProfessionalUser): Promise<IResponse> {
+    async login(authUser: ILoginProfessionalUser): Promise<IResponse> {
         try {
             if (!authUser.email) {
                 return {
