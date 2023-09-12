@@ -5,41 +5,40 @@ import { Gender } from "../models/users/Gender";
 export class Validator {
     constructor() {}
 
-    public testStringTypeData(data: string[]) {
+    public validateStringTypeData(data: string[]) {
         for (let i = 0; i < data.length; i++) {
             if (data[i] && typeof data[i] != "string") return true;
         }
         return false;
     }
 
-    public testEmail(email: string): boolean {
+    public validateEmail(email: string): boolean {
         const test = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        if (!test.test(email)) return false;
-        return true;
+        return test.test(email);
     }
 
-    public testPassword(password: string): string | boolean {
+    public validatePassword(password: string): string | boolean {
         if (password.length < 8) return "The password field cannot be less than 8";
         if (password.length > 16) return "The password field cannot be greater than 16";
         return false;
     }
 
-    public testString(string: string): boolean {
+    public validateString(string: string): boolean {
         const test = /^[A-ZÁÉÍÓÚÜÑ\s]+$/i;
         return test.test(string);
     }
 
-    public testNumber(number: string): boolean {
+    public validateNumber(number: string): boolean {
         const test = /^[0-9]*$/;
         return test.test(number);
     }
 
-    public testDni(dni: string): boolean {
+    public validateDni(dni: string): boolean {
         if (dni.length < 8 || dni.length > 9) return false;
         return true;
     }
 
-    public testAge(birthDateUser: string): string | boolean {
+    public validateAge(birthDateUser: string): string | boolean {
         const test = /^\d{4}-\d{2}-\d{2}$/;
         if (!test.test(birthDateUser)) return "Invalid format on birth_date";
 
@@ -59,7 +58,7 @@ export class Validator {
         return false;
     }
 
-    public testGender(gender: Gender | string): boolean {
+    public validateGender(gender: Gender | string): boolean {
         if (gender === Gender.female || gender === Gender.male || gender === Gender.nonBinary) return false;
         return true;
     }

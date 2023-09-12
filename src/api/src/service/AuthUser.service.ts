@@ -19,16 +19,6 @@ export class AuthService {
 
     async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
-            // Email already registered validation.
-            const validateEmail = await this.repo.getByEmail(authUser.email);
-            if (validateEmail) {
-                return {
-                    error: true,
-                    message: "The email is already registered",
-                    code: 409,
-                };
-            }
-
             // Fields not empty validation.
             if (!authUser.birth_date) {
                 return {
@@ -137,7 +127,7 @@ export class AuthService {
                 authUser.category_id,
             ];
 
-            if (this.validate.testStringTypeData(arrData)) {
+            if (this.validate.validateStringTypeData(arrData)) {
                 return {
                     error: true,
                     message: "There are fields that are not of type string",
@@ -146,21 +136,21 @@ export class AuthService {
             }
 
             // Fields validation with Validator Class.
-            if (!this.validate.testEmail(authUser.email))
+            if (!this.validate.validateEmail(authUser.email))
                 return {
                     error: true,
                     message: "The field is not a valid email",
                     code: 400,
                 };
 
-            if (this.validate.testPassword(authUser.password))
+            if (this.validate.validatePassword(authUser.password))
                 return {
                     error: true,
-                    message: this.validate.testPassword(authUser.password) as string,
+                    message: this.validate.validatePassword(authUser.password) as string,
                     code: 400,
                 };
 
-            if (!this.validate.testString(authUser.name)) {
+            if (!this.validate.validateString(authUser.name)) {
                 return {
                     error: true,
                     message: "The field is not a valid name",
@@ -168,7 +158,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testNumber(authUser.tel)) {
+            if (!this.validate.validateNumber(authUser.tel)) {
                 return {
                     error: true,
                     message: "The field is not a valid phone",
@@ -176,7 +166,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testString(authUser.last_name)) {
+            if (!this.validate.validateString(authUser.last_name)) {
                 return {
                     error: true,
                     message: "The field is not a valid last name",
@@ -184,7 +174,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testString(authUser.city)) {
+            if (!this.validate.validateString(authUser.city)) {
                 return {
                     error: true,
                     message: "The field is not a valid city",
@@ -192,7 +182,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testNumber(authUser.dni) || !this.validate.testDni(authUser.dni)) {
+            if (!this.validate.validateNumber(authUser.dni) || !this.validate.validateDni(authUser.dni)) {
                 return {
                     error: true,
                     message: "The field is not a valid DNI",
@@ -200,7 +190,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.testString(authUser.province)) {
+            if (!this.validate.validateString(authUser.province)) {
                 return {
                     error: true,
                     message: "The field is not a valid province",
@@ -208,19 +198,29 @@ export class AuthService {
                 };
             }
 
-            if (this.validate.testAge(authUser.birth_date)) {
+            if (this.validate.validateAge(authUser.birth_date)) {
                 return {
                     error: true,
-                    message: this.validate.testAge(authUser.birth_date) as string,
+                    message: this.validate.validateAge(authUser.birth_date) as string,
                     code: 400,
                 };
             }
 
-            if (this.validate.testGender(authUser.gender)) {
+            if (this.validate.validateGender(authUser.gender)) {
                 return {
                     error: true,
                     message: "Gender must be 'Male', 'Female' or 'Non-binary'",
                     code: 400,
+                };
+            }
+
+            // Email already registered validation.
+            const validateEmail = await this.repo.getByEmail(authUser.email);
+            if (validateEmail) {
+                return {
+                    error: true,
+                    message: "The email is already registered",
+                    code: 409,
                 };
             }
 
@@ -246,59 +246,106 @@ export class AuthService {
     }
 
     async login(authUser: IProfessionalUser): Promise<IResponse> {
-        const config = this.configBuilder.build(Configuration);
-        const user = await this.repo.getByEmail(authUser.email);
+        try {
+            if (!authUser.email) {
+                return {
+                    error: true,
+                    message: "Email field not found",
+                    code: 400,
+                };
+            }
 
-        if (!user) {
-            return {
-                error: true,
-                message: "The user does not exist in the database",
-                code: 404,
-            };
-        }
+            if (!authUser.password) {
+                return {
+                    error: true,
+                    message: "Password field not found",
+                    code: 400,
+                };
+            }
 
-        if (user.state === 0)
-            return {
-                error: true,
-                message: "Disabled account",
-                code: 403,
-            };
+            const arrData = [authUser.email, authUser.password];
 
-        const compare = await bcrypt.compare(authUser.password, user.password);
+            if (this.validate.validateStringTypeData(arrData)) {
+                return {
+                    error: true,
+                    message: "There are fields that are not of type string",
+                    code: 400,
+                };
+            }
 
-        if (compare) {
-            const token = jwt.sign(
-                {
-                    email: user.email,
-                    name: user.name,
-                    last_name: user.last_name,
-                    dni: user.dni,
-                    province: user.province,
-                    city: user.city,
-                    tel: user.tel,
-                    link: user.link,
-                    about_me: user.about_me,
-                    gender: user.gender,
-                    birth_date: user.birth_date,
-                    auth_number: user.auth_number,
-                    img: user.img,
-                    category_id: user.category_id,
-                },
-                config.jwt.secret
-            );
+            if (!this.validate.validateEmail(authUser.email)) {
+                return {
+                    error: true,
+                    message: "The field is not a email",
+                    code: 400,
+                };
+            }
 
-            return {
-                error: false,
-                message: "Success",
-                code: 200,
-                token: token,
-            };
-        } else {
-            return {
-                error: true,
-                message: "Invalid credentials",
-                code: 401,
-            };
+            if (this.validate.validatePassword(authUser.password)) {
+                return {
+                    error: true,
+                    message: this.validate.validatePassword(authUser.password) as string,
+                    code: 400,
+                };
+            }
+
+            const user = await this.repo.getByEmail(authUser.email);
+
+            if (!user) {
+                return {
+                    error: true,
+                    message: "The user does not exist in the database",
+                    code: 404,
+                };
+            }
+
+            if (user.state === 0)
+                return {
+                    error: true,
+                    message: "Disabled account",
+                    code: 403,
+                };
+
+            const compare = await bcrypt.compare(authUser.password, user.password);
+
+            const config = this.configBuilder.build(Configuration);
+
+            if (compare) {
+                const token = jwt.sign(
+                    {
+                        email: user.email,
+                        name: user.name,
+                        last_name: user.last_name,
+                        dni: user.dni,
+                        province: user.province,
+                        city: user.city,
+                        tel: user.tel,
+                        link: user.link,
+                        about_me: user.about_me,
+                        gender: user.gender,
+                        birth_date: user.birth_date,
+                        auth_number: user.auth_number,
+                        img: user.img,
+                        category_id: user.category_id,
+                    },
+                    config.jwt.secret
+                );
+
+                return {
+                    error: false,
+                    message: "Success",
+                    code: 200,
+                    token: token,
+                };
+            } else {
+                return {
+                    error: true,
+                    message: "Invalid credentials",
+                    code: 401,
+                };
+            }
+        } catch (error) {
+            throw new Error(error);
         }
     }
 
