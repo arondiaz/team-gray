@@ -16,6 +16,15 @@ export enum Gender {
   NonBinary = 'Non-binary',
 }
 
+const notification = (color: string) => ({
+  position: toast.POSITION.BOTTOM_RIGHT,
+  autoClose: 5000,
+  style: {
+    fontWeight: 'bold',
+    border: `0.1rem solid ${color}`,
+  },
+});
+
 export const Signup = () => {
   const { makeRegister } = useRegister();
   const {
@@ -39,42 +48,21 @@ export const Signup = () => {
     const allData = { ...view1Data, ...data };
     const response = await makeRegister({ ...allData });
 
-    if (response?.status === 201) {
-      toast.success('¡Usuario creado correctamente!', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        style: {
-          fontWeight: 'bold',
-          border: '0.1rem solid green',
-        },
-      });
-    } else if (response?.status === 409) {
-      toast.error('El mail ya existe en la base de datos', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        style: {
-          fontWeight: 'bold',
-          border: '0.1rem solid red',
-        },
-      });
-    } else if (response?.status === 400) {
-      toast.error('Registro inválido', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        style: {
-          fontWeight: 'bold',
-          border: '0.1rem solid red',
-        },
-      });
-    } else {
-      toast.error('Registro incorrecto', {
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        style: {
-          fontWeight: 'bold',
-          border: '0.1rem solid red',
-        },
-      });
+    switch (response?.status) {
+      case 201:
+        toast.success('¡Usuario creado correctamente!', notification('green'));
+        break;
+      case 409:
+        toast.error(
+          'El mail ya existe en la base de datos',
+          notification('red')
+        );
+        break;
+      case 400:
+        toast.error('Registro inválido', notification('red'));
+        break;
+      default:
+        toast.error('Registro incorrecto', notification('red'));
     }
   };
   const password = watch('password');
