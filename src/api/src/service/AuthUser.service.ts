@@ -7,7 +7,6 @@ import { Configuration } from "../configuration/configuration";
 import { ProfessionalUserRepository } from "../repositories/ProfessionalUser.repository";
 import { IProfessionalUser } from "../models/users/ProfessionalUser.interface";
 import { Validator } from "../utils/validator";
-import { link } from "fs";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class AuthService {
@@ -18,29 +17,29 @@ export class AuthService {
         private readonly validate: Validator
     ) {}
 
-    async register(registerUser: IProfessionalUser): Promise<IResponse> {
+    async register(authUser: IProfessionalUser): Promise<IResponse> {
         try {
             // Create a user for registration.
-            const user = {
-                name: registerUser.name,
-                last_name: registerUser.last_name,
-                birth_date: registerUser.birth_date,
-                category_id: registerUser.category_id,
-                city: registerUser.city,
-                dni: registerUser.dni,
-                email: registerUser.email,
-                gender: registerUser.gender,
-                password: registerUser.password,
-                province: registerUser.province,
-                tel: registerUser.tel,
-                about_me: registerUser.about_me,
-                auth_number: registerUser.auth_number,
-                link: registerUser.link,
-                img: registerUser.img,
+            const registerUser = {
+                name: authUser.name,
+                last_name: authUser.last_name,
+                birth_date: authUser.birth_date,
+                category_id: authUser.category_id,
+                city: authUser.city,
+                dni: authUser.dni,
+                email: authUser.email,
+                gender: authUser.gender,
+                password: authUser.password,
+                province: authUser.province,
+                tel: authUser.tel,
+                about_me: authUser.about_me,
+                auth_number: authUser.auth_number,
+                link: authUser.link,
+                img: authUser.img,
             };
 
             // Fields not empty validation.
-            if (!user.birth_date) {
+            if (!registerUser.birth_date) {
                 return {
                     error: true,
                     message: "Birth date field not found",
@@ -48,7 +47,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.category_id) {
+            if (!registerUser.category_id) {
                 return {
                     error: true,
                     message: " Category field not found",
@@ -56,7 +55,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.city) {
+            if (!registerUser.city) {
                 return {
                     error: true,
                     message: " City field not found",
@@ -64,7 +63,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.dni) {
+            if (!registerUser.dni) {
                 return {
                     error: true,
                     message: " Dni field not found",
@@ -72,7 +71,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.email) {
+            if (!registerUser.email) {
                 return {
                     error: true,
                     message: " Email field not found",
@@ -80,7 +79,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.gender) {
+            if (!registerUser.gender) {
                 return {
                     error: true,
                     message: " Gender field not found",
@@ -88,7 +87,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.last_name) {
+            if (!registerUser.last_name) {
                 return {
                     error: true,
                     message: "Last name field not found",
@@ -96,7 +95,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.name) {
+            if (!registerUser.name) {
                 return {
                     error: true,
                     message: "Name field not found",
@@ -104,7 +103,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.password) {
+            if (!registerUser.password) {
                 return {
                     error: true,
                     message: "Password field not found",
@@ -112,7 +111,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.province) {
+            if (!registerUser.province) {
                 return {
                     error: true,
                     message: "Province field not found",
@@ -120,7 +119,7 @@ export class AuthService {
                 };
             }
 
-            if (!user.tel) {
+            if (!registerUser.tel) {
                 return {
                     error: true,
                     message: "Phone field not found",
@@ -130,21 +129,21 @@ export class AuthService {
 
             // Data string type validation with Validator Class.
             const arrData = [
-                user.email,
-                user.password,
-                user.name,
-                user.last_name,
-                user.dni,
-                user.province,
-                user.city,
-                user.tel,
-                user.link,
-                user.about_me,
-                user.gender,
-                user.birth_date,
-                user.auth_number,
-                user.img,
-                user.category_id,
+                registerUser.email,
+                registerUser.password,
+                registerUser.name,
+                registerUser.last_name,
+                registerUser.dni,
+                registerUser.province,
+                registerUser.city,
+                registerUser.tel,
+                registerUser.link,
+                registerUser.about_me,
+                registerUser.gender,
+                registerUser.birth_date,
+                registerUser.auth_number,
+                registerUser.img,
+                registerUser.category_id,
             ];
 
             if (this.validate.validateStringTypeData(arrData)) {
@@ -156,21 +155,21 @@ export class AuthService {
             }
 
             // Fields validation with Validator Class.
-            if (!this.validate.validateEmail(user.email))
+            if (!this.validate.validateEmail(registerUser.email))
                 return {
                     error: true,
                     message: "The field is not a valid email",
                     code: 400,
                 };
 
-            if (this.validate.validatePassword(user.password))
+            if (this.validate.validatePassword(registerUser.password))
                 return {
                     error: true,
-                    message: this.validate.validatePassword(user.password) as string,
+                    message: this.validate.validatePassword(registerUser.password) as string,
                     code: 400,
                 };
 
-            if (!this.validate.validateString(user.name)) {
+            if (!this.validate.validateString(registerUser.name)) {
                 return {
                     error: true,
                     message: "The field is not a valid name",
@@ -178,7 +177,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateNumber(user.tel)) {
+            if (!this.validate.validateNumber(registerUser.tel)) {
                 return {
                     error: true,
                     message: "The field is not a valid phone",
@@ -186,7 +185,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateString(user.last_name)) {
+            if (!this.validate.validateString(registerUser.last_name)) {
                 return {
                     error: true,
                     message: "The field is not a valid last name",
@@ -194,7 +193,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateString(user.city)) {
+            if (!this.validate.validateString(registerUser.city)) {
                 return {
                     error: true,
                     message: "The field is not a valid city",
@@ -202,7 +201,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateNumber(user.dni) || !this.validate.validateDni(user.dni)) {
+            if (!this.validate.validateNumber(registerUser.dni) || !this.validate.validateDni(registerUser.dni)) {
                 return {
                     error: true,
                     message: "The field is not a valid DNI",
@@ -210,7 +209,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateString(user.province)) {
+            if (!this.validate.validateString(registerUser.province)) {
                 return {
                     error: true,
                     message: "The field is not a valid province",
@@ -218,15 +217,15 @@ export class AuthService {
                 };
             }
 
-            if (this.validate.validateAge(user.birth_date)) {
+            if (this.validate.validateAge(registerUser.birth_date)) {
                 return {
                     error: true,
-                    message: this.validate.validateAge(user.birth_date) as string,
+                    message: this.validate.validateAge(registerUser.birth_date) as string,
                     code: 400,
                 };
             }
 
-            if (this.validate.validateGender(user.gender)) {
+            if (this.validate.validateGender(registerUser.gender)) {
                 return {
                     error: true,
                     message: "Gender must be 'Male', 'Female' or 'Non-binary'",
@@ -235,7 +234,7 @@ export class AuthService {
             }
 
             // Email already registered validation.
-            const validateEmail = await this.repo.getByEmail(user.email);
+            const validateEmail = await this.repo.getByEmail(registerUser.email);
             if (validateEmail) {
                 return {
                     error: true,
@@ -248,10 +247,10 @@ export class AuthService {
             const salt = await bcrypt.genSalt(10);
 
             // Hashed password.
-            user.password = await bcrypt.hash(user.password, salt);
+            registerUser.password = await bcrypt.hash(registerUser.password, salt);
 
             // Insert on database.
-            const response = await this.repo.insertOne(user);
+            const response = await this.repo.insertOne(registerUser);
 
             if (response) {
                 return {
