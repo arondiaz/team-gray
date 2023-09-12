@@ -5,10 +5,20 @@ import { Gender } from '../../../auth/Signup';
 import styles from './EditForm.module.scss';
 import { UseEdit } from '../../../../hooks/useEdit';
 import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
+import { toast } from 'react-toastify';
 
 interface EditFormProps {
   onCloseForm: () => void;
 }
+
+const notification = (color: string) => ({
+  position: toast.POSITION.BOTTOM_RIGHT,
+  autoClose: 5000,
+  style: {
+    fontWeight: 'bold',
+    border: `0.1rem solid ${color}`,
+  },
+});
 
 export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
   const {
@@ -26,6 +36,20 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
     const response = await editUser(editData as IProfessionalUser);
     // todo: take response to show modal
     console.log(response);
+    switch (response?.status) {
+      case 200:
+        toast.success('¡Datos editados correctamente!', notification('green'));
+        break;
+      case 500:
+        toast.error(
+          'Error al editar perfil, por favor inténtelo de nuevo',
+          notification('red')
+        );
+        break;
+      default:
+        toast.error('Error al editar perfil', notification('red'));
+        break;
+    }
   };
 
   return (
