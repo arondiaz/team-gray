@@ -33,14 +33,6 @@ export const About = () => {
             linkedinUrl="https://www.linkedin.com/in/arondiaz/"
           />
         </div>
-        <div>
-          <MemberCard
-            name="Diego Hamui"
-            imageUrl="src\assets\images\ProfilePhotos\diego.webp"
-            githubUrl="https://github.com/DIEGOHAMUI"
-            linkedinUrl="https://www.linkedin.com/in/diegojesushamui/"
-          />
-        </div>
       </section>
       <div className={styles.text}>{text}</div>
       <BgLayout />
