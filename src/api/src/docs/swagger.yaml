@@ -71,6 +71,19 @@ definitions:
             - tel
             - gender
             - birth_date
+    ILoginProfessionalUser:
+        description: ""
+        properties:
+            email:
+                type: string
+                description: ""
+            password:
+                type: string
+                description: ""
+        type: object
+        required:
+            - email
+            - password
     ICategory:
         description: ""
         properties:
@@ -164,7 +177,7 @@ paths:
                     name: authUser
                     required: true
                     schema:
-                        $ref: '#/definitions/IProfessionalUser'
+                        $ref: '#/definitions/ILoginProfessionalUser'
     /api/categories/:
         get:
             operationId: CategoryGet
