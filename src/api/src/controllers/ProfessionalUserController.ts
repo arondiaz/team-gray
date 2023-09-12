@@ -76,8 +76,9 @@ export class ProfessionalUserController extends ApiController {
 
     /**
      * @param professionalUser 
-     * * This endpoint is for editing an account by an authenticated professional user.
-     * Example: 
+     *   * This endpoint is for editing an account by an authenticated professional user.
+     * 
+     *   Example: 
      * 
             "name": "Juan Pedro",
             "last_name": "Lopez",
