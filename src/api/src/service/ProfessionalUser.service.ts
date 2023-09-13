@@ -124,6 +124,70 @@ export class ProfessionalUserService {
             };
         }
 
+        if (!this.validate.validateString(updatedUser.name)) {
+            return {
+                error: true,
+                message: "The field is not a valid name",
+                code: 400,
+            };
+        }
+
+        if (!this.validate.validatePhone(updatedUser.tel)) {
+            return {
+                error: true,
+                message: "The field is not a valid phone",
+                code: 400,
+            };
+        }
+
+        if (!this.validate.validateString(updatedUser.last_name)) {
+            return {
+                error: true,
+                message: "The field is not a valid last name",
+                code: 400,
+            };
+        }
+
+        if (!this.validate.validateString(updatedUser.city)) {
+            return {
+                error: true,
+                message: "The field is not a valid city",
+                code: 400,
+            };
+        }
+
+        if (!this.validate.validateDni(updatedUser.dni)) {
+            return {
+                error: true,
+                message: "The field is not a valid DNI",
+                code: 400,
+            };
+        }
+
+        if (!this.validate.validateString(updatedUser.province)) {
+            return {
+                error: true,
+                message: "The field is not a valid province",
+                code: 400,
+            };
+        }
+
+        if (this.validate.validateAge(updatedUser.birth_date)) {
+            return {
+                error: true,
+                message: this.validate.validateAge(updatedUser.birth_date) as string,
+                code: 400,
+            };
+        }
+
+        if (this.validate.validateGender(updatedUser.gender)) {
+            return {
+                error: true,
+                message: "Gender must be 'Male', 'Female' or 'Non-binary'",
+                code: 400,
+            };
+        }
+
         const user: IProfessionalUser = await this.repo.update(updatedUser);
 
         if (user) {

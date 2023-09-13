@@ -178,7 +178,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateNumber(registerUser.tel)) {
+            if (!this.validate.validatePhone(registerUser.tel)) {
                 return {
                     error: true,
                     message: "The field is not a valid phone",
@@ -202,7 +202,7 @@ export class AuthService {
                 };
             }
 
-            if (!this.validate.validateNumber(registerUser.dni) || !this.validate.validateDni(registerUser.dni)) {
+            if (!this.validate.validateDni(registerUser.dni)) {
                 return {
                     error: true,
                     message: "The field is not a valid DNI",
