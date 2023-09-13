@@ -6,13 +6,15 @@ import { AuthService } from "./AuthUser.service";
 import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
+import { Validator } from "../utils/validator";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
     constructor(
         private readonly repo: ProfessionalUserRepository,
         private readonly service: AuthService,
-        private readonly configBuilder: ConfigurationBuilder
+        private readonly configBuilder: ConfigurationBuilder,
+        private readonly validate: Validator
     ) {}
 
     public async getAll(): Promise<IProfessionalUser[] | undefined> {
@@ -97,6 +99,29 @@ export class ProfessionalUserService {
             if (!updatedUser[key]) {
                 updatedUser[key] = this.service.authUser[key];
             }
+        }
+
+        const editArr = [
+            updatedUser.name,
+            updatedUser.last_name,
+            updatedUser.dni,
+            updatedUser.birth_date,
+            updatedUser.category_id,
+            updatedUser.link,
+            updatedUser.tel,
+            updatedUser.city,
+            updatedUser.province,
+            updatedUser.gender,
+            updatedUser.auth_number,
+            updatedUser.about_me,
+        ];
+
+        if (this.validate.validateStringTypeData(editArr)) {
+            return {
+                error: true,
+                message: "There are fields that are not of type string",
+                code: 400,
+            };
         }
 
         const user: IProfessionalUser = await this.repo.update(updatedUser);
