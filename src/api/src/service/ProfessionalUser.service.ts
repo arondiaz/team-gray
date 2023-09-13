@@ -72,11 +72,25 @@ export class ProfessionalUserService {
     }
 
     public async edit(professionalUser: IProfessionalUser): Promise<IResponse> {
-        // Assign the id to the authenticated user.
-        professionalUser.id = this.service.authUser.id;
-
-        // Assign the email to the authenticated user.
-        professionalUser.email = this.service.authUser.email;
+        // Create a user for update.
+        const updatedUser: IProfessionalUser = {
+            // Assign the id to the authenticated user.
+            id: this.service.authUser.id,
+            // Assign the email to the authenticated user.
+            email: this.service.authUser.email,
+            name: professionalUser.name,
+            last_name: professionalUser.last_name,
+            dni: professionalUser.dni,
+            birth_date: professionalUser.birth_date,
+            category_id: professionalUser.category_id,
+            link: professionalUser.link,
+            tel: professionalUser.tel,
+            city: professionalUser.city,
+            province: professionalUser.province,
+            gender: professionalUser.gender,
+            auth_number: professionalUser.auth_number,
+            about_me: professionalUser.about_me,
+        };
 
         const user: IProfessionalUser = await this.repo.update(professionalUser);
 
