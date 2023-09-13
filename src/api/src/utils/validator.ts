@@ -33,6 +33,7 @@ export class Validator {
         if (!test.test(dni) || dni.length < 7 || dni.length > 9) return false;
         return true;
     }
+
     public validatePhone(phoneNumber: string): boolean {
         const test = /^[0-9]*$/;
         if (!test.test(phoneNumber) || phoneNumber.length < 7 || phoneNumber.length > 15) return false;
