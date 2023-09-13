@@ -21,4 +21,5 @@ export class ProfessionalUser implements IProfessionalUser {
     img?: string = "";
     category_id: string = "";
     state?: number = 1;
+    [key: string]: string | number | Gender;
 }

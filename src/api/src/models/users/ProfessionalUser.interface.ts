@@ -18,4 +18,5 @@ export interface IProfessionalUser {
     img?: string;
     category_id?: string;
     state?: number;
+    [key: string]: string | number | Gender;
 }
