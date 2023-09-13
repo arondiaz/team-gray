@@ -7,7 +7,7 @@ import { useRegister } from '../../../hooks/useRegister';
 import { toast } from 'react-toastify';
 
 import styles from './Signup.module.scss';
-import BgOverlay from '../../shared/BackgroundOverly';
+import BgOverlay from '../../shared/BackgroundOverlay';
 import BgLayout from '../../shared/BackgroundLayout';
 
 export enum Gender {

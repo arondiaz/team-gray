@@ -2,7 +2,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { Link, Navigate } from 'react-router-dom';
 import styles from './Login.module.scss';
-import BgOverlay from '../../shared/BackgroundOverly';
+import BgOverlay from '../../shared/BackgroundOverlay';
 import { useAuth } from '../../../hooks/useAuth';
 import { toast } from 'react-toastify';
 
