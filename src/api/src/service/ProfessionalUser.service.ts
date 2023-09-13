@@ -92,7 +92,14 @@ export class ProfessionalUserService {
             about_me: professionalUser.about_me,
         };
 
-        const user: IProfessionalUser = await this.repo.update(professionalUser);
+        // If the value is undefined assign the value of the auth user.
+        for (let key in updatedUser) {
+            if (!updatedUser[key]) {
+                updatedUser[key] = this.service.authUser[key];
+            }
+        }
+
+        const user: IProfessionalUser = await this.repo.update(updatedUser);
 
         if (user) {
             const config = this.configBuilder.build(Configuration);
