@@ -13,8 +13,8 @@ export class UserFilter implements IFilter {
     constructor(private readonly configBuilder: ConfigurationBuilder, private readonly service: AuthService) {}
 
     async beforeExecute(httpContext: HttpContext): Promise<void> {
-        const config = this.configBuilder.build(Configuration);
         const token = httpContext.request.header("x-auth");
+        const config = this.configBuilder.build(Configuration);
         const validate = jwt.verify(token, config.jwt.secret);
 
         if (!token || !validate) {
