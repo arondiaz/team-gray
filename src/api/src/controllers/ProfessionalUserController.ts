@@ -11,11 +11,7 @@ import { AuthService } from "../service/AuthUser.service";
 @Tags("Professional Users")
 @Controller({ route: "/api/professional_user" })
 export class ProfessionalUserController extends ApiController {
-    constructor(
-        private readonly repo: ProfessionalUserRepository,
-        private readonly service: ProfessionalUserService,
-        private readonly authService: AuthService
-    ) {
+    constructor(private readonly service: ProfessionalUserService, private readonly authService: AuthService) {
         super();
     }
 
