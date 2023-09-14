@@ -25,7 +25,7 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({
     mode: 'onChange',
   });
@@ -328,7 +328,10 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
             <div>
               <button
                 type="submit"
-                className={`{styles.btnaccept} ${styles.btn}`}>
+                disabled={!isDirty || !isValid}
+                className={`${styles.btnaccept} ${styles.btn} ${
+                  !isDirty || !isValid ? styles.btnacceptdissabled : ''
+                }`}>
                 Aceptar
               </button>
             </div>
