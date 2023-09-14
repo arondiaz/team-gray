@@ -7,14 +7,10 @@ export const LogoutModal = ({ isOpen, onClose, onConfirm }: any) => {
         <div className={styles.modal}>
           <h3>¿Estás seguro de que quieres cerrar sesión?</h3>
           <div className={styles.buttonscontainer}>
-            <button
-              onClick={onConfirm}
-              className={`${styles.btn} ${styles.btnlogut}`}>
+            <button onClick={onConfirm} className={styles.btn}>
               Cerrar sesión
             </button>
-            <button
-              onClick={onClose}
-              className={`${styles.btn} ${styles.btnlogut}`}>
+            <button onClick={onClose} className={styles.btn}>
               Cerrar
             </button>
           </div>
