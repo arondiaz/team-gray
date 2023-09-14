@@ -16,7 +16,7 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
     }
 
     async getByCategory(category: number): Promise<IProfessionalUser[]> {
-        const request = this.find("category_id = ?", [category]);
+        const request = this.find("category_id = ? AND state = ?", [category, true]);
         return request;
     }
 

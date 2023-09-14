@@ -247,4 +247,29 @@ export class ProfessionalUserService {
     public async remove(authUser: IProfessionalUser): Promise<void> {
         await this.repo.delete(authUser.id);
     }
+
+    public async getById(id: number): Promise<IProfessionalUser | undefined> {
+        const response = await this.repo.getUserById(id);
+
+        if (response) {
+            const user: IProfessionalUser = {
+                email: response.email,
+                name: response.name,
+                last_name: response.last_name,
+                dni: response.dni,
+                province: response.province,
+                city: response.city,
+                tel: response.tel,
+                link: response.link,
+                about_me: response.about_me,
+                gender: response.gender,
+                birth_date: response.birth_date,
+                auth_number: response.auth_number,
+                img: response.img,
+                category_id: response.category_id,
+            };
+            return user;
+        }
+        return undefined;
+    }
 }
