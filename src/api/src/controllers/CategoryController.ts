@@ -13,7 +13,7 @@ export class CategoryController extends ApiController {
 
     /**
      *
-     *  * This endpoint returns all categories added by an administrator.
+     *  * This endpoint returns all categories added.
      *
      * @returns
      */

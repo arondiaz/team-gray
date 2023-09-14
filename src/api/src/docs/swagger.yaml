@@ -71,6 +71,7 @@ definitions:
             - tel
             - gender
             - birth_date
+        additionalProperties: {}
     ILoginProfessionalUser:
         description: ""
         properties:
@@ -199,7 +200,7 @@ paths:
                     description: 'Server error'
                     schema:
                         type: string
-            description: "\r\n* This endpoint returns all categories added by an administrator."
+            description: "\r\n* This endpoint returns all categories added."
             tags:
                 - Categories
             parameters: []
