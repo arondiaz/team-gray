@@ -30,13 +30,10 @@
   font-size: 1.2rem;
   border-radius: 0.3rem;
   margin-top: 1rem;
-}
-
-.btnlogut {
   background-color: $purple-soft;
   color: white;
 }
 
-.btnlogut:hover {
+.btn:hover {
   background-color: $purple-strong;
 }
