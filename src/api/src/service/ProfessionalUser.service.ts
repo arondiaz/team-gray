@@ -97,8 +97,11 @@ export class ProfessionalUserService {
             };
 
             // If the date of birth is undefined, assign the date of birth of the authenticated user, passing the data in the expected format.
-            const authUserDate = new Date(this.service.authUser.birth_date);
-            if (!updatedUser.birth_date) updatedUser.birth_date = authUserDate.toISOString().slice(0, 10);
+
+            if (!updatedUser.birth_date) {
+                const authUserDate = new Date(this.service.authUser.birth_date);
+                updatedUser.birth_date = authUserDate.toISOString().slice(0, 10);
+            }
 
             // If the value is undefined assign the value of the auth user.
             for (let key in updatedUser) {
