@@ -1,6 +1,6 @@
 import { FieldValues, useForm } from 'react-hook-form';
 import { FaUpload } from 'react-icons/fa';
-import { Categories } from '../../../Categories';
+import { CategoriesEditForm } from '../../../CategoriesEditForm';
 import { Gender } from '../../../auth/Signup';
 import styles from './EditForm.module.scss';
 import { UseEdit } from '../../../../hooks/useEdit';
@@ -24,18 +24,33 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    setValue,
+    formState: { errors },
   } = useForm({
     mode: 'onChange',
   });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setValue('img', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const { editUser } = UseEdit();
 
   const onSubmitEditForm = async (data: FieldValues): Promise<void> => {
     const editData = { ...data };
+    console.log(typeof data.img);
+    console.log(typeof data.tel);
     const response = await editUser(editData as IProfessionalUser);
     // todo: take response to show modal
     console.log(response);
+
     switch (response?.status) {
       case 200:
         toast.success('¡Datos editados correctamente!', notification('green'));
@@ -68,7 +83,7 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
               />
 
               <div className={styles.round}>
-                <input type="file" {...register('img', {})} />
+                <input type="file" onChange={handleFileChange} />
                 <FaUpload />
               </div>
             </div>
@@ -76,12 +91,11 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
             <div className={styles.inputcontainer}>
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="name">
-                  Nombre *
+                  Nombre
                 </label>
                 <input
                   type="text"
                   {...register('name', {
-                    required: 'El nombre es obligatorio',
                     pattern: {
                       value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                       message: 'El nombre no es válido',
@@ -97,13 +111,12 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="tel">
-                  Celular *
+                  Celular
                 </label>
                 <input
                   autoComplete="off"
                   type="number"
                   {...register('tel', {
-                    required: 'El celular es obligatorio',
                     pattern: {
                       value: /^[0-9]*$/,
                       message: 'El celular no es válido',
@@ -123,12 +136,11 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="last_name">
-                  Apellido *
+                  Apellido
                 </label>
                 <input
                   type="text"
                   {...register('last_name', {
-                    required: 'El apellido es obligatorio',
                     pattern: {
                       value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                       message: 'El apellido no es válido',
@@ -145,12 +157,11 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="city">
-                  Ciudad *
+                  Ciudad
                 </label>
                 <input
                   type="text"
                   {...register('city', {
-                    required: 'La ciudad es obligatoria',
                     pattern: {
                       value: /^[A-Z\s]+$/i,
                       message: 'La ciudad no es válida',
@@ -166,12 +177,11 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="dni">
-                  DNI *
+                  DNI
                 </label>
                 <input
                   type="text"
                   {...register('dni', {
-                    required: 'El DNI es obligatorio',
                     pattern: {
                       value: /^[0-9]+$/i,
                       message: 'El DNI no es válido',
@@ -191,12 +201,11 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="province">
-                  Provincia *
+                  Provincia
                 </label>
                 <input
                   type="text"
                   {...register('province', {
-                    required: 'La provincia es obligatoria',
                     pattern: {
                       value: /^[A-Z ]+$/i,
                       message: 'La provincia no es válida',
@@ -217,7 +226,6 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
                 <input
                   type="date"
                   {...register('birth_date', {
-                    required: 'La fecha de nacimiento es obligatoria',
                     validate: (value: any) => {
                       const birthDate = new Date(value);
                       const today = new Date();
@@ -255,13 +263,9 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="gender">
-                  Género *
+                  Género
                 </label>
-                <select
-                  className={styles.select}
-                  {...register('gender', {
-                    required: 'El género es obligatorio',
-                  })}>
+                <select className={styles.select} {...register('gender', {})}>
                   <option value="">Selecciona una opción</option>
                   <option value={Gender.Male}>Masculino</option>
                   <option value={Gender.Female}>Femenino</option>
@@ -276,9 +280,9 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
               <div className={styles.inputbox}>
                 <label className={styles.label} htmlFor="category_id">
-                  Categoría *
+                  Categoría
                 </label>
-                <Categories register={register} />
+                <CategoriesEditForm register={register} />
                 {errors.category_id && (
                   <div className={styles.errorcontainer}>
                     <span>{errors?.category_id?.message?.toString()}</span>
@@ -324,10 +328,7 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
             <div>
               <button
                 type="submit"
-                className={`${styles.btnaccept} ${styles.btn} ${
-                  !isDirty || !isValid ? styles.btnacceptdissabled : ''
-                }`}
-                disabled={!isDirty || !isValid}>
+                className={`{styles.btnaccept} ${styles.btn}`}>
                 Aceptar
               </button>
             </div>
