@@ -7,11 +7,22 @@ import { routes } from '../../routes/routes';
 import classes from './Header.module.scss';
 import { LogoutModal } from './Logout';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  const notification = (color: string) => ({
+    position: toast.POSITION.BOTTOM_RIGHT,
+    autoClose: 5000,
+    style: {
+      fontWeight: 'bold',
+      border: `0.1rem solid ${color}`,
+    },
+  });
 
   const [size, setSize] = useState({
     width: 0,
@@ -44,6 +55,7 @@ const Header = () => {
   function handleLogout() {
     localStorage.removeItem('token');
     navigate('/');
+    toast.success('¡Sesión cerrada con exito!', notification('green'));
   }
 
   return (
