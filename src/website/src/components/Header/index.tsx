@@ -5,9 +5,13 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { routes } from '../../routes/routes';
 import classes from './Header.module.scss';
+import { LogoutModal } from './Logout';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [size, setSize] = useState({
     width: 0,
@@ -37,9 +41,10 @@ const Header = () => {
     setMenuOpen((prevMenuOpen) => !prevMenuOpen);
   };
 
-  const handleLogout = () => {
-    // Logica del Logout(consultar)
-  };
+  function handleLogout() {
+    localStorage.removeItem('token');
+    navigate('/');
+  }
 
   return (
     <header className={classes.header}>
@@ -73,7 +78,9 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <button className={classes.logoutButton} onClick={handleLogout}>
+              <button
+                className={classes.logoutButton}
+                onClick={() => setIsModalOpen(true)}>
                 <FaSignOutAlt size={24} />{' '}
               </button>
             </li>
@@ -86,6 +93,14 @@ const Header = () => {
             <AiOutlineClose onClick={menuToggleHandler} size={30} />
           )}
         </div>
+        <LogoutModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={() => {
+            handleLogout();
+            setIsModalOpen(false);
+          }}
+        />
       </div>
     </header>
   );
