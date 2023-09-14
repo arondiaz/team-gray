@@ -50,8 +50,10 @@ export class ProfessionalUserController extends ApiController {
     @Response<IProfessionalUser>(200, "Success")
     @Response<string>(500, "Unable to retrieve the entity")
     @Action({ route: "/:id" })
-    async getById(@PathParam("id") id: number): Promise<IProfessionalUser> {
-        return await this.repo.getById(id);
+    async getById(@PathParam("id") id: number): Promise<IProfessionalUser | string> {
+        const response = await this.repo.getUserById(id);
+        if (!response) this.httpContext.response.status(404).send("There are no professional users registered with that id");
+        return response;
     }
 
     /**

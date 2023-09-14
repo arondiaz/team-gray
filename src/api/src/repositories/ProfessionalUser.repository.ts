@@ -27,4 +27,12 @@ export class ProfessionalUserRepository extends EditRepositoryBase<IProfessional
 
         return undefined;
     }
+
+    async getUserById(id: number): Promise<IProfessionalUser | undefined> {
+        const validated = await this.find("id = ? AND state = ?", [id, true]);
+
+        if (validated.length === 1) return validated[0];
+
+        return undefined;
+    }
 }
