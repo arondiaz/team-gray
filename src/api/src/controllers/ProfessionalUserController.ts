@@ -79,18 +79,18 @@ export class ProfessionalUserController extends ApiController {
      * 
             "name": "Juan Pedro",
             "last_name": "Lopez",
-            "dni": "34614738",
-            "province": "Santa Fe",
-            "city": "Franck",
-            "tel": "0341434454",
-            "link": "hi-world.com.ar",
-            "about_me": "Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.",
+            "dni": "40587219",
+            "province": "Buenos Aires",
+            "city": "La Plata",
+            "tel": "0221156789456",
+            "link": "juan-portfolio.com",
+            "about_me": "Experienced bricklayer with a strong track record of constructing durable and aesthetically pleasing buildings. Committed to delivering high-quality craftsmanship on every project.",
             "gender": "Male",
-            "birth_date": "1990-01-03",
-            "auth_number": "12312da134123QWw",
-            "img": "photo.png",
-            "category_id": "3"
-        
+            "birth_date": "1988-07-15",
+            "auth_number": "89ab567c890123XYz",
+            "img": "profile.jpg",
+            "category_id": "5"          
+
      * @returns 
      */
 
