@@ -8,7 +8,9 @@
   align-items: center;
   text-align: justify;
   margin: 5rem 25rem;
-  gap: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  gap: 1rem;
 
   @include xsmall {
     margin: 2rem 3rem;
@@ -36,6 +38,9 @@
   font-size: 1rem;
   color: $grey-strong;
   font-weight: $bold-xs;
+
+  p{
+  font-size: 14px;}
 
   @include small {
     font-size: 1.1rem;
