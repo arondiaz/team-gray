@@ -45,11 +45,7 @@ export const Editform: React.FC<EditFormProps> = ({ onCloseForm }) => {
 
   const onSubmitEditForm = async (data: FieldValues): Promise<void> => {
     const editData = { ...data };
-    console.log(typeof data.img);
-    console.log(typeof data.tel);
     const response = await editUser(editData as IProfessionalUser);
-    // todo: take response to show modal
-    console.log(response);
 
     switch (response?.status) {
       case 200:
