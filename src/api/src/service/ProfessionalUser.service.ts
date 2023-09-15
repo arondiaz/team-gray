@@ -94,6 +94,7 @@ export class ProfessionalUserService {
                 gender: professionalUser.gender,
                 auth_number: professionalUser.auth_number,
                 about_me: professionalUser.about_me,
+                img: professionalUser.img,
             };
 
             // If the date of birth is undefined, assign the date of birth of the authenticated user, passing the data in the expected format.
@@ -104,7 +105,7 @@ export class ProfessionalUserService {
 
             // If the value is undefined assign the value of the auth user.
             for (let key in updatedUser) {
-                if (!updatedUser[key]) {
+                if (!updatedUser[key] && updatedUser[key] != null) {
                     updatedUser[key] = this.service.authUser[key].toString();
                 }
             }
@@ -122,6 +123,7 @@ export class ProfessionalUserService {
                 updatedUser.gender,
                 updatedUser.auth_number,
                 updatedUser.about_me,
+                updatedUser.img,
             ];
 
             if (this.validate.validateStringTypeData(editArr)) {
