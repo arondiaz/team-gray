@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { ConfigurationBuilder } from "@miracledevs/paradigm-express-webapi";
 import { Configuration } from "../configuration/configuration";
 import { Validator } from "../utils/validator";
+import { type } from "os";
 
 @Injectable({ lifeTime: DependencyLifeTime.Scoped })
 export class ProfessionalUserService {
@@ -93,7 +94,6 @@ export class ProfessionalUserService {
                 gender: professionalUser.gender,
                 auth_number: professionalUser.auth_number,
                 about_me: professionalUser.about_me,
-                img: professionalUser.img,
             };
 
             // If the date of birth is undefined, assign the date of birth of the authenticated user, passing the data in the expected format.
