@@ -89,13 +89,13 @@ const Header = () => {
                 )}
               </li>
             ))}
-            <li>
+            {/* <li>
               <button
                 className={classes.logoutButton}
                 onClick={() => setIsModalOpen(true)}>
                 <FaSignOutAlt size={24} />{' '}
               </button>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className={classes.header__content__toggle}>
