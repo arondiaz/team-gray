@@ -1,63 +1,128 @@
 // RightColumn.tsx
 import React from 'react';
-import TradeCard from '../Card';
+import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
+import { calculateAge } from '../utils';
+import ProfileImages from '../assets/ProfileImage';
+
 import styles from './RightColumn.module.scss';
-import { UpData } from '../A_LeftColumn';
 
 interface RightColumnProps {
-  selectedPerson: UpData | null;
+	selectedPerson: IProfessionalUser | null;
 }
 
-export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
-  return (
-    <>
-      <div className={styles.rightColumn}>
-        <img
-          className={styles.coverImage}
-          src="src/pages/Trades/TradesImages/electrician.png"
-          alt=""
-        />
+const genderTranslations = {
+	Male: 'Masculino',
+	Female: 'Femenino',
+	'Non-binary': 'No binario',
+};
 
-        <div className={styles.uPlink}>
-          <a
-            href="https://miraclelab.com.ar/"
-            className="buttonLink"
-            target="_blank"
-            rel="noopener noreferrer">
-            más información
-          </a>
-        </div>
-        <div>
-          {selectedPerson && (
-            <TradeCard
-              image={selectedPerson.image}
-              name={selectedPerson.name}
-              gender={selectedPerson.gender}
-              species={selectedPerson.species}
-              status={selectedPerson.status}
-              text={selectedPerson.text}
-              styles={{
-                styleId: styles.styleId,
-                styleImageProfile: styles.styleImageProfile,
-                tradeInfo: styles.tradeInfo,
-                tradeText: styles.tradeText,
-              }}
-            />
-          )}
-          <div className={styles.scrollableText}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac
-              dictum ligula. Etiam non nulla vitae erat congue dictum nec eget
-              ex. Nam nec suscipit quam, eget tincidunt nulla. Etiam volutpat
-              finibus maximus. Nullam rhoncus non odio vel fermentum. Nulla
-              facilisi. Fusce efficitur lectus vel orci volutpat tincidunt.
-              Vestibulum ac lectus ac eros elementum feugiat. Nullam vel est eu
-              ligula posuere hendrerit. Pellentesque et nibh id est viverra
-              fringilla.
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+export const RightColumn: React.FC<RightColumnProps> = ({ selectedPerson }) => {
+	console.log({ selectedPerson });
+
+	return (
+		<div className={styles.rightColumn}>
+			<div className={styles.topBanner}>
+				{' '}
+				Perfil Profesional:{' '}
+				{selectedPerson
+					? `${selectedPerson.name} ${selectedPerson.last_name}`
+					: 'Perfil Profesional'}
+			</div>
+			<div className={styles.coverImage}>
+				{selectedPerson && (
+					<ProfileImages categoryId={selectedPerson.category_id} />
+				)}
+			</div>
+
+			{selectedPerson ? (
+				<div className={styles.profileInfo}>
+					<div className={styles.profileImage}></div>
+					{/* <img className={styles.profileImage} src={selectedPerson.img} /> */}
+
+					<table className={styles.profileTable}>
+						<tbody>
+							<tr>
+								<th className={styles.profileTitle}>
+									Link:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.link}
+									</span>
+								</th>
+							</tr>
+							<tr>
+								<th className={styles.profileTitle}>
+									Nombre:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.name} {selectedPerson.last_name}
+									</span>
+								</th>
+							</tr>
+
+							<tr>
+								<th className={styles.profileTitle}>
+									Edad:{' '}
+									<span className={styles.regularData}>
+										{calculateAge(selectedPerson.birth_date)}
+									</span>
+								</th>
+							</tr>
+
+							<tr>
+								<th className={styles.profileTitle}>
+									Email:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.email}
+									</span>
+								</th>
+							</tr>
+
+							<tr>
+								<th className={styles.profileTitle}>
+									Ciudad:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.city}
+									</span>
+								</th>
+							</tr>
+							<tr>
+								<th className={styles.profileTitle}>
+									Teléfono:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.tel}
+									</span>
+								</th>
+							</tr>
+
+							<tr>
+								<th className={styles.profileTitle}>
+									Género:{' '}
+									<span className={styles.regularData}>
+										{
+											genderTranslations[
+												selectedPerson.gender as keyof typeof genderTranslations
+											]
+										}
+									</span>
+								</th>
+							</tr>
+
+							<tr>
+								<th className={styles.profileTitle}>
+									Número de Autorización:{' '}
+									<span className={styles.regularData}>
+										{selectedPerson.auth_number}
+									</span>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+					<div className={styles.scrollableText}>
+						<p>Sobre mí: {selectedPerson.about_me}</p>
+					</div>
+				</div>
+			) : (
+				<p>Selecciona un profesional para ver su perfil completo</p>
+			)}
+		</div>
+	);
 };

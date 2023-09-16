@@ -8,8 +8,8 @@ export const RouteSwitch = () => {
     <>
       <Header />
       <Routes>
-        {routes.map((route) => (
-          <Route path={route.url} element={route.element}></Route>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.url} element={route.element}></Route>
         ))}
       </Routes>
 

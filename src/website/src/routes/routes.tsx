@@ -5,8 +5,8 @@ import {
   ErrorPage,
   Home,
   PrivacyPolicy,
+  ProfessionalUserProfile,
   Trades,
-  UPProfile,
 } from '../components/pages';
 
 export interface IRoute {
@@ -59,9 +59,9 @@ export const routes = Object.freeze<IRoute[]>([
     element: <Signup />,
   },
   {
-    url: 'up-profile',
+    url: 'profile',
     isPublic: false,
-    element: <UPProfile />,
+    element: <ProfessionalUserProfile />,
   },
   {
     url: '*',

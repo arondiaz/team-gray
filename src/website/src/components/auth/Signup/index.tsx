@@ -3,18 +3,30 @@ import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft, FaUpload } from 'react-icons/fa';
 import { useState } from 'react';
 import { Categories } from '../../Categories';
+import { useRegister } from '../../../hooks/useRegister';
+import { toast } from 'react-toastify';
 
 import styles from './Signup.module.scss';
-import BgOverlay from '../../shared/BackgroundOverly';
+import BgOverlay from '../../shared/BackgroundOverlay';
 import BgLayout from '../../shared/BackgroundLayout';
 
 export enum Gender {
-  Masculino = 'Male',
-  Femenino = 'Female',
-  Otro = 'Other',
+  Male = 'Male',
+  Female = 'Female',
+  NonBinary = 'Non-binary',
 }
 
+const notification = (color: string) => ({
+  position: toast.POSITION.BOTTOM_RIGHT,
+  autoClose: 5000,
+  style: {
+    fontWeight: 'bold',
+    border: `0.1rem solid ${color}`,
+  },
+});
+
 export const Signup = () => {
+  const { makeRegister } = useRegister();
   const {
     register,
     handleSubmit,
@@ -32,9 +44,26 @@ export const Signup = () => {
     setView2(!view2);
   };
 
-  const onSubmitView2 = (data: any) => {
+  const onSubmitView2 = async (data: any) => {
     const allData = { ...view1Data, ...data };
-    alert(JSON.stringify(allData));
+    const response = await makeRegister({ ...allData });
+
+    switch (response?.status) {
+      case 201:
+        toast.success('¡Usuario creado correctamente!', notification('green'));
+        break;
+      case 409:
+        toast.error(
+          'El mail ya existe en la base de datos',
+          notification('red')
+        );
+        break;
+      case 400:
+        toast.error('Registro inválido', notification('red'));
+        break;
+      default:
+        toast.error('Registro incorrecto', notification('red'));
+    }
   };
   const password = watch('password');
 
@@ -114,15 +143,17 @@ export const Signup = () => {
                       return false;
                     }}
                     className={styles.input1}
-                    {...register('confirm', {
+                    {...register('confirmPassword', {
                       required: 'Confirmar contraseña es requerido',
                       validate: (value: any) =>
                         value === password || 'Las contraseñas no coinciden',
                     })}
                   />
-                  {errors.confirm && (
+                  {errors.confirmPassword && (
                     <div className={styles.errorcontainerfv}>
-                      <span>{errors?.confirm?.message?.toString()}</span>
+                      <span>
+                        {errors?.confirmPassword?.message?.toString()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -182,7 +213,7 @@ export const Signup = () => {
                       {...register('name', {
                         required: 'El nombre es obligatorio',
                         pattern: {
-                          value: /^[A-Z]+$/i,
+                          value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                           message: 'El nombre no es válido',
                         },
                       })}
@@ -195,13 +226,13 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="phone">
+                    <label className={styles.labelsv} htmlFor="tel">
                       Celular *
                     </label>
                     <input
                       autoComplete="off"
                       type="number"
-                      {...register('phone', {
+                      {...register('tel', {
                         required: 'El celular es obligatorio',
                         pattern: {
                           //
@@ -214,31 +245,31 @@ export const Signup = () => {
                         },
                       })}
                     />
-                    {errors.phone && (
+                    {errors.tel && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.phone?.message?.toString()}</span>
+                        <span>{errors?.tel?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="surname">
+                    <label className={styles.labelsv} htmlFor="last_name">
                       Apellido *
                     </label>
                     <input
                       type="text"
-                      {...register('surname', {
+                      {...register('last_name', {
                         required: 'El apellido es obligatorio',
                         pattern: {
-                          value: /^[A-Z]+$/i,
+                          value: /^[A-Za-z]+( [A-Za-z]+)*$/,
                           message: 'El apellido no es válido',
                         },
                       })}
                     />
 
-                    {errors.surname && (
+                    {errors.last_name && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.surname?.message?.toString()}</span>
+                        <span>{errors?.last_name?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -265,12 +296,12 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="id">
+                    <label className={styles.labelsv} htmlFor="dni">
                       DNI *
                     </label>
                     <input
                       type="text"
-                      {...register('id', {
+                      {...register('dni', {
                         required: 'El DNI es obligatorio',
                         pattern: {
                           value: /^[0-9]+$/i,
@@ -282,9 +313,9 @@ export const Signup = () => {
                         },
                       })}
                     />
-                    {errors.id && (
+                    {errors.dni && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.id?.message?.toString()}</span>
+                        <span>{errors?.dni?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -311,35 +342,44 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="birth">
+                    <label className={styles.labelsv} htmlFor="birth_date">
                       Fecha de nacimiento *
                     </label>
                     <input
                       type="date"
-                      {...register('birth', {
+                      {...register('birth_date', {
                         required: 'La fecha de nacimiento es obligatoria',
-                      })}
-                    />
-                    {errors.birth && (
-                      <div className={styles.errorcontainersv}>
-                        <span>{errors?.birth?.message?.toString()}</span>
-                      </div>
-                    )}
-                  </div>
+                        validate: (value: any) => {
+                          const birthDate = new Date(value);
+                          const today = new Date();
 
-                  <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="direction">
-                      Dirección *
-                    </label>
-                    <input
-                      type="text"
-                      {...register('direction', {
-                        required: 'La dirección es obligatoria',
+                          const minYears = 18;
+                          const minAgeDate = new Date(
+                            today.getFullYear() - minYears,
+                            today.getMonth(),
+                            today.getDate()
+                          );
+
+                          const maxYears = 100;
+                          const maxAgeDate = new Date(
+                            today.getFullYear() - maxYears,
+                            today.getMonth(),
+                            today.getDate()
+                          );
+
+                          if (birthDate > minAgeDate) {
+                            return 'Debes ser mayor de 18 años';
+                          }
+                          if (birthDate < maxAgeDate) {
+                            return 'Fecha no válida';
+                          }
+                          return true;
+                        },
                       })}
                     />
-                    {errors.direction && (
+                    {errors.birth_date && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.direction?.message?.toString()}</span>
+                        <span>{errors?.birth_date?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -356,18 +396,16 @@ export const Signup = () => {
                       <option className={styles.optionsv} value="">
                         Selecciona una opción
                       </option>
-                      <option
-                        className={styles.optionsv}
-                        value={Gender.Masculino}>
+                      <option className={styles.optionsv} value={Gender.Male}>
                         Masculino
                       </option>
-                      <option
-                        className={styles.optionsv}
-                        value={Gender.Femenino}>
+                      <option className={styles.optionsv} value={Gender.Female}>
                         Femenino
                       </option>
-                      <option className={styles.optionsv} value={Gender.Otro}>
-                        Otro
+                      <option
+                        className={styles.optionsv}
+                        value={Gender.NonBinary}>
+                        No binarie
                       </option>
                     </select>
                     {errors.gender && (
@@ -378,34 +416,33 @@ export const Signup = () => {
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="category">
+                    <label className={styles.labelsv} htmlFor="category_id">
                       Categoría *
                     </label>
                     <Categories register={register} />
-                    {errors.category && (
+                    {errors.category_id && (
                       <div className={styles.errorcontainer}>
-                        <span>{errors?.category?.message?.toString()}</span>
+                        <span>{errors?.category_id?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="habilitation">
-                      N° Habilitación *
+                    <label className={styles.labelsv} htmlFor="auth_number">
+                      N° Habilitación
                     </label>
                     <input
                       type="text"
-                      {...register('habilitation', {
-                        required: 'El número de habilitación es obligatorio',
+                      {...register('auth_number', {
                         minLength: {
                           value: 8,
                           message: 'Longitud mínima de 8 dígitos',
                         },
                       })}
                     />
-                    {errors.habilitation && (
+                    {errors.auth_number && (
                       <div className={styles.errorcontainersv}>
-                        <span>{errors?.habilitation?.message?.toString()}</span>
+                        <span>{errors?.auth_number?.message?.toString()}</span>
                       </div>
                     )}
                   </div>
@@ -414,14 +451,14 @@ export const Signup = () => {
                     <label className={styles.labelsv} htmlFor="link">
                       Link
                     </label>
-                    <input type="text" />
+                    <input type="text" {...register('link', {})} />
                   </div>
 
                   <div className={styles.inputboxsv}>
-                    <label className={styles.labelsv} htmlFor="about">
+                    <label className={styles.labelsv} htmlFor="about_me">
                       Sobre mí
                     </label>
-                    <input type="text" />
+                    <input type="text" {...register('about_me', {})} />
                   </div>
                 </div>
 
@@ -430,7 +467,7 @@ export const Signup = () => {
                 </div>
 
                 <div className={styles.btnsignupcontainer}>
-                  <Link to="/up-profile">
+                  <Link to="/login">
                     <button
                       type="button"
                       className={`${styles.btnsignup} ${

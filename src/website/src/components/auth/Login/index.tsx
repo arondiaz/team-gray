@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styles from './Login.module.scss';
-import BgLayout from '../../shared/BackgroundLayout';
-import BgOverlay from '../../shared/BackgroundOverly';
+import BgOverlay from '../../shared/BackgroundOverlay';
+import { useAuth } from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const {
@@ -14,7 +15,46 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => console.log(JSON.stringify(data));
+  const { request } = useAuth();
+
+  const notification = (color: string) => ({
+    position: toast.POSITION.BOTTOM_RIGHT,
+    autoClose: 5000,
+    style: {
+      fontWeight: 'bold',
+      border: `0.1rem solid ${color}`,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
+    const res = await request({
+      email: data.email,
+      password: data.password,
+    });
+    switch (res?.status) {
+      case 200:
+        toast.success('¡Inicio de sesión exitoso!', notification('green'));
+        break;
+      case 401:
+        toast.error('Inicio de sesión no autorizado', notification('red'));
+        break;
+      case 404:
+        toast.error(
+          'El mail no existe o no fue registrado',
+          notification('red')
+        );
+        break;
+      case 403:
+        toast.error('Cuenta deshabilitada', notification('red'));
+        break;
+      default:
+        toast.error('¡Inicio de sesión incorrecto!', notification('red'));
+        break;
+    }
+  };
+
+  const token = localStorage.getItem('token');
+  if (token) return <Navigate to="/profile" />;
 
   return (
     <>
@@ -64,7 +104,7 @@ export const Login = () => {
                   message: 'Longitud mínima 8 caracteres',
                 },
                 maxLength: {
-                  value: 16,
+                  value: 32,
                   message: 'Longitud máxima 16 caracteres',
                 },
               })}
@@ -99,7 +139,6 @@ export const Login = () => {
         </form>
       </div>
       <BgOverlay />
-      <BgLayout />
     </>
   );
 };

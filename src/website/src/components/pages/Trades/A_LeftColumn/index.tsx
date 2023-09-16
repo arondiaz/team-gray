@@ -1,46 +1,36 @@
-// LeftColumn.tsx
-
-import { useState, useEffect } from 'react';
+import { professionalUserServiceInstance } from '../../../../services/ProfessionalUser.service';
+import { IProfessionalUser } from '../../../../interfaces/ProfessionalUser.interface';
+import { useCategories } from '../../../../hooks/useCategories';
 import styles from './LeftColumn.module.scss';
-export interface ICategory {
-  id: number;
-  name: string;
+
+export interface LeftColumnProps {
+	onCategoryClick: (professionals: IProfessionalUser[]) => void;
 }
 
-export const LeftColumn: React.FC = () => {
-  const [trades, setTrades] = useState<ICategory[]>([]);
+export const LeftColumn: React.FC<LeftColumnProps> = ({ onCategoryClick }) => {
+	const { trades } = useCategories();
 
-  useEffect(() => {
-    fetch('http://www.localhost:5000/api/categories')
-      .then((response) => response.json())
-      .then((data) => {
-        setTrades(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data from the API:', error);
-      });
-  }, []);
+	const handleCategory = async (id: string) => {
+		const professionals =
+			await professionalUserServiceInstance.getProfessionalUserByCategory(id);
 
-  const handleCategory = async (id: any) => {
-    const pedido = await fetch(`http://www.localhost:5000/api/up/category/${id}`);
-    const json = await pedido.json();
-    console.log(json);
-  };
+		onCategoryClick(professionals as IProfessionalUser[]);
+	};
 
-  return (
-    <div className={styles.leftColumn}>
-      <div className={styles.searchContainer}></div>
-      <div className={styles.scrollableList}>
-        <table className={styles.tradeList}>
-          <tbody>
-            <ul>
-              {trades.map((m) => (
-                <button onClick={() => handleCategory(m.id)}>{m.name}</button>
-              ))}
-            </ul>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.leftColumn}>
+			<div className={styles.topBanner}>Seleccionar Oficio</div>
+			<div className={styles.scrollableList}>
+				<table className={styles.tradeList}>
+					<tbody>
+						{trades.map((m) => (
+							<tr key={m.id} onClick={() => handleCategory(m.id)}>
+								<td>{m.name}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	);
 };

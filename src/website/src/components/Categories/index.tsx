@@ -18,7 +18,7 @@ export const Categories = ({ register }: any) => {
   return (
     <select
       className={styles.select}
-      {...register('categories', { required: 'La categoría es obligatoria' })}>
+      {...register('category_id', { required: 'La categoría es obligatoria' })}>
       <option value="">Selecciona una opción</option>
       {categories.map((category: any) => (
         <option key={category.id} value={category.id}>

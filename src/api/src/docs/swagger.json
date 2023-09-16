@@ -1,8 +1,13 @@
 {
 	"definitions": {
-		"IAuthProfessionalUser": {
+		"IProfessionalUser": {
 			"description": "",
 			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double",
+					"description": ""
+				},
 				"email": {
 					"type": "string",
 					"description": ""
@@ -15,7 +20,7 @@
 					"type": "string",
 					"description": ""
 				},
-				"lastname": {
+				"last_name": {
 					"type": "string",
 					"description": ""
 				},
@@ -44,10 +49,15 @@
 					"description": ""
 				},
 				"gender": {
+					"enum": [
+						"Male",
+						"Female",
+						"Non-binary"
+					],
 					"type": "string",
 					"description": ""
 				},
-				"birthdate": {
+				"birth_date": {
 					"type": "string",
 					"description": ""
 				},
@@ -59,11 +69,38 @@
 					"type": "string",
 					"description": ""
 				},
-				"created_at": {
+				"category_id": {
 					"type": "string",
 					"description": ""
 				},
-				"category_id": {
+				"state": {
+					"type": "number",
+					"format": "double",
+					"description": ""
+				}
+			},
+			"type": "object",
+			"required": [
+				"email",
+				"name",
+				"last_name",
+				"dni",
+				"province",
+				"city",
+				"tel",
+				"gender",
+				"birth_date"
+			],
+			"additionalProperties": {}
+		},
+		"ILoginProfessionalUser": {
+			"description": "",
+			"properties": {
+				"email": {
+					"type": "string",
+					"description": ""
+				},
+				"password": {
 					"type": "string",
 					"description": ""
 				}
@@ -71,17 +108,7 @@
 			"type": "object",
 			"required": [
 				"email",
-				"password",
-				"name",
-				"lastname",
-				"dni",
-				"province",
-				"city",
-				"tel",
-				"gender",
-				"birthdate",
-				"created_at",
-				"category_id"
+				"password"
 			]
 		},
 		"ICategory": {
@@ -99,87 +126,7 @@
 			},
 			"type": "object",
 			"required": [
-				"id",
 				"name"
-			]
-		},
-		"IProfessionalUser": {
-			"description": "",
-			"properties": {
-				"id": {
-					"type": "number",
-					"format": "double",
-					"description": ""
-				},
-				"email": {
-					"type": "string",
-					"description": ""
-				},
-				"name": {
-					"type": "string",
-					"description": ""
-				},
-				"lastname": {
-					"type": "string",
-					"description": ""
-				},
-				"dni": {
-					"type": "string",
-					"description": ""
-				},
-				"province": {
-					"type": "string",
-					"description": ""
-				},
-				"city": {
-					"type": "string",
-					"description": ""
-				},
-				"tel": {
-					"type": "string",
-					"description": ""
-				},
-				"link": {
-					"type": "string",
-					"description": ""
-				},
-				"about_me": {
-					"type": "string",
-					"description": ""
-				},
-				"gender": {
-					"type": "string",
-					"description": ""
-				},
-				"birthdate": {
-					"type": "string",
-					"description": ""
-				},
-				"auth_number": {
-					"type": "string",
-					"description": ""
-				},
-				"img": {
-					"type": "string",
-					"description": ""
-				},
-				"category_id": {
-					"type": "string",
-					"description": ""
-				}
-			},
-			"type": "object",
-			"required": [
-				"email",
-				"name",
-				"lastname",
-				"dni",
-				"province",
-				"city",
-				"tel",
-				"gender",
-				"birthdate",
-				"category_id"
 			]
 		}
 	},
@@ -206,7 +153,7 @@
 						}
 					},
 					"201": {
-						"description": "Professional User created",
+						"description": "Created user",
 						"schema": {
 							"type": "string"
 						}
@@ -218,7 +165,7 @@
 						}
 					},
 					"500": {
-						"description": "Error server",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -233,12 +180,12 @@
 				],
 				"parameters": [
 					{
-						"description": "",
+						"description": "   * This is an endpoint to register as a professional user.\r\n\r\n  Example:\r\n\r\n     \"email\": \"juan@gmail.com\",\r\n     \"password\": \"12345678\",\r\n     \"name\": \"Juan\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"34614738\",\r\n     \"province\": \"Santa Fe\",\r\n     \"city\": \"Rosario\",\r\n     \"tel\": \"2477434454\",\r\n     \"link\": \"hi-world.com.ar\",\r\n     \"about_me\": \"Experienced carpenter skilled in crafting wood into functional and artistic pieces. Dedicated to transforming ideas into tangible, quality creations.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1990-01-03\",\r\n     \"auth_number\": \"12312da134123QWw\",\r\n     \"img\": \"photo.png\",\r\n     \"category_id\": \"3\"",
 						"in": "body",
 						"name": "authUser",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/IAuthProfessionalUser"
+							"$ref": "#/definitions/IProfessionalUser"
 						}
 					}
 				]
@@ -252,19 +199,31 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Success",
+						"description": "Ok",
 						"schema": {
 							"type": "string"
 						}
 					},
-					"400": {
-						"description": "Bad request",
+					"401": {
+						"description": "Invalid credentials",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"403": {
+						"description": "Disabled account",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"404": {
+						"description": "The user does not exist in the database",
 						"schema": {
 							"type": "string"
 						}
 					},
 					"500": {
-						"description": "Error server",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -279,12 +238,12 @@
 				],
 				"parameters": [
 					{
-						"description": "",
+						"description": "  * This is an endpoint to login as a professional user. The user will receive an authentication\r\n    token to be validated when making requests.\r\n\r\n  Example:\r\n\r\n     \"email\": \"juan@gmail.com\",\r\n     \"password\": \"12345678\"",
 						"in": "body",
 						"name": "authUser",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/IAuthProfessionalUser"
+							"$ref": "#/definitions/ILoginProfessionalUser"
 						}
 					}
 				]
@@ -292,7 +251,7 @@
 		},
 		"/api/categories/": {
 			"get": {
-				"operationId": "CategoriesGet",
+				"operationId": "CategoryGet",
 				"produces": [
 					"application/json",
 					"text/html"
@@ -307,6 +266,12 @@
 							}
 						}
 					},
+					"404": {
+						"description": "There are not categories",
+						"schema": {
+							"type": "string"
+						}
+					},
 					"500": {
 						"description": "Server error",
 						"schema": {
@@ -314,29 +279,26 @@
 						}
 					}
 				},
-				"description": "",
+				"description": "\r\n* This endpoint returns all categories added.",
 				"tags": [
 					"Categories"
 				],
 				"parameters": []
 			},
 			"post": {
-				"operationId": "CategoriesPost",
+				"operationId": "CategoryPost",
 				"produces": [
 					"text/html"
 				],
 				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"type": "string"
-						}
-					},
 					"201": {
 						"description": "Created category",
 						"schema": {
 							"type": "string"
 						}
+					},
+					"204": {
+						"description": "No content"
 					},
 					"400": {
 						"description": "Bad request",
@@ -359,21 +321,14 @@
 				},
 				"description": "",
 				"tags": [
-					"Admin"
-				],
-				"security": [
-					{
-						"default": [
-							"x-auth"
-						]
-					}
+					"Categories"
 				],
 				"consumes": [
 					"application/json"
 				],
 				"parameters": [
 					{
-						"description": " This controller is implemented to add \n categories by an authenticated administrator. \n For now, for testing purposes, you can generate \n the token in jwt.io by passing the jwt.secret from \n the .env file in the signature.",
+						"description": " * This endpoint is implemented to add categories. It will be security so that only an administrator user can add categories. Does not apply to the current MVP. \r\n\r\n Example:\r\n  \r\n     \"name\": \"Cerrajero\"",
 						"in": "body",
 						"name": "category",
 						"required": true,
@@ -401,8 +356,14 @@
 							}
 						}
 					},
+					"404": {
+						"description": "There are no registered users",
+						"schema": {
+							"type": "string"
+						}
+					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -413,6 +374,120 @@
 					"Professional Users"
 				],
 				"parameters": []
+			},
+			"put": {
+				"operationId": "ProfessionalUserEditUser",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"500": {
+						"description": "Server error",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"description": "",
+				"tags": [
+					"Professional Users"
+				],
+				"security": [
+					{
+						"default": [
+							"x-auth"
+						]
+					}
+				],
+				"consumes": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"description": "  * This endpoint is for editing an account by an authenticated professional user.\r\n\r\n  Example: \r\n\r\n     \"name\": \"Juan Pedro\",\r\n     \"last_name\": \"Lopez\",\r\n     \"dni\": \"40587219\",\r\n     \"province\": \"Buenos Aires\",\r\n     \"city\": \"La Plata\",\r\n     \"tel\": \"0221156789456\",\r\n     \"link\": \"juan-portfolio.com\",\r\n     \"about_me\": \"Experienced bricklayer with a strong track record of constructing durable and aesthetically pleasing buildings. Committed to delivering high-quality craftsmanship on every project.\",\r\n     \"gender\": \"Male\",\r\n     \"birth_date\": \"1988-07-15\",\r\n     \"auth_number\": \"89ab567c890123XYz\",\r\n     \"img\": \"profile.jpg\",\r\n     \"category_id\": \"5\"",
+						"in": "body",
+						"name": "professionalUser",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/IProfessionalUser"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "ProfessionalUserDelete",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"500": {
+						"description": "Server error",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"description": "* This endpoint is for remove a professional user when he is authenticated. It is removed from the database.",
+				"tags": [
+					"Professional Users"
+				],
+				"security": [
+					{
+						"default": [
+							"x-auth"
+						]
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/api/professional_user/{id}": {
+			"get": {
+				"operationId": "ProfessionalUserGetById",
+				"produces": [
+					"application/json",
+					"text/html"
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/IProfessionalUser"
+						}
+					},
+					"500": {
+						"description": "Unable to retrieve the entity",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"description": "",
+				"tags": [
+					"Professional Users"
+				],
+				"parameters": [
+					{
+						"description": "* This endpoint returns an professional user by id.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "number",
+						"format": "double"
+					}
+				]
 			}
 		},
 		"/api/professional_user/category/{category_id}": {
@@ -432,14 +507,14 @@
 							}
 						}
 					},
-					"400": {
-						"description": "Bad request",
+					"404": {
+						"description": "There are no professional users registered with that category",
 						"schema": {
 							"type": "string"
 						}
 					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
@@ -451,7 +526,7 @@
 				],
 				"parameters": [
 					{
-						"description": "",
+						"description": "* This endpoint returns all registered professional users by trade category to which they belong.",
 						"in": "path",
 						"name": "category_id",
 						"required": true,
@@ -461,47 +536,38 @@
 				]
 			}
 		},
-		"/api/professional_user/{id}": {
-			"get": {
-				"operationId": "ProfessionalUserGetById",
+		"/api/professional_user/disable": {
+			"delete": {
+				"operationId": "ProfessionalUserDisableAccount",
 				"produces": [
-					"application/json",
 					"text/html"
 				],
 				"responses": {
 					"200": {
-						"description": "Success",
-						"schema": {
-							"$ref": "#/definitions/IProfessionalUser"
-						}
-					},
-					"404": {
-						"description": "User not found",
+						"description": "The account has been disabled",
 						"schema": {
 							"type": "string"
 						}
 					},
 					"500": {
-						"description": "No connection to database",
+						"description": "Server error",
 						"schema": {
 							"type": "string"
 						}
 					}
 				},
-				"description": "",
+				"description": "* This endpoint is for disable a professional user when he is authenticated. It is not removed from the database, it changes its state to false.",
 				"tags": [
 					"Professional Users"
 				],
-				"parameters": [
+				"security": [
 					{
-						"description": "",
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"type": "number",
-						"format": "double"
+						"default": [
+							"x-auth"
+						]
 					}
-				]
+				],
+				"parameters": []
 			}
 		}
 	},

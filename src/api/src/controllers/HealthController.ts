@@ -3,7 +3,7 @@ import { MySqlConnection } from "../core/mysql/mysql.connection";
 
 @Controller({ route: "/api/fast-work" })
 export class HealthController extends ApiController {
-    constructor(private connection: MySqlConnection) {
+    constructor(private readonly connection: MySqlConnection) {
         super();
     }
 

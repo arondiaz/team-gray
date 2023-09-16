@@ -1,0 +1,52 @@
+@import '../../../../stylesheets/variables.scss';
+
+.containerdelete {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: $Lexend;
+  width: 40rem;
+  height: 20rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  flex-direction: column;
+}
+
+.textdelete {
+  color: #626262;
+  font-size: 1.4rem;
+}
+
+.btncontainer {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0rem;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+}
+
+.btnclose {
+  background-color: $purple-soft;
+  color: white;
+}
+
+.btnclose:hover {
+  background-color: $purple-strong;
+}
+
+.btnconfirm {
+  background-color: rgb(172, 9, 9);
+  color: white;
+}
+
+.btnconfirm:hover {
+  background-color: rgb(145, 6, 6);
+}

@@ -1,300 +1,233 @@
 @import '../../../stylesheets/variables.scss';
+@import '../../../stylesheets/mixins.scss';
 
-.fullcontainer {
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.leftcontainer {
-  width: 60rem;
-  height: 35rem;
-  color: $grey-strong;
-  padding: 2rem 4rem;
-  background: $white;
-  border-radius: $border-md;
-  box-shadow: $shadow-medium;
-  z-index: 95;
-}
-
-.leftcontainer .inputboxprofile {
-  height: 1.6rem;
-  margin: 1rem 0;
-}
-
-.registerform {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.inputupload {
-  position: relative;
-}
-
-.imageprofile {
-  position: absolute;
-  bottom: -5rem;
-  left: 23rem;
-  border-radius: 50%;
-  border: 0.2rem solid $purple-soft;
-}
-
-.inputupload .round {
-  position: absolute;
-  bottom: -5rem;
-  left: 26rem;
-  background: #00b4ff;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.inputupload .round input[type='file'] {
-  position: absolute;
-  transform: scale(2);
-  opacity: 0;
-}
-
-.inputboxprofile input[type='text'],
-.inputboxprofile input[type='number'],
-.inputboxprofile input[type='date'] {
-  color: $grey-strong;
-  padding: 1rem;
-  font-size: 1rem;
-  height: 1.2rem;
-  margin: 0.2rem 0rem;
-  background: transparent;
-}
-
-input[type='file']::-webkit-file-upload-button {
-  cursor: pointer;
-}
-
-input[type='date'] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.label {
-  margin-left: 1rem;
-  font-size: 1.1rem;
-}
-
-.inputcontainer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin-top: 1.5rem;
-}
-
-.inputcontainer .inputprofile {
-  margin: 1rem;
-  border: none;
-  border-bottom: 1px solid $grey-strong;
-  font-size: 1.2rem;
-  outline: none;
-}
-
-.inputboxprofile .selectsv {
-  color: white;
-  font-size: 1rem;
-  height: 1.7rem;
-  margin: 1.5rem 1rem 1.7rem 2rem;
-  padding: 0rem 0.5rem;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0.1rem solid $purple-strong;
-  text-align: center;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  background-color: $purple-soft;
-  border-radius: 0.2rem;
-}
-
-.selectsv .optionsv {
-  background-color: $purple-soft;
-  font-size: 1.2rem;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.btnacceptcontainer {
-  position: relative;
-}
-
-.btnaccept {
-  position: absolute;
-  outline: none;
-  top: 2rem;
-  right: 22rem;
-  border: none;
-  outline: none;
-  background-color: $purple-soft;
-  color: $white;
-  font-size: 0.9rem;
-  font-weight: bold;
-  width: 10rem;
-  height: 2rem;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease-out;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-}
-
-.btnaccept:hover {
-  background-color: $purple-strong;
-}
-
-.btnacceptdisabled {
-  background-color: #dddddd;
-}
-
-.btnacceptdisabled:hover {
-  background-color: #dddddd;
-  cursor: not-allowed;
-}
-
-.backbtn {
-  position: relative;
-}
-
-.backbtn svg {
-  position: absolute;
-  color: $purple-soft;
-  top: 2rem;
-  left: -2rem;
-  width: 2rem;
-  height: 2rem;
-  transition: color 0.3s ease-in-out;
-}
-
-.backbtn svg:hover {
-  color: $purple-strong;
-}
-
-.err {
+.containerprofile {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -1rem;
+  flex-direction: column;
+  margin-top: 0.1rem;
 }
 
-.err span {
-  background-color: $error-soft;
-  color: $error-strong;
-  font-size: 0.8rem;
-  font-weight: $bold-sm;
-  text-align: center;
-  padding: 0.3rem;
-  border-radius: 0.4rem;
-}
-
-//Right side of the page
-
-.textbox {
-  position: absolute;
-  color: #626262;
-}
-
-.textbox h2 {
-  position: relative;
-  top: -22rem;
-  right: 6rem;
-}
-
-.fullcontainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.container1 {
-  z-index: 95;
-  background-color: white;
-  width: 25rem;
-  border-radius: 1rem;
-}
-
-.rightbox {
-  background-color: #84828234;
-  width: 25rem;
-  height: 32rem;
-  margin-right: 2rem;
-  border-radius: 1rem;
-}
-
-.officeimg {
-  width: 25rem;
-  height: 8rem;
+.containerimage * {
   border-radius: 1rem 1rem 0rem 0rem;
-}
+  width: 100%;
 
-.section:first-child {
-  width: 17rem;
-  height: 3rem;
-  background-color: $purple-soft;
-  border-radius: 1rem;
-}
+  @include large {
+    height: 7rem;
+    object-fit: cover;
+  }
 
-.section:first-child h3,
-.section:first-child p {
-  margin-left: 1rem;
-  color: #fff;
+  @include xlarge {
+    height: 8rem;
+    object-fit: cover;
+  }
+
+  @include xxlarge {
+    height: 10rem;
+    object-fit: cover;
+  }
+  @include ultralarge {
+    height: 12rem;
+    object-fit: cover;
+  }
 }
 
 .section {
-  margin-top: 0.8rem;
-  margin-left: 1rem;
+  margin-top: 1rem;
+
+  @include xsmall {
+    margin-top: 0.2rem;
+  }
+
+  @include large {
+    margin-top: 0.6rem;
+  }
+
+  @include xlarge {
+    margin-top: 0.8rem;
+  }
 }
 
-.linka {
-  margin-left: 0.4rem;
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: white;
+.containerimage:first-child {
+  border-radius: 2rem;
 }
 
-.textright {
-  font-size: 1rem;
+.datacontainer {
+  margin: 1rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: $grey-strong;
+
+  @include xsmall {
+    font-size: 0.7rem;
+  }
+
+  @include small {
+    font-size: 1rem;
+  }
+
+  @include medium {
+    font-size: 1.2rem;
+  }
+
+  @include large {
+    font-size: 1.1rem;
+  }
+
+  @include xlarge {
+    font-size: 1.2rem;
+  }
+
+  @include xxlarge {
+    font-size: 1.5rem;
+  }
+  @include ultralarge {
+    font-size: 1.7rem;
+  }
+}
+
+.cardprofile {
+  width: 70vw;
+  height: 80vh;
+  background-color: gainsboro;
+  border-radius: 1rem;
+  transition: width 0.3s, height 0.3s;
+
+  @include xsmall {
+    width: 65vw;
+    height: 55vh;
+  }
+
+  @include small {
+    width: 50vw;
+    height: 65vh;
+  }
+
+  @include medium {
+    width: 60vw;
+    height: 45vh;
+  }
+
+  @include large {
+    width: 45vw;
+    height: 60vh;
+  }
+
+  @include xlarge {
+    width: 40vw;
+    height: 60vh;
+  }
+
+  @include xxlarge {
+    width: 30vw;
+    height: 65vh;
+  }
+  @include ultralarge {
+    width: 30vw;
+    height: 65vh;
+  }
+}
+
+.cardprofile .titledata {
   color: $purple-strong;
+
+  @include xsmall {
+    font-size: 0.7rem;
+  }
+
+  @include small {
+    font-size: 0.9rem;
+  }
+
+  @include medium {
+    font-size: 1.1rem;
+  }
+
+  @include large {
+    font-size: 1rem;
+  }
+
+  @include xlarge {
+    font-size: 1.1rem;
+  }
+
+  @include xxlarge {
+    font-size: 1.2rem;
+  }
+
+  @include ultralarge {
+    font-size: 1.3rem;
+  }
 }
 
-span {
-  font-size: medium;
+.cardprofile .data {
   color: $purple-soft;
-}
-.circlecontainer {
-  position: relative;
+
+  @include xsmall {
+    font-size: 0.6rem;
+  }
+
+  @include small {
+    font-size: 0.8rem;
+  }
+
+  @include large {
+    font-size: 0.8rem;
+  }
+
+  @include xlarge {
+    font-size: 1rem;
+  }
+
+  @include xlarge {
+    font-size: 1.1rem;
+  }
+
+  @include ultralarge {
+    font-size: 1.2rem;
+  }
 }
 
-.circle {
-  position: absolute;
-  left: 18rem;
-  top: -4rem;
-  width: 6rem;
-  height: 6rem;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: $purple-soft;
+.link {
+  background-color: #6e629b8a;
+  color: white;
+  padding: 0.1rem;
+  border-radius: 0.2rem;
+  width: 70%;
+}
+
+.titledata {
+  margin: 0.5rem 0;
 }
 
 .section:last-child {
-  width: 24rem;
-  height: 6rem;
+  width: 100%;
+  height: 8rem;
   overflow: auto;
+  word-wrap: break-word;
+
+  @include xsmall {
+    height: 4.5rem;
+  }
+
+  @include large {
+    height: 5.8rem;
+  }
+
+  @include xlarge {
+    height: 15vh;
+  }
+
+  @include xxlarge {
+    height: 8rem;
+  }
+
+  @include ultralarge {
+    height: 12rem;
+  }
 }
 
 .section:last-child::-webkit-scrollbar {
@@ -307,4 +240,93 @@ span {
   width: 0.8rem;
   background-color: #4c3e7f;
   border-radius: 1rem;
+}
+
+.containerbtn {
+  display: flex;
+  margin: 1rem 0rem;
+}
+
+.btn {
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: 0.1rem 1.4rem;
+  border-radius: 0.5rem;
+
+  @include xsmall {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  @include small {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+
+  @include large {
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  @include xlarge {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+
+  @include xxlarge {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  @include ultralarge {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.3rem;
+  }
+}
+.editbtn {
+  background-color: #14a9b3;
+}
+
+.editbtn:hover {
+  background-color: #0b96a0;
+}
+
+.deletebtn {
+  background-color: rgb(172, 9, 9);
+}
+
+.deletebtn:hover {
+  background-color: rgb(145, 6, 6);
+}
+
+//
+//Modal Edit
+
+.modaleditform {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//
+//Modal Delete
+.modaldelete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
