@@ -1,5 +1,7 @@
 #### FastWork
 
+#### Proyecto grupal realizado en MiracleLabs dictado por la empresa MiracleDevs.
+
 ##### FastWork es un sitio web que permite a trabajadores de mantenimiento, instalación y reparación (como plomeros, carpinteros o electricistas) ofrecer sus servicios en la web. A su vez, brinda la posibilidad a potenciales clientes de encontrar por categoría a profesionales en distintos oficios y contactarlos para adquirir sus servicios.
 
 ##### Actualmente está siendo desarrollado por el Team Gray de Miracle Lab.
@@ -20,7 +22,7 @@
 
 #### Frontend:
 
-1. Instalar node 18.16.1.
+1. Instalar node 18.16.1 o superior.
 2. Instalar Git:  
    `sudo apt-get install -y git`
 3. Clonar repositorio: `git clone https://github.com/labmiracle/team-gray.git`
@@ -32,7 +34,7 @@
 
 #### Backend:
 
-1. Instalar node 18.16.1.
+1. Instalar node 18.16.1 o superior.
 2. Instalar Git:  
    `sudo apt-get install -y git`
 3. Clonar repositorio: `git clone https://github.com/labmiracle/team-gray.git`
@@ -62,7 +64,6 @@
 ### Team:
 
 - Aron Diaz
-- Diego Jesús Hamui
 - Hernán Gobulin
 - Nicolás Loreto
 
