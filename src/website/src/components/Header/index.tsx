@@ -15,6 +15,8 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem('token');
+
   const notification = (color: string) => ({
     position: toast.POSITION.BOTTOM_RIGHT,
     autoClose: 5000,
@@ -89,13 +91,15 @@ const Header = () => {
                 )}
               </li>
             ))}
-            {/* <li>
-              <button
-                className={classes.logoutButton}
-                onClick={() => setIsModalOpen(true)}>
-                <FaSignOutAlt size={24} />{' '}
-              </button>
-            </li> */}
+            {token && (
+              <li>
+                <button
+                  className={classes.logoutButton}
+                  onClick={() => setIsModalOpen(true)}>
+                  <FaSignOutAlt size={24} />{' '}
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
         <div className={classes.header__content__toggle}>
